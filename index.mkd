@@ -1,0 +1,33 @@
+---
+layout: post
+title: "Jekyll: Blogging like a hacker"
+tags:
+  - jekyll
+  - blogging
+---
+I wrote [the first post](/2005/05/26/PS3-and-parallell-programming/) on this
+site in 2005 using [Serendipity](http://www.s9y.org). While Serendipity
+is a completely adequate blogging engine, I have been annoyed by a few things.
+All of them would apply to any popular blogging engine, which is why I
+wanted something different. I have now found a tool that takes
+a very different approach.
+
+Before I go into that, let's list the things that didn't feel right with a
+"classical" blogging engine:
+
+1. Serendipity is written in PHP. This is good since there are plenty of ISPs
+that can host PHP sites. Unfortunately I'm no PHP hacker myself, so it is not
+easy for me to change the internal workings of the site.
+
+2. I have more interesting things to do than keeping up with the latest versions
+of the software. It is especially worrying if I don't have the time to install
+security patches. This would apply no matter what blogging engine i chose. As
+long as there is server-side code, there is a risk of security holes.
+
+3. I'm a programmer. I'm used to working with text files. I can manipulate them
+with tools for version control, utilities like grep and sed, programming
+languages like Python and Ruby and any text editor of my liking. Entering text
+into a form on a web page may be easier for a non-programmer, but I have other
+usability requirements. (Also, with a web form text can easily get lost. I've
+been [saved by tcpdump](/2008/12/02/Saved-by-tcpdump/) more than once.)
+
