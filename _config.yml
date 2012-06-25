@@ -4,13 +4,13 @@ permalink: /:month-:day-:year/:title.html
 theme:
 
   # Site name
-  site_name: I ❤ creating
+  site_name: chilicuil's blog :: exMN
 
   # Google analytics UID
-  google_analytics_uid: UA-27533624-1
+  #google_analytics_uid: UA-27533624-1
 
   # Disqus shortname, for comments
-  disqus_shortname: stephan83
+  disqus_shortname: chilicuil
 
   # Number of featured posts on homepage
   homepage_featured: 1
