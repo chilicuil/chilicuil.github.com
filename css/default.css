@@ -181,8 +181,7 @@ color: #23af4c;
 color:#f4f4f4;
 margin:10px auto;
 padding:0;
-/*width:670px;*/
-width:880px;
+width:670px;
 }
 
 #header {
@@ -218,7 +217,8 @@ line-height:1.5em;
 margin:0;
 padding:0;
 text-align:left;
-width:500px;
+/*width:500px;*/
+width:700px;
 }
 
 #contentalt {
