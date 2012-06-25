@@ -1,22 +1,10 @@
-permalink: /:month-:day-:year/:title.html
+safe:        false
+auto:        false
 
-# Theme settings
-theme:
+source:      .
+destination: ./_site
+plugins:     ./_plugins
 
-  # Site name
-  site_name: chilicuil's blog :: exMN
-
-  # Google analytics UID
-  #google_analytics_uid: UA-27533624-1
-
-  # Disqus shortname, for comments
-  disqus_shortname: chilicuilsblogexmn
-
-  # Number of featured posts on homepage
-  homepage_featured: 1
-
-  # Number of posts on homepage (in addition to featured posts)
-  homepage_posts: 2
-
-  # Number of words to display in post summaries
-  featured_wordcount: 20
+future:      true
+lsi:         false
+pygments:    false
