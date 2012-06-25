@@ -1,0 +1,56 @@
+---
+layout: post
+title: "Kexec, rebooteando a máxima velocidad"
+---
+
+<h2>{{ page.title }}</h2>
+
+<p class="publish_date">04 Nov 2008</p>
+
+<p align="justify">Hace un ratito me acabo de enterar de que existe una manera de rebootear realmente rapido en Linux, y a estado ahi desde el comienzo de la rama 2.6. Se trata de Kexec un conjunto de llamadas al sistema, que reemplazan al kernel actual con el nuevo, saltandose a la bios y a la inicializacion del hardware. Lo que en pocas palabras reducen el tiempo de booteo en 20, 30 y hasta en 60!!!!!! segundos.
+</p>
+<p align="justify">Para usarse solo hay que instalar el packete "kexec-tools" y asegurarse de que tenemos habilitada su opcion en el kernel "CONFIG_KEXEC" lo que muy probable ya este hecho.
+</p>
+
+<p align="justify">Despues de eso ya puede usarse de la siguiente forma:
+</p>
+
+<pre class="sh_sh">
+  $ kexec -l /boot/vmlinuz --command-line="`cat /proc/cmdline`" --initrd=/boot/initrd
+  $ kexec -e
+</pre>
+
+<p align="justify">La primera linea carga el kernel y regresa la terminal, nosotros especificamos exactamente en que momento queremos pasarnos al nuevo kernel, de hecho he leido por <a href="http://www.redhat.com/docs/en-US/Red_Hat_Enterprise_MRG/1.0/html/Realtime_Tuning_Guide/sect-Realtime_Tuning_Guide-Realtime_Specific_Tuning-Using_kdump_and_kexec_with_the_RT_kernel.html">ahi</a> que lo usan para que cuando haya un kernel panic, salga otro al rescate.
+</p>
+
+<p align="justify">La segunda lanza el segundo kernel, pero kexec no se preocupa de desmontar cuidadosamente los dispositivos y de cerrar los procesos, asi que hay que hacerlo manualmente:
+</p>
+
+<pre class="sh_sh">
+  $ kexec -l /boot/vmlinuz --command-line="`cat /proc/cmdline`" --initrd=/boot/initrd
+  $ sync
+  $ umount -a
+  $ kexec -e
+</pre>
+
+<p align="justify">Eso en caso de que tengas alguna distribucion atrasada o poco usual, porque en las mas populares, al instalar el paquete "kexec-tools" tambien modifica el script /etc/init.d/boot para que no haya pierde.
+</p>
+
+<pre class="sh_sh">
+  $ kexec -l /boot/vmlinuz --command-line="`cat /proc/cmdline`" --initrd=/boot/initrd
+  $ shutdown -r now
+</pre>
+
+<p align="justify">En <a href="http://lizards.opensuse.org/2008/10/13/automatic-reboot-with-kexec/">openSuse 11.1</a> ya ni siquiera sera necesario hacer eso, vendra habilitado por default y en <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug">Debian</a> se habilita por defecto al instalarse.
+</p>
+
+<p align="justify">Links relacionados:
+</p>
+
+<ul>
+    <li><a href="http://www.ibm.com/developerworks/linux/library/l-kexec.html">http://www.ibm.com/developerworks/linux/library/l-kexec.html</a></li>
+    <li><a href="http://www.linux.com/feature/150202">http://www.linux.com/feature/150202</a></li>
+    <li><a href="http://ubuntuforums.org/showthread.php?t=785347">http://www.linux.com/feature/150202</a></li>
+    <li><a href="http://lwn.net/Articles/15468/">http://lwn.net/Articles/15468/</a></li>
+    <li><a href="http://code.google.com/p/atv-bootloader/wiki/Understandingkexec">http://code.google.com/p/atv-bootloader/wiki/Understandingkexec</a></li>
+</ul>
