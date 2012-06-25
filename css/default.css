@@ -120,7 +120,8 @@ h1 a:hover { color:#fba919 ;}
 	margin-bottom:0px;
 	text-align:right;
 	font-size:0.8em;
-	width:490px;
+	/*width:490px;*/
+	width:690px;
 	color: #23af4c;
 
 }
