@@ -28,7 +28,7 @@ views/home/about/company.html.erb  /about/company    about_company_url
 <p>
   On an unrelated note I've been building a lot of sinatra apps lately. To get the functionality of the rails-brochure gem in sinatra all you need is:
 </p>
-<pre>
+<pre class="sh_ruby">
 # put this at the bottom of your app to make it lowest-priority catch-all route
 get '/*' do
   erb params["splat"].to_s.to_sym
