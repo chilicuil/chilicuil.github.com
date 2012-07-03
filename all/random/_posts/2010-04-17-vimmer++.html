@@ -14,10 +14,10 @@ title: "Vimmer"
 
 <h4>Generales</h4>
 
-<p align="justify"><strong>1.-</strong> Lo primero que se tiene que hacer es deshabilitar la compatibilidad con vi, si no se hace muchas de las opciones no funcionaran, también se puede habilitar el reconocimiento de sintaxis, de indentado y de plugins. Se puede agregar una línea para que cuando abramos un archivo nos regrese al punto donde lo dejamos.
+<p align="justify"><strong>1.-</strong> Lo primero que hago es deshabilitar la compatibilidad con vi, si no se hace muchas de las opciones no funcionaran, también se puede habilitar el reconocimiento de sintaxis, de indentado y de plugins. Se puede agregar una línea para que cuando se abra un archivo se abra en la linea donde se dejo.
 </p>
 
-<p align="justify">Personalmente considero básico cambiar tabulaciones por espacios y estos declararlos de 4 lugares.
+<p align="justify">Considero básico cambiar tabulaciones por espacios y declararlos de 4 lugares.
 </p>
 
 <pre class="sh_sh">
@@ -40,7 +40,7 @@ title: "Vimmer"
     <= line("$")|execute("normal `\"")|endif
 </pre>
 
-<p align="justify"><strong>2.-</strong> Para copiar y pegar desde y hacia el portapapeles, se usa el registro "+", en versiones posteriores a vim 7.3:
+<p align="justify"><strong>2.-</strong> Para copiar y pegar desde y hacia el portapapeles, uso el registro "+" (unicamente en versiones posteriores a vim 7.3):
 </p>
 
 <pre>
@@ -54,7 +54,7 @@ title: "Vimmer"
 <p align="justify">Tambien funciona en el modo visual
 </p>
 
-<p align="justify"><strong><span style="color: rgb(255, 0, 0);">:h x11-selection
+<p align="justify"><strong><span style="color: yellow;">:h x11-selection
 </span></strong>
 </pre>
 
@@ -63,19 +63,22 @@ title: "Vimmer"
 
 <p align="justify"><strong>3.-</strong> Los objetos de texto son atajos de teclado que permiten seleccionar cadenas específicas, por ejemplo, <strong>3w</strong> representa 3 palabras, si se agrega 'd', <strong>3adw</strong> se eliminan las siguientes 3 palabras. Algunos ejemplos son:
 
-<p align="justify">[+] <strong><span style="color: rgb(0, 0, 255);">da{</span></strong>&nbsp;&nbsp;&nbsp;&nbsp; elimina un par de llaves {} (dar click secundario y luego «Mostrar imagen» sobre las imagenes para ver la animación)
+<p align="justify">[+] <strong><span style="color: gray;">da{</span></strong><br>
+Elimina un par de llaves {} (dar click secundario y luego «Mostrar imagen» sobre las imagenes para ver la animación)
 </p>
 
 <p style="text-align: center;">
 	<img src="/img/9.gif"></p>
 
-<p align="justify">[+] <strong><span style="color: rgb(0, 0, 205);">di{</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lo mismo, pero deja las llaves {}
+<p align="justify">[+] <strong><span style="color: gray;">di{</span></strong><br>
+Lo mismo, pero deja las llaves {}
 </p>
 
 <p style="text-align: center;">
 	<img src="/img/10.gif"></p>
 
-<p align="justify">[+] <strong><span style="color: rgb(0, 0, 255);">ci'</span></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reemplaza lo que este dentro de '' y cambia a modo insertar
+<p align="justify">[+] <strong><span style="color: gray;">ci'</span></strong><br>
+Reemplaza lo que este dentro de '' y cambia a modo insertar
 </p>
 
 <p style="text-align: center;">
@@ -84,7 +87,7 @@ title: "Vimmer"
 <p align="justify">Así como lo acabo de explicar probablemente no se vea lo que hace, igual porque ni yo mismo me he entendido muy bien, pero esta característica por si sola ya es motivo para usar vim, desconozco si en otros editores hay algo que se le parezca.
 </p>
 
-<p align="justify"><strong><span style="color: rgb(255, 0, 0);">:h text-objects</span></strong>
+<p align="justify"><strong><span style="color: yellow;">:h text-objects</span></strong>
 </p>
 
 <p align="justify"><strong>4.-</strong> Vim soporta diferentes ramas de "undos" infinitos.
@@ -102,7 +105,7 @@ title: "Vimmer"
     g+            ==> para cambiar a la rama superior
 </pre>
 
-<p align="justify"><strong><span style="color: rgb(255, 0, 0);">:h undo</span></strong>
+<p align="justify"><strong><span style="color: yellow;">:h undo</span></strong>
 </p>
 
 <p align="justify"><strong>5.-</strong> Repitición de la última inserción (.)
@@ -111,8 +114,7 @@ title: "Vimmer"
 <p align="justify">Por defecto la última inserción se guarda (mm, supongo que como macro) en "." (el punto), por ejemplo si quieren poner la variable $var en varios puntos, pueden escribrirla una vez y luego irse moviendo por el codigo presionando "." cada vez, cada vez que lo hagan se volvera a escribir $var
 </p>
 
-<p align="justify"><strong>=Edición/Compilación=</strong>
-</p>
+<h4>Edición / Compilación</h4>
 
 <p align="justify"><strong>1.-</strong> Sintaxis y manejo de errores
 </p>
@@ -170,7 +172,7 @@ title: "Vimmer"
     $tercera_var      = 3
 </pre>
 
-<p align="justify"><strong><span style="color: rgb(255, 0, 0);">:h align</span></strong>
+<p align="justify"><strong><span style="color: yellow;">:h align</span></strong>
 </p>
 
 <p align="justify"><strong>3.-</strong> Snippets
@@ -185,7 +187,7 @@ title: "Vimmer"
 <p align="justify">Cada vez que se quiera usar un snippet, se pone la palabra clave (trigger) y se presiona [TAB], se modifica lo que se resalta o no y se vuelve a presionar [TAB], como en textmate [shift][TAB] se usa para regresar al bloque anterior. Los snippets se agregan en lenguage.snippets, dentro de ~/.vim/snippets o en ~/.vim/extra-snippets (de preferencia en el segundo para que no se sobreescriban cuando se actualice el plugin).
 </p>
 
-<p align="justify"><strong><span style="color: rgb(255, 0, 0);">:h snippet</span></strong>
+<p align="justify"><strong><span style="color: yellow;">:h snippet</span></strong>
 </p>
 
 <p align="justify"><strong>4.-</strong> Comentarios
@@ -209,7 +211,7 @@ title: "Vimmer"
     //add_footer("Sales3");
 </pre>
 
-<p align="justify"><strong><span style="color: rgb(255, 0, 0);">:h NERDCommenter</span></strong>
+<p align="justify"><strong><span style="color: yellow;">:h NERDCommenter</span></strong>
 </p>
 
 <p align="justify"><strong>5.-</strong> Debugging
@@ -231,7 +233,7 @@ title: "Vimmer"
     xdebug.remote_host = localhost
 </pre>
 
-Y luego se puede obtener <a href="http://github.com/taxilian/VimDebugger">http://github.com/taxilian/VimDebugger</a>, las instrucciones se encuentran <a href="http://colonelpanic.net/2010/08/debugging-php-in-vim-using-vimdebugger/">text</a>aquí
+Y luego se puede obtener <a href="http://github.com/taxilian/VimDebugger">http://github.com/taxilian/VimDebugger</a>, las instrucciones se encuentran <a href="http://colonelpanic.net/2010/08/debugging-php-in-vim-using-vimdebugger/">aquí</a>
 
 <p align="justify">Una vez instalado, se reinician vim/apache
 </p>
@@ -266,7 +268,7 @@ Descargar xdebug-helper para firefox: <a href="https://addons.mozilla.org/en-US/
 <p align="justify"><strong>1.-</strong> Ayuda
 </p>
 
-<p align="justify">Este es un punto muy importante, porque ya que estoy aprendiendo, el 99% de las ocasiones no tengo remota idea de que parámetros acepta una función, por lo que trate de encontrar una solución (de preferencia que trabajara offline) que fuera lo más práctica posible, y encontre que existe un plugin llamado ManPageView.vim (<a href="http://www.vim.org/scripts/script.php?script_id=489">http://www.vim.org/scripts/script.php?script_id=489</a>) que no solo funciona para php, sino que tambien para las man ordinarias, perl y python (el mejor integrado para mi), remapea la tecla '<strong><span style="color: rgb(255, 0, 0);">K</span></strong>', para que busque la palabra debajo del cursor, es funcional, pero tiene el incoveniente que requiere acceso a internet, y de repente se le va la onda, por lo que hay que llamarlo con el comando (<strong><span style="color: rgb(255, 0, 0);">:Man.php echo</span></strong>).
+<p align="justify">Este es un punto muy importante, porque ya que estoy aprendiendo, el 99% de las ocasiones no tengo remota idea de que parámetros acepta una función, por lo que trate de encontrar una solución (de preferencia que trabajara offline) que fuera lo más práctica posible, y encontre que existe un plugin llamado ManPageView.vim (<a href="http://www.vim.org/scripts/script.php?script_id=489">http://www.vim.org/scripts/script.php?script_id=489</a>) que no solo funciona para php, sino que tambien para las man ordinarias, perl y python (el mejor integrado para mi), remapea la tecla '<strong><span style="color: rgb(255, 0, 0);">K</span></strong>', para que busque la palabra debajo del cursor, es funcional, pero tiene el incoveniente que requiere acceso a internet, y de repente se le va la onda, por lo que hay que llamarlo con el comando (<strong><span style="color: yellow;">:Man.php echo</span></strong>).
 </p>
 
 <p style="text-align: center;">
@@ -341,16 +343,13 @@ Descargar xdebug-helper para firefox: <a href="https://addons.mozilla.org/en-US/
 <a href="/img/21.png"><img alt="" src="/img/21.png" style="width: 237px; height: 173px;">
 </a></p>
 
-<p align="justify"><strong><span style="color: rgb(255, 0, 0);">:h dbext-connect-profiles-examples</span></strong>
+<p align="justify"><strong><span style="color: yellow;">:h dbext-connect-profiles-examples</span></strong>
 </p>
 
-<p align="justify">Se puede usar desde el modo 'ex' o sobre el documento mismo. Por ejemplo.
+<p align="justify">Se puede usar desde el modo 'ex' o sobre el documento mismo. Por ejemplo. <strong>:Select * FROM customer</strong> despliega la tabla customer:
 </p>
 
-<p align="justify"><strong><span style="color: rgb(128, 0, 128);">:Select * FROM customer</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; despliega la tabla customer:
-</p>
-
-<pre><span style="color: rgb(0, 100, 0);">
+<pre>
     Connection: T(MYSQL)  D(chilicuil)  U(chilicuil)   at 02:55
     +----+-----------+-----------+
     | id | cust_name | phone_nbr |
@@ -361,19 +360,18 @@ Descargar xdebug-helper para firefox: <a href="https://addons.mozilla.org/en-US/
     |  4 | Sid       | 555-1213  |
     |  5 | Joe       | 555-1214  |
     +----+-----------+-----------+
-</span>
 </pre>
 
 <p align="justify">Tambien se pueden seleccionar visualmente código sql(java, php, perl) y ejecutarlo usando <strong>[Leader]se</strong>
 </p>
 
-<p align="justify"><strong><span style="color: rgb(255, 0, 0);">:h dbext-mappings</span></strong>
+<p align="justify"><strong><span style="color: yellow;">:h dbext-mappings</span></strong>
 </p>
 
 <p align="justify">Dbext.vim soporta muchas bases de datos, mysql, postgresql, ingres, oracle, db2, sqlite, etc, es potente y se actualiza periodicamente, tambien tiene buena documentación, lo malo es que no hay alternativas, su interfaz de usuario (las preguntas) me parecen algo torpes, no soporta contraseñas con espacios y su código parece dificil de modificar (al menos para mi).
 </p>
 
-<p align="justify"><strong><span style="color: rgb(255, 0, 0);">:h dbext-tutorial<br>
+<p align="justify"><strong><span style="color: yellow;">:h dbext-tutorial<br>
 :h dbext</span></strong>
 </p>
 
@@ -389,10 +387,10 @@ Descargar xdebug-helper para firefox: <a href="https://addons.mozilla.org/en-US/
 <p align="justify">Para accesar al resto de funciones, se puede usar :! , por ejemplo para descargar un repositorio de git:
 </p>
 
-<p align="justify"><strong><span style="color: rgb(128, 0, 128);">:! git clone&nbsp; git://github.com/project.git</span></strong>
+<p align="justify"><strong><span style="color: yellow;">:! git clone&nbsp; git://github.com/project.git</span></strong>
 </p>
 
-<p align="justify"><strong><span style="color: rgb(255, 0, 0);">:h vcscommand<br>
+<p align="justify"><strong><span style="color: yellow;">:h vcscommand<br>
 :h !cmd</span></strong>
 </p>
 
@@ -403,7 +401,7 @@ Descargar xdebug-helper para firefox: <a href="https://addons.mozilla.org/en-US/
 Sin Ctags y Nerdtree&nbsp; ===&gt; Con Ctags y Nerdtree
 </p>
 
-<p align="justify"><a href="/img/22.png"><img src="/img/22.png" style="width: 268px; height: 167px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/img/23.png"><img src="/img/23.png" style="width: 271px; height: 168px;"></a>
+<p align="center"><a href="/img/22.png"><img src="/img/22.png" style="width: 268px; height: 167px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/img/23.png"><img src="/img/23.png" style="width: 271px; height: 168px;"></a>
 </p>
 
 <p align="justify">Ctags permite ir a las definiciones de las funciones (dentro del mismo archivo) y variables con [Ctrl]-], gd, gD y [Ctrl]-t, tambien mientras se navega sobre su ventana es posible ir brincando entre las definiciones, nerdtree permite navegar entre los archivos
@@ -458,18 +456,18 @@ Sin Ctags y Nerdtree&nbsp; ===&gt; Con Ctags y Nerdtree
 </p>
 
 <ul>
-    <li> -folding (para mostrar/ocultar grandes porciones de codigo) <strong><span style="color: rgb(255, 0, 0);">:h folding</span></strong></li>
+    <li> -folding (para mostrar/ocultar grandes porciones de codigo) <strong><span style="color: yellow;">:h folding</span></strong></li>
         <li> - <a href="http://www.vim.org/scripts/script.php?script_id=39">matchit.vim</a> (aumenta el poder de %, para moverse todavia mas rapido por los documentos)</li>
-        <li> - netrw.vim (para editar archivos colgados directamente de un servidor ftp/sftp <strong><span style="color: rgb(255, 0, 0);">:h netrw</span></strong></li>
+        <li> - netrw.vim (para editar archivos colgados directamente de un servidor ftp/sftp <strong><span style="color: yellow;">:h netrw</span></strong></li>
         <li> - <a href="http://www.vim.org/scripts/script.php?script_id=1355">php_documentor.vim</a> (para crear php-doc al mismo tiempo que las funciones)</li>
         <li> - <a href="http://www.vim.org/scripts/script.php?script_id=69">project.vim</a> (no lo probe porque parece un tanto viejo, al parecer la idea se trata de unificar varias utilidades para lograr algo parecido a lo que deberian obtener despues de seguir algunos de estos tips)</li>
         <li> - omni-completation (junto con <a href="http://www.vim.org/scripts/script.php?script_id=1879">acp.vim</a>/<a href="http://www.vim.org/scripts/script.php?script_id=2620"><span class="txth1">neocomplcache.vim</span></a> va proporcionando autocompletado de funciones/variables) no es *muy* inteligente, pero tampoco esta mal, si se combina con mutt en la escritura de emails, se vuelve indispensable</li>
         <li> - <a href="http://www.vim.org/scripts/script.php?script_id=2607">tasklist.vim</a> (ayuda a seguir el rastro a los TODOS)</li>
         <li> - <a href="http://vim.sourceforge.net/scripts/script.php?script_id=1910">qbuf.vim</a>, tus buffers al alcance de un [F2]</li>
-        <li> - <strong><span style="color: rgb(255, 0, 0);">:h marks</span></strong> (crea 'bookmarks' dentro de los archivos, ayuda a moverse rapido)</li>
+        <li> - <strong><span style="color: yellow;">:h marks</span></strong> (crea 'bookmarks' dentro de los archivos, ayuda a moverse rapido)</li>
         <li> - <a href="http://eclim.org/">eclim</a> (eclipse + vim)</li>
-        <li> - macros (para manejar tareas repetitivas) <strong><span style="color: rgb(255, 0, 0);">:h complex-repeat</span></strong></li>
-        <li> - gq (formateo de codigo) <strong><span style="color: rgb(255, 0, 0);">:h gq</span></strong></li>
+        <li> - macros (para manejar tareas repetitivas) <strong><span style="color: yellow;">:h complex-repeat</span></strong></li>
+        <li> - gq (formateo de codigo) <strong><span style="color: yellow;">:h gq</span></strong></li>
         <li> - <a href="http://www.vim.org/scripts/script.php?script_id=2871">findmate.vim</a> (para encontrar archivos)</li>
 </ul>
 
