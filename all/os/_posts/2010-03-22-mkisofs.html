@@ -67,7 +67,7 @@ title: "mkisofs"
     kernel    /boot/Luxur
 </pre>
 
-<p align="justify">Agregando el archivo <strong>stage2_eltorito</strong> a <strong>iso/boot/grub</strong> (este es el que hace la magia para que un disco comun y corriente sea autoarrancable)
+<p align="justify">Agregando el archivo <strong>stage2_eltorito</strong> a <strong>iso/boot/grub</strong> (este es el que hace la magia para que un disco común sea autoarrancable)
 </p>
 
 <p align="justify">En un sistema con grub legacy y arquitectura x86 se encuentra en:
@@ -84,9 +84,14 @@ title: "mkisofs"
     $  /usr/lib/grub/x86_64-pc/stage2_eltorito  iso/boot/grub
 </pre>
 
-<p align="justify">NOTA: Sino esta en ninguno de esos lugares una copia se esta aquí: <br><br>
-<a href="http://arabos.googlecode.com/files/stage2_eltorito" target="_blank">http://arabos.googlecode.com/files/stage2_eltorito</a>
+<p align="justify">NOTA: Sino esta en ninguno de esos lugares una copia esta aquí:
 </p>
+
+<ul>
+    <li>
+<a href="http://arabos.googlecode.com/files/stage2_eltorito" target="_blank">http://arabos.googlecode.com/files/stage2_eltorito</a>
+    </li>
+</ul>
 
 <p align="justify">Copiando el kernel para completar la estructura:
 </p>
@@ -114,7 +119,7 @@ title: "mkisofs"
     247 extents written (0 MB)
 </pre>
 
-<p align="justify">Esta última linea la copie de la documentacion del grub: <a href="http://tinyurl.com/cr7xx" target="_blank">http://tinyurl.com/cr7xx</a>
+<p align="justify">Esta última linea la copie de la documentacion: <a href="http://tinyurl.com/cr7xx" target="_blank">http://tinyurl.com/cr7xx</a>
 </p>
 
 <p align="justify">Las personas en #grub me han dicho que tambien se puede con el grub2
@@ -124,6 +129,6 @@ usando '<strong>grub-mkrescue</strong>'.., no verifique tal cosa.
 <p align="justify">
 </p>
 
-<p align="justify">Ahora deberia existir un archivo 'imagen.iso' que se puede usar con 
+<p align="justify">Ahora debería existir un archivo <strong>imagen.iso</strong> que se puede usar con 
 qemu/vbox/wmware
 </p>
