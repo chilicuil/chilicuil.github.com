@@ -13,7 +13,7 @@ title: "Configuración de WPA - WEP en openbsd"
 <p align="justify">A partir de la versión 4.4 (4.5 para ath0) se ha agregado soporte para wpa, no todos los drivers lo soportan, pero para los que si lo hacen, un index rápido de los comandos son (aquí para atheros):
 </p>
 
-{% highlight console %}
+{% highlight bash %}
     $ ifconfig ath0 nwid ACCESS_POINT \
       wpa wpapsk $(wpa-psk ACCESS_POINT PASSWORD)
     $ ifconfig ath0 10.0.0.2 255.255.255.0 10.0.0.1  
