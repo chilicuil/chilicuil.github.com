@@ -9,7 +9,7 @@ title: "Backups: git, rsync, tar, netcat y cp"
 
 <p align="justify">Mi sistema de backups es realmente malo, no me siento particularmente orgulloso de decirlo pero es la verdad, cada vez que me acuerdo de propagarlo (si es que lo hago), me pongo a buscar los comandos para hacerlo y al finalizar siempre olvido las opciones, por lo que tengo que volver a buscarlas. Así que un primer paso será dejarlos por aquí para tenerlos a la vista rápidamente, en lo que me decido a hechar todo esto a la basura y configurar algo que valga la pena. Las propuestas son bienvenidas.
 
-<h4>git</h4>
+<h3>git</h3>
 
 <p align="justify">Soy el afortunado dueño de 3 equipos, 1 laptop (que uso mayormente para hacer pruebas), 1 netbook (a la que traigo para todos lados) y 1 workstation (que casi no prendo). Hago un uso razonable de la consola, por lo que mis dotfiles tienen que estar en sincronia la mayor parte del tiempo, es raro el día que no agregue un alias o configure cualquier cosita. Soy un obsesivo. Otra de las cosas que muy comunmente cambio son pequeños scripts en bash, python o perl (estos últimos los voy encontrando), son cambios muy tontos y pequeños, pero ya me acostumbre a muchos de ellos. Esto no se limita a estas máquinas, cuando necesito usar una computadora por más de un par de dias tengo que hacer un 'git clone' para sentirme confortable, no puedo vivir sin colores!.
 </p>
@@ -42,7 +42,7 @@ title: "Backups: git, rsync, tar, netcat y cp"
 <p align="justify">Una vez configurado, puedo hacer <strong>git push</strong> y <strong>git pull</strong> en cualquier de las máquinas, y todas mantienen la última versión. Creo que este es el sistema que menos apesta , desafortunadamente no me ayuda mucho cuando se trata de más de unos cuantos megas.
 </p>
 
-<h4>rsync</h4>
+<h3>rsync</h3>
 
 <p align="justify">Para complicarme menos las cosas uso la misma estructura en las 3 computadoras y en cualquier otra en la que tenga pensado pasar un buen tiempo. Umm, en realidad manejo directorios 'principales' que siempre deben estar sincronizados (en teoria), como <strong>code,</strong>, <strong>misc</strong> (donde pongo trabajo propio y backups de otras máquinas) y <strong>data</strong> (donde pongo películas, libros, música, imgs, etc).<br><br>
 
@@ -60,7 +60,7 @@ Algunos dotfiles importantes, como .mozilla .compiz .e .gnome* .gtk* .mutt* .ssh
     ===== AQUÍ EL MISMO COMANDO PARA EL RESTO DE DIRECTORIOS X 3 =====
 </pre>
 
-<h4>tar</h4>
+<h3>tar</h3>
 
 <p align="justify">Bien podría decirse que estas 3 computadoras son las principales, entre ellas son jerarquicamente iguales, los datos se comparten por igual.
 </p>
@@ -68,7 +68,7 @@ Algunos dotfiles importantes, como .mozilla .compiz .e .gnome* .gtk* .mutt* .ssh
 <p align="justify">Sin embargo en casa tengo otras 3 (regaladas, pentium 3) que me sirven para hacer pruebas, ahorita mismo corren las 3 versiones principales de los bsd. Cada una, tiene crontabs que hacen backups locales.
 </p>
 
-<h4>netcat</h4>
+<h3>netcat</h3>
 
 <p align="justify">Tengo entonces en cada máquina un directorio .backup en /home/usuario/, cada mes mas o menos, copio los directorios hacia alguna de las 3 máquinas en ~/misc/conf/sistema, donde sistema es la distribucion o sistema operativo que corre, existen carpetas como: ubuntu, ubuntu-netbook, ubuntu-server, etc. Al estar dentro de los directorios 'importantes' dentro de una de las máquinas 'principales', tarde o temprano las copiare a las otras 2.
 </p>
@@ -88,7 +88,7 @@ Algunos dotfiles importantes, como .mozilla .compiz .e .gnome* .gtk* .mutt* .ssh
     > ~/misc/conf/sistema/sistema-$(date +%Y-%m-%d).tar.gz
 </pre>
 
-<h4>cp</h4>
+<h3>cp</h3>
 
 <p align="justify">Finalmente cuando he sincronizado las remotas y las principales, me aseguro que el último 'snapshot' este en la workstation, ahí conecto un disco duro externo por usb. Esto lo hago cada 3-4 meses, para lo cual el backup anterior ya no es muy útil. El disco es de 150 Gb, por lo que solo le cabe 1 captura.
 </p>
