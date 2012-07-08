@@ -1,0 +1,43 @@
+---
+layout: post
+title: "Compartir conexión pc a pc"
+---
+
+<h2>{{ page.title }}</h2>
+
+<p class="publish_date">{{ page.date | date_to_string }}</p>
+
+<h3>Inalámbrica a alámbrica</h3>
+
+<ul>
+	<li><strong>eth0:</strong> conexión cruzada a otra máquina</li>
+	<li><strong>eth1:</strong> conexión inalámbrica a internet</li>
+</ul>
+
+<pre class="sh_sh">
+    $ sudo ifconfig eth0 10.0.0.1
+    $ sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
+    $ sudo su
+    # echo 1 > /proc/sys/net/ipv4/ip_forward
+</pre>
+
+<h3>Alámbrica a inalámbrica</h3>
+
+<ul>
+	<li><strong>eth0:</strong> conexión cableada a internet</li>
+	<li><strong>eth1:</strong> access point, compartición ad-hoc</li>
+</ul>
+
+<!--TODO 08-07-2012 01:45 >> ver el post de vendaval, dar crédito-->
+<pre class="sh_sh">
+    $ foo
+</pre>
+
+<p align="justify">En la máquina 'cliente', se configura la conexión con los siguientes datos:
+</p>
+
+<ul>
+	<li><strong>ip:</strong> 10.0.0.2</li>
+	<li><strong>gatewat:</strong> 10.0.0.1</li>
+	<li><strong>dns:</strong> 10.0.0.1</li>
+</ul>

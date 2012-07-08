@@ -1,0 +1,23 @@
+---
+layout: post
+title: "gtk - java"
+---
+
+<h2>{{ page.title }}</h2>
+
+<p class="publish_date">{{ page.date | date_to_string }}</p>
+
+<p align="justify">Una de las principales razones por las que no uso aplicaciones java, es que no se ven bien, sin embargo algunas pueden ser forzadas a usar gtk, mejorando considerablemente la vista, desconozco de que dependa este factor.
+</p>
+
+<p align="justify">En <strong>~/.bashrc</strong> se agrega:
+</p>
+
+<pre class="sh_sh">
+    export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on \
+    -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+</pre>
+
+<ul>
+	<li><a href="http://blogs.sun.com/netbeansphp/entry/how_to_change_look_and">http://blogs.sun.com/netbeansphp/entry/how_to_change_look_and</a></li>
+</ul>
