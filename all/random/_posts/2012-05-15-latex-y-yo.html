@@ -7,7 +7,7 @@ title: "latex y yo"
 
 <p class="publish_date">{{ page.date | date_to_string }}</p>
 
-<p align="justify">Nada, ahora que he actualizado mi sistema y que me he quedado sin empleo xD, he vuelto a 'compilar' mi CV para llevarlo a las entrevistas. Describiré el proceso para hacerlo más rápido la próxima vez y por si alguien más desea hacer su CV en latex ;)
+<p align="justify">Nada, ahora que he actualizado mi sistema y que me he quedado sin empleo xD, he vuelto a 'compilar' mi CV para llevarlo a las entrevistas. Describiré el proceso para hacerlo más rápido la próxima vez y por si alguien más desea hacer su CV en latex.
 </p>
 
 <p align="center">
@@ -15,10 +15,11 @@ title: "latex y yo"
 </p>
 
 <pre class="sh_sh">
-    $ apt-get install texlive-latex-base texlive-latex-extra latex-xcolor texlive-fonts-recommended
+    $ apt-get install texlive-latex-base texlive-latex-extra latex-xcolor \
+      texlive-fonts-recommended
 </pre>
 
-<p align="justify">La última versión de moderncv, reemplaza a la que viene en texlive-latex-extra:
+<p align="justify">La última versión de <strong>moderncv,</strong> reemplaza a la que viene en <strong>texlive-latex-extra</strong>:
 </p>
 
 <pre class="sh_sh">
@@ -31,14 +32,18 @@ title: "latex y yo"
 <p align="justify">Después de instalar las dependencias, se genera el documento con el comando 'latex':
 </p>
 
-<p align="justify">Y el archivo .dvi resultante a pdf
+<pre class="sh_sh">
+    $ latex cv.tex
+</pre>
+
+<p align="justify">Y el archivo .dvi resultante en pdf
 </p>
 
 <pre class="sh_sh">
     $ dvipdfm cv.dvi
 </pre>
 
-<p align="justify">
+<p align="center">
 <a href="https://gist.github.com/2704079">
 <img src="http://www.mononeurona.org/img/imgusers/chilicuil_2460.png" style="width: 353px; height: 444px;"></a>
 </p>
