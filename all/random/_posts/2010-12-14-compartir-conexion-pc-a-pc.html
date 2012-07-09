@@ -30,7 +30,12 @@ title: "Compartir conexión pc a pc"
 
 <!--TODO 08-07-2012 01:45 >> ver el post de vendaval, dar crédito-->
 <pre class="sh_sh">
-    $ foo
+    $ iwconfig wlan0 mode ad-hoc
+    $ iwconfig wlan0 essid proxywlan
+    $ ifconfig wlan0 10.0.0.1 up #o la ip que gustes
+    $ iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+    $ sudo su
+    # echo 1 > /proc/sys/net/ipv4/ip_forward
 </pre>
 
 <p align="justify">En la máquina 'cliente', se configura la conexión con los siguientes datos:
@@ -40,4 +45,8 @@ title: "Compartir conexión pc a pc"
 	<li><strong>ip:</strong> 10.0.0.2</li>
 	<li><strong>gatewat:</strong> 10.0.0.1</li>
 	<li><strong>dns:</strong> 10.0.0.1</li>
+</ul>
+
+<ul>
+	<li><a href="http://mononeurona.org/entries/view/vendaval/20911" target="_blank">ad-hoc para compartir internet</a></li>
 </ul>
