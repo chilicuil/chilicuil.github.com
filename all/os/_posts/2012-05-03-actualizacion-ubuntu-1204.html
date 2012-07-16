@@ -1,0 +1,144 @@
+---
+layout: post
+title: "actualizacion ubuntu 12.04"
+---
+
+<h2>{{ page.title }}</h2>
+
+<p class="publish_date">{{ page.date | date_to_string }}</p>
+
+<p align="center"><a href="/img/49.png"><img src="/img/49.png" style="width: 417px; height: 234px;"></a>
+</p>
+
+<p align="justify">He actualizado mi laptop de Ubuntu 10.04 a la 12.04 LTS (n___n)/, asi que pasaré a describir el proceso por si necesito volver a hacerlo.
+</p>
+
+<p align="justify">Mi computadora es una netbook, así que no tiene disquetera, mmm, sin embargo eso no importa porque desde que <a href="http://chilicuil.github.com/all/os/2010/05/19/ubuntu-desde-windows-nowubi-netinstaller.html">descubrí</a> que Ubuntu se puede instalar sin USB ni CDROM, no descargo imagenes ISO a menos que quiera participar en el testing (<a href="http://iso.qa.ubuntu.com">iso.qa.ubuntu.com</a>), así pues lo primero que hice, fue cambiar el gestor de grub2 a grub-legacy
+</p>
+
+<pre class="sh_sh">
+    $ sudo rm -rf /boot/grub && mkdir /boot/grub
+    $ sudo apt-get install --purge remove grub-pc grub-common
+    $ sudo apt-get install grub && sudo update-grub
+    $ sudo grub-install /dev/sda
+</pre>
+
+<p align="justify">Después descargue el instalador y el kernel (20Mb~) y los puse en la raiz <strong>"/"</strong>
+</p>
+
+<pre class="sh_sh">
+    $ sudo wget http://archive.ubuntu.com/ubuntu/dists/precise/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/initrd.gz -O /initrd.gz #instalador
+    $ sudo wget http://archive.ubuntu.com/ubuntu/dists/precise/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/linux -O /linux #kernel
+</pre>
+
+<p align="justify">Los agregue al grub, para que cuando reiniciara, viera una opción "Instalar Ubuntu":
+</p>
+
+<pre class="sh_properties">
+    /boot/grub/menu.lst:
+    title Instalar Ubuntu
+    kernel (hd0,0)/linux
+    initrd (hd0,0)initrd.gz
+</pre>
+
+<p align="justify">Reinicie y seleccioné "<em>Instalar Ubuntu</em>", una cosa que note es que el instalador, aunque pesa muy poco, 16MB~, reconoció mi tarjeta inalámbrica =3 (RTL8111/8168B), así que me ahorre el <a href="http://chilicuil.github.com/all/random/2010/12/14/compartir-conexion-pc-a-pc.html">cable cruzado</a> a otra máquina. El disco duro esta particionado en 3, /, /home y swap (5gb), a la hr de particionar, formatié la primera y la última y deje intacta home. También me aseguré de seleccionar <a href="http://chilicuil.github.com/all/random/2010/12/07/conexion-alambrica-inalambrica-al-mismo-tiempo.html">wicd-curses</a> (para tener red, cuando reiniciara) y openssh-server. Probé "<a href="http://en.wikipedia.org/wiki/Btrfs">btrfs</a>", pero después lo descarte porque me daba errores extraños cuando interactuaba con el grub, así que preferĺ quedarme con ext4 en <strong><span style="color: rgb(255, 0, 0);">/</span></strong>
+</p>
+
+<p align="justify">Terminada la instalación, reinicie, eliminé el directorio home por defecto y monté y actualicé <strong><span style="color: rgb(0, 100, 0);">/etc/fstab</span></strong> con el mio /dev/sda2
+</p>
+
+<pre class="sh_sh">
+    $ sudo rm -rf /home && sudo mkdir /home
+    $ sudo mount /dev/sda2 /home && sudo vi /etc/fstab
+</pre>
+
+<p align="justify">Obtuve el uuid de /dev/sda2 haciendo <strong><span style="color: rgb(0, 128, 0);">$ ls -lah /dev/disk/by-uuid</span></strong>
+</p>
+
+<p align="justify">Modifiqué <strong><span style="color: rgb(0, 100, 0);">/etc/network/interfaces</span></strong> para deshabilitar dhcp, prefiero darle el control de mi red a "wicd", quedo algo así:
+</p>
+
+<pre class="sh_properties">
+    /etc/network/interfaces:
+    auto lo
+    iface lo inet loopback
+</pre>
+
+<p align="justify">Instalé el editor, scripts aleatorios y firefox:
+</p>
+
+<pre class="sh_sh">
+    $ sudo apt-get remove --purge nano && sudo apt-get install vim-gtk -curl, exuberant-ctags
+    $ sudo cp $HOME/code/learn/* /usr/local/bin && sudo cp $HOME/code/python/* /usr/local/bin
+    $ sudo cp $HOME/code/autocp/bash_completion.d/* /etc/bash_completion.d/
+    $ sudo ln -s $HOME/.bin/thunderbird64/thunderbird /usr/local/bin/
+    $ sudo ln -s $HOME/.bin/firefox64/firefox /usr/local/bin/
+</pre>
+
+<!--TODO 16-07-2012 00:03 >> add cache entry-->
+<p align="justify">Instalé un <a href="http://google.com">caché</a> de .debs antes de instalar más programas, use un link para aprovechar los que ya tenía:
+</p>
+
+<pre class="sh_sh">
+    $ sudo apt-get install apt-cacher-ng #/etc/apt-cacher-ng/acng.conf //9999
+    $ sudo vim /etc/apt/apt.conf.d/01apt-cacher-ng
+    $ ln -s $HOME/misc/packaging/proxy/apt-cacher-ng/ /var/cache/apt-cacher-ng
+    $ sudo service apt-cacher-ng restart
+</pre>
+
+<p align="justify">Agregué el repositorio de <a href="http://medibuntu.org/">medibuntu</a>, y luego instalé el audio:
+</p>
+
+<pre class="sh_sh">
+    $ sudo wget -O /etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list
+    $ sudo apt-get -q update || sudo apt-get -y -q --allow-unauthenticated install medibuntu-keyring
+    $ sudo apt-get -q update
+    $ apt-get install alsa-utils mpd alsa-base pms mpc
+</pre>
+
+<p align="justify">Descubrí que mpd ya no soporta la opción <strong>--create-db</strong>, así que terminé agregando mi biblioteca con <strong><span style="color: rgb(0, 128, 0);">$ mpc update</span></strong>, que utiliza <a href="http://en.wikipedia.org/wiki/Inotify">inotify</a>
+</p>
+
+<p align="justify">Agregué mi usuario al grupo '<em>audio</em>', para que pudiera empezar a escuchar música y cargué el módulo snd-mixer-oss para ver <span style="color: rgb(255, 0, 0);">/dev/mixer</span> (conky lo necesita para mostrar el volumen)
+</p>
+
+<pre class="sh_sh">
+    $ sudo usermode -a -G audio username (salí de la sesión tty y volví a entrar)
+    $ sudo su
+    # echo snd-mixer-oss >> /etc/modules
+</pre>
+
+<p align="justify">Luego instalé una pantalla de login, una terminal y Xorg
+</p>
+
+<pre class="sh_sh">
+    $ sudo apt-get install slim rxvt-unicode-256color xorg
+    $ sudo vim /etc/slim.conf && sudo cp -r $HOME/misc/themes/slim/custom /usr/share/slim/themes
+</pre>
+
+<p align="justify">Mi gestor de ventanas es i3 (una versión muy específica), utilice <a href="http://viajemotu.wordpress.com/2010/08/10/notas-sobre-pbuilder/">pbuilder</a> para crear otra instancia de precise, y ahí <a href="http://chilicuil.github.com/all/random/2010/06/16/i3-ebf3.html">compilé</a> i3-wm, luego copie el resultado (.deb) fuera del chroot y lo instalé
+</p>
+
+<pre class="sh_sh">
+    $ sudo apt-get install pbuilder dpkg-dev ccache
+    $ pbuilder DIST=precise ARCH=amd64 create && pbuilder DIST=precise ARCH=amd64 login
+    [chroot]# sudo apt-get install git && git clone #repositorio-i3-git# && cd i3-wm
+    [chroot]# dbuild -b -us -uc #antes instale las dependencias
+    $ sudo dpkg -i i3-wm-amd64.deb
+</pre>
+
+<p align="justify">Reinicie y obtuve un entorno gráfico, con red y música, nada mal, instalé algunos otros programas, gestor de archivos (pcmanfm), unificador de portapapeles (autocutsel), efectos (xcompmgr), screensaver (i3-lock), lanzador de aplicaciones (dmenu), programas para el soporte de hibernación y suspensión (pm-utils, hibernate), reproductor de videos (mplayer) y widgets (conky+dzen)
+</p>
+
+<pre class="sh_sh">
+    $ sudo apt-get install git-core cvs subversion bzr apt-file synaptic unzip zip rar unrar autocutsel acpi archmage bzr-builddeb colormake dkms suckless-tools evince feh notification-daemon ffmpeg hibernate html2text htop imagemagick irssi liferea mkvtoolnix mpgtx mplayer mutt-patched nmap default-jre pcmanfm pm-utils qemu-kvm rlpr rtorrent sox transset tree unetbootin wget wodim xcompmgr xclip zsync gnupg-agent p7zip-full lxappearance libwww-perl libnotify-bin i3lock virtaal conky-cli #dzen2, mantuve $HOME/code/dzen2/dzen2
+</pre>
+
+<p align="justify">En general la actualización fue buena, solo encontré 1 problema irresoluble; bugs #<a href="https://bugs.launchpad.net/ubuntu/+source/gdk-pixbuf/+bug/927393">927393</a> y #<a href="https://bugs.launchpad.net/ubuntu/+source/notification-daemon/+bug/927031">927031</a> sobre notificaciones, Ubuntu soporta 2 programas para mostrar notificaciones, notification-daemon (el que uso y que esta roto por el momento), y notify-osd (el que funciona y el que se usa por defecto), fuera: de eso encontre mejoras sustanciales, no tuve que compilar: vim, mpd, slim, urxvt debido a que precise viene con versiones suficientemente actuales o con correcciones que no tenía Ubuntu Lucid
+</p>
+
+<p align="center"><a href="/img/50.png"><img src="/img/50.png" style="width: 500px; height: 279px;"></a> <a href="/img/51.png"><img src="/img/51.png" style="width: 500px; height: 281px;"></a> <a href="/img/52.png"><img src="/img/52.png" style="width: 500px; height: 281px;"></a>
+</p>
+j
+<p align="justify">Me siento en casa =)
+</p>
