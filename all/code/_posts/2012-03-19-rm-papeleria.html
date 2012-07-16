@@ -1,0 +1,31 @@
+---
+layout: post
+title: "rm + papelería"
+---
+
+<h2>{{ page.title }}</h2>
+
+<p class="publish_date">{{ page.date | date_to_string }}</p>
+
+<p align="justify">Nada, a veces me pasa que hago:
+</p>
+
+<pre class="sh_sh">
+    rm foo
+</pre>
+
+<p align="justify">y poco después me doy cuenta que hubiera preferido no hacerlo, con esto en mente me puse a hacer un pequeño <a href="https://github.com/chilicuil/learn/blob/master/sh/rm_">script</a> alrededor de rm para enviar los archivos a la papelería en lugar de eliminarlos, lo he hecho compatible con nautilus.
+</p>
+
+<p align="justify"> <em>Ejemplo</em>: Elimino desde terminal <strong>$ rm imagen.png</strong> y luego desde nautilus voy a papelería y lo restauro, o viceversa, lo puedo eliminar desde la papelería y cuando este en la consola lo recupero con <strong>$ rm -u imagen.png</strong>
+</p>
+
+<p align="center"><img src="/img/53.png" style="width: 552px; height: 230px;">
+</p>
+
+<p align="justify">Para usarlo lo he movido a <strong>/usr/local/bin</strong> y luego he creado un alias en <strong>~/.bashrc</strong>:
+</p>
+
+<pre class="sh_sh">
+    alias rm='/usr/local/bin/rm'
+</pre>
