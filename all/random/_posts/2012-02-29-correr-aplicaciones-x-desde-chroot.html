@@ -11,7 +11,7 @@ title: "correr aplicaciones X desde un chroot"
 <p align="justify">Ya había escrito <a href="google.com">anteriormente</a> sobre como compilar programas sin 'ensuciar' el sistema con dependencias, hoy lo haŕe sobre como hacerlo utilizando herramientas gráficas.
 </p>
 
-<p align="justify"><a href="http://www.lazarus.freepascal.org/">Lazarus</a> es un ide de pascal, '<a href="http://magnifier.sourceforge.net/">magnifier</a>' es una lupa minimalista, la única que he podido integrar con <a href="http://chilicuil.github.com/all/random/2010/06/16/i3-ebf3.html">i3</a>.
+<p align="justify"><a href="http://www.lazarus.freepascal.org/">Lazarus</a> es un ide de pascal, <a href="http://magnifier.sourceforge.net/">magnifier</a> es una lupa minimalista, la única que he podido integrar con <a href="http://chilicuil.github.com/all/random/2010/06/16/i3-ebf3.html">i3</a>.
 </p>
 
 <p align="justify">Hace poco magnifier dejo de funcionar, así que tuve que recompilarla, sin embargo la única forma que conocía era a través de Lazarous, Lazarous es una aplicacion gui, para hacerla funcionar desde el chroot utilicé '<a href="http://linux.about.com/library/cmd/blcmdl_xhost.htm">xhost</a>' desde FUERA del chroot:
@@ -35,5 +35,5 @@ title: "correr aplicaciones X desde un chroot"
     [chroot] # lazarous-ide
 </pre>
 
-<p align="justify">Una vez compilado, he podido copiar y usar magnifier satisfactoriamente en el sistema original, dejo el <a href="http://ubuntuone.com/1pA0A2gDBxfQQdxZVGuuTq">binario</a> para amd64 para el que quiera probarlo.
+<p align="justify">Una vez compilado, he podido copiar y usar magnifier satisfactoriamente en el sistema original, dejo el <a href="http://ubuntuone.com/1pA0A2gDBxfQQdxZVGuuTq">binario</a> para amd64 para el que quiera usarlo.
 </p>
