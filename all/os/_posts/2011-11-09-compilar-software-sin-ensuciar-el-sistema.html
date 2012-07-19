@@ -1,0 +1,90 @@
+---
+layout: post
+title: "compilar software sin ensuciar el sistema"
+---
+
+<h2>{{ page.title }}</h2>
+
+<p class="publish_date">{{ page.date | date_to_string }}</p>
+
+<p class="justify">Soy un paranoico del orden en mi sistema, así que cada vez que tengo que instalar software que no esta en los repositorios veo bien si puedo crear un .deb a partir de su código, algunas veces basta con quitar dependencias o cambiar un par de líneas para obtener la última versión. O usar <a href="http://asic-linux.com.mx/%7Eizto/checkinstall/">checkinstall</a> que crea un paquete .deb a partir del Makefile.
+</p>
+
+<p align="justify">Esto no toma en cuenta las dependencias que hay que instalar para la compilación, sin embargo esto se puede complementar si se usa <strong>pbuilder</strong>, que crea un chroot donde se puede experimentar tanto como se quiera antes de obtener la versión final. Ya he escrito sobre como <a href="https://viajemotu.wordpress.com/2010/08/10/notas-sobre-pbuilder/">configurar pbuilder</a> para obtener varios entornos en un mismo sistema. Muy a modo, pbuilder tiene una opción llamada <strong>--login</strong> que descomprime la imagen de uno de esos entornos y lo instala, los cambios en estos sistemas son descartados, por lo que la próxima vez que se mande a llamar <strong>pbuilder --login</strong> se obtiene un sistema completamente nuevo.
+</p>
+
+<p align="justify">Se pueden combinar ambas herramientas para crear .debs que pueden ser instalados limpiamente, como ejemplo para compilar la última versión de ffmpeg (tomada de git):
+</p>
+
+<pre class="sh_sh">
+    $ sudo apt-get -y remove ffmpeg x264 libx264-dev libmp3lame-dev 
+    $ sudo apt-get update
+    $ sudo pbuilder.lucid --login
+    [lucid-chroot] # apt-get install wget
+    [lucid-chroot] # apt-get -y install nasm build-essential git-core \
+    checkinstall yasm texi2html libfaac-dev libopencore-amrnb-dev     \
+    libopencore-amrwb-dev libsdl1.2-dev libtheora-dev libvorbis-dev   \
+    libx11-dev libxfixes-dev libxvidcore-dev zlib1g-dev
+</pre>
+
+<p align="justify">Para empaquetar lame (con soporte para .mp3)
+</p>
+
+<pre class="sh_sh">
+    [lucid-chroot] # wget <a href="http://downloads.sourceforge.net/project/lame/lame/3.98.4/lame-3.98.4.tar.gz" target="_blank">http://downloads.sourceforge.net/project/lame/lame/3.98.4/lame-3.98.4.tar.gz</a>
+    [lucid-chroot] # tar xzvf lame-3.98.4.tar.gz 
+    [lucid-chroot] # cd lame-3.98.4
+    [lucid-chroot] # ./configure --enable-nasm --disable-shared
+    [lucid-chroot] # make 
+    [lucid-chroot] # checkinstall --pkgname=lame-ffmpeg --pkgversion="3.98.4" \
+                     --backup=no --default --deldoc=yes
+</pre>
+
+<p align="justify">Para empaquetar x264
+</p>
+
+<pre class="sh_sh">
+    [lucid-chroot] # git clone git://git.videolan.org/x264
+    [lucid-chroot] # cd x264
+    [lucid-chroot] # ./configure --enable-static --disable-asm
+    [lucid-chroot] # make
+    [lucid-chroot] # checkinstall --pkgname=x264 --pkgversion=""3:$(./version.sh \
+    | awk -F'[" ]' '/POINT/{print $4"+git"$5}')"" --backup=no --deldoc=yes --fstrans=no --default
+</pre>
+
+<p align="justify">Para empaquetar ffmpeg
+</p>
+
+<pre class="sh_sh">
+    [lucid-chroot] # git clone git://git.videolan.org/ffmpeg
+    [lucid-chroot] # cd ffmpeg
+    [lucid-chroot] # ./configure --enable-gpl --enable-version3 --enable-nonfree \
+    --enable-postproc --enable-libfaac --enable-libopencore-amrnb                \
+    --enable-libopencore-amrwb --enable-libtheora --enable-libvorbis             \
+    --enable-libx264 --enable-libxvid --enable-x11grab --enable-libmp3lame
+    [lucid-chroot] # make
+    [lucid-chroot] # checkinstall --pkgname=ffmpeg --pkgversion="5:$(./version.sh)" \
+                    --backup=no --deldoc=yes --default
+</pre>
+
+<p align="justify">Una vez empaquetado el software que nos interesa se copia al sistema <strong>/var/cache/pbuilder/lucid-amd64/build/[0-9*]/home/user/{x264,lame-3.98.4,ffmpeg}/*.deb</strong>
+</p>
+
+<p align="justify">Una vez fuera del chroot, se instalan los .debs:
+</p>
+
+<pre class="sh_sh">
+    $ sudo dpkg -i ffmpeg_5:201111091946-git-1_amd64.deb
+    $ sudo dpkg -i lame-ffmpeg_3.98.4-1_amd64.deb
+    $ sudo dpkg -i x264_3:0.119.2106+git07efeb4-1_amd64.deb
+</pre>
+
+<p align="justify">Y se puede salir del chroot:
+</p>
+
+<pre class="sh_sh">
+    [lucid-chroot] # exit
+</pre>
+
+<p align="justify">Lo que eliminará todos los archivos utilizados (incluyendo los .debs creados).
+</p>
