@@ -9,10 +9,10 @@ title: "caché de paquetes .deb"
 
 <h3>Introducción</h3>
 
-<p class="justify">Hay varias soluciones para crear caches de paquetes, las únicas que he utilizado han sido <a href="http://packages.qa.debian.org/d/debmirror.html">debmirror</a> y <a href="http://www.unix-ag.uni-kl.de/%7Ebloch/acng/">apt-cacher-ng</a>, la primera crea una copia exacta de los repositorios que se deseen, es decir 35GB~ por cada distribucion / arquitectura, lo que ha efectos prácticos no me parece óptimo (si de lo que se trata es de ahorrar ancho de banda), no solo se descargan demasiados GB inicialmente sino que cada noche se debe correr una actualización general. Tal vez sea práctico para organizaciones con no menos de 100 equipos.
+<p class="justify">Hay varias soluciones para crear cachés de paquetes, las únicas que he utilizado han sido <a href="http://packages.qa.debian.org/d/debmirror.html">debmirror</a> y <a href="http://www.unix-ag.uni-kl.de/%7Ebloch/acng/">apt-cacher-ng</a>, la primera crea una copia exacta de los repositorios que se deseen, es decir 35GB~ por cada distribucion / arquitectura, lo que ha efectos prácticos no me parece óptimo (si de lo que se trata es de ahorrar ancho de banda), no solo se descargan demasiados GB inicialmente sino que cada noche se debe correr una actualización general. Tal vez sea práctico para organizaciones con no menos de 100 equipos.
 </p>
 
-<p align="justify">Para el resto, y atendiendome a mi propia experiencia se pueden usar herramientas que van creando el cache <strong>'on demand'</strong>, es decir para cada nuevo programa que se descargue, se hará la petición al servidor caché, este lo descargará y se lo enviará a quien lo pidio, a partir de ese momento cualquier otra máquina que lo necesite lo obtendrá de la red LAN, lo que será mucho más rápido.
+<p align="justify">Para el resto, y atendiendome a mi propia experiencia se pueden usar herramientas que van creando el cache <strong>'on demand'</strong>, es decir para que con cada nuevo programa que se descargue, se haga la petición al servidor, este lo obtenga y lo envie de vuelta a quien lo solicito, a partir de lo cual, cualquier otro equipo que lo necesite lo obtenga de la red LAN, lo que será mucho más rápido.
 </p>
 
 <p align="justify">Algunas de estas herramientas son <strong>apt-proxy</strong>, <strong>apt-cacher</strong>, <strong>apt-cacher-ng</strong> y <strong>squid-deb-proxy</strong>, una revisión esta disponible en:
