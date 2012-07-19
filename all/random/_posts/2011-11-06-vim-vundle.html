@@ -10,24 +10,24 @@ title: "vim + vundle"
 <p align="center"><img src="/img/58.png" style="width: 306px; height: 214px;">
 </p>
 
-<p class="justify">En entradas anteriores he escrito sobre <a href="http://chilicuil.github.com/all/random/2010/04/17/vimmer.html">Vim</a>, y aunque no lo hago muy seguido, la verdad es que me la paso modificando su configuración a tal grado que dudo que justifique el tiempo que le he invertido, de no ser porque me causa alguna clase de enfermiza diversión.
+<p class="justify">En entradas anteriores he escrito sobre <a href="http://chilicuil.github.com/all/random/2010/04/17/vimmer.html" target="_blank">Vim</a>, y aunque no lo hago muy seguido, la verdad es que me la paso modificando su <a href="https://github.com/chilicuil/dotfiles/blob/master/.vimrc" target="_blank">configuración</a> a tal grado que dudo que justifique el tiempo que le he invertido, de no ser porque me causa alguna clase de enfermiza diversión.
 </p>
 
-<p align="justify">Siendo así, uso/pruebo algunos plugins, por lo que mi <strong>$HOME/.vim/</strong> luce un poco desordenado. Estos plugins se distribuyen de 2 principales formas; desde vim.org como <strong>.zip/tar.gz/.vba</strong> y como repositorios <strong>git (github)</strong>
+<p align="justify">Siendo así, uso/pruebo algunos plugins, por lo que mi <strong>$HOME/.vim/</strong> luce un poco desordenado. Estos plugins se distribuyen de 2 principales formas; desde <a href="http://vim.org" target="_blank">vim.org</a> como <strong>.zip/tar.gz/.vba</strong> y como repositorios <strong>git (github)</strong>.
 </p>
 
-<p align="justify">En cualquiera de los casos, la instalación/actualización/eliminación requiere modificar los archivos adecuados en <strong>$HOME/.vim/{doc,plugin,autoload,etc}</strong>, esto esta bien para tipos como yo, a los que no les importa volver a descargar un plugin para ver su estructura y así poder eliminar los archivos correctos. Pero esta lejos de ser una opción comoda.
+<p align="justify">En cualquiera de los casos, la instalación/actualización/eliminación requiere modificar los archivos adecuados en <strong>$HOME/.vim/{doc,plugin,autoload,etc}</strong>, esto esta bien para tipos como yo, a los que no les importa volver a descargar un plugin para ver su estructura y así poder eliminar los archivos correctos. Pero esta lejos de ser una opción cómoda.
 </p>
 
 <p align="justify">Ya habia escuchado hablar con anterioridad de 'manejadores de scripts' para vim como <a href="https://github.com/tpope/vim-pathogen">pathogen</a>/<a href="https://github.com/gmarik/vundle">vundle</a>, pero no los habia probado porque dada mi configuración, tenia pereza por hacerlo. Sin embargo hace 2 semanas me he convertido a vundle (me ha tomado un par de hrs) y la diferencia es tan buena que me he dado por escribir.
 </p>
 
-<p align="center">USEN VUNDLE
+<p align="center"><strong>USEN VUNDLE</strong>
 </p>
 
 <h4>Definición</h4>
 
-<p align="justify">Vundle/pathogen son scripts que permiten aislar otros scripts, esto es, que cada script tenga su propia raiz para poder mejorar el control sobre ellos:
+<p align="justify">Vundle/pathogen son scripts que permiten aislar otros scripts, esto es, que cada script tenga su propia raíz para poder mejorar el control sobre ellos:
 </p>
 
 <p align="justify">_antes_</p>
@@ -46,7 +46,7 @@ title: "vim + vundle"
     bundle  colors  extra-snippets  skeleton
 </pre>
 
-<p align="justify">Todos los plugins tienen su propia carpeta en <strong>bundle</strong>, por lo que <strong>$ rm -rf ./bundle/nerdtree</strong> elimina completamente nerdtree, como cuando se tiene un .deb, todos los archivos estan contenidos en un mismo lugar
+<p align="justify">Todos los plugins tienen su propia carpeta en <strong>bundle</strong>, por lo que <strong>$ rm -rf ./bundle/nerdtree</strong> elimina completamente nerdtree, cool.
 </p>
 
 <p align="justify">No solo eso, estos scripts permiten instalar nuevos plugins através de un solo comando, para el caso de vundle, <strong>:BundleInstall QuickBuf</strong> instalará el QuickBuf (tomado de vim.org)}
@@ -54,7 +54,7 @@ title: "vim + vundle"
 
 <h4>Vundle vs Pathogen</h4>
 
-<p align="justify">Elegí Vundle porque no me obliga a usar submódulos de git, con Vundle se especifica en <strong>$HOME/.vimrc</strong> los plugins que se usan y estos se pueden instalar en cualquier momento, así, solo se tiene control <strong>$HOME/.vimrc</strong>.Hay una mejor explicación en:
+<p align="justify">Elegí Vundle porque no me obliga a usar submódulos de git, con Vundle se especifica en <strong>$HOME/.vimrc</strong> los plugins que se usan y estos se pueden instalar en cualquier momento, así, solo se tiene control <strong>$HOME/.vimrc</strong>. Hay una mejor explicación en:
 </p>
 
 <p align="justify"><a href="http://www.charlietanksley.net/philtex/sane-vim-plugin-management/" target="_blank">http://www.charlietanksley.net/philtex/sane-vim-plugin-management/</a>
@@ -78,7 +78,6 @@ title: "vim + vundle"
     endif
     "call inputrestore()
     endif
-
     set runtimepath+=~/.vim/bundle/vundle/
     call vundle#rc()
 </pre>
