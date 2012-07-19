@@ -11,16 +11,13 @@ title: "autocompletado en bash"
 <a href="/img/54.png"><img src="/img/54.png" style="width: 306px; height: 75px;"></a>
 </p>
 
-<p align="justify">Me gustan los entornos minimalistas y el uso de la consola, me parece genial poder escribir una linea y obtener un resultado concreto, lamentablemente algunos de los comandos para la terminal no son especialmente amigables, contienen muchas opciones y algunas veces esas opciones tienen nombres largos y extraños. Cuando se trata de scripts que encontraste en Internet, la cosa empeora, las opciones siempre hay que escribirlas porque el 99% de las veces no vienen con autocompletado.
+<p align="justify">Me gustan los entornos minimalistas y el uso de la consola, me parece genial poder escribir una línea y obtener un resultado concreto, lamentablemente algunos de los comandos para la terminal no son especialmente amigables, contienen muchas opciones y algunas veces esas opciones tienen nombres largos y extraños. Cuando se trata de scripts que encontraste en Internet, la cosa empeora, las opciones siempre hay que escribirlas porque el 99% de las veces no vienen con autocompletado.
 </p>
 
 <p align="justify">Viendo este problema y habiendo generado archivos de autocompletado para mis propios scripts, he decidido escribir algunas notas.
 </p>
 
-<p align="justify"><strong>Solución:</strong> Crear una función que permita que bash escriba las opciones por nosotros
-</p>
-
-<h3>Instroducción</h3>
+<h3>Introducción</h3>
 
 <p align="justify">Bash es capaz de completar comandos con <strong>&lt;Tab&gt;&lt;Tab&gt;</strong>, sin embargo cuando se crean scripts caseros o se encuentran en Internet casi siempre vienen sin esa característica, escribir las opciones una y otra vez no es del todo práctico, además de eso, muchas veces esos comandos tienen tantas opciones que se olvidan||confunden.
 </p>
@@ -62,10 +59,8 @@ title: "autocompletado en bash"
 <pre class="sh_sh">
     $ fix -h
     Usage: fix module
-
        -h  or --help     List available arguments and usage (this message).
        -v  or --version  Print version.
-
        apache            Moves /etc/init.d/apache2.1 to apache2.
        ipw2200           Restart the ipw2200 module.
        wl                Restart the wl module.
@@ -73,7 +68,7 @@ title: "autocompletado en bash"
        mpd               Restart mpd.
 </pre>
 
-<p align="justify">Para el primer caso se puede crear la siguiente linea y agregarla a <strong>/etc/bash_completion.d/fix.autocp</strong>:
+<p align="justify">Para el primer caso se puede crear la siguiente línea y agregarla a <strong>/etc/bash_completion.d/fix.autocp</strong>:
 </p>
 
 <pre class="sh_sh">
@@ -108,16 +103,12 @@ title: "autocompletado en bash"
         #cur=$(_get_cword)
         #prev=$3
         #$4 doesn't exist
-
         local cur prev opts #$cur, $prev & $opts are local vars
         COMPREPLY=() #clean out last completions, important!
         cur="${COMP_WORDS[COMP_CWORD]}"
         prev="${COMP_WORDS[COMP_CWORD-1]}"
-
         COMMANDS="apache ipw2200 wl iwlagn mpd"
-
         OPTS="-h --help -v --version"
-
         case "${cur}" in #if the current word containst '-' at the beginning..
             -*)
                 completions="$OPTS"
@@ -126,11 +117,9 @@ title: "autocompletado en bash"
                 completions="$COMMANDS"
                 ;;
         esac
-
         COMPREPLY=( $( compgen -W "$completions" -- $cur ))
         return 0
     }
-
     complete -F _fix fix
 </pre>
 
@@ -140,20 +129,17 @@ title: "autocompletado en bash"
 <p align="justify">El único propósito de estas funciones es llenar con valores la variable <strong>$COMPREPLY</strong>, esta es la única que sobrevivirá al proceso y contendrá la lista de opciones finales.
 </p>
 
-<p align="justify">Una herramienta que se usa en el 99% de las funciones es <strong>compgen</strong>, este comando hace comparaciones entre cadenas, recibe una lista de palabras (como un array) y luego una cadena, compara estas contra la lista en el array y devuelve las que concuerden, para entender su funcionamiento es ver algunos ejemplos:
+<p align="justify">Una herramienta que se usa en el 99% de las funciones es <strong>compgen</strong>, este comando hace comparaciones entre cadenas, recibe una lista de palabras (como un array) y luego una cadena, compara estas contra la lista en el array y devuelve las que concuerden.
 </p>
 
 <pre class="sh_sh">
     $ compgen -W "-v --verbose -h --help" -- "-v"
     -v
-
     $ compgen -W "-v --verbose -h --help" -- "--"
     --verbose
     --help
-
     $ compgen -W "apache ipw2200 iwlagn mpd wl" -- "ap"
     apache
-
     $ compgen -W "apache ipw2200 iwlagn mpd wl" -- "i"
     ipw2200
     iwlagn
@@ -163,7 +149,7 @@ title: "autocompletado en bash"
 </p>
 
 <p align="justify">
-En el ejemplo anterior, no se puede ver la ventaja de usar una función en lugar de una linea de <strong>complete</strong>, sin embargo en comandos que manejan más opciones, como <strong>android</strong>, la única forma de crear autocompletado pseudo-inteligente es con una función.
+En el ejemplo anterior, no se puede ver la ventaja de usar una función en lugar de una línea de <strong>complete</strong>, sin embargo en comandos que manejan más opciones, como <strong>android</strong>, la única forma de crear autocompletado pseudo-inteligente es con una función.
 </p>
 
 <pre class="sh_sh">
