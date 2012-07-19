@@ -153,16 +153,13 @@ En el ejemplo anterior, no se puede ver la ventaja de usar una función en lugar
 </p>
 
 <pre class="sh_sh">
-     $ android -h
-
-     Usage:
-     android [global options] action [action options]
-
+    $ android -h
+    Usage:
+    android [global options] action [action options]
     Global options:
     -v --verbose  Verbose mode: errors, warnings and informational messages are printed.
     -h --help     Help on a specific command.
     -s --silent   Silent mode: only errors are printed out.
-
     Valid actions are composed of a verb and an optional direct object:
     -   list          
     -   list avd         
@@ -188,21 +185,21 @@ En el ejemplo anterior, no se puede ver la ventaja de usar una función en lugar
     $ android list[Tab][Tab]
 </pre>
 
-<p align="justify">devolvería <strong>avd</strong> o <strong>target</strong>:
+<p align="justify">Esto devolvería <strong>avd</strong> o <strong>target</strong>:
 </p>
 
 <pre class="sh_sh">
     $ android create[Tab][Tab]
 </pre>
 
-<p align="justify"><strong>avd</strong>, <strong>project</strong>, <strong>test-project</strong> o <strong>lib-project</strong>:
+<p align="justify">Devolvería <strong>avd</strong>, <strong>project</strong>, <strong>test-project</strong> o <strong>lib-project</strong>:
 </p>
 
 <pre class="sh_sh">
     $ android create avd[Tab][Tab]
 </pre>
 
-<p align="justify"><strong>-a</strong>, <strong>-c</strong>, <strong>-f</strong>, etc. Es decir dependiendo del contexto devuelve diferentes valores, el archivo completo de este ejemplo esta en <a href="https://github.com/chilicuil/learn/blob/master/autocp/bash_completion.d/android.autocp" target="_blank">github</a>, ahora explicaré las partes más importantes:
+<p align="justify">Devolvería <strong>-a</strong>, <strong>-c</strong>, <strong>-f</strong>, etc. Es decir dependiendo del contexto devuelve diferentes valores, el archivo completo de este ejemplo esta en <a href="https://github.com/chilicuil/learn/blob/master/autocp/bash_completion.d/android.autocp" target="_blank">github</a>, ahora explicaré las partes más importantes:
 </p>
 
 <pre class="sh_sh">
@@ -416,12 +413,6 @@ En el ejemplo anterior, no se puede ver la ventaja de usar una función en lugar
 	<li>apt</li>
 	<li>apt-build</li>
 	<li>nslookup</li>
-	<li>dd</li>
-	<li>dict</li>
-	<li>dsniff</li>
-	<li>getent</li>
-	<li>git</li>
-	<li>kldload</li>
 	<li>...</li>
 </ul>
 
