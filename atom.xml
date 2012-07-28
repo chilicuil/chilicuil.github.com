@@ -9,10 +9,6 @@ layout: nil
  <link href="http://chilicuil.github.com/"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
  <id>http://chilicuil.github.com/</id>
- <author>
-   <name>chilicuil</name>
-   <email>chilicuil@gmail.com</email>
- </author>
 
  {% for post in site.posts %}
  <entry>
