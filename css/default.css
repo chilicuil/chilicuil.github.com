@@ -28,6 +28,10 @@ p {
 margin:0 0 18px 0px;
 }
 
+div {
+margin:0 0 18px 0px;
+}
+
 ul,ol,dl {
 font-size:1em;
 margin:2px 0 16px 0px;
@@ -126,12 +130,10 @@ h1 a:hover { color:#fba919 ;}
 
 }
 
-
 .pink { color: #f5a2c6; }
 .green { color: #23af4c; }
 .blue { color: #0383c9; }
 .orange { color: #fba919; }
-
 
 a.pink:hover { border: solid 2px #f5a2c6;padding:1px; text-decoration:none;  }
 a.green:hover { color:#212121; background-color:#23af4c;text-decoration:none; }
