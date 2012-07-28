@@ -4,6 +4,7 @@ title: "watch_battery"
 ---
 
 <h2>{{ page.title }}</h2>
+
 <p class="publish_date">{{ page.date | date_to_string }}</p>
 
 <p style="text-align: center;">
@@ -13,21 +14,21 @@ title: "watch_battery"
 <p align="justify">Hice un pequeño <a href="https://gist.github.com/913004" target="_blank">script</a> para vigilar que no se me apague la computadora cuando ya no tenga pila (mejor que hiberne), requiere de <strong>notify-send</strong>, <strong>hibernate</strong> y <strong>acpi,</strong> en ubuntu:
 </p>
 
-<pre class="brush: shell">
+<pre class="sh_sh">
     $ sudo apt-get install acpi libnotify-bin hibernate
 </pre>
 
 <p align="justify">NOTA: Para que pueda hibernar el equipo debe contar con suficiente espacio SWAP (más de 3 GB). Sugiero que se coloque en /usr/local/bin y que se agregue a crontab -e (aquí para que corra cada 3 minutos)
 </p>
 
-<pre class="brush">
+<pre class="sh_log">
     */3 * * * * /usr/local/bin/watch_battery
 </pre>
 
 <p align="justify">Para apagar el equipo en lugar de hibernarlo, se modifica la variable <strong>$ACTION</strong>
 </p>
 
-<pre class="brush: shell">
+<pre class="sh_sh">
     #=====VARS=====
     # Current battery status (Charging/Discharging/AC/Unknown)
     STAT=$(acpi -b | awk '{print $3}' | awk 'sub(".$", "")')
@@ -41,7 +42,7 @@ title: "watch_battery"
 <p align="justify">Sugiero que se modifique <strong>/etc/sudoers</strong> para que el script no requiera de contraseña para llevar a cabo <strong>$ACTION</strong>
 </p>
 
-<pre class="brush: shell">
+<pre class="sh_properties">
     #===================================
     # Cmnd alias specification
     Cmnd_Alias SESSION=/usr/sbin/pm-suspend,/usr/sbin/hibernate,/sbin/shutdown
@@ -54,5 +55,5 @@ title: "watch_battery"
 <p align="justify">Gracias a <a href="http://forums.debian.net/viewtopic.php?f=8&amp;t=52115#p299406">smasty</a> por el snippet inicial.
 
 <ul>
-  <li><a href="https://gist.github.com/913004">https://gist.github.com/913004</a></li>
+	<li><a href="https://gist.github.com/913004">https://gist.github.com/913004</a></li>
 </ul>
