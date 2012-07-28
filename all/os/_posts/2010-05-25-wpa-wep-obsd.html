@@ -23,9 +23,9 @@ $ ifconfig ath0 10.0.0.2 255.255.255.0 10.0.0.1
 
 <pre class="sh_sh">
 $ cat /etc/hostname.ath0
-inet 10.0.0.2 255.255.255.0 10.0.0.255 \
-nwid ACCESS_POINT wpa wpapsk \
-0xc7bd82ef64a789369e18d6df63230a3b099f72a74b999bdbe837773e6081cb54
+  inet 10.0.0.2 255.255.255.0 10.0.0.255 \
+  nwid ACCESS_POINT wpa wpapsk \
+  0xc7bd82ef64a789369e18d6df63230a3b099f72a74b999bdbe837773e6081cb54
 </pre>
 
 <p align="justify">Donde el último parámetro se obtiene de <strong>$ wpa-psk ACCESS_POINT PASSWORD</strong>
@@ -42,8 +42,8 @@ $ dhclient ath0
 
 <pre class="sh_sh">
 $ cat /etc/hostname.ath0
-dhcp nwid ACCESS_POINT wpa wpapsk \
-0xc7bd82ef64a789369e18d6df63230a3b099f72a74b999bdbe837773e6081cb54
+  dhcp nwid ACCESS_POINT wpa wpapsk \
+  0xc7bd82ef64a789369e18d6df63230a3b099f72a74b999bdbe837773e6081cb54
 </pre>
 
 <h3>WEP - ip estática</h3>
@@ -57,7 +57,7 @@ $ ifconfig ath0 10.0.0.2 255.255.255.0 10.0.0.1
 
 <pre class="sh_sh">
 $ cat /etc/hostname.ath0
-inet 10.0.0.2 255.255.255.0 10.0.0.255 nwid ACCESS_POINT nwkey 0xPASSWORD
+  inet 10.0.0.2 255.255.255.0 10.0.0.255 nwid ACCESS_POINT nwkey 0xPASSWORD
 </pre>
 
 <h3>WEP - ip dinámica</h3>
@@ -72,7 +72,7 @@ $ dhclient ath0
 
 <pre class="sh_sh">
 $ cat /etc/hostname.ath0
-dhcp nwid ACESS_POINT nwkey  0xPASSWORD
+  dhcp nwid ACESS_POINT nwkey  0xPASSWORD
 </pre>
 
 <p align="justify">Los mismos comandos pueden usarse desde la instalacion, escapandolos con !
