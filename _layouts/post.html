@@ -30,4 +30,15 @@ layout: default
       <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
     {% endfor %}
   </ul>
+
+  <script type="text/javascript">
+    TopUp.addPresets({
+        "#img a": {
+          effect: "switch"
+        },
+        "#examples input": {
+          shaded: 1, effect: "fade", overlayClose: 1
+        }
+    });
+  </script>
 </div>
