@@ -19,22 +19,22 @@ title: "backups: git, rsync, tar, netcat y cp"
 </p>
 
 <pre class="sh_sh">
-    #para cuando estoy en una máquina que no me pertenece (lectura)
-    $ git clone git://github.com/chilicuil/dotfiles.git 
-    $ git clone git://github.com/chilicuil/learn.git
+#para cuando estoy en una máquina que no me pertenece (lectura)
+$ git clone git://github.com/chilicuil/dotfiles.git 
+$ git clone git://github.com/chilicuil/learn.git
 
-    #para cuando estoy en una máquina de confianza (lectura+escritura)
-    $ git clone git@github.com:chilicuil/dotfiles.git 
-    $ git clone git@github.com:chilicuil/learn.git
+#para cuando estoy en una máquina de confianza (lectura+escritura)
+$ git clone git@github.com:chilicuil/dotfiles.git 
+$ git clone git@github.com:chilicuil/learn.git
 </pre>
 
 <p align="justify">Me parece indispensable agregar a .gitconfig:
 </p>
 
 <pre class="sh_properties">
-    [branch "master"]
-        remote = origin
-        merge  = refs/heads/master
+[branch "master"]
+    remote = origin
+    merge  = refs/heads/master
 </pre>
 
 <p align="justify">De lo contrario git siempre encontrara la forma de hacerme la vida miserable en el momento menos oportuno, alguien ha dicho que git es como tu mejor amigo que te odia en secreto. También hay que irse con cuidado con <strong>.gitignore</strong> no es muy lógico desde mi punto de vista.
@@ -54,11 +54,11 @@ Algunos dotfiles importantes, como .mozilla .compiz .e .gnome* .gtk* .mutt* .ssh
 </p>
 
 <pre class="sh_sh">
-    #también uso el mismo usuario en todos los equipos
-    $ rsync -e "ssh -p 1001" -av --delete misc/ ndia:/home/chilicuil/misc   
-    $ rsync -e "ssh -p 1001" -av --delete misc/ mater:/home/chilicuil/misc
-    $ rsync -e "ssh -p 1001" -av --delete misc/ buzz:/home/chilicuil/misc
-    ===== AQUÍ EL MISMO COMANDO PARA EL RESTO DE DIRECTORIOS X 3 =====
+#también uso el mismo usuario en todos los equipos
+$ rsync -e "ssh -p 1001" -av --delete misc/ ndia:/home/chilicuil/misc   
+$ rsync -e "ssh -p 1001" -av --delete misc/ mater:/home/chilicuil/misc
+$ rsync -e "ssh -p 1001" -av --delete misc/ buzz:/home/chilicuil/misc
+===== AQUÍ EL MISMO COMANDO PARA EL RESTO DE DIRECTORIOS X 3 =====
 </pre>
 
 <h3>tar</h3>
@@ -78,15 +78,15 @@ Algunos dotfiles importantes, como .mozilla .compiz .e .gnome* .gtk* .mutt* .ssh
 </p>
 
 <pre class="sh_sh">
-    $ tar czf - /home/usuario/.backup | nc -l 9999
+$ tar czf - /home/usuario/.backup | nc -l 9999
 </pre>
 
 <p align="justify">Dentro de una de mis maquinas de confianza:
 </p>
 
 <pre class="sh_sh">
-    $ nc remote 9999 | pv -bep \
-    > ~/misc/conf/sistema/sistema-$(date +%Y-%m-%d).tar.gz
+$ nc remote 9999 | pv -bep \
+  > ~/misc/conf/sistema/sistema-$(date +%Y-%m-%d).tar.gz
 </pre>
 
 <h3>cp</h3>
@@ -95,8 +95,8 @@ Algunos dotfiles importantes, como .mozilla .compiz .e .gnome* .gtk* .mutt* .ssh
 </p>
 
 <pre class="sh_sh">
-    $ sudo rm -rf /media/hd/*
-    $ sudo cp -av /home /opt /media/hd
+$ sudo rm -rf /media/hd/*
+$ sudo cp -av /home /opt /media/hd
 </pre>
 
 <p align="justify">Graficamente creo que se vería así:

@@ -6,66 +6,65 @@ title: "mkisofs"
 <h2>{{ page.title }}</h2>
 
 <p class="publish_date">{{ page.date | date_to_string }}</p>
-<!--<p class="publish_date">22 Mar 2010</p>-->
 
 <p align="justify">Entonces estaba en clase de sistemas operativos, y no encontraba información sobre como generar imagenes .iso a partir de kernels no tradicionales, asi que escribí algo para mi propia referencia:
 </p>
 
 <pre class="sh_sh">
-    $ mkdir luxur
-    $ cd luxur
-    $ wget http://downloads.sourceforge.net/project/luxur/luxur0.0.1/
-           Luxur-src.tar.gz?use_mirror=cdnetworks-us-2  -O Luxur-src.tar.gz
+$ mkdir luxur
+$ cd luxur
+$ wget http://downloads.sourceforge.net/project/luxur/luxur0.0.1/
+       Luxur-src.tar.gz?use_mirror=cdnetworks-us-2  -O Luxur-src.tar.gz
 </pre>
 
 <p align="justify">Descomprimiendo...
 </p>
 
 <pre class="sh_sh">
-    $ tar zxvf Luxur-src.tar.gz
+$ tar zxvf Luxur-src.tar.gz
 </pre>
 
 <p align="justify">Verificando archivos
 </p>
 
 <pre class="sh_sh">
-    $ ls
-    boot  COPYING  include  kernel  lib  link.ld  Luxur-src.tar.gz  Makefile
+$ ls
+boot  COPYING  include  kernel  lib  link.ld  Luxur-src.tar.gz  Makefile
 </pre>
 
 <p align="justify">Compilando:
 </p>
 
 <pre class="sh_sh">
-    $ make
+$ make
 </pre>
 
 <p align="justify"><strong>Luxur</strong> es el binario que me interesa (kernel)
 </p>
 
 <pre class="sh_sh">
-    $ ls
-    boot  COPYING  include  kernel  lib  link.ld  Luxur  Luxur-src.tar.gz  Makefile
+$ ls
+boot  COPYING  include  kernel  lib  link.ld  Luxur  Luxur-src.tar.gz  Makefile
 </pre>
 
 <p align="justify">Creando la estructura básica para el grub:
 </p>
 
 <pre class="sh_sh">
-    $ cd ~
-    $ mkdir -vp iso/boot/grub
-    mkdir: created directory `iso'
-    mkdir: created directory `iso/boot'
-    mkdir: created directory `iso/boot/grub'
+$ cd ~
+$ mkdir -vp iso/boot/grub
+mkdir: created directory `iso'
+mkdir: created directory `iso/boot'
+mkdir: created directory `iso/boot/grub'
 </pre>
 
 <p align="justify">Agregando el archivo <strong>menu.lst</strong> a <strong>iso/boot/menu</strong> con el siguiente contenido:
 </p>
 
 <pre class="sh_sh">
-    $ cat b/boot/grub/menu.lst
-    title     Luxur
-    kernel    /boot/Luxur
+$ cat b/boot/grub/menu.lst
+title     Luxur
+kernel    /boot/Luxur
 </pre>
 
 <p align="justify">Agregando el archivo <strong>stage2_eltorito</strong> a <strong>iso/boot/grub</strong> (este es el que hace la magia para que un disco común sea autoarrancable)
@@ -75,14 +74,14 @@ title: "mkisofs"
 </p>
 
 <pre class="sh_sh">
-    $ cp /usr/lib/grub/i386-pc/stage2_eltorito  iso/boot/grub
+$ cp /usr/lib/grub/i386-pc/stage2_eltorito  iso/boot/grub
 </pre>
 
 <p align="justify">En un sistema con grub legacy y arquitectura amd64 en:
 </p>
 
 <pre class="sh_sh">
-    $  /usr/lib/grub/x86_64-pc/stage2_eltorito  iso/boot/grub
+$  /usr/lib/grub/x86_64-pc/stage2_eltorito  iso/boot/grub
 </pre>
 
 <p align="justify">NOTA: Sino esta en ninguno de esos lugares una copia esta aquí:
@@ -98,26 +97,26 @@ title: "mkisofs"
 </p>
 
 <pre class="sh_sh">
-    $ cp luxur/Luxur   iso/boot/
+$ cp luxur/Luxur   iso/boot/
 </pre>
 
 <p align="justify">Creando el .iso:
 </p>
 
 <pre class="sh_sh">
-    $ mkisofs -R -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 \
-      -boot-info-table -o imagen.iso iso
+$ mkisofs -R -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 \
+  -boot-info-table -o imagen.iso iso
 </pre>
 
 <pre class="sh_log">
-    I: -input-charset not specified, using utf-8 (detected in locale settings)
-    Size of boot image is 4 sectors -> No emulation
-    Total translation table size: 2048
-    Total rockridge attributes bytes: 917
-    Total directory bytes: 4096
-    Path table size(bytes): 34
-    Max brk space used 0
-    247 extents written (0 MB)
+I: -input-charset not specified, using utf-8 (detected in locale settings)
+Size of boot image is 4 sectors -> No emulation
+Total translation table size: 2048
+Total rockridge attributes bytes: 917
+Total directory bytes: 4096
+Path table size(bytes): 34
+Max brk space used 0
+247 extents written (0 MB)
 </pre>
 
 <p align="justify">Esta última linea la copie de la documentacion: <a href="http://tinyurl.com/cr7xx" target="_blank">http://tinyurl.com/cr7xx</a>

@@ -15,32 +15,32 @@ title: "latex y yo"
 </p>
 
 <pre class="sh_sh">
-    $ apt-get install texlive-latex-base texlive-latex-extra latex-xcolor \
-      texlive-fonts-recommended
+$ apt-get install texlive-latex-base texlive-latex-extra latex-xcolor \
+  texlive-fonts-recommended
 </pre>
 
 <p align="justify">La última versión de <strong>moderncv,</strong> reemplaza a la que viene en <strong>texlive-latex-extra</strong>:
 </p>
 
 <pre class="sh_sh">
-    $ wget http://mirror.ctan.org/macros/latex/contrib/moderncv.zip
-    $ unzip moderncv.zip
-    $ sudo mv moderncv /usr/share/texmf-texlive/tex/latex/
-    $ sudo mktexlsr
+$ wget http://mirror.ctan.org/macros/latex/contrib/moderncv.zip
+$ unzip moderncv.zip
+$ sudo mv moderncv /usr/share/texmf-texlive/tex/latex/
+$ sudo mktexlsr
 </pre>
 
 <p align="justify">Después de instalar las dependencias, se genera el documento con el comando 'latex':
 </p>
 
 <pre class="sh_sh">
-    $ latex cv.tex
+$ latex cv.tex
 </pre>
 
 <p align="justify">Y el archivo .dvi resultante en pdf
 </p>
 
 <pre class="sh_sh">
-    $ dvipdfm cv.dvi
+$ dvipdfm cv.dvi
 </pre>
 
 <p align="center">

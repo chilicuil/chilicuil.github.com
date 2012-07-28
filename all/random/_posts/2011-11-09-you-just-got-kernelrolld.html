@@ -16,7 +16,7 @@ title: "you just got kernelroll'd ;)"
 </p>
 
 <pre class="sh_sh">
-    $ sudo apt-get install systemtap
+$ sudo apt-get install systemtap
 </pre>
 
 <p align="justify">systemtap requiere de los <a href="http://en.wikipedia.org/wiki/Debug_symbol">simbolos</a> del kernel, <a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/289087">no instalables</a> a trav�s de los repositorios para <strong><u>lucid</u></strong>, sin embargo accesibles desde: <a href="http://ddebs.ubuntu.com/pool/main/l/linux/">http://ddebs.ubuntu.com/pool/main/l/linux/</a>
@@ -26,28 +26,28 @@ title: "you just got kernelroll'd ;)"
 </p>
 
 <pre class="sh_sh">
-    $  sudo dpkg -l|grep linux-image
-    ii  linux-image-2.6.32-34-generic
-    $ uname -m
-    x86_64
+$ sudo dpkg -l|grep linux-image
+  ii  linux-image-2.6.32-34-generic
+$ uname -m
+  x86_64
 </pre>
 
 <p align="justify">Por lo tanto (~450MB):
 </p>
 
 <pre class="sh_sh">
-    $ wget <a href="http://ddebs.ubuntu.com/pool/main/l/linux/linux-image-2.6.32-34-generic-dbgsym_2.6.32-34.77_amd64.ddeb" target="_blank">http://ddebs.ubuntu.com/pool/main/l/linux/linux-image-2.6.32-34...ddeb</a>
-    $ sudo dpkg -i linux-image-2.6.32-34-generic-dbgsym_2.6.32-34.77_amd64.ddeb
+$ wget <a href="http://ddebs.ubuntu.com/pool/main/l/linux/linux-image-2.6.32-34-generic-dbgsym_2.6.32-34.77_amd64.ddeb" target="_blank">http://ddebs.ubuntu.com/pool/main/l/linux/linux-image-2.6.32-34...ddeb</a>
+$ sudo dpkg -i linux-image-2.6.32-34-generic-dbgsym_2.6.32-34.77_amd64.ddeb
 </pre>
 
 <p align="justify">Después de lo cual lo que se escribe en: <a href="http://blog.yjl.im/2011/09/kernelroll.html">http://blog.yjl.im/2011/09/kernelroll.html</a> tendrá sentido:
 </p>
 
 <pre class="sh_sh">
-     $ sudo stap -e 'probe kernel.function("do_filp_open")\
-      { p = kernel_string($pathname); l=strlen(p); \
-      ext = substr(p, l - 4, l); if (ext == ".mp3" || ext == ".ogg" \
-      || ext == ".mp4") { system("mplayer /path/to/rirckroll.mp3"); }}'
+$ sudo stap -e 'probe kernel.function("do_filp_open")\
+ { p = kernel_string($pathname); l=strlen(p); \
+ ext = substr(p, l - 4, l); if (ext == ".mp3" || ext == ".ogg" \
+ || ext == ".mp4") { system("mplayer /path/to/rirckroll.mp3"); }}'
 </pre>
 
 <p align="justify">De paso aprendí que <a href="http://sources.redhat.com/systemtap/">stap</a> sirve para compilar módulos del kernel al momento y cargarlos.

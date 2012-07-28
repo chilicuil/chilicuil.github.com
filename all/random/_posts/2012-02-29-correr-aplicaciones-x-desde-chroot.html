@@ -18,21 +18,21 @@ title: "correr aplicaciones X desde un chroot"
 </p>
 
 <pre class="sh_sh">
-    $ xhost + #lo que hará que X acepte cualquier conexión, incluyendo la del chroot
+$ xhost + #lo que hará que X acepte cualquier conexión, incluyendo la del chroot
 </pre>
 
 <p align="justify">Y luego dentro del chroot:
 </p>
 
 <pre class="sh_sh">
-    [chroot] # export DISPLAY=:0.0
+[chroot] # export DISPLAY=:0.0
 </pre>
 
 <p align="justify">Después de lo cual he podido correr:
 </p>
 
 <pre class="sh_sh">
-    [chroot] # lazarous-ide
+[chroot] # lazarous-ide
 </pre>
 
 <p align="justify">Una vez compilado, he podido copiar y usar magnifier satisfactoriamente en el sistema original, dejo el <a href="http://ubuntuone.com/1pA0A2gDBxfQQdxZVGuuTq">binario</a> para amd64 para el que quiera usarlo.

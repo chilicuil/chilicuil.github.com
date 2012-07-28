@@ -26,15 +26,15 @@ title: "autocompletado en bash"
 </p>
 
 <pre class="sh_sh">
-    $ complete -o plusdirs foo
+$ complete -o plusdirs foo
 </pre>
 
 <p align="justify">A partir de ese momento <strong>$ foo &lt;Tab&gt;&lt;Tab&gt;</strong> devolvería una lista de directorios, de la misma manera si existiera un directorio '<strong>imgs</strong>' y se pusiera <strong>$ foo i&lt;Tab&gt;&lt;Tab&gt;</strong> la terminal completaría '<strong>imgs</strong>', quedando <strong>$ foo imgs</strong>
 </p>
 
 <pre class="sh_sh">
-    $ complete -A user bar #autocompletará bar con los usuarios del sistema
-    $ complete -W "-v --verbose -h" wop #autocompletará con "-v", "--verbose" y "-h"
+$ complete -A user bar #autocompletará bar con los usuarios del sistema
+$ complete -W "-v --verbose -h" wop #autocompletará con "-v", "--verbose" y "-h"
 </pre>
 
 <p align="justify">La sintaxis completa esta definida en <strong>$ man bash</strong>
@@ -46,8 +46,8 @@ title: "autocompletado en bash"
 </p>
 
 <pre class="sh_sh">
-    $ source script_donde_se_define_primp()
-    $ complete -F _primp primp
+$ source script_donde_se_define_primp()
+$ complete -F _primp primp
 </pre>
 
 <p align="justify">Y <strong>_primp()</strong> se encargaría de crear la lista de opciones, esto es útil para tomar el control total sobre el autocompletado, de esta forma se puede hacer que el autocompletado se comporte de diferente manera dependiendo del contexto.
@@ -57,70 +57,70 @@ title: "autocompletado en bash"
 </p>
 
 <pre class="sh_sh">
-    $ fix -h
-    Usage: fix module
-       -h  or --help     List available arguments and usage (this message).
-       -v  or --version  Print version.
-       apache            Moves /etc/init.d/apache2.1 to apache2.
-       ipw2200           Restart the ipw2200 module.
-       wl                Restart the wl module.
-       iwlagn            Restart the iwlagn module.
-       mpd               Restart mpd.
+$ fix -h
+Usage: fix module
+   -h  or --help     List available arguments and usage (this message).
+   -v  or --version  Print version.
+   apache            Moves /etc/init.d/apache2.1 to apache2.
+   ipw2200           Restart the ipw2200 module.
+   wl                Restart the wl module.
+   iwlagn            Restart the iwlagn module.
+   mpd               Restart mpd.
 </pre>
 
 <p align="justify">Para el primer caso se puede crear la siguiente línea y agregarla a <strong>/etc/bash_completion.d/fix.autocp</strong>:
 </p>
 
 <pre class="sh_sh">
-    complete -W "-h --help -v --version apache ipw2200 wl iwlagn mpd" fix
+$ complete -W "-h --help -v --version apache ipw2200 wl iwlagn mpd" fix
 </pre>
 
 <p align="justify">Una vez hecho, se recarga el entorno de bash y se puede usar el autocompletado:
 </p>
 
 <pre class="sh_sh">
-    $ source $HOME/.bashrc
+$ source $HOME/.bashrc
 </pre>
 
 <p align="justify">OJO: esto solo funciona si en el archivo <strong>$HOME/.bashrc</strong> se inicializa bash_completion (también debe estar instalado $ sudo apt-get install bash-completion)
 </p>
 
 <pre class="sh_sh">
-    if [ -f /etc/bash_completion ]; then
-        source /etc/bash_completion
-    fi
+if [ -f /etc/bash_completion ]; then
+    source /etc/bash_completion
+fi
 </pre>
 
 <p align="justify">Para el segundo caso, se crea una función, y se relaciona con el script 'fix', las funciones también se declaran en <strong>/etc/bash_completion.d/fix.autocp</strong>:
 </p>
 
 <pre class="sh_sh">
-    _fix()
-    {
-        #program_name=$1
-        #cur=$2
-        #cur="${COMP_WORDS[COMP_CWORD]}"
-        #cur=$(_get_cword)
-        #prev=$3
-        #$4 doesn't exist
-        local cur prev opts #$cur, $prev & $opts are local vars
-        COMPREPLY=() #clean out last completions, important!
-        cur="${COMP_WORDS[COMP_CWORD]}"
-        prev="${COMP_WORDS[COMP_CWORD-1]}"
-        COMMANDS="apache ipw2200 wl iwlagn mpd"
-        OPTS="-h --help -v --version"
-        case "${cur}" in #if the current word containst '-' at the beginning..
-            -*)
-                completions="$OPTS"
-                ;;
-            *)
-                completions="$COMMANDS"
-                ;;
-        esac
-        COMPREPLY=( $( compgen -W "$completions" -- $cur ))
-        return 0
-    }
-    complete -F _fix fix
+_fix()
+{
+    #program_name=$1
+    #cur=$2
+    #cur="${COMP_WORDS[COMP_CWORD]}"
+    #cur=$(_get_cword)
+    #prev=$3
+    #$4 doesn't exist
+    local cur prev opts #$cur, $prev & $opts are local vars
+    COMPREPLY=() #clean out last completions, important!
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    COMMANDS="apache ipw2200 wl iwlagn mpd"
+    OPTS="-h --help -v --version"
+    case "${cur}" in #if the current word containst '-' at the beginning..
+        -*)
+            completions="$OPTS"
+            ;;
+        *)
+            completions="$COMMANDS"
+            ;;
+    esac
+    COMPREPLY=( $( compgen -W "$completions" -- $cur ))
+    return 0
+}
+complete -F _fix fix
 </pre>
 
 <p align="justify">La variable <strong>$cur</strong> es importante porque contra ella se hará la comparación (en una función de opciones anidadas tambien se leera la variable <strong>$prev</strong>, o incluso la <strong>$prev_prev</strong>, que es como le llamo a la opción previa de la previa...), sin embargo este es un ejemplo simple.
@@ -133,16 +133,16 @@ title: "autocompletado en bash"
 </p>
 
 <pre class="sh_sh">
-    $ compgen -W "-v --verbose -h --help" -- "-v"
-    -v
-    $ compgen -W "-v --verbose -h --help" -- "--"
-    --verbose
-    --help
-    $ compgen -W "apache ipw2200 iwlagn mpd wl" -- "ap"
-    apache
-    $ compgen -W "apache ipw2200 iwlagn mpd wl" -- "i"
-    ipw2200
-    iwlagn
+$ compgen -W "-v --verbose -h --help" -- "-v"
+-v
+$ compgen -W "-v --verbose -h --help" -- "--"
+--verbose
+--help
+$ compgen -W "apache ipw2200 iwlagn mpd wl" -- "ap"
+apache
+$ compgen -W "apache ipw2200 iwlagn mpd wl" -- "i"
+ipw2200
+iwlagn
 </pre>
 
 <p align="justify">Entiendiendo estas dos partes, es más fácil ver que la función compara lo que hay en <strong>$cur</strong> contra la lista de <strong>$completions</strong> y el resultado se guarda en <strong>$COMPREPLY</strong>, ese resultado es el que devuelve la shell una vez se haya presionado <strong>&lt;Tab&gt;&lt;Tab&gt;</strong>
@@ -153,165 +153,165 @@ En el ejemplo anterior, no se puede ver la ventaja de usar una función en lugar
 </p>
 
 <pre class="sh_sh">
-    $ android -h
-    Usage:
-    android [global options] action [action options]
-    Global options:
-    -v --verbose  Verbose mode: errors, warnings and informational messages are printed.
-    -h --help     Help on a specific command.
-    -s --silent   Silent mode: only errors are printed out.
-    Valid actions are composed of a verb and an optional direct object:
-    -   list          
-    -   list avd         
-    -   list target     
-    - create avd        
-    -   move avd       
-    - delete avd       
-    - update avd       
-    - create project    
-    - update project    
-    - create test-project 
-    - update test-project 
-    - create lib-project  
-    - update lib-project 
-    - update adb 
-    - update sdk     
+$ android -h
+Usage:
+android [global options] action [action options]
+Global options:
+-v --verbose  Verbose mode: errors, warnings and informational messages are printed.
+-h --help     Help on a specific command.
+-s --silent   Silent mode: only errors are printed out.
+Valid actions are composed of a verb and an optional direct object:
+-   list          
+-   list avd         
+-   list target     
+- create avd        
+-   move avd       
+- delete avd       
+- update avd       
+- create project    
+- update project    
+- create test-project 
+- update test-project 
+- create lib-project  
+- update lib-project 
+- update adb 
+- update sdk     
 </pre>
 
 <p align="justify">El autocompletado de este script varia dependiendo del subcomando:
 </p>
 
 <pre class="sh_sh">
-    $ android list[Tab][Tab]
+$ android list[Tab][Tab]
 </pre>
 
 <p align="justify">Esto devolvería <strong>avd</strong> o <strong>target</strong>:
 </p>
 
 <pre class="sh_sh">
-    $ android create[Tab][Tab]
+$ android create[Tab][Tab]
 </pre>
 
 <p align="justify">Devolvería <strong>avd</strong>, <strong>project</strong>, <strong>test-project</strong> o <strong>lib-project</strong>:
 </p>
 
 <pre class="sh_sh">
-    $ android create avd[Tab][Tab]
+$ android create avd[Tab][Tab]
 </pre>
 
 <p align="justify">Devolvería <strong>-a</strong>, <strong>-c</strong>, <strong>-f</strong>, etc. Es decir dependiendo del contexto devuelve diferentes valores, el archivo completo de este ejemplo esta en <a href="https://github.com/chilicuil/learn/blob/master/autocp/bash_completion.d/android.autocp" target="_blank">github</a>, ahora explicaré las partes más importantes:
 </p>
 
 <pre class="sh_sh">
-    _android()
-    {
-        local cur prev opts #local vars
-        COMPREPLY=() #clean out last completions, important!
-        cur="${COMP_WORDS[COMP_CWORD]}"
-        prev="${COMP_WORDS[COMP_CWORD-1]}"
-        number_of_words=${#COMP_WORDS[@]}
+_android()
+{
+    local cur prev opts #local vars
+    COMPREPLY=() #clean out last completions, important!
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    number_of_words=${#COMP_WORDS[@]}
 
-        if [[ $number_of_words -gt 2 ]]; then
-            prev_prev="${COMP_WORDS[COMP_CWORD-2]}"
-        fi
+    if [[ $number_of_words -gt 2 ]]; then
+        prev_prev="${COMP_WORDS[COMP_CWORD-2]}"
+    fi
 </pre>
 
 <p align="justify">Si el número de palabras es mayor que 2 (<strong>-gt</strong> "greater than"), entonces existe un anterior al anterior y se puede eclarar esa variable, <strong>$prev_prev</strong>
 </p>
 
 <pre class="sh_sh">
-    #=======================================================
-    #                  General options
-    #=======================================================
-    COMMANDS="list create move delete update"
-    #COMMANDS=`android -h | grep '^-' | sed -r 's/: .*//' \
-               | awk '{print $2}' | sort | uniq 2> /dev/null`
+#=======================================================
+#                  General options
+#=======================================================
+COMMANDS="list create move delete update"
+#COMMANDS=`android -h | grep '^-' | sed -r 's/: .*//' \
+           | awk '{print $2}' | sort | uniq 2> /dev/null`
 </pre>
 
 <p align="justify">Lo que se ponga en las variables que se usarán para autcompletar pueden deducir del binario (aunque sería un tanto más lento) o escribirlas directamente (lo que no las haría confiables si el programa decidiera quitar o agregar otras opciones en futuras versiones).
 </p>
 
 <pre class="sh_sh">
-    OPTS="-h --help -v --verbose -s --silent"
-    #=======================================================
-    #                   Nested options [1st layer]
-    #=======================================================
-    list_opts="avd target"
-    create_opts="avd project test-project lib-project"
-    move_opts="avd"...
+OPTS="-h --help -v --verbose -s --silent"
+#=======================================================
+#                   Nested options [1st layer]
+#=======================================================
+list_opts="avd target"
+create_opts="avd project test-project lib-project"
+move_opts="avd"...
 </pre>
 
 <p align="justify">Opciones de subcomandos...
 </p>
 
 <pre class="sh_sh">
-    #=======================================================
-    #                   Nested options [2nd layer]
-    #=======================================================
-    create_avd_opts="-c --sdcard -t --target -n --name -a \
-                     --snapshot -p --path -f -s --skin"
-    create_project_opts="-n --name -t --target -p --path -k \
-                         --package -a --activity"
-    create_test-project_opts="-p --path -m --main -n --name"
-    create_lib-project_opts="-n --name -p --path -t --target \
-                             -k --package"...
+#=======================================================
+#                   Nested options [2nd layer]
+#=======================================================
+create_avd_opts="-c --sdcard -t --target -n --name -a \
+                 --snapshot -p --path -f -s --skin"
+create_project_opts="-n --name -t --target -p --path -k \
+                     --package -a --activity"
+create_test-project_opts="-p --path -m --main -n --name"
+create_lib-project_opts="-n --name -p --path -t --target \
+                         -k --package"...
 </pre>
 
 <p align="justify">y las opciones de esos comandos a su vez @.@'
 </p>
 
 <pre class="sh_sh">
-     if [[ -n $prev_prev ]]; then
-     #2nd layer
-     case "${prev_prev}" in
-       create)
-         case "${prev}" in
-           avd)
-              COMPREPLY=( $( compgen -W "$create_avd_opts" -- $cur ))
-              return 0
-              ;;
-           project)
-              COMPREPLY=( $( compgen -W "$create_project_opts" -- $cur ))
-              return 0
-              ;;
-              ...
-      esac
+if [[ -n $prev_prev ]]; then
+#2nd layer
+case "${prev_prev}" in
+  create)
+    case "${prev}" in
+      avd)
+         COMPREPLY=( $( compgen -W "$create_avd_opts" -- $cur ))
+         return 0
+         ;;
+      project)
+         COMPREPLY=( $( compgen -W "$create_project_opts" -- $cur ))
+         return 0
+         ;;
+         ...
+ esac
 </pre>
 
 <p align="justify">Dependiendo de <strong>$prev_prev</strong>, de <strong>$prev</strong> y de <strong>$cur</strong> se devolverá la lista apropiada de opciones, el comando es de la forma <strong>$ android subcomando opcion opcion_incompleta#CURSOR#</strong>
 </p>
 
 <pre class="sh_sh">
-     case "${prev}" in
-         ##1st layer
-         list)
-             COMPREPLY=( $( compgen -W "$list_opts" -- $cur ))
-             return 0
-             ;;
-         create)
-             COMPREPLY=( $( compgen -W "$create_opts" -- $cur ))
-             return 0
-             ;;
-         ...
-             ;;
-     esac ...
+case "${prev}" in
+    ##1st layer
+    list)
+        COMPREPLY=( $( compgen -W "$list_opts" -- $cur ))
+        return 0
+        ;;
+    create)
+        COMPREPLY=( $( compgen -W "$create_opts" -- $cur ))
+        return 0
+        ;;
+    ...
+        ;;
+esac ...
 </pre>
 
 <p align="justify">Dependiendo de <strong>$prev</strong> y de <strong>$cur</strong> se devolverá la lista apropiada, <strong>$ android subcomando opcion_incompleta#CURSOR#</strong>
 </p>
 
 <pre class="sh_sh">
-        #general options
-        case "${cur}" in
-           -*)
-               COMPREPLY=( $( compgen -W "$OPTS" -- $cur ))
-               ;;
-           *)
-               COMPREPLY=( $( compgen -W "$COMMANDS" -- $cur ))
-               ;;
-        esac
-  }
-  complete -F _android android
+      #general options
+      case "${cur}" in
+         -*)
+             COMPREPLY=( $( compgen -W "$OPTS" -- $cur ))
+             ;;
+         *)
+             COMPREPLY=( $( compgen -W "$COMMANDS" -- $cur ))
+             ;;
+      esac
+}
+complete -F _android android
 </pre>
 
 <p align="justify">Dependiendo de <strong>$cur</strong> se crea una lista, no existe ni <strong>$prev,</strong> ni <strong>$prev_prev</strong>, el comando es de la forma <strong>$ android opcion_incompleta#CURSOR#</strong>
@@ -325,17 +325,17 @@ En el ejemplo anterior, no se puede ver la ventaja de usar una función en lugar
 </p>
 
 <pre class="sh_sh">
-    for (( i=0; i < ${#COMP_WORDS[@]}-1; i++ )); do
-        if [[ ${COMP_WORDS[i]} == @(opcion1|opcion2|opcion3) ]]; then
-            special=${COMP_WORDS[i]}
-        fi
-    done
-
-    if [ -n "$special" ]; then
-        case $special in
-        ...
-        esac
+for (( i=0; i < ${#COMP_WORDS[@]}-1; i++ )); do
+    if [[ ${COMP_WORDS[i]} == @(opcion1|opcion2|opcion3) ]]; then
+        special=${COMP_WORDS[i]}
     fi
+done
+
+if [ -n "$special" ]; then
+    case $special in
+    ...
+    esac
+fi
 </pre>
 
 <h4>Sufijos y prefijos</h4>
@@ -344,7 +344,7 @@ En el ejemplo anterior, no se puede ver la ventaja de usar una función en lugar
 </p>
 
 <pre class="sh_sh">
-    $ foo source=/etc/foo.conf
+$ foo source=/etc/foo.conf
 </pre>
 
 <p align="justify">En ese caso <strong>compgen</strong> con las opciones <strong>-S</strong> y <strong>-P</strong> pueden ayudar con el sufijo y prefijo...
@@ -356,10 +356,10 @@ En el ejemplo anterior, no se puede ver la ventaja de usar una función en lugar
 </p>
 
 <pre class="sh_sh">
-    -f)
-        _filedir
-        return 0
-        ;;
+-f)
+    _filedir
+    return 0
+    ;;
 </pre>
 
 <h4>IFS</h4>
@@ -368,16 +368,16 @@ En el ejemplo anterior, no se puede ver la ventaja de usar una función en lugar
 </p>
 
 <pre class="sh_sh">
-    case $prev in
-       @(-s|-startvm|--startvm))
-           OLDIFS="$IFS"
-           IFS=$'\n'
-           COMPREPLY=($(compgen -W "$(vboxmanage list vms | cut -d\" -f2)" -- $cur))
-           IFS="$OLDIFS"
-           return 0
-           ;;
-           ...
-    esac
+case $prev in
+   @(-s|-startvm|--startvm))
+       OLDIFS="$IFS"
+       IFS=$'\n'
+       COMPREPLY=($(compgen -W "$(vboxmanage list vms | cut -d\" -f2)" -- $cur))
+       IFS="$OLDIFS"
+       return 0
+       ;;
+       ...
+esac
 </pre>
 
 <h4>Debug</h4>
@@ -386,24 +386,24 @@ En el ejemplo anterior, no se puede ver la ventaja de usar una función en lugar
 </p>
 
 <pre class="sh_sh">
-    $ set -v
+$ set -v
 </pre>
 
 <p align="justify">Recargando la lista de funciones
 </p>
 
 <pre class="sh_sh">
-    $ source ~/.bashrc
+$ source ~/.bashrc
 </pre>
 
 <p align="justify">Y probando el autocompletado
 </p>
 
 <pre class="sh_sh">
-    $ comando opc[Tab][Tab]
-    ...
-    ...
-    ... salida verbosa
+$ comando opc[Tab][Tab]
+...
+...
+... salida verbosa
 </pre>
 
 <p align="justify">Una lista no exaustiva de archivos /etc/bash_completion.d donde he encontrado estas técnicas han sido:

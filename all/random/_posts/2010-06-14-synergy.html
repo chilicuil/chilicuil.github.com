@@ -18,28 +18,28 @@ title: "synergy"
 </p>
 
 <pre class="sh_sh">
-    $ sudo apt-get install -y synergy
+$ sudo apt-get install -y synergy
 </pre>
 
 <p align="justify">Se inicia el servidor, por defecto escucha en el puerto <strong>24800</strong> por lo que no requiere permisos especiales para ejecutarse:
 </p>
 
 <pre class="sh_sh">
-    $ synergys
+$ synergys
 </pre>
 
 <p align="justify">En las máquinas clientes (sin ratón) se inicia la otra parte del programa:
 </p>
 
 <pre class="sh_sh">
-    $ synergyc --daemon ip_servidor
+$ synergyc --daemon ip_servidor
 </pre>
 
 <p align="justify">Por defecto synaptic no cifra las conexiones, una persona que revise las tramas podría saber que se esta escribiendo, para impedirlo, se puede crear un tunnel ssh, para que synaptic se comunique por ahí:
 </p>
 
 <pre class="sh_sh">
-    $ ssh ip_cliente
-    ndia:ip_cliente $ ssh -p 1001 -f -N -L 24800:localhost:24800 buzz
-    $ synergyc --daemon localhost; exit
+$ ssh ip_cliente
+ndia:ip_cliente $ ssh -p 1001 -f -N -L 24800:localhost:24800 buzz
+$ synergyc --daemon localhost; exit
 </pre>

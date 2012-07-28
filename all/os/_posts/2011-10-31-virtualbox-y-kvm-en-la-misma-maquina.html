@@ -17,14 +17,14 @@ title: "virtualbox y kvm en la misma máquina"
 </p>
 
 <pre class="sh_sh">
-    $ sudo service qemu-kvm stop && sudo service vboxdrv start
+$ sudo service qemu-kvm stop && sudo service vboxdrv start
 </pre>
 
 <p align="justify">Y visceversa:
 </p>
 
 <pre class="sh_sh">
-    $ sudo service vboxdrv stop && sudo service qemu-kvm
+$ sudo service vboxdrv stop && sudo service qemu-kvm
 </pre>
 
 <p align="justify">Para otras distribuciones <strong>rmmod/modprobe/lsmod</strong> hacen el truco

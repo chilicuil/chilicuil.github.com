@@ -33,8 +33,8 @@ title: "vim + vundle"
 <p align="justify">_antes_</p>
 
 <pre>
-    after autoload colors compiler doc extra-snippets ftdetect
-    ftplugin indent plugin skeletons snippets spell syntax syntax_checker
+after autoload colors compiler doc extra-snippets ftdetect
+ftplugin indent plugin skeletons snippets spell syntax syntax_checker
 </pre>
 
 <p align="justify">Los plugins estan distribuidos en <strong>plugin, autoload, after, ftdetect</strong> al estilo de cuando apt-get instala los archivos de programas en /usr, /etc, /var
@@ -43,7 +43,7 @@ title: "vim + vundle"
 <p align="justify">_después_</p>
 
 <pre>
-    bundle  colors  extra-snippets  skeleton
+bundle  colors  extra-snippets  skeleton
 </pre>
 
 <p align="justify">Todos los plugins tienen su propia carpeta en <strong>bundle</strong>, por lo que <strong>$ rm -rf ./bundle/nerdtree</strong> elimina completamente nerdtree, cool.
@@ -71,47 +71,47 @@ title: "vim + vundle"
 </p>
 
 <pre class="sh_sh">
-    if !isdirectory(expand(expand("~/.vim/bundle/vundle/.git/"))) "call inputsave()
-        echon "Setting up vundle, this may take a while, wanna continue? (y/n): "
-        if nr2char(getchar()) ==? 'y'
-             !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-    endif
-    "call inputrestore()
-    endif
-    set runtimepath+=~/.vim/bundle/vundle/
-    call vundle#rc()
+if !isdirectory(expand(expand("~/.vim/bundle/vundle/.git/"))) "call inputsave()
+    echon "Setting up vundle, this may take a while, wanna continue? (y/n): "
+    if nr2char(getchar()) ==? 'y'
+         !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+endif
+"call inputrestore()
+endif
+set runtimepath+=~/.vim/bundle/vundle/
+call vundle#rc()
 </pre>
 
 <p align="justify">Una vez ahí, he creado una lista con los plugins que no he modificado, ejemplo:
 </p>
 
 <pre>
-    Bundle 'gmarik/vundle'
-    Bundle 'mhz/vim-matchit'
-    Bundle 'vim-scripts/CRefVim'
-    Bundle 'scrooloose/nerdtree'
-    Bundle 'msanders/snipmate.vim'
-    Bundle 'Shougo/neocomplcache'
-    Bundle 'Townk/vim-autoclose'
-    Bundle 'gmunkhbaatarmn/vim-largefile'
-    Bundle 'vim-scripts/matrix.vim--Yang'
-    Bundle 'scrooloose/nerdcommenter'
-    Bundle 'vim-scripts/TaskList.vim'
-    Bundle 'godlygeek/csapprox'
-    Bundle 'vim-scripts/DrawIt'
-    Bundle 'vim-scripts/netrw.vim'
-    Bundle 'ciaranm/securemodelines'
-    Bundle 'tpope/vim-markdown'
-    Bundle 'vim-scripts/irssilog.vim'
-    Bundle 'mattn/gist-vim'
-    Bundle 'scrooloose/syntastic'
-    Bundle 'gmarik/github-search.vim'
-    Bundle 'QuickBuf'
-    Bundle 'surround.vim'
-    Bundle 'repeat.vim'
-    Bundle 'FindMate'
-    Bundle 'IndexedSearch'
-    Bundle 'Align'
+Bundle 'gmarik/vundle'
+Bundle 'mhz/vim-matchit'
+Bundle 'vim-scripts/CRefVim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'msanders/snipmate.vim'
+Bundle 'Shougo/neocomplcache'
+Bundle 'Townk/vim-autoclose'
+Bundle 'gmunkhbaatarmn/vim-largefile'
+Bundle 'vim-scripts/matrix.vim--Yang'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'vim-scripts/TaskList.vim'
+Bundle 'godlygeek/csapprox'
+Bundle 'vim-scripts/DrawIt'
+Bundle 'vim-scripts/netrw.vim'
+Bundle 'ciaranm/securemodelines'
+Bundle 'tpope/vim-markdown'
+Bundle 'vim-scripts/irssilog.vim'
+Bundle 'mattn/gist-vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'gmarik/github-search.vim'
+Bundle 'QuickBuf'
+Bundle 'surround.vim'
+Bundle 'repeat.vim'
+Bundle 'FindMate'
+Bundle 'IndexedSearch'
+Bundle 'Align'
 </pre>
 
 <p align="justify">De esta lista, los scripts que tienen un nombre simple, por ejemplo <strong>Align</strong> o <strong>FindMate</strong> son tomados de vim.org y deben estar escritos igual a como aparece en la descripción (no con el nombre que tienen en la descarga), los otros, por ejemplo <strong>mhz/vim-matchit</strong> o <strong>scrooloose/syntastic</strong> serán tomados de <a href="http://github.com/username/repository" target="_blank">http://github.com/username/repository</a>
@@ -124,11 +124,11 @@ title: "vim + vundle"
 </p>
 
 <pre>
-    Bundle 'chilicuil/taglist.vim'
-    Bundle 'chilicuil/dbext.vim'
-    Bundle 'chilicuil/nextCS'
-    Bundle 'chilicuil/TeTrIs.vim'
-    Bundle 'chilicuil/vimbuddy.vim'
+Bundle 'chilicuil/taglist.vim'
+Bundle 'chilicuil/dbext.vim'
+Bundle 'chilicuil/nextCS'
+Bundle 'chilicuil/TeTrIs.vim'
+Bundle 'chilicuil/vimbuddy.vim'
 </pre>
 
 <p align="justify">Listo, hasta aquí llega el proceso estandar, ejecutando <strong>:BundleInstall</strong> dentro de vim, instalará todos los plugins.
@@ -140,10 +140,10 @@ title: "vim + vundle"
 <p align="justify">Los pasos para regenerar mi configuración, son:
 </p>
 
-<pre>
-    $ git clone https://github.com/chilicuil/dotfiles dotfiles
-    $ cd dotfiles
-    $ mv .vimrc .vim ../
+<pre class="sh_sh">
+$ git clone https://github.com/chilicuil/dotfiles dotfiles
+$ cd dotfiles
+$ mv .vimrc .vim ../
 </pre>
 
 <p align="justify">Abrir vim, y correr <strong>:BundleInstall</strong>.

@@ -7,8 +7,6 @@ title: "vimmer"
 
 <p class="publish_date">{{ page.date | date_to_string }}</p>
 
-<!--<p style="text-align: center;"> <img style="width: 278px; height: 305px;" src="/img/8.jpg"></p>-->
-
 <p align="justify">Acabo de empezar con la programación en php y pues dado que soy un vimmer empedernido, por aquí pondré los tips que pueda encontrar para hacer mi vida menos miserable mientras lo intento. Mmm, espero que con el tiempo no solo abarque php, sino javascript, sql, ajax, y en general todo lo que se requiera para la programación web.
 </p>
 
@@ -21,34 +19,34 @@ title: "vimmer"
 </p>
 
 <pre class="sh_sh">
-  $ cat ~/.vimrc
+$ cat ~/.vimrc
 </pre>
 
 <pre>
-    set nocompatible
-    syntax on                                   "enable syntax
-    filetype on                                 "enable filetype detection
-    filetype plugin indent on                   "enable filetype-specific indenting
-                                                " and plugins
-    setlocal omnifunc=syntaxcomplete#Complete   "Omni-completion <C-x><C-o>
-    set softtabstop=4                           "vim sees 4 spaces as a tab
-    set shiftwidth=4                            "indentation
-    set expandtab                               "tabs mutate into spaces
+set nocompatible
+syntax on                                   "enable syntax
+filetype on                                 "enable filetype detection
+filetype plugin indent on                   "enable filetype-specific indenting
+                                            " and plugins
+setlocal omnifunc=syntaxcomplete#Complete   "Omni-completion <C-x><C-o>
+set softtabstop=4                           "vim sees 4 spaces as a tab
+set shiftwidth=4                            "indentation
+set expandtab                               "tabs mutate into spaces
 
-    " Go back to the position the cursor was on the last time this file was edited
-    au BufReadPost * if line("'\"") > 0 && line("'\"")\
-    <= line("$")|execute("normal `\"")|endif
+" Go back to the position the cursor was on the last time this file was edited
+au BufReadPost * if line("'\"") > 0 && line("'\"")\
+<= line("$")|execute("normal `\"")|endif
 </pre>
 
 <p align="justify"><strong>2.-</strong> Para copiar y pegar desde y hacia el portapapeles, uso el registro "+" (unicamente en versiones posteriores a vim 7.3):
 </p>
 
 <pre>
-    "+dd      Corta la línea debajo del cursor
-    "+yy      Copia la línea debajo del cursor
-    5"+yy     Copia 5 líneas
-    gg"+yG    Copia todo el documento
-    "+p       Pega
+"+dd      Corta la línea debajo del cursor
+"+yy      Copia la línea debajo del cursor
+5"+yy     Copia 5 líneas
+gg"+yG    Copia todo el documento
+"+p       Pega
 </pre>
 
 <p align="justify">También funciona en el modo visual
@@ -94,15 +92,15 @@ Reemplaza lo que este dentro de ' y cambia a modo insertar
 </p>
 
 <pre>
-    u             ==> retrocede un cambio
-    CTRL-r        ==> regresa un cambio
-    :earlier  t   ==> regresa el tiempo especificado
-    :earlier 10m  ==> regresa el doc a como se veia hace 10 minutos
+u             ==> retrocede un cambio
+CTRL-r        ==> regresa un cambio
+:earlier  t   ==> regresa el tiempo especificado
+:earlier 10m  ==> regresa el doc a como se veia hace 10 minutos
 
-    :later    t   ==> inverso de :earlier
-    :undol        ==> lista las ramas disponibles
-    g-            ==> para cambiar a la rama anterior
-    g+            ==> para cambiar a la rama superior
+:later    t   ==> inverso de :earlier
+:undol        ==> lista las ramas disponibles
+g-            ==> para cambiar a la rama anterior
+g+            ==> para cambiar a la rama superior
 </pre>
 
 <p align="justify"><strong><span style="color: yellow;">:h undo</span></strong>
@@ -130,21 +128,21 @@ Reemplaza lo que este dentro de ' y cambia a modo insertar
 <p>Y:</p>
 
 <pre class="sh_sh">
-    $ cat Php_syntax
+$ cat Php_syntax
 </pre>
 
 <pre>
-    au FileType php call Php_syntax()
-    au FileType html call Php_syntax()
+au FileType php call Php_syntax()
+au FileType html call Php_syntax()
 
-    fun! Php_syntax()
-        set makeprg=php\ -l\ %
-        set errorformat=%m\ in\ %f\ on\ line\ %l
-    endfun
+fun! Php_syntax()
+    set makeprg=php\ -l\ %
+    set errorformat=%m\ in\ %f\ on\ line\ %l
+endfun
 </pre>
 
 <pre class="sh_sh">
-    $ cat Php_syntax >> ~/.vimrc
+$ cat Php_syntax >> ~/.vimrc
 </pre>
 
 <p align="justify">El primero es el menos intrusivo de los 3, pero tambien el más incompleto, agrega algunos colores y reconocimiento de errores básicos al vuelo, el segundo soporta varios lenguajes y funciona bien, pero dado que en última instancia usa php contra el archivo que estas editando de repente se traba un poco, el tercero agrega una funcion, para que vía <strong><span style="color: yellow;">:make</span></strong> corra 'php -l' sobre el archivo, es el que más me gustó porque me da el control para decidir cuando quiero verificar, si a este último punto se le agrega un shortcut (<strong><span style="color: yellow;">:h map</span></strong>) se vuelve aun más comodo. Les debo las capturas
@@ -160,18 +158,18 @@ Reemplaza lo que este dentro de ' y cambia a modo insertar
 </p>
 
 <pre class="sh_php">
-    $var=1
-    $segunda_variable=2
-    $tercera_var=3
+$var=1
+$segunda_variable=2
+$tercera_var=3
 </pre>
 
 <p align="justify">__DESPUES__
 </p>
 
 <pre class="sh_php">
-    $var              = 1
-    $segunda_variable = 2
-    $tercera_var      = 3
+$var              = 1
+$segunda_variable = 2
+$tercera_var      = 3
 </pre>
 
 <p align="justify"><strong><span style="color: yellow;">:h align</span></strong>
@@ -200,18 +198,18 @@ Reemplaza lo que este dentro de ' y cambia a modo insertar
 </p>
 
 <pre class="sh_php">
-    add_footer("Sales1");
-    add_footer("Sales2");
-    add_footer("Sales3");
+add_footer("Sales1");
+add_footer("Sales2");
+add_footer("Sales3");
 </pre>
 
 <p align="justify"><strong>[Leader]c[SPACE]</strong>(Leader es una tecla especial muy común en vim, por defecto '<strong>\</strong>' , <strong><span style="color: yellow;">:h leader</span></strong>)
 </p>
 
 <pre class="sh_php">
-    //add_footer("Sales1");
-    //add_footer("Sales2");
-    //add_footer("Sales3");
+//add_footer("Sales1");
+//add_footer("Sales2");
+//add_footer("Sales3");
 </pre>
 
 <p align="justify"><strong><span style="color: yellow;">:h NERDCommenter</span></strong>
@@ -224,16 +222,16 @@ Reemplaza lo que este dentro de ' y cambia a modo insertar
 </p>
 
 <pre class="sh_sh">
-    $ cd ~/.vim
-    $ sudo apt-get install php5-xdebug                                              
-    $ cat /etc/php5/conf.d/xdebug.ini
+$ cd ~/.vim
+$ sudo apt-get install php5-xdebug                                              
+$ cat /etc/php5/conf.d/xdebug.ini
 </pre>
 
 <pre>
-    zend_extension=/usr/lib/php5/20060613+lfs/xdebug.so
-    xdebug.remote_enable = 1
-    xdebug.remote_port = 9000
-    xdebug.remote_host = localhost
+zend_extension=/usr/lib/php5/20060613+lfs/xdebug.so
+xdebug.remote_enable = 1
+xdebug.remote_port = 9000
+xdebug.remote_host = localhost
 </pre>
 
 <p align="justify">
@@ -283,29 +281,29 @@ xdebug-helper para firefox: <a href="https://addons.mozilla.org/en-US/firefox/ad
 </p>
 
 <pre class="sh_sh">
-    $ mv -v ~/.vim/plugin/manpageviewPlugin.vim{,.back}
-    $ mv -v ~/.vim/doc/manpageview.txt ~/.vim/autoload/manpageview.vim{,.back}
-    $ cd ~/.vim/doc/                                                                  
-    $ mkdir -pv php/doc
-    $ cd php/doc
-    $ wget http://ubuntuone.com/2dXDnAemYtJOtcgg5R1sgs
-    $ tar zxvf vim-php-manual.tgz
-    $ cat php.help
+$ mv -v ~/.vim/plugin/manpageviewPlugin.vim{,.back}
+$ mv -v ~/.vim/doc/manpageview.txt ~/.vim/autoload/manpageview.vim{,.back}
+$ cd ~/.vim/doc/                                                                  
+$ mkdir -pv php/doc
+$ cd php/doc
+$ wget http://ubuntuone.com/2dXDnAemYtJOtcgg5R1sgs
+$ tar zxvf vim-php-manual.tgz
+$ cat php.help
 </pre>
 
 <pre>
-    function! SetProperties(_language)
-        if (a:_language == "php")
-            set keywordprg="help"
-            set runtimepath+=/home/USUARIO/.vim/doc/php
-        endif
-    endfunction
+function! SetProperties(_language)
+    if (a:_language == "php")
+        set keywordprg="help"
+        set runtimepath+=/home/USUARIO/.vim/doc/php
+    endif
+endfunction
 
-    autocmd BufNewFile,BufEnter *.php,*.php3,*.php4  call SetProperties("php")
+autocmd BufNewFile,BufEnter *.php,*.php3,*.php4  call SetProperties("php")
 </pre>
 
 <pre class="sh_sh">
-    $ cat php.help >> ~/.vimrc
+$ cat php.help >> ~/.vimrc
 </pre>
 
 <p style="text-align: center;">
@@ -322,9 +320,9 @@ xdebug-helper para firefox: <a href="https://addons.mozilla.org/en-US/firefox/ad
 </p>
 
 <pre class="sh_sh">
-    $ cd ~/.vim/
-    $ wget http://www.vim.org/scripts/download_script.php?src_id=11341 -O dbext.zip
-    $ unzip dbext.zip
+$ cd ~/.vim/
+$ wget http://www.vim.org/scripts/download_script.php?src_id=11341 -O dbext.zip
+$ unzip dbext.zip
 </pre>
 
 <p align="justify">Se reinicia vim y se corre :helpt ~/.vim/doc
@@ -334,10 +332,10 @@ xdebug-helper para firefox: <a href="https://addons.mozilla.org/en-US/firefox/ad
 </p>
 
 <pre>
-    let g:dbext_default_profile = 'nombre_del_perfil'
-    let g:dbext_default_profile_nombre_del_perfil = \
-    'type=MYSQL:user=chilicuil:passwd=contrasenia:dbname=\
-    base_de_datos:host=localhost:port=3306'
+let g:dbext_default_profile = 'nombre_del_perfil'
+let g:dbext_default_profile_nombre_del_perfil = \
+'type=MYSQL:user=chilicuil:passwd=contrasenia:dbname=\
+base_de_datos:host=localhost:port=3306'
 </pre>
 
 <p align="justify">Se pueden agregar tantos perfiles como se quieran, si no se establece uno por defecto, cada vez que se use el plugin se preguntará cual se quiera usar. Se pueden tener varios archivos cada uno conectado a diferentes bases de datos.
@@ -355,16 +353,16 @@ xdebug-helper para firefox: <a href="https://addons.mozilla.org/en-US/firefox/ad
 </p>
 
 <pre>
-    Connection: T(MYSQL)  D(chilicuil)  U(chilicuil)   at 02:55
-    +----+-----------+-----------+
-    | id | cust_name | phone_nbr |
-    +----+-----------+-----------+
-    |  1 | Bob       | 555-1210  |
-    |  2 | Jim       | 555-1211  |
-    |  3 | Ted       | 555-1212  |
-    |  4 | Sid       | 555-1213  |
-    |  5 | Joe       | 555-1214  |
-    +----+-----------+-----------+
+Connection: T(MYSQL)  D(chilicuil)  U(chilicuil)   at 02:55
++----+-----------+-----------+
+| id | cust_name | phone_nbr |
++----+-----------+-----------+
+|  1 | Bob       | 555-1210  |
+|  2 | Jim       | 555-1211  |
+|  3 | Ted       | 555-1212  |
+|  4 | Sid       | 555-1213  |
+|  5 | Joe       | 555-1214  |
++----+-----------+-----------+
 </pre>
 
 <p align="justify">Tambien se pueden seleccionar visualmente código sql(java, php, perl) y ejecutarlo usando <strong>[Leader]se</strong>
@@ -431,28 +429,28 @@ Sin Ctags y Nerdtree&nbsp; ===&gt; Con Ctags y Nerdtree
 </p>
 
 <pre class="sh_sh">
-    $ wget http://ubuntuone.com/33tFunUmijZm0gMzrS7oLy -O vim-7.2-extra.tar.gz
-    $ wget http://ubuntuone.com/1sHLaF51i0UflgTEWZN87f -O vim-7.2-lang.tar.gz
-    $ wget http://ubuntuone.com/5gFId4IFOzLC5j1HwbPKkn -O vim-7.2.tar.bz2
-    $ wget http://ubuntuone.com/6nHxPm4dAsYqI3rFTiaLli -O vimshell.patch.bz2
+$ wget http://ubuntuone.com/33tFunUmijZm0gMzrS7oLy -O vim-7.2-extra.tar.gz
+$ wget http://ubuntuone.com/1sHLaF51i0UflgTEWZN87f -O vim-7.2-lang.tar.gz
+$ wget http://ubuntuone.com/5gFId4IFOzLC5j1HwbPKkn -O vim-7.2.tar.bz2
+$ wget http://ubuntuone.com/6nHxPm4dAsYqI3rFTiaLli -O vimshell.patch.bz2
 
-    $ tar zxf vim-7.2-extra.tar.gz; tar zxf vim-7.2-lang.tar.gz
-    $ tar jxf vim-7.2.tar.bz2; bzip2 -d vimshell.patch.bz2
-    $ patch -p0 < vimshell.patch
-    $ cd vim72
-    $ sudo apt-get install python-dev ruby-dev tcl-dev libperl-dev
-    $ ./configure --enable-perlinterp --enable-pythoninterp --enable-tclinterp \
-    --enable-rubyinterp --enable-multibyte --enable-sniff\
-    --with-features=huge --with-compiledby=tu_usuario --with-modified-by=Thomas
-    $ make
-    $ sudo make install
-    $ sudo rm /etc/alternatives/vi
-    $ sudo rm /etc/alternatives/vim
-    $ sudo rm /etc/alternatives/vimdiff
+$ tar zxf vim-7.2-extra.tar.gz; tar zxf vim-7.2-lang.tar.gz
+$ tar jxf vim-7.2.tar.bz2; bzip2 -d vimshell.patch.bz2
+$ patch -p0 < vimshell.patch
+$ cd vim72
+$ sudo apt-get install python-dev ruby-dev tcl-dev libperl-dev
+$ ./configure --enable-perlinterp --enable-pythoninterp --enable-tclinterp \
+--enable-rubyinterp --enable-multibyte --enable-sniff\
+--with-features=huge --with-compiledby=tu_usuario --with-modified-by=Thomas
+$ make
+$ sudo make install
+$ sudo rm /etc/alternatives/vi
+$ sudo rm /etc/alternatives/vim
+$ sudo rm /etc/alternatives/vimdiff
 
-    $ sudo ln -s /usr/local/bin/vim /etc/alternatives/vi
-    $ sudo ln -s /usr/local/bin/vim /etc/alternatives/vim
-    $ sudo ln -s /usr/local/bin/vimdiff /etc/alternatives/vimdiff
+$ sudo ln -s /usr/local/bin/vim /etc/alternatives/vi
+$ sudo ln -s /usr/local/bin/vim /etc/alternatives/vim
+$ sudo ln -s /usr/local/bin/vimdiff /etc/alternatives/vimdiff
 </pre>
 
 <h4>Extra</h4>

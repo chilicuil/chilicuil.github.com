@@ -15,41 +15,41 @@ title: "watch_battery"
 </p>
 
 <pre class="sh_sh">
-    $ sudo apt-get install acpi libnotify-bin hibernate
+$ sudo apt-get install acpi libnotify-bin hibernate
 </pre>
 
 <p align="justify">NOTA: Para que pueda hibernar el equipo debe contar con suficiente espacio SWAP (más de 3 GB). Sugiero que se coloque en /usr/local/bin y que se agregue a crontab -e (aquí para que corra cada 3 minutos)
 </p>
 
 <pre class="sh_log">
-    */3 * * * * /usr/local/bin/watch_battery
+*/3 * * * * /usr/local/bin/watch_battery
 </pre>
 
 <p align="justify">Para apagar el equipo en lugar de hibernarlo, se modifica la variable <strong>$ACTION</strong>
 </p>
 
 <pre class="sh_sh">
-    #=====VARS=====
-    # Current battery status (Charging/Discharging/AC/Unknown)
-    STAT=$(acpi -b | awk '{print $3}' | awk 'sub(".$", "")')
-    # Battery percentage
-    BATT=$(acpi -b | awk '{print $4}' | awk 'sub("..$", "")')
-    # Actions
-    ACTION="hibernate"
-    WATCH_BATTERY_CURRENT=$(cat /tmp/watch_battery_current 2>/dev/null)
+#=====VARS=====
+# Current battery status (Charging/Discharging/AC/Unknown)
+STAT=$(acpi -b | awk '{print $3}' | awk 'sub(".$", "")')
+# Battery percentage
+BATT=$(acpi -b | awk '{print $4}' | awk 'sub("..$", "")')
+# Actions
+ACTION="hibernate"
+WATCH_BATTERY_CURRENT=$(cat /tmp/watch_battery_current 2>/dev/null)
 </pre>
 
 <p align="justify">Sugiero que se modifique <strong>/etc/sudoers</strong> para que el script no requiera de contraseña para llevar a cabo <strong>$ACTION</strong>
 </p>
 
 <pre class="sh_properties">
-    #===================================
-    # Cmnd alias specification
-    Cmnd_Alias SESSION=/usr/sbin/pm-suspend,/usr/sbin/hibernate,/sbin/shutdown
+#===================================
+# Cmnd alias specification
+Cmnd_Alias SESSION=/usr/sbin/pm-suspend,/usr/sbin/hibernate,/sbin/shutdown
 
-    # usuario may use specific commands without passwd
-    usuario ALL=(root) NOPASSWD:SESSION
-    #===================================
+# usuario may use specific commands without passwd
+usuario ALL=(root) NOPASSWD:SESSION
+#===================================
 </pre>
 
 <p align="justify">Gracias a <a href="http://forums.debian.net/viewtopic.php?f=8&amp;t=52115#p299406">smasty</a> por el snippet inicial.

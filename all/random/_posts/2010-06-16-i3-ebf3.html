@@ -18,21 +18,21 @@ title: "i3.e-bf3"
 </p>
 
 <pre class="sh_sh">
-    $ mkdir i3.e && cd i3.e
-    $ git clone git://code.i3wm.org/i3 && cd i3
-    $ git checkout 3.e-bf3
-    $ sudo apt-get build-dep i3-wm && sudo apt-get install libxcb-randr0-dev libyajl-dev
-    $ vim debian/control 
+$ mkdir i3.e && cd i3.e
+$ git clone git://code.i3wm.org/i3 && cd i3
+$ git checkout 3.e-bf3
+$ sudo apt-get build-dep i3-wm && sudo apt-get install libxcb-randr0-dev libyajl-dev
+$ vim debian/control 
 </pre
 
 <p align="justify">Y se elimina <strong>'libxcb-util0-dev (>= 0.3.8)'</strong> y <strong>'libxcb-icccm4-dev'</strong>
 </p>
 
 <pre class="sh_sh">
-    $ debuild -b -us -uc
-    $ sudo dpkg -i i3-wm_3.e-bf3-1_i386.deb
-    $ sudo ln -s /usr/bin/i3 /etc/alternatives/x-window-manager
-    $ sudo ln -s /etc/alternatives/x-window-manager /usr/bin/x-window-manager
+$ debuild -b -us -uc
+$ sudo dpkg -i i3-wm_3.e-bf3-1_i386.deb
+$ sudo ln -s /usr/bin/i3 /etc/alternatives/x-window-manager
+$ sudo ln -s /etc/alternatives/x-window-manager /usr/bin/x-window-manager
 </pre>
 
 <p align="justify">Arriba por los proyectos que tienen un debian/ en upstream \^__^/ , mi archivo <a href="https://gist.github.com/1223434" target="_blank">$HOME/.i3/config</a>

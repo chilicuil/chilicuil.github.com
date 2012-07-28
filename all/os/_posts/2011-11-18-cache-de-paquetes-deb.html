@@ -33,9 +33,9 @@ title: "caché de paquetes .deb"
 </p>
 
 <pre class="sh_sh">
-    $ sudo apt-get install apt-cacher-ng
-    $ sudo sed -i -e 's/3142/9999/g' /etc/apt-cacher-ng/acng.conf
-    $ sudo service apt-cacher-ng restart
+$ sudo apt-get install apt-cacher-ng
+$ sudo sed -i -e 's/3142/9999/g' /etc/apt-cacher-ng/acng.conf
+$ sudo service apt-cacher-ng restart
 </pre>
 
 <p align="justify">Lo que lo hará compatible con <strong>apt-proxy</strong> (por lo del puerto 9999)
@@ -45,16 +45,16 @@ title: "caché de paquetes .deb"
 </p>
 
 <pre class="sh_sh">
-    $ wget http://ubuntuone.com/4PXwbNWmNj5kK9AUkEb9fF -O add_proxy_repository
-    $ sudo chmod +x $_ 
-    $ sudo mv -v $_ /usr/local/bin
+$ wget http://ubuntuone.com/4PXwbNWmNj5kK9AUkEb9fF -O add_proxy_repository
+$ sudo chmod +x $_ 
+$ sudo mv -v $_ /usr/local/bin
 </pre>
 
 <p align="justify">Lo que dejará un script en <strong>/usr/local/bin</strong> llamado <strong>add_proxy_repository</strong>, el cual puede ser llamado de cualquiera de estas formas:
 </p>
 
 <pre class="sh_sh">
-    $ add_proxy_repository [add|remove]
+$ add_proxy_repository [add|remove]
 </pre>
 
 <p align="justify">Por alguna torpe razón, apt-get se empeñará en usar el proxy aún cuando no este disponible.., cuando esto pase, se debe usar el script para deshabilitar el proxy, en caso de querer automatizarlo, se puede usar <u>squid-deb-proxy-client</u> que verifica la conexión y dependiendo del estado en <a href="http://avahi.org">avahi</a> habilitaran deshabilitaran la línea que afecta a apt..., creo que sería mucho más práctico que apt-get siguiera leyendo sources.list y tomará los repositorios declarados ahí en caso de no encontrar accesible la dirección del proxy...
@@ -74,7 +74,7 @@ title: "caché de paquetes .deb"
 </p>
 
 <pre class="sh_sh">
-    $ add_proxy_repository add #IP: localhost
+$ add_proxy_repository add #IP: localhost
 </pre>
 
 <h4>Importar paquetes del servidor</h4>
@@ -86,11 +86,11 @@ title: "caché de paquetes .deb"
 </p>
 
 <pre class="sh_sh">
-    $ sudo mkdir -pv -m 2755 /var/cache/apt-cacher-ng/_import
-    $ sudo mv -vuf /var/cache/apt/archives/*.deb /var/cache/apt-cacher-ng/_import/
-    $ sudo chown -R apt-cacher-ng:apt-cacher-ng /var/cache/apt-cacher-ng/_import
-    $ sudo apt-get update
-    $ tree /var/cache/apt-cacher-ng
+$ sudo mkdir -pv -m 2755 /var/cache/apt-cacher-ng/_import
+$ sudo mv -vuf /var/cache/apt/archives/*.deb /var/cache/apt-cacher-ng/_import/
+$ sudo chown -R apt-cacher-ng:apt-cacher-ng /var/cache/apt-cacher-ng/_import
+$ sudo apt-get update
+$ tree /var/cache/apt-cacher-ng
 </pre>
 
 <p align="justify">Se va a <a href="http://localhost:9999/acng-report.html">http://localhost:9999/acng-report.html</a> y se presiona '<strong>Start import</strong>':
@@ -108,7 +108,7 @@ title: "caché de paquetes .deb"
 </p>
 
 <pre class="sh_sh">
-    $ sudo rm -rf /var/cache/apt-cacher-ng/_import
+$ sudo rm -rf /var/cache/apt-cacher-ng/_import
 </pre>
 
 <p align="justify">[+] Cliente:
@@ -118,8 +118,8 @@ title: "caché de paquetes .deb"
 </p>
 
 <pre class="sh_sh">
-    $ tar zcvf debs.tar.gz /var/cache/apt/archives/*.deb
-    $ sudo python -m SimpleHTTPServer 80
+$ tar zcvf debs.tar.gz /var/cache/apt/archives/*.deb
+$ sudo python -m SimpleHTTPServer 80
 </pre>
 
 <p align="justify">[+] Servidor:
@@ -129,18 +129,18 @@ title: "caché de paquetes .deb"
 </p>
 
 <pre class="sh_sh">
-    $ wget http://ip_cliente/debs.tar.gz        
-    $ tar zxvf debs.tar.gz import/
-    $ sudo mkdir -pv -m 2755 /var/cache/apt-cacher-ng/_import
-    $ sudo mv -vuf import/*deb /var/cache/apt-cacher-ng/_import
-    $ sudo chown -R apt-cacher-ng:apt-cacher-ng /var/cache/apt-cacher-ng/_import
+$ wget http://ip_cliente/debs.tar.gz        
+$ tar zxvf debs.tar.gz import/
+$ sudo mkdir -pv -m 2755 /var/cache/apt-cacher-ng/_import
+$ sudo mv -vuf import/*deb /var/cache/apt-cacher-ng/_import
+$ sudo chown -R apt-cacher-ng:apt-cacher-ng /var/cache/apt-cacher-ng/_import
 </pre>
 
 <p align="justify">[+] Cliente:
 </p>
 
 <pre class="sh_sh">
-    $ sudo apt-get update
+$ sudo apt-get update
 </pre>
 
 <p align="justify">[+] Servidor:
@@ -155,15 +155,15 @@ title: "caché de paquetes .deb"
 </p>
 
 <pre class="sh_sh">
-    $ sudo apt-get remove apt-cacher-ng && sudo rm -rf /var/cache/apt-cacher-ng
+$ sudo apt-get remove apt-cacher-ng && sudo rm -rf /var/cache/apt-cacher-ng
 </pre>
 
 <p align="justify">[+] Clientes:
 </p>
 
 <pre class="sh_sh">
-    $ sudo add_proxy_repository remove
-    $ sudo rm -rf /usr/local/bin/add_proxy_repository
+$ sudo add_proxy_repository remove
+$ sudo rm -rf /usr/local/bin/add_proxy_repository
 </pre>
 
 <h3>Conclusión</h3>

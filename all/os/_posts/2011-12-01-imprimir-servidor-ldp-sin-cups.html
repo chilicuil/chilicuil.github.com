@@ -14,7 +14,7 @@ title: "imprimir a un servidor ldp sin cups"
 </p>
 
 <pre class="sh_sh">
-    $ rlpr -h -Plp -HIP_OF_THE_PRINTER_LDP_SERVER_HERE  file.[ps|pdf]
+$ rlpr -h -Plp -HIP_OF_THE_PRINTER_LDP_SERVER_HERE  file.[ps|pdf]
 </pre>
 
 <p align="justify">En el 2011 la mayoría de aplicaciones en Linux soporta imprimir directamente hacia pdf/ps por lo que tampoco se requiere instalar cups-pdf.
@@ -24,21 +24,21 @@ title: "imprimir a un servidor ldp sin cups"
 </p>
 
 <pre class="sh_sh">
-    $ convert image.jpg  file.ps
+$ convert image.jpg  file.ps
 </pre>
 
 <p align="justify">Y para archivos de texto plano, con vim:
 </p>
 
 <pre class="sh_sh">
-    :hardcopy > file.ps
+:hardcopy > file.ps
 </pre>
 
 <p align="justify">Finalmente con <strong>alias print.192.168.1.11='rlpr -h -Plp -H192.168.1.11'</strong> puedo hacer:
 </p>
 
 <pre class="sh_sh">
-    $ print.192.168.1.11  file[.ps|pdf]
+$ print.192.168.1.11  file[.ps|pdf]
 </pre>
 
 <p align="justify">Eso cubre todas mis necesidades, aunque para efectos prácticos (o para usuarios no amantes de la consola) concuerdo que es mejor instalar CUPS, permite imprimir directamente desde las aplicaciones.

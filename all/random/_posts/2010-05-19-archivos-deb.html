@@ -31,57 +31,56 @@ title: "archivos .deb"
 </p>
 
 <pre class="sh_sh">
-    $ ar xv firefox-launchpad-plugin_0.4_all.deb
-    x - debian-binary
-    x - control.tar.gz
-    x - data.tar.gz
+$ ar xv firefox-launchpad-plugin_0.4_all.deb
+  x - debian-binary
+  x - control.tar.gz
+  x - data.tar.gz
+#se modifican archivos
 
-    #se modifican archivos
-
-    $ ar r firefox-launchpad-plugin_0.4_all.deb debian-binary control.tar.gz data.tar.gz
-    ar: creating firefox-launchpad-plugin_0.4_all.deb
+$ ar r firefox-launchpad-plugin_0.4_all.deb debian-binary control.tar.gz data.tar.gz
+  ar: creating firefox-launchpad-plugin_0.4_all.deb
 </pre>
 
 <p align="justify">Para este caso particular, podría comenzar descargando el archivo:
 </p>
 
 <pre class="sh_sh">
-    $ apt-get download firefox-launchpad-plugin
+$ apt-get download firefox-launchpad-plugin
 </pre>
 
 <p align="justify">Luego descomprimirlo:
 </p>
 
 <pre class="sh_sh">
-    $ ar xv firefox-launchpad-plugin_0.4_all.deb
-    x - debian-binary
-    x - control.tar.gz
-    x - data.tar.gz
+$ ar xv firefox-launchpad-plugin_0.4_all.deb
+  x - debian-binary
+  x - control.tar.gz
+  x - data.tar.gz
 
-    $ tar zxvf data.tar.gz
-    ./
-    ./usr/
-    ./usr/lib/
-    ./usr/lib/firefox-addons/
-    ./usr/lib/firefox-addons/searchplugins/
-    ./usr/lib/firefox-addons/searchplugins/launchpad-bug-lookup.xml
-    ./usr/lib/firefox-addons/searchplugins/launchpad-bugs.xml
-    ./usr/lib/firefox-addons/searchplugins/launchpad-package-bugs.xml
-    ./usr/lib/firefox-addons/searchplugins/launchpad-packages.xml
-    ./usr/lib/firefox-addons/searchplugins/launchpad-people.xml
-    ./usr/lib/firefox-addons/searchplugins/launchpad-specs.xml
-    ./usr/lib/firefox-addons/searchplugins/launchpad-support.xml
+$ tar zxvf data.tar.gz
+  ./
+  ./usr/
+  ./usr/lib/
+  ./usr/lib/firefox-addons/
+  ./usr/lib/firefox-addons/searchplugins/
+  ./usr/lib/firefox-addons/searchplugins/launchpad-bug-lookup.xml
+  ./usr/lib/firefox-addons/searchplugins/launchpad-bugs.xml
+  ./usr/lib/firefox-addons/searchplugins/launchpad-package-bugs.xml
+  ./usr/lib/firefox-addons/searchplugins/launchpad-packages.xml
+  ./usr/lib/firefox-addons/searchplugins/launchpad-people.xml
+  ./usr/lib/firefox-addons/searchplugins/launchpad-specs.xml
+  ./usr/lib/firefox-addons/searchplugins/launchpad-support.xml
 </pre>
 
 <p align="justify">Y con los archivos en la mano, ponerlos en el lugar adecuado:
 </p>
 
 <pre class="sh_sh">
-    $ find ~/.mozilla/ -type d  -iname searchplugins
-    /home/chilicuil/.mozilla/firefox/h5xyzl6e.default/searchplugins
+$ find ~/.mozilla/ -type d  -iname searchplugins
+  /home/chilicuil/.mozilla/firefox/h5xyzl6e.default/searchplugins
 
-    $ mv ./usr/lib/firefox-addons/searchplugins/* \
-         ~/.mozilla/firefox/h5xyzl6e.default/searchplugins/
+$ mv ./usr/lib/firefox-addons/searchplugins/* \
+  ~/.mozilla/firefox/h5xyzl6e.default/searchplugins/
 </pre>
 
 <p align="justify">El resultado final es:

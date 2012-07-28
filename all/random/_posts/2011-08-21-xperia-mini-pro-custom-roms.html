@@ -227,14 +227,14 @@ Se pierde la garantía, sin embargo el proceso puede ser revertido si es que en 
 </ul>
 
 <pre class="sh_sh">
-    $ du -sk /data/data/* | sort -rn | head
+$ du -sk /data/data/* | sort -rn | head
 </pre>
 
 <p align="justify">Y luego:
 </p>
 
 <pre class="sh_sh">
-    $ rm -rf /data/data/some_app/cache
+$ rm -rf /data/data/some_app/cache
 </pre>
 
 <ul>
@@ -242,8 +242,8 @@ Se pierde la garantía, sin embargo el proceso puede ser revertido si es que en 
 </ul>
 
 <pre class="sh_sh">
-    $ mkdir -p /sdcard/cache/market
-    $ cd /data/data/com.android.vending
-    $ rm -R cache
-    $ ln -s /sdcard/cache/market cache
+$ mkdir -p /sdcard/cache/market
+$ cd /data/data/com.android.vending
+$ rm -R cache
+$ ln -s /sdcard/cache/market cache
 </pre>

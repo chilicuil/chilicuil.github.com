@@ -6,7 +6,6 @@ title: "kexec, rebooteando a máxima velocidad"
 <h2>{{ page.title }}</h2>
 
 <p class="publish_date">{{ page.date | date_to_string }}</p>
-<!--<p class="publish_date">04 Nov 2008</p>-->
 
 <p align="justify">Hace un ratito me acabo de enterar de que existe una manera de rebootear realmente rapido en Linux, y a estado ahi desde el comienzo de la rama 2.6. Se trata de Kexec un conjunto de llamadas al sistema, que reemplazan al kernel actual con el nuevo, saltandose a la bios y a la inicializacion del hardware. Lo que en pocas palabras reducen el tiempo de booteo en 20, 30 y hasta en 60!!!!!! segundos.
 </p>
@@ -17,8 +16,8 @@ title: "kexec, rebooteando a máxima velocidad"
 </p>
 
 <pre class="sh_sh">
-  $ kexec -l /boot/vmlinuz --command-line="`cat /proc/cmdline`" --initrd=/boot/initrd
-  $ kexec -e
+$ kexec -l /boot/vmlinuz --command-line="`cat /proc/cmdline`" --initrd=/boot/initrd
+$ kexec -e
 </pre>
 
 <p align="justify">La primera linea carga el kernel y regresa la terminal, nosotros especificamos exactamente en que momento queremos pasarnos al nuevo kernel, de hecho he leido por <a href="http://www.redhat.com/docs/en-US/Red_Hat_Enterprise_MRG/1.0/html/Realtime_Tuning_Guide/sect-Realtime_Tuning_Guide-Realtime_Specific_Tuning-Using_kdump_and_kexec_with_the_RT_kernel.html">ahi</a> que lo usan para que cuando haya un kernel panic, salga otro al rescate.
@@ -28,18 +27,18 @@ title: "kexec, rebooteando a máxima velocidad"
 </p>
 
 <pre class="sh_sh">
-  $ kexec -l /boot/vmlinuz --command-line="`cat /proc/cmdline`" --initrd=/boot/initrd
-  $ sync
-  $ umount -a
-  $ kexec -e
+$ kexec -l /boot/vmlinuz --command-line="`cat /proc/cmdline`" --initrd=/boot/initrd
+$ sync
+$ umount -a
+$ kexec -e
 </pre>
 
 <p align="justify">Eso en caso de que tengas alguna distribucion atrasada o poco usual, porque en las mas populares, al instalar el paquete "kexec-tools" tambien modifica el script /etc/init.d/boot para que no haya pierde.
 </p>
 
 <pre class="sh_sh">
-  $ kexec -l /boot/vmlinuz --command-line="`cat /proc/cmdline`" --initrd=/boot/initrd
-  $ shutdown -r now
+$ kexec -l /boot/vmlinuz --command-line="`cat /proc/cmdline`" --initrd=/boot/initrd
+$ shutdown -r now
 </pre>
 
 <p align="justify">En <a href="http://lizards.opensuse.org/2008/10/13/automatic-reboot-with-kexec/">openSuse 11.1</a> ya ni siquiera sera necesario hacer eso, vendra habilitado por default y en <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug">Debian</a> se habilita por defecto al instalarse.
