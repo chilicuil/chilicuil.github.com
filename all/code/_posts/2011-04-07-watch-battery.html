@@ -41,7 +41,7 @@ title: "watch_battery"
 <p align="justify">Sugiero que se modifique <strong>/etc/sudoers</strong> para que el script no requiera de contraseña para llevar a cabo <strong>$ACTION</strong>
 </p>
 
-<pre data-language="shell">
+<pre> <code data-language="shell">
     #===================================
     # Cmnd alias specification
     Cmnd_Alias SESSION=/usr/sbin/pm-suspend,/usr/sbin/hibernate,/sbin/shutdown
@@ -49,6 +49,7 @@ title: "watch_battery"
     # usuario may use specific commands without passwd
     usuario ALL=(root) NOPASSWD:SESSION
     #===================================
+</code>
 </pre>
 
 <p align="justify">Gracias a <a href="http://forums.debian.net/viewtopic.php?f=8&amp;t=52115#p299406">smasty</a> por el snippet inicial.
