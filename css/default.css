@@ -50,6 +50,10 @@ ul.posts li a { font-weight:200;}
 
 div#post ul li { list-style: circle; }
 
+#post > div.p {
+    text-align: justify;
+}
+
 blockquote {
 border-left:8px solid #0383c9;
 background: #474747;
@@ -212,6 +216,7 @@ line-height:1.2em;
 /*margin:-15px 0 60px 0px;*/
 margin:-15px 0 10px 0px;
 }
+
 div.slogan div { display:inline;}
 
 /*** Main content ***/
