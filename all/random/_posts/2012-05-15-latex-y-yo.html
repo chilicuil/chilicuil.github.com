@@ -5,22 +5,22 @@ title: "latex y yo"
 
 <h2>{{ page.title }}</h2>
 
-<p class="publish_date">{{ page.date | date_to_string }}</p>
+<div class="publish_date">{{ page.date | date_to_string }}</div>
 
-<p align="justify">Nada, ahora que he actualizado mi sistema y que me he quedado sin empleo xD, he vuelto a 'compilar' mi CV para llevarlo a las entrevistas. Describiré el proceso para hacerlo más rápido la próxima vez y por si alguien más desea hacer su CV en latex.
-</p>
+<div class="p">Nada, ahora que he actualizado mi sistema y que me he quedado sin empleo xD, he vuelto a 'compilar' mi CV para llevarlo a las entrevistas. Describiré el proceso para hacerlo más rápido la próxima vez y por si alguien más desea hacer su CV en latex.
+</div>
 
-<p align="center">
+<div align="center">
 <a href="http://www.sharepdfbooks.com/ZZKLWWMPNYPU/template_banking_black.pdf.html" target="_blank"><img src="/img/47.png" style="width: 350px; height: 442px;"></a>
-</p>
+</div>
 
 <pre class="sh_sh">
 $ apt-get install texlive-latex-base texlive-latex-extra latex-xcolor \
   texlive-fonts-recommended
 </pre>
 
-<p align="justify">La última versión de <strong>moderncv,</strong> reemplaza a la que viene en <strong>texlive-latex-extra</strong>:
-</p>
+<div class="p">La última versión de <strong>moderncv,</strong> reemplaza a la que viene en <strong>texlive-latex-extra</strong>:
+</div>
 
 <pre class="sh_sh">
 $ wget http://mirror.ctan.org/macros/latex/contrib/moderncv.zip
@@ -29,23 +29,23 @@ $ sudo mv moderncv /usr/share/texmf-texlive/tex/latex/
 $ sudo mktexlsr
 </pre>
 
-<p align="justify">Después de instalar las dependencias, se genera el documento con el comando 'latex':
-</p>
+<div class="p">Después de instalar las dependencias, se genera el documento con el comando 'latex':
+</div>
 
 <pre class="sh_sh">
 $ latex cv.tex
 </pre>
 
-<p align="justify">Y el archivo .dvi resultante en pdf
-</p>
+<div class="p">Y el archivo .dvi resultante en pdf
+</div>
 
 <pre class="sh_sh">
 $ dvipdfm cv.dvi
 </pre>
 
-<p align="center">
+<div align="center">
 <a href="https://gist.github.com/2704079" target="_blank"><img src="/img/48.png" style="width: 353px; height: 444px;"></a>
-</p>
+</div>
 
-<p align="justify">O se puede entrar a <a href="https://www.sharelatex.com" target="_blank">https://www.sharelatex.com</a> y olvidar de instalar nada en el sistema =)
-</p>
+<div class="p">O se puede entrar a <a href="https://www.sharelatex.com" target="_blank">https://www.sharelatex.com</a> y olvidar de instalar nada en el sistema =)
+</div>

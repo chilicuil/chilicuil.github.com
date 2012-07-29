@@ -5,38 +5,38 @@ title: "synergy"
 
 <h2>{{ page.title }}</h2>
 
-<p class="publish_date">{{ page.date | date_to_string }}</p>
+<div class="publish_date">{{ page.date | date_to_string }}</div>
 
-<p align="justify"><a href="http://synergy-foss.org">Synergy</a> es un programa que permite compartir el teclado, ratón y portapapeles (clipboard) entre diferentes máquinas corriendo diferentes sistemas operativos, según su página web soporta Windows, Mac y Unix con un servidor X que soporte la extension XTEST <strong>$ xdpyinfo | grep XTEST</strong>. Se comunica a través de una conexión tcp/ip.
-</p>
+<div class="p"><a href="http://synergy-foss.org">Synergy</a> es un programa que permite compartir el teclado, ratón y portapapeles (clipboard) entre diferentes máquinas corriendo diferentes sistemas operativos, según su página web soporta Windows, Mac y Unix con un servidor X que soporte la extension XTEST <strong>$ xdpyinfo | grep XTEST</strong>. Se comunica a través de una conexión tcp/ip.
+</div>
 
-<p style="text-align: center;">
+<div style="text-align: center;">
 <object width="662" height="491"><param name="movie" value="http://www.youtube.com/v/4wkJx9Ozfu8?version=3&amp;hl=en_US"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/4wkJx9Ozfu8?version=3&amp;hl=en_US" type="application/x-shockwave-flash" width="662" height="491" allowscriptaccess="always" allowfullscreen="true"></embed></object>
-</p>
+</div>
 
-<p align="justify">Se puede instalar en Ubuntu a través de los repositorios (esto instalará tanto el cliente como el servidor):
-</p>
+<div class="p">Se puede instalar en Ubuntu a través de los repositorios (esto instalará tanto el cliente como el servidor):
+</div>
 
 <pre class="sh_sh">
 $ sudo apt-get install -y synergy
 </pre>
 
-<p align="justify">Se inicia el servidor, por defecto escucha en el puerto <strong>24800</strong> por lo que no requiere permisos especiales para ejecutarse:
-</p>
+<div class="p">Se inicia el servidor, por defecto escucha en el puerto <strong>24800</strong> por lo que no requiere permisos especiales para ejecutarse:
+</div>
 
 <pre class="sh_sh">
 $ synergys
 </pre>
 
-<p align="justify">En las máquinas clientes (sin ratón) se inicia la otra parte del programa:
-</p>
+<div class="p">En las máquinas clientes (sin ratón) se inicia la otra parte del programa:
+</div>
 
 <pre class="sh_sh">
 $ synergyc --daemon ip_servidor
 </pre>
 
-<p align="justify">Por defecto synaptic no cifra las conexiones, una persona que revise las tramas podría saber que se esta escribiendo, para impedirlo, se puede crear un tunnel ssh, para que synaptic se comunique por ahí:
-</p>
+<div class="p">Por defecto synaptic no cifra las conexiones, una persona que revise las tramas podría saber que se esta escribiendo, para impedirlo, se puede crear un tunnel ssh, para que synaptic se comunique por ahí:
+</div>
 
 <pre class="sh_sh">
 $ ssh ip_cliente

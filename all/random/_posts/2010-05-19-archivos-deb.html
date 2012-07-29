@@ -5,11 +5,11 @@ title: "archivos .deb"
 
 <h2>{{ page.title }}</h2>
 
-<p class="publish_date">{{ page.date | date_to_string }}</p>
-<!--<p class="publish_date">19 May 2010</p>-->
+<div class="publish_date">{{ page.date | date_to_string }}</div>
+<!--<div class="publish_date">19 May 2010</div>-->
 
-<p align="justify">Los archivos .deb son en realidad <a href="http://en.wikipedia.org/wiki/Ar_%28Unix%29">contenedores ar</a> lo que los diferencia a parte de la extensión, es que integran 3 binarios:
-</p>
+<div class="p">Los archivos .deb son en realidad <a href="http://en.wikipedia.org/wiki/Ar_%28Unix%29">contenedores ar</a> lo que los diferencia a parte de la extensión, es que integran 3 binarios:
+</div>
 
 <ul>
 	<li>debian-binary: la versión del paquete, actualmente la 2.0</li>
@@ -17,18 +17,18 @@ title: "archivos .deb"
 	<li>data.tar.gz: el programa (en formato binario), con una estructura de directorios que mimetiza el entorno.</li>
 </ul>
 
-<p align="justify">NOTA: Modificar directamente un archivo .deb no es la forma adecuada de hacer cambios a los programas del sistema, y debe utilizarse solo en caso extremo. Para una guía de como hacerlo de la forma adecuada, vease la guía de empaquetamiento de Debian:
-</p>
+<div class="p">NOTA: Modificar directamente un archivo .deb no es la forma adecuada de hacer cambios a los programas del sistema, y debe utilizarse solo en caso extremo. Para una guía de como hacerlo de la forma adecuada, vease la guía de empaquetamiento de Debian:
+</div>
 
 <ul>
 	<li><a href="http://wiki.debian.org/HowToPackageForDebian" target="_blank">http://wiki.debian.org/HowToPackageForDebian</a></li>
 </ul>
 
-<p align="justify">Si no es la forma adecuada, ¿por qué alguien querría modificarlo así?, no conozco las razones de otras personas, pero en mi caso, existe un archivo llamado <em>firefox-launchpad-plugin_0.4_all.deb</em> que depende de firefox para ser instalado. No tengo instalado firefox desde los repositorios porque es de los pocos programas que tienen un ciclo de actualización mucho más rápido que el de ubuntu. El plugin, contiene la definición de algunas máquinas de búsqueda que integran a <a href="https://launchpad.net" target="_blank">https://launchpad.net</a> con firefox.
-</p>
+<div class="p">Si no es la forma adecuada, ¿por qué alguien querría modificarlo así?, no conozco las razones de otras personas, pero en mi caso, existe un archivo llamado <em>firefox-launchpad-plugin_0.4_all.deb</em> que depende de firefox para ser instalado. No tengo instalado firefox desde los repositorios porque es de los pocos programas que tienen un ciclo de actualización mucho más rápido que el de ubuntu. El plugin, contiene la definición de algunas máquinas de búsqueda que integran a <a href="https://launchpad.net" target="_blank">https://launchpad.net</a> con firefox.
+</div>
 
-<p align="justify">Sin embargo siendo un archivo ar, puedo modificarlo y obtener únicamente las partes que me interesen. Para comprimirse / descomprimirse se utilizan los comandos:
-</p>
+<div class="p">Sin embargo siendo un archivo ar, puedo modificarlo y obtener únicamente las partes que me interesen. Para comprimirse / descomprimirse se utilizan los comandos:
+</div>
 
 <pre class="sh_sh">
 $ ar xv firefox-launchpad-plugin_0.4_all.deb
@@ -41,15 +41,15 @@ $ ar r firefox-launchpad-plugin_0.4_all.deb debian-binary control.tar.gz data.ta
   ar: creating firefox-launchpad-plugin_0.4_all.deb
 </pre>
 
-<p align="justify">Para este caso particular, podría comenzar descargando el archivo:
-</p>
+<div class="p">Para este caso particular, podría comenzar descargando el archivo:
+</div>
 
 <pre class="sh_sh">
 $ apt-get download firefox-launchpad-plugin
 </pre>
 
-<p align="justify">Luego descomprimirlo:
-</p>
+<div class="p">Luego descomprimirlo:
+</div>
 
 <pre class="sh_sh">
 $ ar xv firefox-launchpad-plugin_0.4_all.deb
@@ -72,8 +72,8 @@ $ tar zxvf data.tar.gz
   ./usr/lib/firefox-addons/searchplugins/launchpad-support.xml
 </pre>
 
-<p align="justify">Y con los archivos en la mano, ponerlos en el lugar adecuado:
-</p>
+<div class="p">Y con los archivos en la mano, ponerlos en el lugar adecuado:
+</div>
 
 <pre class="sh_sh">
 $ find ~/.mozilla/ -type d  -iname searchplugins
@@ -83,12 +83,12 @@ $ mv ./usr/lib/firefox-addons/searchplugins/* \
   ~/.mozilla/firefox/h5xyzl6e.default/searchplugins/
 </pre>
 
-<p align="justify">El resultado final es:
-</p>
+<div class="p">El resultado final es:
+</div>
 
-<p style="text-align: center;">
+<div style="text-align: center;">
     <img src="/img/34.png">
-</p>
+</div>
 
 <ul>
     <li>

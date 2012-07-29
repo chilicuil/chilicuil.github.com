@@ -5,28 +5,28 @@ title: "watch_battery"
 
 <h2>{{ page.title }}</h2>
 
-<p class="publish_date">{{ page.date | date_to_string }}</p>
+<div class="publish_date">{{ page.date | date_to_string }}</div>
 
-<p style="text-align: center;">
+<div style="text-align: center;" id="img">
     <a href="/img/40.png" target="_blank"><img src="/img/40.png" style="width: 662px; height: 421px;"></a>
-<p>
+<div>
 
-<p align="justify">Hice un pequeño <a href="https://gist.github.com/913004" target="_blank">script</a> para vigilar que no se me apague la computadora cuando ya no tenga pila (mejor que hiberne), requiere de <strong>notify-send</strong>, <strong>hibernate</strong> y <strong>acpi,</strong> en ubuntu:
-</p>
+<div class="p">Hice un pequeño <a href="https://gist.github.com/913004" target="_blank">script</a> para vigilar que no se me apague la computadora cuando ya no tenga pila (mejor que hiberne), requiere de <strong>notify-send</strong>, <strong>hibernate</strong> y <strong>acpi,</strong> en ubuntu:
+</div>
 
 <pre class="sh_sh">
 $ sudo apt-get install acpi libnotify-bin hibernate
 </pre>
 
-<p align="justify">NOTA: Para que pueda hibernar el equipo debe contar con suficiente espacio SWAP (más de 3 GB). Sugiero que se coloque en /usr/local/bin y que se agregue a crontab -e (aquí para que corra cada 3 minutos)
-</p>
+<div class="p">NOTA: Para que pueda hibernar el equipo debe contar con suficiente espacio SWAP (más de 3 GB). Sugiero que se coloque en /usr/local/bin y que se agregue a crontab -e (aquí para que corra cada 3 minutos)
+</div>
 
 <pre class="sh_log">
 */3 * * * * /usr/local/bin/watch_battery
 </pre>
 
-<p align="justify">Para apagar el equipo en lugar de hibernarlo, se modifica la variable <strong>$ACTION</strong>
-</p>
+<div class="p">Para apagar el equipo en lugar de hibernarlo, se modifica la variable <strong>$ACTION</strong>
+</div>
 
 <pre class="sh_sh">
 #=====VARS=====
@@ -39,8 +39,8 @@ ACTION="hibernate"
 WATCH_BATTERY_CURRENT=$(cat /tmp/watch_battery_current 2>/dev/null)
 </pre>
 
-<p align="justify">Sugiero que se modifique <strong>/etc/sudoers</strong> para que el script no requiera de contraseña para llevar a cabo <strong>$ACTION</strong>
-</p>
+<div class="p">Sugiero que se modifique <strong>/etc/sudoers</strong> para que el script no requiera de contraseña para llevar a cabo <strong>$ACTION</strong>
+</div>
 
 <pre class="sh_properties">
 #===================================
@@ -52,8 +52,9 @@ usuario ALL=(root) NOPASSWD:SESSION
 #===================================
 </pre>
 
-<p align="justify">Gracias a <a href="http://forums.debian.net/viewtopic.php?f=8&amp;t=52115#p299406">smasty</a> por el snippet inicial.
+<div class="p">Gracias a <a href="http://forums.debian.net/viewtopic.php?f=8&amp;t=52115#p299406">smasty</a> por el snippet inicial.
+</div>
 
-<ul>
-	<li><a href="https://gist.github.com/913004">https://gist.github.com/913004</a></li>
-</ul>
+  <ul>
+    <li><a href="https://gist.github.com/913004">https://gist.github.com/913004</a></li>
+  </ul>

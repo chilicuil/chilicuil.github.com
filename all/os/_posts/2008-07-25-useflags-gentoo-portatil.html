@@ -5,11 +5,11 @@ title: "use flags (gentoo) para portatil"
 
 <h2>{{ page.title }}</h2>
 
-<p class="publish_date">{{ page.date | date_to_string }}</p>
+<div class="publish_date">{{ page.date | date_to_string }}</div>
 
-<p align="justify">Flags para un portatil basado en un pentium-m, con soporte para gnome y sin soporte para kde, multimedia, red, programacion y algunas otras cosas.
-</p>
-<p align="justify">
+<div class="p">Flags para un portatil basado en un pentium-m, con soporte para gnome y sin soporte para kde, multimedia, red, programacion y algunas otras cosas.
+</div>
+<div class="p">
         <font color="#0000ff">#**************Variables USE****************</font><br>
         <font color="#0000ff">#Actualizado a vie feb 29 17:42:10 CST 2008</font><br>
         <br>
@@ -64,7 +64,7 @@ title: "use flags (gentoo) para portatil"
         <font color="#0000ff">#*******************************************</font><br>
         <br>
         <br>
-        Para recompilar el sistema despues de cambiar las use flags:</p>
+        Para recompilar el sistema despues de cambiar las use flags:</div>
 
 <pre class="sh_sh">
 $ emerge --update --deep --with-bdeps=y --newuse world

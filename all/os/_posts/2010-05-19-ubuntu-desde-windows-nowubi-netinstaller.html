@@ -7,16 +7,16 @@ title: "instalar ubuntu desde windows sin wubi + netinstaller"
 
 <div class="publish_date">{{ page.date | date_to_string }}</div>
 
-<div class="justify">Hace relativamente poco me pude hacer de una netbook, la estuve probando el primer mes con windows para verificar que funcionara bien y con la salida de ubuntu 10.04 decidí instalarle la nueva versión.
+<div class="p">Hace relativamente poco me pude hacer de una netbook, la estuve probando el primer mes con windows para verificar que funcionara bien y con la salida de ubuntu 10.04 decidí instalarle la nueva versión.
 </div>
 
-<div align="justify">Habia estado viendo la forma de instalar core linux a mi usb y no pensaba detener el proceso, así que me puse a buscar métodos alternativos (que no requirieran mi usb), primero busqué alguna guía sobre la instalación en red (al parecer solo hay que montar un servidor tftp y dhcp). Sin embargo también vi otra forma, instalar grub desde windows, decidí usar primero la segunda forma porque creí que sería más fácil, y no me equivoque :)
+<div class="p">Habia estado viendo la forma de instalar core linux a mi usb y no pensaba detener el proceso, así que me puse a buscar métodos alternativos (que no requirieran mi usb), primero busqué alguna guía sobre la instalación en red (al parecer solo hay que montar un servidor tftp y dhcp). Sin embargo también vi otra forma, instalar grub desde windows, decidí usar primero la segunda forma porque creí que sería más fácil, y no me equivoque :)
 </div>
 
-<div align="justify">Igual sigue en mi lista de cosas por hacer lo de la instalación sobre red, un día de estos lo investigaré...
+<div class="p">Igual sigue en mi lista de cosas por hacer lo de la instalación sobre red, un día de estos lo investigaré...
 </div>
 
-<div align="justify">Primero he descargado <a href="http://grub4dos.sourceforge.net/" target="_blank">grub4dos</a> , lo he descomprimido y he copiado los archivo grldr (grub loader) y menu.lst al root <strong>C:\</strong>
+<div class="p">Primero he descargado <a href="http://grub4dos.sourceforge.net/" target="_blank">grub4dos</a> , lo he descomprimido y he copiado los archivo grldr (grub loader) y menu.lst al root <strong>C:\</strong>
 </div>
 
 <div style="text-align: center;" id="img">
@@ -24,10 +24,10 @@ title: "instalar ubuntu desde windows sin wubi + netinstaller"
 <a href="/img/27.png" target="_blank"><img src="/img/27.png" style="width: 662px; height: 491px;"></a><br>
 </div>
 
-<div align="justify">Luego he creado el directorio <strong>C:\boot\grub</strong> y descargado el instalador y el kernel en <strong>C:\boot</strong>:
+<div class="p">Luego he creado el directorio <strong>C:\boot\grub</strong> y descargado el instalador y el kernel en <strong>C:\boot</strong>:
 </div>
 
-<div align="justify">Para x86:
+<div class="p">Para x86:
 </div>
 
 <ul>
@@ -37,7 +37,7 @@ title: "instalar ubuntu desde windows sin wubi + netinstaller"
   <a href="http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-i386/current/images/netboot/ubuntu-installer/i386/linux" target="_blank">http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-i386/current/images/netboot/ubuntu-installer/i386/linux</a></li>
 </ul>
 
-<div align="justify">Para amd64:
+<div class="p">Para amd64:
 </div>
 
 <ul>
@@ -51,14 +51,14 @@ title: "instalar ubuntu desde windows sin wubi + netinstaller"
 <a href="/img/28.png" target="_blank"><img src="/img/28.png" style="width: 662px; height: 491px;"></a>
 </div>
 
-<div align="justify">He copiado <strong>C:\menu.lst</strong> hacia <strong>C:\boot\grub</strong> y he editado el archivo de esta forma:
+<div class="p">He copiado <strong>C:\menu.lst</strong> hacia <strong>C:\boot\grub</strong> y he editado el archivo de esta forma:
 </div>
 
 <div style="text-align: center;" id="img">
 <a href="/img/29.png" target="_blank"><img src="/img/29.png" style="width: 662px; height: 491px;"></a>
 </div>
 
-<div align="justify">Finalmente lo he agregado al cargador de Windows, de esta forma este le pasará el control al grub y el grub podrá arrancar el instalador (chain loading):
+<div class="p">Finalmente lo he agregado al cargador de Windows, de esta forma este le pasará el control al grub y el grub podrá arrancar el instalador (chain loading):
 </div>
 
 <div style="text-align: center;" id="img">
@@ -68,10 +68,11 @@ title: "instalar ubuntu desde windows sin wubi + netinstaller"
 <a href="/img/33.png" target="_blank"><img src="/img/33.png" style="width: 662px; height: 491px;"></a><br>
 </div>
 
-<div align="justify">He reiniciado y seleccionado la primera opción <strong>Start GRUB</strong> y luego <strong>Install ubuntu</strong> para comenzar la instalación, OJO: el instalador es similar al que se obtendría con el mínimal CD, es decir, viene sin wifitools y wpa_supplicant, por lo que hay que usar un cable ethernet para descargar los paquetes que sean necesarios.
+<div class="p">He reiniciado y seleccionado la primera opción <strong>Start GRUB</strong> y luego <strong>Install ubuntu</strong> para comenzar la instalación, OJO: el instalador es similar al que se obtendría con el mínimal CD, es decir, viene sin wifitools y wpa_supplicant, por lo que hay que usar un cable ethernet para descargar los paquetes que sean necesarios.
 </div>
 
 <ul>
   <li>
-  <a href="https://help.ubuntu.com/community/Installation/FromWindows target="_blank"">https://help.ubuntu.com/community/Installation/FromWindows</a></li>
+  <a href="https://help.ubuntu.com/community/Installation/FromWindows target="_blank"">https://help.ubuntu.com/community/Installation/FromWindows</a>
+  </li>
 </ul>

@@ -5,13 +5,13 @@ title: "detener la creación automática de Desktop por firefox"
 
 <h2>{{ page.title }}</h2>
 
-<p class="publish_date">{{ page.date | date_to_string }}</p>
+<div class="publish_date">{{ page.date | date_to_string }}</div>
 
-<p class="justify">La creación de la carpeta 'Desktop/Escritorio' por firefox es una característica un tanto molesta para algunos (incluyendome) cuya estructura de directorios pueda diferir.
-</p>
+<div class="p">La creación de la carpeta 'Desktop/Escritorio' por firefox es una característica un tanto molesta para algunos (incluyendome) cuya estructura de directorios pueda diferir.
+</div>
 
-<p align="justify">Firefox sigue las reglas de <a href="http://www.freedesktop.org/wiki/Software/xdg-user-dirs">freedesktop.org</a> y crea o usa el directorio cada vez que se encuentra con un elemento &lt;input type='file'&gt;, para detener ese comportamiento, basta con crear un archivo en <strong>$HOME/.config/user-dirs.dirs</strong> con lo siguiente:
-</p>
+<div class="p">Firefox sigue las reglas de <a href="http://www.freedesktop.org/wiki/Software/xdg-user-dirs">freedesktop.org</a> y crea o usa el directorio cada vez que se encuentra con un elemento &lt;input type='file'&gt;, para detener ese comportamiento, basta con crear un archivo en <strong>$HOME/.config/user-dirs.dirs</strong> con lo siguiente:
+</div>
 
 <pre class="sh_sh">
 $ cat $HOME/.config/user-dirs.dirs

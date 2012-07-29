@@ -5,10 +5,10 @@ title: "mkisofs"
 
 <h2>{{ page.title }}</h2>
 
-<p class="publish_date">{{ page.date | date_to_string }}</p>
+<div class="publish_date">{{ page.date | date_to_string }}</div>
 
-<p align="justify">Entonces estaba en clase de sistemas operativos, y no encontraba información sobre como generar imagenes .iso a partir de kernels no tradicionales, asi que escribí algo para mi propia referencia:
-</p>
+<div class="p">Entonces estaba en clase de sistemas operativos, y no encontraba información sobre como generar imagenes .iso a partir de kernels no tradicionales, así que escribí algo para mi propia referencia:
+</div>
 
 <pre class="sh_sh">
 $ mkdir luxur
@@ -17,38 +17,38 @@ $ wget http://downloads.sourceforge.net/project/luxur/luxur0.0.1/
        Luxur-src.tar.gz?use_mirror=cdnetworks-us-2  -O Luxur-src.tar.gz
 </pre>
 
-<p align="justify">Descomprimiendo...
-</p>
+<div class="p">Descomprimiendo...
+</div>
 
 <pre class="sh_sh">
 $ tar zxvf Luxur-src.tar.gz
 </pre>
 
-<p align="justify">Verificando archivos
-</p>
+<div class="p">Verificando archivos
+</div>
 
 <pre class="sh_sh">
 $ ls
 boot  COPYING  include  kernel  lib  link.ld  Luxur-src.tar.gz  Makefile
 </pre>
 
-<p align="justify">Compilando:
-</p>
+<div class="p">Compilando:
+</div>
 
 <pre class="sh_sh">
 $ make
 </pre>
 
-<p align="justify"><strong>Luxur</strong> es el binario que me interesa (kernel)
-</p>
+<div class="p"><strong>Luxur</strong> es el binario que me interesa (kernel)
+</div>
 
 <pre class="sh_sh">
 $ ls
 boot  COPYING  include  kernel  lib  link.ld  Luxur  Luxur-src.tar.gz  Makefile
 </pre>
 
-<p align="justify">Creando la estructura básica para el grub:
-</p>
+<div class="p">Creando la estructura básica para el grub:
+</div>
 
 <pre class="sh_sh">
 $ cd ~
@@ -58,8 +58,8 @@ mkdir: created directory `iso/boot'
 mkdir: created directory `iso/boot/grub'
 </pre>
 
-<p align="justify">Agregando el archivo <strong>menu.lst</strong> a <strong>iso/boot/menu</strong> con el siguiente contenido:
-</p>
+<div class="p">Agregando el archivo <strong>menu.lst</strong> a <strong>iso/boot/menu</strong> con el siguiente contenido:
+</div>
 
 <pre class="sh_sh">
 $ cat b/boot/grub/menu.lst
@@ -67,25 +67,25 @@ title     Luxur
 kernel    /boot/Luxur
 </pre>
 
-<p align="justify">Agregando el archivo <strong>stage2_eltorito</strong> a <strong>iso/boot/grub</strong> (este es el que hace la magia para que un disco común sea autoarrancable)
-</p>
+<div class="p">Agregando el archivo <strong>stage2_eltorito</strong> a <strong>iso/boot/grub</strong> (este es el que hace la magia para que un disco común sea autoarrancable)
+</div>
 
-<p align="justify">En un sistema con grub legacy y arquitectura x86 se encuentra en:
-</p>
+<div class="p">En un sistema con grub legacy y arquitectura x86 se encuentra en:
+</div>
 
 <pre class="sh_sh">
 $ cp /usr/lib/grub/i386-pc/stage2_eltorito  iso/boot/grub
 </pre>
 
-<p align="justify">En un sistema con grub legacy y arquitectura amd64 en:
-</p>
+<div class="p">En un sistema con grub legacy y arquitectura amd64 en:
+</div>
 
 <pre class="sh_sh">
 $  /usr/lib/grub/x86_64-pc/stage2_eltorito  iso/boot/grub
 </pre>
 
-<p align="justify">NOTA: Sino esta en ninguno de esos lugares una copia esta aquí:
-</p>
+<div class="p">NOTA: Sino esta en ninguno de esos lugares una copia esta aquí:
+</div>
 
 <ul>
     <li>
@@ -93,15 +93,15 @@ $  /usr/lib/grub/x86_64-pc/stage2_eltorito  iso/boot/grub
     </li>
 </ul>
 
-<p align="justify">Copiando el kernel para completar la estructura:
-</p>
+<div class="p">Copiando el kernel para completar la estructura:
+</div>
 
 <pre class="sh_sh">
 $ cp luxur/Luxur   iso/boot/
 </pre>
 
-<p align="justify">Creando el .iso:
-</p>
+<div class="p">Creando el .iso:
+</div>
 
 <pre class="sh_sh">
 $ mkisofs -R -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 \
@@ -119,16 +119,16 @@ Max brk space used 0
 247 extents written (0 MB)
 </pre>
 
-<p align="justify">Esta última linea la copie de la documentacion: <a href="http://tinyurl.com/cr7xx" target="_blank">http://tinyurl.com/cr7xx</a>
-</p>
+<div class="p">Esta última linea la copie de la documentacion: <a href="http://tinyurl.com/cr7xx" target="_blank">http://tinyurl.com/cr7xx</a>
+</div>
 
-<p align="justify">Las personas en #grub me han dicho que tambien se puede con el grub2
+<div class="p">Las personas en #grub me han dicho que tambien se puede con el grub2
 usando '<strong>grub-mkrescue</strong>'.., no verifique tal cosa.
-</p>
+</div>
 
-<p align="justify">
-</p>
+<div class="p">
+</div>
 
-<p align="justify">Ahora debería existir un archivo <strong>imagen.iso</strong> que se puede usar con 
+<div class="p">Ahora debería existir un archivo <strong>imagen.iso</strong> que se puede usar con 
 qemu/vbox/wmware
-</p>
+</div>

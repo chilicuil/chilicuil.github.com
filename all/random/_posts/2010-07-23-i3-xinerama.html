@@ -5,30 +5,30 @@ title: "i3 - xinerama"
 
 <h2>{{ page.title }}</h2>
 
-<p class="publish_date">{{ page.date | date_to_string }}</p>
+<div class="publish_date">{{ page.date | date_to_string }}</div>
 
-<p align="justify">Una de las principales razones por las que escogí <a href="http://i3-wm.org" target="_blank">i3-wm</a> sobre <a href="http://wmii.suckless.org/" target="_blank">wmii</a> fue el soporte de <a href="http://en.wikipedia.org/wiki/Xinerama" target="_blank">xinerama</a>, es decir para multiples monitores (a ustedes también les parece increible que en el siglo XXI existan wm que no lo hagan?).
-</p>
+<div class="p">Una de las principales razones por las que escogí <a href="http://i3-wm.org" target="_blank">i3-wm</a> sobre <a href="http://wmii.suckless.org/" target="_blank">wmii</a> fue el soporte de <a href="http://en.wikipedia.org/wiki/Xinerama" target="_blank">xinerama</a>, es decir para multiples monitores (a ustedes también les parece increible que en el siglo XXI existan wm que no lo hagan?).
+</div>
 
-<p align="justify">A diferencia de gnome y kde, y siguiendo la filósofia minimalista, i3 no tiene un bónito menú para usar más de un escritorio, el soporte es a través de <strong>xrandr</strong>:
-</p>
+<div class="p">A diferencia de gnome y kde, y siguiendo la filósofia minimalista, i3 no tiene un bónito menú para usar más de un escritorio, el soporte es a través de <strong>xrandr</strong>:
+</div>
 
-<p align="justify">Para duplicar la salida (útil si estas por dar una presentación):
-</p>
+<div class="p">Para duplicar la salida (útil si estas por dar una presentación):
+</div>
 
 <pre class="sh_sh">
 $ xrandr --output VGA1 --mode 1024x768 --same-as LVDS1
 </pre>
 
-<p align="justify">O en caso de querer extenderla:
-</p>
+<div class="p">O en caso de querer extenderla:
+</div>
 
 <pre class="sh_sh">
 $ xrandr --output VGA1 --mode 1024x768 --right-of LVDS1
 </pre>
 
-<p align="justify">Las opciones pueden cambiar, ver <strong>$ man xrandr</strong> para obtener más detalles.
-</p>
+<div class="p">Las opciones pueden cambiar, ver <strong>$ man xrandr</strong> para obtener más detalles.
+</div>
 
 <ul>
     <li>
