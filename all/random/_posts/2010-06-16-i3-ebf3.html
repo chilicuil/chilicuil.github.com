@@ -5,17 +5,17 @@ title: "i3.e-bf3"
 
 <h2>{{ page.title }}</h2>
 
-<p class="publish_date">{{ page.date | date_to_string }}</p>
+<div class="publish_date">{{ page.date | date_to_string }}</div>
 
-<p style="text-align: center;">
+<div style="text-align: center;">
 <a href="http://i3wm.org/screenshots/"><img src="/img/36.png"></a>
-</p>
+</div>
 
-<p align="justify">Hace un año que uso <a href="http://i3wm.org" target="_blank">i3-wm</a>, un manejador de ventanas 'tiling', es rápido, configurable, y l33t, así que no tengo intenciones de cambiarlo. Sin embargo creí que sería bueno actualizarlo, al hacerlo me di cuenta que su autor ha seguido programando sobre una nueva rama conocida como i3.4. La nueva rama, es más rápida, pero diferente en varios aspectos, el que menos me gusta es la eliminacion de notificación de los escritorios virtuales (en su lugar provee un script, i3-wsbar). Al final he decidido quedarme con la última versión de la rama estable, aquí describo como lograrlo:
-</p>
+<div class="p">Hace un año que uso <a href="http://i3wm.org" target="_blank">i3-wm</a>, un manejador de ventanas 'tiling', es rápido, configurable, y l33t, así que no tengo intenciones de cambiarlo. Sin embargo creí que sería bueno actualizarlo, al hacerlo me di cuenta que su autor ha seguido programando sobre una nueva rama conocida como i3.4. La nueva rama, es más rápida, pero diferente en varios aspectos, el que menos me gusta es la eliminacion de notificación de los escritorios virtuales (en su lugar provee un script, i3-wsbar). Al final he decidido quedarme con la última versión de la rama estable, aquí describo como lograrlo:
+</div>
 
-<p align="justify">NOTA: Para la versión 11.10 (oneiric) de Ubuntu, i3 estará disponible en su version i3.e-bf3, por lo que no será necesario compilarlo, los pasos que siguen son para Ubuntu 10.04, 10.10, 11.04, 12.04 y posteriores (que vienen con la nueva versión i3.4)
-</p>
+<div class="p">NOTA: Para la versión 11.10 (oneiric) de Ubuntu, i3 estará disponible en su version i3.e-bf3, por lo que no será necesario compilarlo, los pasos que siguen son para Ubuntu 10.04, 10.10, 11.04, 12.04 y posteriores (que vienen con la nueva versión i3.4)
+</div>
 
 <pre class="sh_sh">
 $ mkdir i3.e && cd i3.e
@@ -23,10 +23,10 @@ $ git clone git://code.i3wm.org/i3 && cd i3
 $ git checkout 3.e-bf3
 $ sudo apt-get build-dep i3-wm && sudo apt-get install libxcb-randr0-dev libyajl-dev
 $ vim debian/control 
-</pre
+</pre>
 
-<p align="justify">Y se elimina <strong>'libxcb-util0-dev (>= 0.3.8)'</strong> y <strong>'libxcb-icccm4-dev'</strong>
-</p>
+<div class="p">Y se elimina <strong>'libxcb-util0-dev (>= 0.3.8)'</strong> y <strong>'libxcb-icccm4-dev'</strong>
+</div>
 
 <pre class="sh_sh">
 $ debuild -b -us -uc
@@ -35,5 +35,5 @@ $ sudo ln -s /usr/bin/i3 /etc/alternatives/x-window-manager
 $ sudo ln -s /etc/alternatives/x-window-manager /usr/bin/x-window-manager
 </pre>
 
-<p align="justify">Arriba por los proyectos que tienen un debian/ en upstream \^__^/ , mi archivo <a href="https://gist.github.com/1223434" target="_blank">$HOME/.i3/config</a>
-</p>
+<div class="p">Arriba por los proyectos que tienen un debian/ en upstream \^__^/ , mi archivo <a href="https://gist.github.com/1223434" target="_blank">$HOME/.i3/config</a>
+</div>
