@@ -23,11 +23,11 @@ $ sudo apt-get install grub && sudo update-grub
 $ sudo grub-install /dev/sda
 </pre>
 
-<div class="p">Después descargue el instalador y el kernel (20Mb~) y los puse en la raiz <strong>"/"</strong>
+<div class="p">Después descargue el instalador y el kernel (20Mb~) y los puse en la raíz <strong>"/"</strong>
 </div>
 
 <pre class="sh_sh">
-$ sudo wget  http://preview.tinyurl.com/7uedctd-O /initrd.gz #instalador
+$ sudo wget  http://preview.tinyurl.com/7uedctd -O /initrd.gz #instalador
 $ sudo wget http://preview.tinyurl.com/72wwv2c -O /linux #kernel
 </pre>
 
@@ -54,6 +54,11 @@ $ sudo mount /dev/sda2 /home && sudo vi /etc/fstab
 
 <div class="p">Obtuve el uuid de /dev/sda2 haciendo <strong>$ ls -lah /dev/disk/by-uuid</strong>
 </div>
+
+<pre>
+# /home was on /dev/sda2 during installation
+UUID=04acdd58-ef63-4756-8d47-44050de3eb2f /home ext4  errors=remount-ro 0 1
+</pre>
 
 <div class="p">Modifiqué <strong>/etc/network/interfaces</strong> para deshabilitar dhcp, prefiero darle el control de mi red a "wicd", quedó algo así:
 </div>
@@ -126,25 +131,24 @@ $ sudo cp -r $HOME/misc/themes/slim/custom /usr/share/slim/themes
 <pre class="sh_sh">
 $ sudo apt-get install pbuilder dpkg-dev ccache
 $ pbuilder DIST=precise ARCH=amd64 create && pbuilder DIST=precise ARCH=amd64 login
-[chroot]# sudo apt-get install git && git clone #repositorio-i3-git# && cd i3-wm
+[chroot]# sudo apt-get install git-core && git clone #repositorio-i3-git# && cd i3-wm
 [chroot]# dbuild -b -us -uc #antes instale las dependencias
 $ sudo dpkg -i i3-wm-amd64.deb
 </pre>
 
-<div class="p">Reinicie y obtuve un entorno gráfico, con red y música, nada mal, instalé algunos otros programas, gestor de archivos (pcmanfm), unificador de portapapeles (autocutsel), efectos (xcompmgr), screensaver (i3-lock), lanzador de aplicaciones (dmenu), programas para el soporte de hibernación y suspensión (pm-utils, hibernate), reproductor de videos (mplayer) y widgets (conky+dzen)
+<div class="p">Reinicie y obtuve un entorno gráfico, con red y música, nada mal, instalé algunos otros programas, gestor de archivos (pcmanfm), unificador de portapapeles (autocutsel), efectos (xcompmgr), screensaver (i3-lock), lanzador de aplicaciones (dmenu), programas para el soporte de hibernación y suspensión (pm-utils, hibernate), reproductor de videos (mplayer), lector de pdfs (zathura) y widgets (conky+dzen)
 </div>
 
 <pre class="sh_sh">
-$ sudo apt-get install git-core cvs subversion bzr apt-file synaptic unzip zip rar
-  unrar autocutsel acpi archmage bzr-builddeb colormake dkms suckless-tools evince
-  feh notification-daemon ffmpeg hibernate html2text htop imagemagick irssi liferea
-  mkvtoolnix mpgtx mplayer mutt-patched nmap default-jre pcmanfm pm-utils qemu-kvm
-  rlpr rtorrent sox transset tree unetbootin wget wodim xcompmgr xclip zsync
-  gnupg-agent p7zip-full lxappearance libwww-perl libnotify-bin i3lock virtaal
-  conky-cli #dzen2, mantuve $HOME/code/dzen2/dzen2
+$ sudo apt-get install git-core cvs subversion bzr apt-file synaptic unzip zip rar unrar
+  autocutsel acpi archmage bzr-builddeb colormake dkms suckless-tools feh notify-osd
+  libav-tools hibernate html2text htop imagemagick irssi liferea mkvtoolnix mpgtx mplayer
+  mutt-patched nmap default-jre pcmanfm pm-utils rlpr rtorrent sox tree unetbootin wget
+  wodim xcompmgr xclip zsync gnupg-agent lxappearance libwww-perl i3lock virtaal conky-cli
+  zathura #dzen2 - $HOME/code/dzen2/dzen2
 </pre>
 
-<div class="p">En general la actualización fue buena, solo encontré 1 problema irresoluble; bugs #<a href="https://bugs.launchpad.net/ubuntu/+source/gdk-pixbuf/+bug/927393" target="_blank">927393</a> y #<a href="https://bugs.launchpad.net/ubuntu/+source/notification-daemon/+bug/927031" target="_blank">927031</a> sobre notificaciones, Ubuntu soporta 2 programas para mostrar notificaciones, notification-daemon (el que uso y que esta roto por el momento), y notify-osd (el que funciona y el que se usa por defecto), fuera: de eso encontre mejoras sustanciales, no tuve que compilar: vim, mpd, slim, urxvt debido a que precise viene con versiones suficientemente actuales o con correcciones que no tenía Ubuntu Lucid
+<div class="p">En general la actualización fue buena, solo encontré 1 problema irresoluble; bugs #<a href="https://bugs.launchpad.net/ubuntu/+source/gdk-pixbuf/+bug/927393" target="_blank">927393</a> y #<a href="https://bugs.launchpad.net/ubuntu/+source/notification-daemon/+bug/927031" target="_blank">927031</a> sobre notificaciones, Ubuntu soporta 2 programas para mostrar notificaciones, notification-daemon (el que uso y que esta roto por el momento, solo soporta gtk3), y notify-osd (el que funciona y el que se usa por defecto), fuera de eso encontre mejoras sustanciales, no tuve que compilar: vim, mpd, slim, urxvt debido a que precise viene con versiones suficientemente actuales o con correcciones que no tenía Ubuntu Lucid
 </div>
 
 <div align="center" id="img"><a href="/img/50.png" target="_blank"><img src="/img/50.png" style="width: 320px; height: 200px;"></a> <a href="/img/51.png" target="_blank"><img src="/img/51.png" style="width: 320px; height: 200px;"></a> <a href="/img/52.png" target="_blank"><img src="/img/52.png" style="width: 320px; height: 200px;"></a>
