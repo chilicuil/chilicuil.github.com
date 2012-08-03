@@ -44,7 +44,7 @@ initrd (hd0,0)initrd.gz
 <div class="p">Reinicie y seleccioné "<em>Instalar Ubuntu</em>", una cosa que note es que el instalador, aunque pesa muy poco, 16MB~, reconoció mi tarjeta inalámbrica =3 (RTL8111/8168B), así que me ahorre el <a href="http://chilicuil.github.com/all/random/2010/12/14/compartir-conexion-pc-a-pc.html" target="_blank">cable cruzado</a> a otra máquina. El disco duro esta particionado en 3, /, /home y swap (5gb), a la hr de particionar, formatié la primera y la última y deje intacta home. También me aseguré de seleccionar <a href="http://chilicuil.github.com/all/random/2010/12/07/conexion-alambrica-inalambrica-al-mismo-tiempo.html" target="_blank">wicd-curses</a> (para tener red, cuando reiniciara) y openssh-server. Probé "<a href="http://en.wikipedia.org/wiki/Btrfs" target="_blank">btrfs</a>", pero después lo descarte porque me daba errores extraños cuando interactuaba con el grub, así que preferĺ quedarme con ext4 en <strong><span style="color: rgb(255, 0, 0);">/</span></strong>
 </div>
 
-<div class="p">Terminada la instalación, reinicie, eliminé el directorio home por defecto y monté y actualicé <strong>/etc/fstab</strong> con el mio /dev/sda2
+<div class="p">Terminada la instalación, reinicie, eliminé el directorio home por defecto y monté y actualicé <strong>/etc/fstab</strong> con el mio, /dev/sda2
 </div>
 
 <pre class="sh_sh">
@@ -58,6 +58,8 @@ $ sudo mount /dev/sda2 /home && sudo vi /etc/fstab
 <pre>
 # /home was on /dev/sda2 during installation
 UUID=04acdd58-ef63-4756-8d47-44050de3eb2f /home ext4  errors=remount-ro 0 1
+# /tmp
+tmpfs /tmp tmpfs defaults,noexec,nosuid 0 0
 </pre>
 
 <div class="p">Modifiqué <strong>/etc/network/interfaces</strong> para deshabilitar dhcp, prefiero darle el control de mi red a "wicd", quedó algo así:
@@ -67,6 +69,14 @@ UUID=04acdd58-ef63-4756-8d47-44050de3eb2f /home ext4  errors=remount-ro 0 1
 /etc/network/interfaces:
 auto lo
 iface lo inet loopback
+</pre>
+
+<div class="p">Y cambie algunos parámetros para acelerar el sistema, (funciona por que tengo 4GB de ram, deben tomarse con cuidado cuando la memoria no es tan amplia):
+</div>
+
+<pre class="sh_properties">
+$ tail /etc/sysctl.conf
+  vm.swappiness=10
 </pre>
 
 <div class="p">Instalé el editor, scripts aleatorios y firefox:
