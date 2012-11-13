@@ -17,8 +17,8 @@ title: "actualización ubuntu 12.04"
 </div>
 
 <pre class="sh_sh">
-$ sudo rm -rf /boot/grub && mkdir /boot/grub
-$ sudo apt-get install --purge remove grub-pc grub-common
+$ sudo rm -rf /boot/grub && sudo mkdir /boot/grub
+$ sudo apt-get --purge remove grub-pc grub-common
 $ sudo apt-get install grub && sudo update-grub
 $ sudo grub-install /dev/sda
 </pre>
