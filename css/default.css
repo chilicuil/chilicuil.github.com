@@ -73,7 +73,7 @@ font-family: Monaco, Courier;
 background: #191919;
 border: dashed 2px #e5e5e5;
 /*width: 600px;*/
-width: 700px;
+width: 740px;
 padding: 5px;
 font-size:1em;
 line-height: 1em;
@@ -210,7 +210,7 @@ color:gray;
 div.slogan {
 color:gray;
 font-size:1.5em;
-font-weight:700;
+font-weight:740;
 letter-spacing:-1px;
 line-height:1.2em;
 /*margin:-15px 0 60px 0px;*/
@@ -228,7 +228,7 @@ margin:0;
 padding:0;
 text-align:left;
 /*width:500px;*/
-width:700px;
+width:740px;
 }
 
 #contentalt {
