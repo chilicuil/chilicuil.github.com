@@ -1,13 +1,12 @@
 ---
 layout: post
-title: "instalar varios versiones de python en ubuntu - pythonbrew"
+title: "instalar varias versiones de python en ubuntu - pythonbrew"
 ---
 
 <h2>{{ page.title }}</h2>
 
 <div class="publish_date">{{ page.date | date_to_string }}</div>
 
-<h4>Dependencias</h4>
 <div class="p">Para instalar varias versiones de python, se requiere pythonbrew y curl:
 </div>
 
@@ -15,7 +14,7 @@ title: "instalar varios versiones de python en ubuntu - pythonbrew"
 $ sudo apt-get install curl python-setuptools
 </pre>
 
-<h4>Instalación</h4>
+<h3>Instalación</h3>
 <div class="p">Cumplidas las dependencias se instala con:
 </div>
 
@@ -36,7 +35,7 @@ After that, exit this shell, start a new one, and install some fresh
 pythons:
 
   pythonbrew install 2.7.2
-  pythonbrew install 3.2
+  pythonbrew install 3.3
 
 For further instructions, run:
 
@@ -54,16 +53,16 @@ Enjoy pythonbrew at /home/chilicuil/.pythonbrew!!
 $ tail ~/.bashrc
 [[ -s "$home/.pythonbrew/etc/bashrc" ]] && source "$home/.pythonbrew/etc/bashrc"
 $ source ~/.bashrc
-$ python install 3.2 #or pythonbrew install --force 3.2
+$ python install 3.3 #or pythonbrew install --force 3.3
 </pre>
 
-<h4>Cambiar entre versiones</h4>
+<h3>Cambiar entre versiones</h3>
 
-<div class="p">Para empezar a usar python 3.2:
+<div class="p">Para empezar a usar python 3.3:
 </div>
 
 <pre class="sh_sh">
-$ pythonbrew switch 3.2
+$ pythonbrew switch 3.3
 </pre>
 
 <div class="p">Para que el sistema utilice nuevamente la versión de python que viene con el (2.7 en Ubuntu precise):
