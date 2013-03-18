@@ -73,10 +73,10 @@ $ sudo dpkg -i e4rat_0.2.3_amd64.deb
 <h4>Configuración</h4>
 <div class="p">Reconocimiento de los habitos del sistema
 </div>
-<div class="p">Para que <strong>e4rat</strong> mejore el tiempo de arranque necesita conocer los archivos que se utilizan, lo que sigue son las instrucciones para hacer que el sistema arranque en un modo especial que le permita aprender de los hábitos del mismo, sugiero que cuando se haga se abran las aplicaciones que se usan con mayor frecuencia, por ejemplo firefox.
+<div class="p">Para que <strong>e4rat</strong> mejore el tiempo de arranque necesita conocer los archivos que se utilizan, lo que sigue son las instrucciones para hacer que el sistema arranque en un modo especial que le permitirá aprender de los hábitos del mismo, sugiero que cuando se haga se abran las aplicaciones que se usan con mayor frecuencia, por ejemplo firefox.
 </div>
 
-<div class="p"> <strong>1.-</strong> Agregar el parámetro <strong>init=/sbin/e4rat-collect</strong> a la linea <strong>kernel</strong> en <strong>/boot/grub/menu.lst</strong> o a su equivalente en grub2, para mi caso:
+<div class="p"> <strong>1.-</strong> Agregar el parámetro <strong>init=/sbin/e4rat-collect</strong> a la línea <strong>kernel</strong> en <strong>/boot/grub/menu.lst</strong> o a su equivalente en grub2, para mi caso:
 </div>
 <pre class="config">
 title   Ubuntu 12.04.2 LTS, kernel 3.8.2-ck1
@@ -100,7 +100,7 @@ $ file /var/lib/e4rat/startup.log
 </div>
 <div class="p">Después de que <strong>e4rat</strong> conozca los hábitos del sistema, sigue la reasignación de los archivos (la parte que traerá la mejora en el rendimiento), para ello se:
 </div>
-<div class="p"> <strong>1.-</strong> Reinicia desde el modo recuperación, en el menú del grub de mi sistema se ve así:
+<div class="p"> <strong>1.-</strong> Reinicia desde el modo recuperación (modo texto), en el menú del grub de mi sistema se ve así:
 </div>
 <pre class="config">
 Ubuntu 12.04.2 LTS, kernel 3.8.2-ck1 (recovery mode)
@@ -112,7 +112,7 @@ Ubuntu 12.04.2 LTS, kernel 3.8.2-ck1 (recovery mode)
 ...
 No further improvements...
 </pre>
-<div class="p"> <strong>3.-</strong> Se cambia el parámetro <strong>init=/sbin/e4rat-collect</strong> por <strong>init=/sbin/e4rat-preload</strong> en la linea <strong>kernel</strong> del archivo <strong>/boot/grub/menu.lst</strong> o el archivo correspondiente para grub2:
+<div class="p"> <strong>3.-</strong> Se cambia el parámetro <strong>init=/sbin/e4rat-collect</strong> por <strong>init=/sbin/e4rat-preload</strong> en la línea <strong>kernel</strong> del archivo <strong>/boot/grub/menu.lst</strong> o el archivo correspondiente para grub2:
 
 <pre class="config">
 title   Ubuntu 12.04.2 LTS, kernel 3.8.2-ck1
