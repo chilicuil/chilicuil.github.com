@@ -15,7 +15,7 @@ title: "mejorar drásticamente el tiempo de arranque en ubuntu precise"
 
 <h3>Introducción</h3>
 
-<div class="p">Mucho del tiempo que se invierte en arrancar una computadora se debe a la espera e inicialización de los discos duros (esto no aplica para la tecnología ssd), pueden verlo por ustedes mismos con la utilidad '<a href="http://www.bootchart.org/" target="_blank">bootchart</a>' que crea diagramas sobre el arranque de Linux.
+<div class="p">Mucho del tiempo que se invierte en arrancar una computadora se debe a la espera e inicialización de los discos duros (esto no aplica para la tecnología ssd), pueden verlo por ustedes mismos con la utilidad <a href="http://www.bootchart.org/" target="_blank">bootchart</a> que crea diagramas sobre el arranque de Linux.
 </div>
 
 <div align="center" id="img">
@@ -41,7 +41,7 @@ Sabiendo esto, se comprende porque el procedimiento debe repetirse cada vez que 
 
 <h3>Desarrollo</h3>
 
-<h4>Instalacion</h4>
+<h4>Instalación</h4>
 <div class="p">
 Para poder tomar partido de <strong>e4rat</strong> se requiere una versión del kernel no menor a 2.6.31, en Ubuntu, desde la versión 11.04 se instalan kernels superiores, también funciona sobre el <a href="http://chilicuil.github.com/all/os/2012/07/03/kernel-ck-en-ubuntu-1204.html" target="_blank">kernel vanilla + ck</a> que recomiendo.
 </div>
@@ -71,7 +71,7 @@ $ sudo dpkg -i e4rat_0.2.3_amd64.deb
 </pre>
 
 <h4>Configuración</h4>
-<div class="p"><tt>Reconocimiento de los habitos del sistema</tt>
+<div class="p">Reconocimiento de los habitos del sistema
 </div>
 <div class="p">Para que <strong>e4rat</strong> mejore el tiempo de arranque necesita conocer los archivos que se utilizan, lo que sigue son las instrucciones para hacer que el sistema arranque en un modo especial que le permita aprender de los hábitos del mismo, sugiero que cuando se haga se abran las aplicaciones que se usan con mayor frecuencia, por ejemplo firefox.
 </div>
@@ -96,7 +96,7 @@ $ file /var/lib/e4rat/startup.log
 /var/lib/e4rat/startup.log: ASCII text
 </pre>
 
-<div class="p"><tt>Reasignación de archivos</tt>
+<div class="p">Reasignación de archivos
 </div>
 <div class="p">Después de que <strong>e4rat</strong> conozca los hábitos del sistema, sigue la reasignación de los archivos (la parte que traerá la mejora en el rendimiento), para ello se:
 </div>
@@ -128,7 +128,7 @@ quiet
 <div class="p"> <strong>5.-</strong> Si todo ha ido bien, su sistema deberia arrancar más rápido y sentirse más liviano con las aplicaciones de uso frecuente
 </div>
 
-<h4>Desinstalacion</h4>
+<h4>Desinstalación</h4>
 <div class="p">Aunque el sistema no trae problemas incluso cuando no mejore el rendimiento algunas personas podrian querer desinstalarlo, para dejar su sistema como antes de <strong>e4rat</strong> pueden hacer:
 </div>
 
