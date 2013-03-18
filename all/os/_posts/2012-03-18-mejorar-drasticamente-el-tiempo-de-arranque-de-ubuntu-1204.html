@@ -1,0 +1,143 @@
+---
+layout: post
+title: "mejorar drasticamente el tiempo de arranque de ubuntu precise"
+---
+
+<h2>{{ page.title }}</h2>
+
+<div class="publish_date">{{ page.date | date_to_string }}</div>
+
+<div class="p">Antes de empezar quiero aclarar que las siguientes instrucciones en realidad funcionan para Ubuntu desde la version 11.04, hago enfasis en Ubuntu Precise por que es la version LTS. Comparto los pasos por que en mi máquina se nota la diferencia incluso cuando mi configuracion ya estaba <a href="http://chilicuil.github.com/all/os/2012/05/03/actualizacion-ubuntu-1204.html" target="_blank">optimizada</a> (kernel -ck, slim/i3wm), eso no quiere decir que funcione para ustedes.
+</div>
+
+<div class="p">El proyecto <a href="http://e4rat.sourceforge.net/" target="_blank">e4rat</a> desarrolla herramientas que mejoran el tiempo de arranque en Linux, para ello se apoya en la reasignación de archivos de arranque en sistemas <a href="http://es.wikipedia.org/wiki/Ext4" target="_blank">ext4</a>, así que si no usan ext4 en sus computadoras, no servira de nada. Tampoco servira si sus discos duros son SSD (de estado sólido), para esos discos <a href="https://launchpad.net/ureadahead" target="_blank">ureadahead</a>ya hace un buen trabajo.
+</div>
+
+<h3>Introducción</h3>
+
+<div class="p">Mucho del tiempo que se invierte en arrancar una computadora se debe a la espera e inicializacion de los discos duros (esto no aplica para la tecnologia ssd), pueden verlo por ustedes mismos con la utilidad '<a href="http://www.bootchart.org/" target="_blank">bootchart</a>' que crea diagramas sobre el arranque de Linux.
+</div>
+
+<div align="center" id="img">
+<a href="/img/66.png"><img src="/img/66.png" style="width: 306px; height: 75px;"></a>
+</div>
+
+<div align="center">El rojo es el tiempo de espera del disco duro, el azul el tiempo de ejecución del cpu
+</div>
+
+<div class="p">e4rat lo que hace es mover los archivos criticos de arranque a una zona de facil acceso del disco duro con la finalidad de que esos archivos se puedan cargar de una sola vez y en pocas lecturas a la ram. Una vez en la ram se continua el arranque y con ello se mejora sustancialmente el tiempo en que lo hace.
+</div>
+
+<div align="center" id="img">
+<a href="/img/67.png"><img src="/img/67.png" style="width: 306px; height: 75px;"></a>
+</div>
+
+<div align="center">El rojo es el tiempo de espera del disco duro, el azul el tiempo de ejecución del cpu. Se nota una mejora considerable
+</div>
+
+<div class="p">
+Sabiendo esto, se comprende por que el procedimiento debe repetirse cada vez que se instala un nuevo kernel, o se hace una actualizacion mayor del sistema. Tambien se comprende por que este sistema no funciona en distribuciones rolling release o en distribuciones en desarrollo, por ejemplo Ubuntu raring, pues estas tienen constantes actualizaciones de los archivos de arranque.
+</div>
+
+<h3>Desarrollo</h3>
+
+<h4>Instalacion</h4>
+<div class="p">
+Para poder tomar partido de e4rat se requiere una version del kernel no menor a 2.6.31, en Ubuntu, desde la version 11.04 se instalan kernels superiores, también funciona sobre el <a href="http://chilicuil.github.com/all/os/2012/07/03/kernel-ck-en-ubuntu-1204.html" target="_blank">kernel vanilla + ck</a> que tambien recomiendo.
+</div>
+
+<div class="p">Si se cumple ese requisito entonces puede descargarse de:
+</div>
+<ul>
+	<li><a href="http://sourceforge.net/projects/e4rat/files/" target="_blank">http://sourceforge.net/projects/e4rat/files/</a></li>
+</ul>
+
+<div class="p">Dependiendo de la arquitectura de su sistema, querran descargar la ultima version de e4rat para x86 | amd64 en formato .deb (para una instalacion facil y limpia), en mi caso he descargado e4rat_0.2.3_amd64.deb. Antes de instalar el paquete, hay que desinstalar 'ureadahead'
+</div>
+
+<pre class="sh_sh">
+$ sudo apt-get purge ureadahead
+</pre>
+
+<div class="p">
+Esto desinstalara tambien 'ubuntu-minimal', ojo: esto no causa ningún daño, ubuntu-minimal es un paquete vacio que se asegura de que todos los paquetes basicos de Ubuntu esten instalados. Puesto que se esta reemplazando un programa no esencial (ureadahead) no habra ningun problema.
+</div>
+
+<div class="p">Una vez se terminado, se instala e4rat
+</div>
+
+<pre class="sh_sh">
+$ sudo dpkg -i e4rat_0.2.3_amd64.deb
+</pre>
+
+<h4>Configuracion</h4>
+<div class="p"><strong>Reconocimiento de los habitos del sistema</strong>
+</div>
+<div class="p">Para que e4rat mejore el tiempo de arranque necesita conocer los archivos que se utilizan, lo que sigue son las instrucciones para hacer que e4rat arranque en un modo especial que le permitira aprender sobre los habitos del sistema, sugiero que cuando se arranque en este modo se abran las aplicaciones que se usen con mayor frecuencia, por ejemplo firefox.
+</div>
+
+<div class="p"><strong>1.-</strong>Agregar el parametro init=/sbin/e4rat-collect a la linea 'kernel' en /boot/grub/menu.lst o a su equivalente en grub2, para mi caso:
+</div>
+<pre class="config">
+title		Ubuntu 12.04.2 LTS, kernel 3.8.2-ck1
+uuid		793e9a6d-d545-46f0-ac9c-49071c450b62
+kernel		/boot/vmlinuz-3.8.2-ck1 root=UUID=793e9a6d-d545-46f0-ac9c-49071c450b62 ro  init=/sbin/e4rat-collect
+initrd		/boot/initrd.img-3.8.2-ck1
+quiet
+</pre>
+
+<div class="p"><strong>2.-</strong>Reiniciar y lanzar durante los primeros 2 minutos despues del arranque las aplicaciones que se usen con mayor frecuencia
+</div>
+
+<div class="p"><strong>3.-</strong>Verificar que se haya creado un archivo en /var/lib/e4rat/startup.log que contenga los programas detectados
+</div>
+<pre class="sh_sh">
+$ file /var/lib/e4rat/startup.log
+/var/lib/e4rat/startup.log: ASCII text
+</pre>
+
+<div class="p"><strong>Reasignación de archivos</strong>
+</div>
+<div class="p">Despues de que el sistema conozca los habitos del sistema, se hace la reasignación de archivos (lo que traera la mejora en el rendimiento), para ello se:
+</div>
+<div class="p"><strong>1.-</strong>Reinicia desde el modo recuperacion, en el menú del grub de mi sistema se ve asi:
+</div>
+<pre class="config">
+Ubuntu 12.04.2 LTS, kernel 3.8.2-ck1 (recovery mode)
+</pre>
+<div class="p"><strong>2.-</strong>Se corre e4rat-realloc hasta que el sistema indique que no se puede optimizar mas
+<pre class="sh_sh">
+# e4rat-realloc /var/lib/e4rat/startup.log
+...
+...
+No further improvements...
+</pre>
+<div class="p"><strong>3.-</strong>Se modifica el parametro init=/sbin/e4rat-collect por init=/sbin/e4rat-preload en la linea 'kernel' del archivo /boot/grub/menu.lst o el parametro correspondiente para grub2
+
+<pre class="config">
+title		Ubuntu 12.04.2 LTS, kernel 3.8.2-ck1
+uuid		793e9a6d-d545-46f0-ac9c-49071c450b62
+kernel		/boot/vmlinuz-3.8.2-ck1 root=UUID=793e9a6d-d545-46f0-ac9c-49071c450b62 ro  init=/sbin/e4rat-preload
+initrd		/boot/initrd.img-3.8.2-ck1
+quiet
+</pre>
+
+<div class="p"><strong>4.-</strong>Se reinicia
+</div>
+
+<div class="p"><strong>4.-</strong>Si todo ha ido bien, su sistema deberia arrancar mas rapido
+</div>
+
+<h4>Desinstalacion</h4>
+<div class="p">Aunque el sistema no traera problemas incluso cuando no mejore el rendimiento algunas personas podrian querer desinstalarlo, para dejar su sistema como antes de e4rat pueden hacer:
+</div>
+
+<pre class="sh_sh">
+$ sudo apt-get purge e4rat
+$ sudo apt-get install ubuntu-minimal ureadahead
+$ sudo vim /boot/grub/menu.lst #y quitar init=/sbin/e4rat-preload
+</pre>
+
+<ul>
+	<li><a href="http://rafalcieslak.wordpress.com/2013/03/17/e4rat-decreasing-bootup-time-on-hdd-drives/" target="_blank">http://rafalcieslak.wordpress.com/2013/03/17/e4rat-decreasing-bootup-time-on-hdd-drives/</a></li>
+</ul>
