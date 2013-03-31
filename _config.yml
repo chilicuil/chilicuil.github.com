@@ -1,10 +1,12 @@
-safe:        false
-auto:        false
+domain:      javier.io
+title:       "javier.io"
 
 source:      .
 destination: ./_site
 plugins:     ./_plugins
 
+safe:        false
+auto:        false
 future:      true
 lsi:         true
 pygments:    false

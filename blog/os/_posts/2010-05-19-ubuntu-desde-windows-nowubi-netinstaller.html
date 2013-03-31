@@ -20,8 +20,8 @@ title: "instalar ubuntu desde windows sin wubi + netinstaller"
 </div>
 
 <div style="text-align: center;" id="img">
-<a href="/img/26.png" target="_blank"><img src="/img/26.png" style="width: 662px; height: 491px;"></a><br>
-<a href="/img/27.png" target="_blank"><img src="/img/27.png" style="width: 662px; height: 491px;"></a><br>
+<a href="/assets/img/26.png" target="_blank"><img src="/assets/img/26.png" style="width: 662px; height: 491px;"></a><br>
+<a href="/assets/img/27.png" target="_blank"><img src="/assets/img/27.png" style="width: 662px; height: 491px;"></a><br>
 </div>
 
 <div class="p">Luego he creado el directorio <strong>C:\boot\grub</strong> y descargado el instalador y el kernel en <strong>C:\boot</strong>:
@@ -48,24 +48,24 @@ title: "instalar ubuntu desde windows sin wubi + netinstaller"
 </ul>
 
 <div style="text-align: center;" id="img">
-<a href="/img/28.png" target="_blank"><img src="/img/28.png" style="width: 662px; height: 491px;"></a>
+<a href="/assets/img/28.png" target="_blank"><img src="/assets/img/28.png" style="width: 662px; height: 491px;"></a>
 </div>
 
 <div class="p">He copiado <strong>C:\menu.lst</strong> hacia <strong>C:\boot\grub</strong> y he editado el archivo de esta forma:
 </div>
 
 <div style="text-align: center;" id="img">
-<a href="/img/29.png" target="_blank"><img src="/img/29.png" style="width: 662px; height: 491px;"></a>
+<a href="/assets/img/29.png" target="_blank"><img src="/assets/img/29.png" style="width: 662px; height: 491px;"></a>
 </div>
 
 <div class="p">Finalmente lo he agregado al cargador de Windows, de esta forma este le pasará el control al grub y el grub podrá arrancar el instalador (chain loading):
 </div>
 
 <div style="text-align: center;" id="img">
-<a href="/img/30.png" target="_blank"><img src="/img/30.png" style="width: 662px; height: 491px;"></a><br>
-<a href="/img/31.png" target="_blank"><img src="/img/31.png" style="width: 662px; height: 491px;"></a><br>
-<a href="/img/32.png" target="_blank"><img src="/img/32.png" style="width: 662px; height: 491px;"></a><br>
-<a href="/img/33.png" target="_blank"><img src="/img/33.png" style="width: 662px; height: 491px;"></a><br>
+<a href="/assets/img/30.png" target="_blank"><img src="/assets/img/30.png" style="width: 662px; height: 491px;"></a><br>
+<a href="/assets/img/31.png" target="_blank"><img src="/assets/img/31.png" style="width: 662px; height: 491px;"></a><br>
+<a href="/assets/img/32.png" target="_blank"><img src="/assets/img/32.png" style="width: 662px; height: 491px;"></a><br>
+<a href="/assets/img/33.png" target="_blank"><img src="/assets/img/33.png" style="width: 662px; height: 491px;"></a><br>
 </div>
 
 <div class="p">He reiniciado y seleccionado la primera opción <strong>Start GRUB</strong> y luego <strong>Install ubuntu</strong> para comenzar la instalación, OJO: el instalador es similar al que se obtendría con el mínimal CD, es decir, viene sin wifitools y wpa_supplicant, por lo que hay que usar un cable ethernet para descargar los paquetes que sean necesarios.
