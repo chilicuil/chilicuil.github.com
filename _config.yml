@@ -6,5 +6,5 @@ destination: ./_site
 plugins:     ./_plugins
 
 future:      true
-lsi:         false
+lsi:         true
 pygments:    false
