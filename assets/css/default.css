@@ -1,74 +1,75 @@
 body {
-     background: none repeat scroll 0% 0% #010101;
-     font: 85%/1.2em 'Gibson-Regular','lucida grande';
-     margin: 0px auto;
-     padding: 0px;
+    background: none repeat scroll 0% 0% #010101;
+    font: 85%/1.2em 'Gibson-Regular','lucida grande';
+    margin: 0px auto;
+    padding: 0px;
 }
 
 a {
-     color: #0383C9;
-     font-weight: 700;
-     text-decoration: none;
+    color: #0383C9;
+    font-weight: 700;
+    text-decoration: none;
 }
 
 a:hover {
-     color: white;
-     text-decoration: underline;
+    color: white;
+    text-decoration: underline;
 }
 
 li {
-     color: #CCCCCC;
-     list-style: none outside none;
-     padding: 0px 4px;
+    color: #CCCCCC;
+    list-style: none outside none;
+    padding: 0px 4px;
 }
 
 pre {
-     background: none repeat scroll 0% 0% #191919;
-     border: 2px dashed #E5E5E5;
-     clear: both;
-     font-family: Monaco,Courier;
-     font-size: 1em;
-     line-height: 1em;
-     padding: 5px;
-     width: 740px;
+    background: none repeat scroll 0% 0% #191919;
+    border: 2px dashed #E5E5E5;
+    clear: both;
+    font-family: Monaco,Courier;
+    font-size: 1em;
+    line-height: 1em;
+    padding: 5px;
+    width: 740px;
 }
 
 #post > .p {
-     text-align: justify;
+    text-align: justify;
 }
 
 #post.publish_date {
-     text-align: right;
+    text-align: right;
 }
 
 #content {
-     float: left;
-     line-height: 1.5em;
-     margin: 0px;
-     padding: 0px;
-     text-align: left;
-     width: 750px;
+    color: #EFEFEF;
+    float: left;
+    line-height: 1.5em;
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+    width: 750px;
 }
 
 #footer {
-     border-top: 2px solid #DADADA;
-     clear: both;
-     color: gray;
-     font-size: 0.9em;
-     line-height: 1.5em;
-     margin: 0px auto;
-     padding: 10px 0px;
-     text-align: right;
+    border-top: 2px solid #DADADA;
+    clear: both;
+    color: gray;
+    font-size: 0.9em;
+    line-height: 1.5em;
+    margin: 0px auto;
+    padding: 10px 0px;
+    text-align: right;
 }
 
 #related
 
 .related-posts{
-     padding: 0px;
+    padding: 0px;
 }
 
 ul.related-posts li span {
-     color: #888888;
-     float: right;
-     font-family: monofur,monaco,courier;
+    color: #888888;
+    float: right;
+    font-family: monofur,monaco,courier;
 }
