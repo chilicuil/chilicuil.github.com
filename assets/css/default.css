@@ -37,7 +37,7 @@ pre {
     text-align: justify;
 }
 
-#post > p.publish_date {
+#post > p.date{
     text-align: right;
 }
 
