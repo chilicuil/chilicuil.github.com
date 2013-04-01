@@ -5,19 +5,18 @@ title: "instalar ubuntu desde windows sin wubi + netinstaller"
 
 ## {{ page.title }}
 
-<p class="date">{{ page.date | date_to_string }}</p>
+><p class="date">{{ page.date | date_to_string }}</p>
 
 Hace relativamente poco me pude hacer de una netbook, la estuve probando el primer mes con windows para verificar que funcionara bien y con la salida de ubuntu 10.04 decidí instalarle la nueva versión.
 
-</div>
 Habia estado viendo la forma de instalar core linux a mi usb y no pensaba detener el proceso, así que me puse a buscar métodos alternativos (que no requirieran mi usb), primero busqué alguna guía sobre la instalación en red (al parecer solo hay que montar un servidor tftp y dhcp). Sin embargo también vi otra forma, instalar grub desde windows, decidí usar primero la segunda forma porque creí que sería más fácil, y no me equivoque :)
 
 Igual sigue en mi lista de cosas por hacer lo de la instalación sobre red, un día de estos lo investigaré...
 
 Primero he descargado [grub4dos](http://grub4dos.sourceforge.net/), lo he descomprimido y he copiado los archivo grldr (grub loader) y menu.lst al root **C:**
 
-<p style="text-align: center;" id="img"><a href="/assets/img/26.png"><img src="/assets/img/26.png" style="width: 662px; height: 491px;"></a>
-<p style="text-align; center;" id="img"><a href="/assets/img/27.png"><img src="/assets/img/27.png" style="width: 662px; height: 491px;"></a>
+<p style="text-align: center;" id="img"><a href="/assets/img/26.png"><img src="/assets/img/26.png" style="width: 662px; height: 491px;"></a></p>
+<p style="text-align; center;" id="img"><a href="/assets/img/27.png"><img src="/assets/img/27.png" style="width: 662px; height: 491px;"></a></p>
 
 Luego he creado el directorio **C:\boot\grub** y descargado el instalador y el kernel en **C:\boot**
 
