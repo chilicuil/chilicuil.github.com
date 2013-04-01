@@ -1,37 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"  />
-    <meta name="keywords" content="javier,lopez,personal,blog,informatica" />
-    <link rel="alternate" type="application/atom+xml" href="http://javier.io/atom.xml" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/default.css" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.css" />
-
-    <!-- syntax http://shjs.sourceforge.net/-->
-    <script type="text/javascript" src="/assets/js/shjs_main.js"></script>
-    <link type="text/css" rel="stylesheet" href="/assets/css/shjs/sh_darkness.css">
-    <!--lightbox http://gettopup.com, the other part of the lib is called in the post.html file-->
-    <script type="text/javascript" src="http://gettopup.com/releases/latest/top_up-min.js"></script> 
-
-    <title>javier.io</title>
+    {% include meta.html %}
+    <title>{{ site.name }}</title>
   </head>
 
   <body onload="sh_highlightDocument('/assets/js/lang/', '.js');">
-      <div id="header">
-        <h1><a href="/">javier <span class="fade">lopez</span></a></h1>
-      </div>
+    {% include header.html %}
 
       <div id="content">  
         {{ content }}
       </div>
-
-      <!--<div id="footer">-->
-        <!--<a href="http://chilicuil.wordpress.com" target="_blank"> personal (english)</a> ||-->
-        <!--<a href="http://viajemotu.wordpress.com" target="_blank">ubuntu related</a> (español | english)-->
-        <!--<a href="https://github.com/chilicuil">github</a> ||-->
-        <!--<a href="http://www.youtube.com/user/ugjmexico">youtube</a> ||-->
-        <!--<a href="http://twitter.com/chilicuil">twitter</a>-->
-        <!--<p>powered by <a href="https://github.com/mojombo/jekyll">jekyll</a>, <a href="https://github.com" target="_blank">github</a>github and <a href="http://www.vim.org/" target="_blank">vim</a>-->
-      <!--</div>-->
   </body>
 </html>
