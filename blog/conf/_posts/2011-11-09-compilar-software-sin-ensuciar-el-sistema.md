@@ -3,15 +3,15 @@ layout: post
 title: "compilar software sin ensuciar el sistema"
 ---
 
-<h2>{{ page.title }}</h2>
+## {{ page.title }}
 
 <p class="date">{{ page.date | date_to_string }}</p>
 
-<p>Soy un paranóico del orden en mi sistema, así que cada vez que tengo que instalar software que no esta en los repositorios veo si puedo crear un .deb a partir de su código, algunas veces basta con quitar dependencias o cambiar un par de líneas para obtener la última versión. O usar <a href="http://asic-linux.com.mx/%7Eizto/checkinstall/">checkinstall</a> para crear un paquete .deb a partir del Makefile.</p>
+Soy un paranóico del orden en mi sistema, así que cada vez que tengo que instalar software que no esta en los repositorios veo si puedo crear un .deb a partir de su código, algunas veces basta con quitar dependencias o cambiar un par de líneas para obtener la última versión. O usar [checkinstall](http://asic-linux.com.mx/%7Eizto/checkinstall/) para crear un paquete .deb a partir del Makefile.
 
-<p>Esto no toma en cuenta las dependencias que hay que instalar para la compilación, sin embargo esto se puede arreglar si se usa <strong>pbuilder</strong>, que crea un chroot donde se puede experimentar tanto como se quiera antes de obtener la versión final. Ya he escrito sobre como <a href="https://viajemotu.wordpress.com/2010/08/10/notas-sobre-pbuilder/">configurar pbuilder</a> para obtener varios entornos en un mismo sistema. Muy a modo, pbuilder tiene una opción llamada <strong>--login</strong> que descomprime la imagen de uno de esos entornos y lo instala, los cambios en estos sistemas son descartados, por lo que la próxima vez que se mande a llamar <strong>pbuilder --login</strong> se obtiene un sistema completamente nuevo.</p>
+Esto no toma en cuenta las dependencias que hay que instalar para la compilación, sin embargo esto se puede arreglar si se usa **pbuilder**, que crea un chroot donde se puede experimentar tanto como se quiera antes de obtener la versión final. Ya he escrito sobre como [configurar pbuilder](https://viajemotu.wordpress.com/2010/08/10/notas-sobre-pbuilder) para obtener varios entornos en un mismo sistema. Muy a modo, pbuilder tiene una opción llamada **--login** que descomprime la imagen de uno de esos entornos y lo instala, los cambios en estos sistemas son descartados, por lo que la próxima vez que se mande a llamar **pbuilder --login** se obtiene un sistema completamente nuevo.
 
-<p>Se pueden combinar ambas herramientas para crear .debs que pueden ser instalados limpiamente, como ejemplo para compilar la última versión de ffmpeg (tomada de git):</p>
+Se pueden combinar ambas herramientas para crear .debs que pueden ser instalados limpiamente, como ejemplo para compilar la última versión de ffmpeg (tomada de git):
 
 <pre class="sh_sh">
 $ sudo apt-get -y remove ffmpeg x264 libx264-dev libmp3lame-dev 
@@ -24,7 +24,7 @@ $ sudo pbuilder.lucid --login
                  libx11-dev libxfixes-dev libxvidcore-dev zlib1g-dev
 </pre>
 
-<p>Para empaquetar lame (con soporte para .mp3)</p>
+Para empaquetar lame (con soporte para .mp3)
 
 <pre class="sh_sh">
 [lucid-chroot] # wget <a href="http://downloads.sourceforge.net/project/lame/lame/3.98.4/lame-3.98.4.tar.gz" target="_blank">http://downloads.sourceforge.net/project/lame/.../lame-3.98.4.tar.gz</a>
@@ -36,7 +36,7 @@ $ sudo pbuilder.lucid --login
                  --default --deldoc=yes
 </pre>
 
-<p>Para empaquetar x264</p>
+Para empaquetar x264
 
 <pre class="sh_sh">
 [lucid-chroot] # git clone git://git.videolan.org/x264
@@ -48,7 +48,7 @@ $ sudo pbuilder.lucid --login
                 --deldoc=yes --fstrans=no --default
 </pre>
 
-<p>Para empaquetar ffmpeg</p>
+Para empaquetar ffmpeg
 
 <pre class="sh_sh">
 [lucid-chroot] # git clone git://git.videolan.org/ffmpeg
@@ -62,9 +62,9 @@ $ sudo pbuilder.lucid --login
                 --backup=no --deldoc=yes --default
 </pre>
 
-<p>Una vez empaquetado el software que nos interesa se copia al sistema <strong>/var/cache/pbuilder/lucid-amd64/build/[0-9*]/home/user/{x264,lame-3.98.4,ffmpeg}/*.deb</strong></p>
+Una vez empaquetado el software que nos interesa se copia al sistema **/var/cache/pbuilder/lucid-amd64/build/[0-9*]/home/user/{x264,lame-3.98.4,ffmpeg}/*.deb**
 
-<p>Y fuera del chroot, se instalan los .debs:</p>
+Y fuera del chroot, se instalan los .debs:
 
 <pre class="sh_sh">
 $ sudo dpkg -i ffmpeg_5:201111091946-git-1_amd64.deb
@@ -72,10 +72,10 @@ $ sudo dpkg -i lame-ffmpeg_3.98.4-1_amd64.deb
 $ sudo dpkg -i x264_3:0.119.2106+git07efeb4-1_amd64.deb
 </pre>
 
-<p>Instalados los programas, se puede eliminar el entorno de construcción.</p>
+Instalados los programas, se puede eliminar el entorno de construcción.
 
 <pre class="sh_sh">
 [lucid-chroot] # exit
 </pre>
 
-<p>Lo que eliminará todos los archivos utilizados (incluyendo los .debs creados).</p>
+Lo que eliminará todos los archivos utilizados (incluyendo los .debs creados).
