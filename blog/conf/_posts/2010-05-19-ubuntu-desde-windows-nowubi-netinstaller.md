@@ -3,76 +3,47 @@ layout: post
 title: "instalar ubuntu desde windows sin wubi + netinstaller"
 ---
 
-<h2>{{ page.title }}</h2>
+## {{ page.title }}
 
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+<p class="date">{{ page.date | date_to_string }}</p>
 
-<div class="p">Hace relativamente poco me pude hacer de una netbook, la estuve probando el primer mes con windows para verificar que funcionara bien y con la salida de ubuntu 10.04 decidí instalarle la nueva versión.
+Hace relativamente poco me pude hacer de una netbook, la estuve probando el primer mes con windows para verificar que funcionara bien y con la salida de ubuntu 10.04 decidí instalarle la nueva versión.
+
 </div>
+Habia estado viendo la forma de instalar core linux a mi usb y no pensaba detener el proceso, así que me puse a buscar métodos alternativos (que no requirieran mi usb), primero busqué alguna guía sobre la instalación en red (al parecer solo hay que montar un servidor tftp y dhcp). Sin embargo también vi otra forma, instalar grub desde windows, decidí usar primero la segunda forma porque creí que sería más fácil, y no me equivoque :)
 
-<div class="p">Habia estado viendo la forma de instalar core linux a mi usb y no pensaba detener el proceso, así que me puse a buscar métodos alternativos (que no requirieran mi usb), primero busqué alguna guía sobre la instalación en red (al parecer solo hay que montar un servidor tftp y dhcp). Sin embargo también vi otra forma, instalar grub desde windows, decidí usar primero la segunda forma porque creí que sería más fácil, y no me equivoque :)
-</div>
+Igual sigue en mi lista de cosas por hacer lo de la instalación sobre red, un día de estos lo investigaré...
 
-<div class="p">Igual sigue en mi lista de cosas por hacer lo de la instalación sobre red, un día de estos lo investigaré...
-</div>
+Primero he descargado [grub4dos](http://grub4dos.sourceforge.net/), lo he descomprimido y he copiado los archivo grldr (grub loader) y menu.lst al root **C:**
 
-<div class="p">Primero he descargado <a href="http://grub4dos.sourceforge.net/" target="_blank">grub4dos</a> , lo he descomprimido y he copiado los archivo grldr (grub loader) y menu.lst al root <strong>C:\</strong>
-</div>
+<p style="text-align: center;" id="img"><a href="/assets/img/26.png"><img src="/assets/img/26.png" style="width: 662px; height: 491px;"></a>
+<p style="text-align; center;" id="img"><a href="/assets/img/27.png"><img src="/assets/img/27.png" style="width: 662px; height: 491px;"></a>
 
-<div style="text-align: center;" id="img">
-<a href="/assets/img/26.png" target="_blank"><img src="/assets/img/26.png" style="width: 662px; height: 491px;"></a><br>
-<a href="/assets/img/27.png" target="_blank"><img src="/assets/img/27.png" style="width: 662px; height: 491px;"></a><br>
-</div>
+Luego he creado el directorio **C:\boot\grub** y descargado el instalador y el kernel en **C:\boot**
 
-<div class="p">Luego he creado el directorio <strong>C:\boot\grub</strong> y descargado el instalador y el kernel en <strong>C:\boot</strong>:
-</div>
+Para x86:
 
-<div class="p">Para x86:
-</div>
+- http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-i386/current/images/netboot/ubuntu-installer/i386/initrd.gz
+- http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-i386/current/images/netboot/ubuntu-installer/i386/linux
 
-<ul>
-  <li>
-  <a href="http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-i386/current/images/netboot/ubuntu-installer/i386/initrd.gz" target="_blank">http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-i386/current/images/netboot/ubuntu-installer/i386/initrd.gz</a></li>
-  <li>
-  <a href="http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-i386/current/images/netboot/ubuntu-installer/i386/linux" target="_blank">http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-i386/current/images/netboot/ubuntu-installer/i386/linux</a></li>
-</ul>
+Para amd64:
 
-<div class="p">Para amd64:
-</div>
+- http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/initrd.gz
+- http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/linux
 
-<ul>
-  <li>
-  <a href="http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/initrd.gz" target="_blank">http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/initrd.gz</a></li>
-  <li>
-  <a href="http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/linux" target="_blank">http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/linux</a></li>
-</ul>
+<p style="text-align: center;" id="img"><a href="/assets/img/28.png" target="_blank"><img src="/assets/img/28.png" style="width: 662px; height: 491px;"></a></p>
 
-<div style="text-align: center;" id="img">
-<a href="/assets/img/28.png" target="_blank"><img src="/assets/img/28.png" style="width: 662px; height: 491px;"></a>
-</div>
+He copiado **C:\menu.lst** hacia **C:\boot\grub** y he editado el archivo de esta forma:
 
-<div class="p">He copiado <strong>C:\menu.lst</strong> hacia <strong>C:\boot\grub</strong> y he editado el archivo de esta forma:
-</div>
+<p style="text-align: center;" id="img"><a href="/assets/img/29.png" target="_blank"><img src="/assets/img/29.png" style="width: 662px; height: 491px;"></a></p>
 
-<div style="text-align: center;" id="img">
-<a href="/assets/img/29.png" target="_blank"><img src="/assets/img/29.png" style="width: 662px; height: 491px;"></a>
-</div>
+Finalmente lo he agregado al cargador de Windows, de esta forma este le pasará el control al grub y el grub podrá arrancar el instalador (chain loading):
 
-<div class="p">Finalmente lo he agregado al cargador de Windows, de esta forma este le pasará el control al grub y el grub podrá arrancar el instalador (chain loading):
-</div>
+<p style="text-align: center;" id="img"><a href="/assets/img/30.png" target="_blank"><img src="/assets/img/30.png" style="width: 662px; height: 491px;"></a></p>
+<p style="text-align: center;" id="img"><a href="/assets/img/31.png" target="_blank"><img src="/assets/img/31.png" style="width: 662px; height: 491px;"></a></p>
+<p style="text-align: center;" id="img"><a href="/assets/img/32.png" target="_blank"><img src="/assets/img/32.png" style="width: 662px; height: 491px;"></a></p>
+<p style="text-align: center;" id="img"><a href="/assets/img/33.png" target="_blank"><img src="/assets/img/33.png" style="width: 662px; height: 491px;"></a></p>
 
-<div style="text-align: center;" id="img">
-<a href="/assets/img/30.png" target="_blank"><img src="/assets/img/30.png" style="width: 662px; height: 491px;"></a><br>
-<a href="/assets/img/31.png" target="_blank"><img src="/assets/img/31.png" style="width: 662px; height: 491px;"></a><br>
-<a href="/assets/img/32.png" target="_blank"><img src="/assets/img/32.png" style="width: 662px; height: 491px;"></a><br>
-<a href="/assets/img/33.png" target="_blank"><img src="/assets/img/33.png" style="width: 662px; height: 491px;"></a><br>
-</div>
+He reiniciado y seleccionado la primera opción **Start GRUB** y luego **Install ubuntu** para comenzar la instalación, OJO: el instalador es similar al que se obtendría con el mínimal CD, es decir, viene sin wifitools y wpa_supplicant, por lo que hay que usar un cable ethernet para descargar los paquetes que sean necesarios.
 
-<div class="p">He reiniciado y seleccionado la primera opción <strong>Start GRUB</strong> y luego <strong>Install ubuntu</strong> para comenzar la instalación, OJO: el instalador es similar al que se obtendría con el mínimal CD, es decir, viene sin wifitools y wpa_supplicant, por lo que hay que usar un cable ethernet para descargar los paquetes que sean necesarios.
-</div>
-
-<ul>
-  <li>
-  <a href="https://help.ubuntu.com/community/Installation/FromWindows target="_blank"">https://help.ubuntu.com/community/Installation/FromWindows</a>
-  </li>
-</ul>
+- https://help.ubuntu.com/community/Installation/FromWindows
