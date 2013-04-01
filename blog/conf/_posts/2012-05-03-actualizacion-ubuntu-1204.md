@@ -15,9 +15,9 @@ He actualizado mi laptop de Ubuntu 10.04 a la 12.04 LTS (n___n)/, así que pasar
 Mi computadora es una netbook, así que no tiene disquetera, mmm, sin embargo eso no importa porque desde que <a href="http://chilicuil.github.com/all/os/2010/05/19/ubuntu-desde-windows-nowubi-netinstaller.html" target="_blank">descubrí</a> que Ubuntu se puede instalar sin USB ni CDROM, no descargo imágenes ISO a menos que quiera participar en el testing (<a href="http://iso.qa.ubuntu.com" target="_blank">iso.qa.ubuntu.com</a>), así pues lo primero que hice, fue cambiar el gestor de grub2 a grub-legacy
 
 <pre class="sh_sh">
-$ sudo rm -rf /boot/grub;  sudo mkdir /boot/grub
+$ sudo rm -rf /boot/grub \&& sudo mkdir /boot/grub
 $ sudo apt-get --purge remove grub-pc grub-common
-$ sudo apt-get install grub; sudo update-grub
+$ sudo apt-get install grub \&& sudo update-grub
 $ sudo grub-install /dev/sda
 </pre>
 
