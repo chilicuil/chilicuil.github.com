@@ -16,25 +16,10 @@ a:hover {
      text-decoration: underline;
 }
 
-
-.posts {
-     padding: 0px;
-}
-
 li {
      color: #CCCCCC;
      list-style: none outside none;
      padding: 0px 4px;
-}
-
-ul.posts li span {
-     color: #888888;
-     float: right;
-     font-family: monofur,monaco,courier;
-}
-
-#post > div.p {
-     text-align: justify;
 }
 
 pre {
@@ -48,10 +33,12 @@ pre {
      width: 740px;
 }
 
-#wrap {
-     color: #FFFFFF;
-     margin: 0px auto;
-     width: 650px;
+#post > .p {
+     text-align: justify;
+}
+
+#post.publish_date {
+     text-align: right;
 }
 
 #content {
@@ -72,4 +59,16 @@ pre {
      margin: 0px auto;
      padding: 10px 0px;
      text-align: right;
+}
+
+#related
+
+.related-posts{
+     padding: 0px;
+}
+
+ul.related-posts li span {
+     color: #888888;
+     float: right;
+     font-family: monofur,monaco,courier;
 }
