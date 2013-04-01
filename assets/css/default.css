@@ -33,6 +33,10 @@ pre {
     width: 740px;
 }
 
+time {
+    text-align: right;
+}
+
 #post > .p {
     text-align: justify;
 }
