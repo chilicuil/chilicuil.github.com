@@ -37,7 +37,7 @@ pre {
     text-align: justify;
 }
 
-#post > div.publish_date {
+#post > p.publish_date {
     text-align: right;
 }
 
