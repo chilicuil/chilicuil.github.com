@@ -37,11 +37,11 @@ pre {
     text-align: justify;
 }
 
-#post > .h6 {
+#post h6 {
     align: right;
 }
 
-#post > .img {
+#post img {
     display: block;
     margin-left: auto;
     margin-right: auto;
