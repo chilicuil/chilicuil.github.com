@@ -29,18 +29,18 @@ Para amd64:
 - <http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/initrd.gz>
 - <http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/linux>
 
-<p style="text-align: center;" id="img"><a href="/assets/img/28.png" target="_blank"><img src="/assets/img/28.png" style="width: 662px; height: 491px;"></a></p>
+[![alt text](/assets/img/28.png)](/assets/img/28.png)
 
 He copiado **C:\menu.lst** hacia **C:\boot\grub** y he editado el archivo de esta forma:
 
-<p style="text-align: center;" id="img"><a href="/assets/img/29.png" target="_blank"><img src="/assets/img/29.png" style="width: 662px; height: 491px;"></a></p>
+[![alt text](/assets/img/29.png)](/assets/img/29.png)
 
 Finalmente lo he agregado al cargador de Windows, de esta forma este le pasará el control al grub y el grub podrá arrancar el instalador (chain loading):
 
-<p style="text-align: center;" id="img"><a href="/assets/img/30.png" target="_blank"><img src="/assets/img/30.png" style="width: 662px; height: 491px;"></a></p>
-<p style="text-align: center;" id="img"><a href="/assets/img/31.png" target="_blank"><img src="/assets/img/31.png" style="width: 662px; height: 491px;"></a></p>
-<p style="text-align: center;" id="img"><a href="/assets/img/32.png" target="_blank"><img src="/assets/img/32.png" style="width: 662px; height: 491px;"></a></p>
-<p style="text-align: center;" id="img"><a href="/assets/img/33.png" target="_blank"><img src="/assets/img/33.png" style="width: 662px; height: 491px;"></a></p>
+[![alt text](/assets/img/30.png)](/assets/img/30.png)
+[![alt text](/assets/img/31.png)](/assets/img/31.png)
+[![alt text](/assets/img/32.png)](/assets/img/32.png)
+[![alt text](/assets/img/33.png)](/assets/img/33.png)
 
 He reiniciado y seleccionado la primera opción **Start GRUB** y luego **Install ubuntu** para comenzar la instalación, OJO: el instalador es similar al que se obtendría con el mínimal CD, es decir, viene sin wifitools y wpa_supplicant, por lo que hay que usar un cable ethernet para descargar los paquetes que sean necesarios.
 
