@@ -45,8 +45,8 @@ pre {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 587px;
-    height: 365px;
+    max-width: 60%;
+    height: auto !important;
 }
 
 #content {
