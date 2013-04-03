@@ -38,7 +38,7 @@ pre {
 }
 
 #post > .h6 {
-    text-align: right;
+    align: right;
 }
 
 #post > .img {
