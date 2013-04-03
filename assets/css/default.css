@@ -37,7 +37,7 @@ pre {
     text-align: justify;
 }
 
-#post > p.date{
+#post > .h6 {
     text-align: right;
 }
 
