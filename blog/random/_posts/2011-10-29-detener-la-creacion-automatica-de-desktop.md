@@ -4,7 +4,7 @@ title: "detener la creación automática de Desktop por firefox"
 ---
 
 ## {{ page.title }}
-<p class="date">{{ page.date | date_to_string }}</p>
+###### {{ page.date | date_to_string }}
 
 <div class="p">La creación de la carpeta 'Desktop/Escritorio' por firefox es una característica un tanto molesta para algunos (incluyendome) cuya estructura de directorios pueda diferir.
 </div>

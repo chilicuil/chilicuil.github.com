@@ -4,7 +4,7 @@ title: "archivos .deb"
 ---
 
 ## {{ page.title }}
-<p class="date">{{ page.date | date_to_string }}</p>
+###### {{ page.date | date_to_string }}
 
 <div class="p">Los archivos .deb son en realidad <a href="http://en.wikipedia.org/wiki/Ar_%28Unix%29">contenedores ar</a> lo que los diferencia a parte de la extensión, es que integran 3 binarios:
 </div>

@@ -4,7 +4,7 @@ title: "1a semana de vacaciones - agosto 2012"
 ---
 
 ## {{ page.title }}
-<p class="date">{{ page.date | date_to_string }}</p>
+###### {{ page.date | date_to_string }}
 
 <div class="p">Esta semana ha sido genial, han comenzado mis vacaciones y he tenido suficiente tiempo libre para descansar, para comenzar he dormido casi 1 dia completo =), después de lo cual he leido un par de libros:
 </div>

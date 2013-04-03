@@ -4,7 +4,7 @@ title: "dmenu para todo"
 ---
 
 ## {{ page.title }}
-<p class="date">{{ page.date | date_to_string }}</p>
+###### {{ page.date | date_to_string }}
 
 
 <div class="p">Desde que uso sistemas <a href="http://chilicuil.github.com/all/random/2010/06/16/i3-ebf3.html" target="_blank">minimalistas</a> siento que tengo mayor control sobre mi computadora, una de las ventajas de tenerlo de esta forma es que puedo hacer que mi escritorio funcione justo como lo deseo. Hoy en la tarde, en vista de haberme visto abriendo constantemente VirtualBox para correr programas que no estan soportados en Ubuntu de 64 bits, se me ocurrio automatizarlo.

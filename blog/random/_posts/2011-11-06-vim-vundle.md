@@ -4,7 +4,7 @@ title: "vim + vundle"
 ---
 
 ## {{ page.title }}
-<p class="date">{{ page.date | date_to_string }}</p>
+###### {{ page.date | date_to_string }}
 
 <div align="center"><img src="/assets/img/58.png" style="width: 306px; height: 214px;">
 </div>

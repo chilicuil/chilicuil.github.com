@@ -4,7 +4,7 @@ title: "descargar solo la última versión de un proyecto git"
 ---
 
 ## {{ page.title }}
-<p class="date">{{ page.date | date_to_string }}</p>
+###### {{ page.date | date_to_string }}
 
 <div class="p">Mantengo algunos archivos de configuración y scripts en un repositorio git, cuando quiero copiarlos a otra computadora utilizo:
 </div>

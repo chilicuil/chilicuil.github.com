@@ -4,7 +4,7 @@ title: "virtualbox y kvm en la misma máquina"
 ---
 
 ## {{ page.title }}
-<p class="date">{{ page.date | date_to_string }}</p>
+###### {{ page.date | date_to_string }}
 
 <div align="center" id="img"><img src="/assets/img/55.png" style="width: 388px; height: 143px;">
 </div>

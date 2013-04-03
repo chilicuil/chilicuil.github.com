@@ -4,7 +4,7 @@ title: "use flags (gentoo) para portatil"
 ---
 
 ## {{ page.title }}
-<p class="date">{{ page.date | date_to_string }}</p>
+###### {{ page.date | date_to_string }}
 
 <div class="p">Flags para un portatil basado en un pentium-m, con soporte para gnome y sin soporte para kde, multimedia, red, programacion y algunas otras cosas.
 </div>

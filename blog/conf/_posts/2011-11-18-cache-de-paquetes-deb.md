@@ -4,7 +4,7 @@ title: "caché de paquetes .deb"
 ---
 
 ## {{ page.title }}
-<p class="date">{{ page.date | date_to_string }}</p>
+###### {{ page.date | date_to_string }}
 
 <h3>Introducción</h3>
 

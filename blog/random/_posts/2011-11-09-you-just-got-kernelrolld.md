@@ -4,7 +4,7 @@ title: "you just got kernelroll'd ;)"
 ---
 
 ## {{ page.title }}
-<p class="date">{{ page.date | date_to_string }}</p>
+###### {{ page.date | date_to_string }}
 
 <div align="center"><img src="/assets/img/56.png" style="width: 320px; height: 240px;">
 </div>

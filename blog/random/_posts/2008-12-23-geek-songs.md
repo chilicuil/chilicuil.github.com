@@ -4,7 +4,7 @@ title: "geek songs"
 ---
 
 ## {{ page.title }}
-<p class="date">{{ page.date | date_to_string }}</p>
+###### {{ page.date | date_to_string }}
 
 <div class="p">Nunca habia escuchado este tipo de canciones, me sorprende que algunas tengan buena tonada =)
 </div>

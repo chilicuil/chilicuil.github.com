@@ -4,7 +4,7 @@ title: "watch_battery"
 ---
 
 ## {{ page.title }}
-<p class="date">{{ page.date | date_to_string }}</p>
+###### {{ page.date | date_to_string }}
 
 <div style="text-align: center;" id="img">
     <a href="/assets/img/40.png" target="_blank"><img src="/assets/img/40.png" style="width: 662px; height: 421px;"></a>

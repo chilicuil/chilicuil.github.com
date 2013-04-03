@@ -4,7 +4,7 @@ title: "sendemail"
 ---
 
 ## {{ page.title }}
-<p class="date">{{ page.date | date_to_string }}</p>
+###### {{ page.date | date_to_string }}
 
 <div class="p"><a href="http://caspian.dotconf.net/menu/Software/SendEmail/">Sendemail</a> es un script en perl que permite enviar correo desde consola usando un servidor smtp externo:
 </div>

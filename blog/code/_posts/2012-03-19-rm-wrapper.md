@@ -4,7 +4,7 @@ title: "rm wrapper"
 ---
 
 ## {{ page.title }}
-<p class="date">{{ page.date | date_to_string }}</p>
+###### {{ page.date | date_to_string }}
 
 <div class="p">Sometimes when I run:
 </div>

@@ -4,7 +4,7 @@ title: "k estas haciendo? (curl + cookies + post)"
 ---
 
 ## {{ page.title }}
-<p class="date">{{ page.date | date_to_string }}</p>
+###### {{ page.date | date_to_string }}
 
 <div class="p">En la <a href="http://mononeurona.org">MN</a> habia una sección de chat al estilo de twitter, no tenia una API definida, pero podia ser analizada y convertida para desplegarse en la consola.
 </div>

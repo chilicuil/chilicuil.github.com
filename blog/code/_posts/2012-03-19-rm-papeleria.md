@@ -4,7 +4,7 @@ title: "rm + papelería"
 ---
 
 ## {{ page.title }}
-<p class="date">{{ page.date | date_to_string }}</p>
+###### {{ page.date | date_to_string }}
 
 <div class="p">Nada, a veces me pasa que hago:
 </div>

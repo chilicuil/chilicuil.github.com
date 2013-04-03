@@ -4,7 +4,7 @@ title: "less is more, and even more with color"
 ---
 
 ## {{ page.title }}
-<p class="date">{{ page.date | date_to_string }}</p>
+###### {{ page.date | date_to_string }}
 
 <div style="text-align: center;"><img style="width: 327px; height: 243px;" src="/assets/img/1.jpg"></div>
 

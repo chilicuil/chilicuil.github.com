@@ -4,7 +4,7 @@ title: "proxy shh + socks"
 ---
 
 ## {{ page.title }}
-<p class="date">{{ page.date | date_to_string }}</p>
+###### {{ page.date | date_to_string }}
 
 <div class="p"><strong>Problema:</strong> páginas como foobar.com:3468, youtube, facebook, twitter, estan bloqueadas
 </div>
