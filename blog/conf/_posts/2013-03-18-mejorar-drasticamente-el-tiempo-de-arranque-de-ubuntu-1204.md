@@ -34,7 +34,7 @@ Para poder tomar partido de **e4rat** se requiere una versión del kernel no men
 
 Si se cumple ese requisito entonces puede descargarse de:
 
-  - <http://sourceforge.net/projects/e4rat/files>
+- <http://sourceforge.net/projects/e4rat/files>
 
 Dependiendo de la arquitectura de su sistema, querran descargar la última versión de **e4rat** para x86 | amd64 en formato **.deb** (para una instalación fácil y limpia), en mi caso he descargado **e4rat_0.2.3_amd64.deb**. Antes de instalar el paquete, hay que desinstalar **ureadahead**.
 
@@ -56,7 +56,7 @@ Reconocimiento de los habitos del sistema
 
 Para que **e4rat** mejore el tiempo de arranque necesita conocer los archivos que se utilizan, lo que sigue son las instrucciones para hacer que el sistema arranque en un modo especial que le permitirá aprender de los hábitos del mismo, sugiero que cuando se haga se abran las aplicaciones que se usan con mayor frecuencia, por ejemplo firefox.
 
- **1.-** Agregar el parámetro **init=/sbin/e4rat-collect** a la línea **kernel** en **/boot/grub/menu.lst** o a su equivalente en grub2, para mi caso:
+**1.-** Agregar el parámetro **init=/sbin/e4rat-collect** a la línea **kernel** en **/boot/grub/menu.lst** o a su equivalente en grub2, para mi caso:
 
 <pre class="config">
 title   Ubuntu 12.04.2 LTS, kernel 3.8.2-ck1
@@ -79,13 +79,13 @@ Reasignación de archivos
 
 Después de que **e4rat** conozca los hábitos del sistema, sigue la reasignación de los archivos (la parte que traerá la mejora en el rendimiento), para ello se:
 
- **1.-** Reinicia desde el modo recuperación (modo texto), en el menú del grub de mi sistema se ve así:
+**1.-** Reinicia desde el modo recuperación (modo texto), en el menú del grub de mi sistema se ve así:
 
 <pre class="config">
 Ubuntu 12.04.2 LTS, kernel 3.8.2-ck1 (recovery mode)
 </pre>
 
- **2.-** Se corre e4rat-realloc hasta que el sistema indique que no se puede optimizar más
+**2.-** Se corre e4rat-realloc hasta que el sistema indique que no se puede optimizar más
 
 <pre class="sh_sh">
 # e4rat-realloc /var/lib/e4rat/startup.log
@@ -94,7 +94,7 @@ Ubuntu 12.04.2 LTS, kernel 3.8.2-ck1 (recovery mode)
 No further improvements...
 </pre>
 
- **3.-** Se cambia el parámetro **init=/sbin/e4rat-collect** por **init=/sbin/e4rat-preload** en la línea **kernel** del archivo **/boot/grub/menu.lst** o el archivo correspondiente para grub2:
+**3.-** Se cambia el parámetro **init=/sbin/e4rat-collect** por **init=/sbin/e4rat-preload** en la línea **kernel** del archivo **/boot/grub/menu.lst** o el archivo correspondiente para grub2:
 
 <pre class="config">
 title   Ubuntu 12.04.2 LTS, kernel 3.8.2-ck1
@@ -104,9 +104,9 @@ initrd  /boot/initrd.img-3.8.2-ck1
 quiet
 </pre>
 
- **4.-** Se reinicia
+**4.-** Se reinicia
 
- **5.-** Si todo ha ido bien, su sistema deberia arrancar más rápido y sentirse más liviano con las aplicaciones de uso frecuente
+**5.-** Si todo ha ido bien, su sistema deberia arrancar más rápido y sentirse más liviano con las aplicaciones de uso frecuente
 
 #### Desinstalación
 
@@ -118,4 +118,4 @@ $ sudo apt-get install ubuntu-minimal ureadahead
 $ sudo vim /boot/grub/menu.lst #y quitar la parte init=/sbin/e4rat-preload
 </pre>
 
-  - <http://rafalcieslak.wordpress.com/2013/03/17/e4rat-decreasing-bootup-time-on-hdd-drives>
+- <http://rafalcieslak.wordpress.com/2013/03/17/e4rat-decreasing-bootup-time-on-hdd-drives>

@@ -36,9 +36,9 @@ $ print.192.168.1.11  file[.ps|pdf]
 
 Eso cubre todas mis necesidades, aunque para efectos prácticos (o para usuarios no amantes de la consola) concuerdo que es mejor instalar CUPS, permite imprimir directamente desde las aplicaciones.
 
-La copiadora/impresora a la que me refiero en este post es la canon ImageRunner [6570](http://usa.canon.com/cusa/support/office/b_w_imagerunner_copiers/imagerunner_5050_5055_5065_5070_5075_5570_6570/imagerunner_6570),
+La copiadora/impresora a la que me refiero en este post es la canon ImageRunner [6570](http://usa.canon.com/cusa/support/office/b_w_imagerunner_copiers/imagerunner_5050_5055_5065_5070_5075_5570_6570/imagerunner_6570):
 
-  - <http://www.mail-archive.com/misc@openbsd.org/msg56753.html>
-  - <http://www.gnu.org/software/a2ps>
-  - <http://www.wizards.de/~frank/pstill.html>
-  - <http://www.ghostscript.com/>
+- <http://www.mail-archive.com/misc@openbsd.org/msg56753.html>
+- <http://www.gnu.org/software/a2ps>
+- <http://www.wizards.de/~frank/pstill.html>
+- <http://www.ghostscript.com/>
