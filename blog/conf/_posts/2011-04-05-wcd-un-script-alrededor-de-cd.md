@@ -55,7 +55,7 @@ alias cd='. wcd'
 Donde **wcd** no es el binario (ver $ sudo dpkg -L wcd para saber a lo que me refiero), sino un script en **/usr/local/bin/wcd** con el siguiente contenido:
 
 <pre class="sh_sh">
-#due to cd & subshells nature this script only works if it's sourced
+#due to cd and subshells nature this script only works if it's sourced
 #alias cd=". this_script"
 
 WICD_BIN="/usr/bin/wcd.exec"
