@@ -4,7 +4,6 @@ title: "compilar software sin ensuciar el sistema"
 ---
 
 ## {{ page.title }}
-
 <p class="date">{{ page.date | date_to_string }}</p>
 
 Soy un paranóico del orden en mi sistema, así que cada vez que tengo que instalar software que no esta en los repositorios veo si puedo crear un .deb a partir de su código, algunas veces basta con quitar dependencias o cambiar un par de líneas para obtener la última versión. O usar [checkinstall](http://asic-linux.com.mx/%7Eizto/checkinstall/) para crear un paquete .deb a partir del Makefile.

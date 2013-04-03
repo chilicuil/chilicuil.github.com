@@ -3,9 +3,8 @@ layout: post
 title: "vim + vundle"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+## {{ page.title }}
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <div align="center"><img src="/assets/img/58.png" style="width: 306px; height: 214px;">
 </div>

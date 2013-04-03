@@ -3,9 +3,8 @@ layout: post
 title: "compartir conexión pc a pc"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+## {{ page.title }}</h2>
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <h3>Inalámbrica a alámbrica</h3>
 

@@ -3,10 +3,8 @@ layout: post
 title: "archivos .deb"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
-<!--<div class="publish_date">19 May 2010</div>-->
+## {{ page.title }}
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <div class="p">Los archivos .deb son en realidad <a href="http://en.wikipedia.org/wiki/Ar_%28Unix%29">contenedores ar</a> lo que los diferencia a parte de la extensión, es que integran 3 binarios:
 </div>

@@ -3,9 +3,8 @@ layout: post
 title: "autocompletado en bash"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+## {{ page.title }}
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <div align="center" id="img">
 <a href="/assets/img/54.png"><img src="/assets/img/54.png" style="width: 306px; height: 75px;"></a>

@@ -3,9 +3,8 @@ layout: post
 title: "use flags (gentoo) para portatil"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+## {{ page.title }}
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <div class="p">Flags para un portatil basado en un pentium-m, con soporte para gnome y sin soporte para kde, multimedia, red, programacion y algunas otras cosas.
 </div>

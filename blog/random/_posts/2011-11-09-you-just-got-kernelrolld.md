@@ -3,9 +3,8 @@ layout: post
 title: "you just got kernelroll'd ;)"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+## {{ page.title }}
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <div align="center"><img src="/assets/img/56.png" style="width: 320px; height: 240px;">
 </div>

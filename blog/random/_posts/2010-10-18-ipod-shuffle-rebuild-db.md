@@ -3,9 +3,8 @@ layout: post
 title: "ipod shuffle - rebuild_db"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+## {{ page.title }}
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <div class="p">Hace tiempo compré un ipod shuffle, y como todos los dispositivos de apple, es un poco complicado usarlo en linux, rythmobox y gtkpod de repente hacen cosas raras, sin embargo hace poco encontré un proyecto llamado <a href="http://shuffle-db.sourceforge.net/" target="_blank">rebuild_db</a> que resuelve el problema de manera elegante, al menos en mi opinión.
 

@@ -3,9 +3,8 @@ layout: post
 title: "watch_battery"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+## {{ page.title }}
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <div style="text-align: center;" id="img">
     <a href="/assets/img/40.png" target="_blank"><img src="/assets/img/40.png" style="width: 662px; height: 421px;"></a>

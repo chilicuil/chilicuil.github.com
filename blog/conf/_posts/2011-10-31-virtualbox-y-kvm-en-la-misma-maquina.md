@@ -3,9 +3,8 @@ layout: post
 title: "virtualbox y kvm en la misma máquina"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+## {{ page.title }}
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <div align="center" id="img"><img src="/assets/img/55.png" style="width: 388px; height: 143px;">
 </div>

@@ -3,9 +3,8 @@ layout: post
 title: "backups: git, rsync, tar, netcat y cp"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+## {{ page.title }}
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <div class="p">Mi sistema de backups es realmente malo, no me siento particularmente orgulloso de decirlo pero es la verdad, cada vez que me acuerdo de propagarlo (si es que lo hago), me pongo a buscar los comandos para hacerlo y al finalizar siempre olvido las opciones, por lo que tengo que volver a buscarlas. Así que un primer paso será dejarlos por aquí para tenerlos a la vista rápidamente, en lo que me decido a hechar todo esto a la basura y configurar algo que valga la pena. Las propuestas son bienvenidas.
 </div>

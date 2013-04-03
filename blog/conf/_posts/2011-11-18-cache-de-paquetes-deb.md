@@ -3,8 +3,7 @@ layout: post
 title: "caché de paquetes .deb"
 ---
 
-<h2>{{ page.title }}</h2>
-
+## {{ page.title }}
 <p class="date">{{ page.date | date_to_string }}</p>
 
 <h3>Introducción</h3>

@@ -3,9 +3,8 @@ layout: post
 title: "geek songs"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+## {{ page.title }}
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <div class="p">Nunca habia escuchado este tipo de canciones, me sorprende que algunas tengan buena tonada =)
 </div>

@@ -3,9 +3,8 @@ layout: post
 title: "instalar varias versiones de python en ubuntu - pythonbrew"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+## {{ page.title }}
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <div class="p">Para instalar varias versiones de python, se requiere pythonbrew y curl:
 </div>

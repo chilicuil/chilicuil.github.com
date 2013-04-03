@@ -4,7 +4,6 @@ title: "instalar ubuntu desde windows sin wubi + netinstaller"
 ---
 
 ## {{ page.title }}
-
 <p class="date">{{ page.date | date_to_string }}</p>
 
 Hace relativamente poco me pude hacer de una netbook, la estuve probando el primer mes con windows para verificar que funcionara bien y con la salida de ubuntu 10.04 decidí instalarle la nueva versión.
@@ -15,8 +14,8 @@ Igual sigue en mi lista de cosas por hacer lo de la instalación sobre red, un d
 
 Primero he descargado [grub4dos](http://grub4dos.sourceforge.net/), lo he descomprimido y he copiado los archivo grldr (grub loader) y menu.lst al root **C:**
 
-<p style="text-align: center;" id="img"><a href="/assets/img/26.png"><img src="/assets/img/26.png" style="width: 662px; height: 491px;"></a></p>
-<p style="text-align; center;" id="img"><a href="/assets/img/27.png"><img src="/assets/img/27.png" style="width: 662px; height: 491px;"></a></p>
+[![alt text](/assets/img/26.png)](/assets/img/26.png)
+[![alt text](/assets/img/27.png)](/assets/img/27.png)
 
 Luego he creado el directorio **C:\boot\grub** y descargado el instalador y el kernel en **C:\boot**
 

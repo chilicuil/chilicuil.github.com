@@ -4,7 +4,6 @@ title: "actualización ubuntu 12.04"
 ---
 
 ## {{ page.title }}
-
 <p class="date">{{ page.date | date_to_string }}</p>
 
 <p align="center" id="img"><a href="/assets/img/49.png"><img src="/assets/img/49.png" style="width: 417px; height: 234px;"></a></p>

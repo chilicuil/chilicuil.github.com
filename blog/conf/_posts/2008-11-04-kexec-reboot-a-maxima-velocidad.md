@@ -3,9 +3,8 @@ layout: post
 title: "kexec, rebooteando a máxima velocidad"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+## {{ page.title }}
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <div class="p">Hace un ratito me acabo de enterar de que existe una manera de rebootear realmente rápido en Linux, y a estado ahí desde el comienzo de la rama 2.6. Se trata de Kexec un conjunto de llamadas al sistema, que reemplazan al kernel actual con el nuevo, saltandose a la bios y a la inicialización del hardware. Lo que en pocas palabras reducen el tiempo de booteo en 20, 30 y hasta en 60!!!!!! segundos.
 </div>

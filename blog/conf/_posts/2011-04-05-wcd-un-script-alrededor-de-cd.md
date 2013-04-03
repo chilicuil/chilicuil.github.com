@@ -3,9 +3,8 @@ layout: post
 title: "wcd, un script alrededor de cd"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+## {{ page.title }}
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <div class="p">Usar la consola, tiene varios inconvenientes, algunos de los cuales son, desde mi punto de vista, la manipulación de archivos, los cambios de directorios y las opciones de los comandos (lo que es para uno no lo es para otro y menos entre SO's).
 </div>

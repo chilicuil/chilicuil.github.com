@@ -3,9 +3,8 @@ layout: post
 title: "descargar solo la última versión de un proyecto git"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+## {{ page.title }}
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <div class="p">Mantengo algunos archivos de configuración y scripts en un repositorio git, cuando quiero copiarlos a otra computadora utilizo:
 </div>

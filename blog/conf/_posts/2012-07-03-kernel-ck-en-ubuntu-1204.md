@@ -3,9 +3,8 @@ layout: post
 title: "kernel -ck en ubuntu precise"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+## {{ page.title }}
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <div class="p"><strong><a href="http://ck-hack.blogspot.mx/" target="_blank">-ck</a></strong> es la extensión de los parches de <a href="http://en.wikipedia.org/wiki/Con_Kolivas" target="_blank">Con Kolivas</a> para incrementar el rendimiento de Linux en PC's y laptops "normales". Tradicionalmente el kernel viene optimizado para servidores, clusters, y mainframes, de ahí que estos parches sean populares entre las personas que desean mejorar su entorno para juegos, multimedia y trabajo ordinario (navegación en internet, edición de textos, mensajería instantanea, etc).
 </div>

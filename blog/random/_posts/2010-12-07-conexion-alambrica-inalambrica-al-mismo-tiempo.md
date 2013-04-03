@@ -3,9 +3,8 @@ layout: post
 title: "conexión alámbrica e inalámbrica al mismo tiempo con wicd"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+## {{ page.title }}
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <div class="p">Cuando se esta usando <a href="http://wicd.sourceforge.net" target="_blank">wicd</a>, se pueden configurar 2 conexiones al mismo tiempo editando <strong>/etc/network/interfaces</strong>:
 </div>

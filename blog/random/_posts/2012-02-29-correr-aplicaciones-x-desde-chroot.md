@@ -3,9 +3,8 @@ layout: post
 title: "correr aplicaciones X desde un chroot"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+## {{ page.title }}
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <div class="p">Ya había escrito <a href="http://chilicuil.github.com/all/os/2011/11/09/compilar-software-sin-ensuciar-el-sistema.html">anteriormente</a> sobre como compilar programas sin 'ensuciar' el sistema con dependencias, hoy lo haŕe sobre como hacerlo utilizando herramientas gráficas.
 </div>

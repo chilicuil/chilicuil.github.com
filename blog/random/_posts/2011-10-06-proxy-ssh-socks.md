@@ -3,9 +3,8 @@ layout: post
 title: "proxy shh + socks"
 ---
 
-<h2>{{ page.title }}</h2>
-
-<div class="publish_date">{{ page.date | date_to_string }}</div>
+## {{ page.title }}
+<p class="date">{{ page.date | date_to_string }}</p>
 
 <div class="p"><strong>Problema:</strong> páginas como foobar.com:3468, youtube, facebook, twitter, estan bloqueadas
 </div>
