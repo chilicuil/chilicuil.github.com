@@ -33,12 +33,21 @@ pre {
     width: 740px;
 }
 
-#post > .p {
-    text-align: justify;
+strong>em,
+em>strong,
+b>i,
+i>b {
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:underline;
 }
 
 h6 {
     align: right;
+}
+
+#post > .p {
+    text-align: justify;
 }
 
 #post img {

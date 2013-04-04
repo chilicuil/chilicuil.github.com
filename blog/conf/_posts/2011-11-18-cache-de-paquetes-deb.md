@@ -46,13 +46,13 @@ Lo que dejará un script en **/usr/local/bin** llamado **add_proxy_repository**,
 $ add_proxy_repository [add|remove]
 </pre>
 
-Por alguna torpe razón, apt-get se empeñará en usar el proxy aún cuando no este disponible.., cuando esto pase, se debe usar el script para deshabilitar el proxy, en caso de querer automatizarlo, se puede usar <u>squid-deb-proxy-client</u> que verifica la conexión y dependiendo del estado en <a href="http://avahi.org">avahi</a> habilitaran deshabilitaran la línea que afecta a apt..., creo que sería mucho más práctico que apt-get siguiera leyendo sources.list y tomará los repositorios declarados ahí en caso de no encontrar accesible la dirección del proxy...
+Por alguna torpe razón, apt-get se empeñará en usar el proxy aún cuando no este disponible.., cuando esto pase, se debe usar el script para deshabilitar el proxy, en caso de querer automatizarlo, se puede usar **_squid-deb-proxy-client_** que verifica la conexión y dependiendo del estado en [avahi](http://avahi.org) habilitaran deshabilitaran la línea que afecta a apt..., creo que sería mucho más práctico que apt-get siguiera leyendo sources.list y tomará los repositorios declarados ahí en caso de no encontrar accesible la dirección del proxy...
 
 A efectos prácticos y para máquinas de escritorio, solo se correrá una única vez **$ add_proxy_repository add**.., mientras que para laptops significa estar habilitando/deshabilitando de acuerdo a la red en la que se encuentre, por lo que si puedo sugerir algo, es que se use este script para máquinas de escritorio y se de preferencia a **squid-deb-proxy** cuando se trate de una laptop
 
-Extra</h3>
+### Extra
 
-<h4>Servidor / cliente</h4>
+#### Servidor / cliente
 
 Para que los paquetes del servidor también se agreguen al caché, sera necesario configurarlo como cliente
 
@@ -62,7 +62,7 @@ Para que los paquetes del servidor también se agreguen al caché, sera necesari
 $ add_proxy_repository add #IP: localhost
 </pre>
 
-<h4>Importar paquetes del servidor</h4>
+#### Importar paquetes del servidor
 
 Se pueden importar los paquetes que han sido descargados con anterioridad en el servidor:
 
@@ -76,12 +76,11 @@ $ sudo apt-get update
 $ tree /var/cache/apt-cacher-ng
 </pre>
 
-Se va a <a href="http://localhost:9999/acng-report.html">http://localhost:9999/acng-report.html</a> y se presiona '**Start import**':
+Se va a <http://localhost:9999/acng-report.html> y se presiona '**Start import**':
 
-<p align="center" id="img"><img src="/assets/img/57.png" style="width: 406px; height: 175px;">
+[![](/assets/img/57.png)](/assets/img/57.png)
 
-
-<h4>Importar paquetes de otras máquinas</h4>
+#### Importar paquetes de otras máquinas
 
 Se limpia _import
 
@@ -93,7 +92,7 @@ $ sudo rm -rf /var/cache/apt-cacher-ng/_import
 
 [+] Cliente:
 
-Se copian los paquetes *.deb al servidor, tal vez generando un tar.gz:
+Se copian los paquetes \*.deb al servidor, tal vez generando un tar.gz:
 
 <pre class="sh_sh">
 $ tar zcvf debs.tar.gz /var/cache/apt/archives/*.deb
@@ -102,7 +101,7 @@ $ sudo python -m SimpleHTTPServer 80
 
 [+] Servidor:
 
-Extrayendo los *.deb y copiandolos a import
+Extrayendo los \*.deb y copiandolos a import
 
 <pre class="sh_sh">
 $ wget http://ip_cliente/debs.tar.gz        
@@ -120,13 +119,11 @@ $ sudo apt-get update
 
 [+] Servidor:
 
+Después de lo cual se puede ir a <http://localhost:9999/acng-report.html> y presionar '**Start import**':
 
-Después de lo cual se puede ir a <a href="http://localhost:9999/acng-report.html">http://localhost:9999/acng-report.html</a> y presionar '**Start import**':
-
-<h4>Eliminar apt-cacher-ng</h4>
+#### Eliminar apt-cacher-ng
 
 [+] Servidor:
-
 
 <pre class="sh_sh">
 $ sudo apt-get remove apt-cacher-ng && sudo rm -rf /var/cache/apt-cacher-ng
@@ -134,12 +131,11 @@ $ sudo apt-get remove apt-cacher-ng && sudo rm -rf /var/cache/apt-cacher-ng
 
 [+] Clientes:
 
-
 <pre class="sh_sh">
 $ sudo add_proxy_repository remove
 $ sudo rm -rf /usr/local/bin/add_proxy_repository
 </pre>
 
-Conclusión</h3>
+### Conclusión
 
- Creo que para efectos prácticos las personas deberían usar squid-deb-proxy cuando fuera posible, de todas las soluciones es la que menos pasos requiere, dos paquetes para el servidor y uno para el cliente, con igual número de instrucciones. Además de ser la única de funcionar out-of-the-box para laptops o computadoras que se conectan a diferentes redes (aún tengo que ver como importar paquetes). apt-cacher-ng también es una buena opción para computadoras que permaneceran en la misma red y no requiere avahi.
+Creo que para efectos prácticos las personas deberían usar squid-deb-proxy cuando fuera posible, de todas las soluciones es la que menos pasos requiere, dos paquetes para el servidor y uno para el cliente, con igual número de instrucciones. Además de ser la única de funcionar out-of-the-box para laptops o computadoras que se conectan a diferentes redes (aún tengo que ver como importar paquetes). apt-cacher-ng también es una buena opción para computadoras que permaneceran en la misma red y no requiere avahi.
