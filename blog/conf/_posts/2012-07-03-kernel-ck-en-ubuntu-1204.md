@@ -37,7 +37,7 @@ $ time bash kernel-ck-ubuntu
 $ sudo dpkg -i ./linux-*.deb
 </pre>
 
-[![alt text](/assets/img/59.png)](/assets/img/59.png)
+[![](/assets/img/59.png)](/assets/img/59.png)
 
 Y reiniciar el equipo
 
