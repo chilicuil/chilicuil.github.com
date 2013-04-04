@@ -6,25 +6,20 @@ title: "virtualbox y kvm en la misma máquina"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-<div align="center" id="img"><img src="/assets/img/55.png" style="width: 388px; height: 143px;">
-</div>
+[![](/assets/img/55.png)](/assets/img/55.png)
 
-<div class="p">La imagen de arriba es el error que sale cada vez que se intenta correr VirtualBox cuando KVM esta instalado, en algunos foros sugieren desinstalar kvm, sin embargo si se quieren usar ambas soluciones se pueden deshabilitar los módulos de uno, cuando se quiera usar el otro.
-</div>
+La imagen de arriba es el error que sale cada vez que se intenta correr VirtualBox cuando KVM esta instalado, en algunos foros sugieren desinstalar kvm, sin embargo si se quieren usar ambas soluciones se pueden deshabilitar los módulos de uno, cuando se quiera usar el otro.
 
-<div class="p">Para Ubuntu, cada vez que se quiera usar Virtualbox se deshabilitan los módulos de KVM:
-</div>
+Para Ubuntu, cada vez que se quiera usar Virtualbox se deshabilitan los módulos de KVM:
 
 <pre class="sh_sh">
 $ sudo service qemu-kvm stop && sudo service vboxdrv start
 </pre>
 
-<div class="p">Y visceversa:
-</div>
+Y visceversa:
 
 <pre class="sh_sh">
 $ sudo service vboxdrv stop && sudo service qemu-kvm
-</pre>
+ </pre>
 
-<div class="p">Para otras distribuciones <strong>rmmod/modprobe/lsmod</strong> hacen el truco
-</div>
+Para otras distribuciones <strong>rmmod/modprobe/lsmod</strong> hacen el truco
