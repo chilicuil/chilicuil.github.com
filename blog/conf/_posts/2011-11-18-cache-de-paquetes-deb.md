@@ -126,7 +126,8 @@ Después de lo cual se puede ir a <http://localhost:9999/acng-report.html> y pre
 [+] Servidor:
 
 <pre class="sh_sh">
-$ sudo apt-get remove apt-cacher-ng && sudo rm -rf /var/cache/apt-cacher-ng
+$ sudo apt-get remove apt-cacher-ng
+$ sudo rm -rf /var/cache/apt-cacher-ng
 </pre>
 
 [+] Clientes:
