@@ -293,6 +293,8 @@ En el ejemplo anterior se utiliza **case** para determinar los comandos que sigu
 
 <pre class="sh_sh">
 for (( i=0; i < ${#COMP_WORDS[@]}-1; i++ )); do
+</pre>
+<pre class="sh_sh">
     if [[ ${COMP_WORDS[i]} == @(opcion1|opcion2|opcion3) ]]; then
         special=${COMP_WORDS[i]}
     fi
