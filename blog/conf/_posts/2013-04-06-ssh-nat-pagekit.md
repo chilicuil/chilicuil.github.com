@@ -15,15 +15,17 @@ Si han pensado en dyndns y proyectos similares han estado cerca, pero dyndns sol
 Así pues, la solución es conectarme a mi equipo desde donde sea que este yo y el, ahora mismo lo hago de esta forma:
 
 <pre class="sh_sh">
-algun_lugar $ ssh home.javier.io
+[algun_lugar] $ ssh home.javier.io
 </pre>
 
-No importa donde este, tampoco importa en que red se encuentre mi equipo personal, este comando funcionará, =) Esto no solo puede usarse para logearse a su computadora, si se dedican al desarrollo web y quieren mostrar su trabajo en menos de 1min y solo por el tiempo que deseen puede servirles. Todo empieza con una cuenta en <pagekite.net> (un proyecto de software libre), startup de [Bjarni Einarsson](http://bre.klaki.net/), hacker islandes.
+No importa donde este, tampoco importa en que red se encuentre mi equipo personal, este comando funcionará, =) Esto no solo puede usarse para logearse a su computadora, si se dedican al desarrollo web y quieren mostrar su trabajo en menos de 1min y solo por el tiempo que deseen puede servirles. Todo empieza con una cuenta en <http://pagekite.net> (un proyecto de software libre), startup de [Bjarni Einarsson](http://bre.klaki.net/), hacker islandes.
 
 Una vez con su una cuenta, podran correr:
 
+<pre class="sh_sh">
 $ curl -s https://pagekite.net/pk/ |sudo bash #lo que instalara pagekite, 1 solo archivo
 $ pagekite.py 80 yourname.pagekite.me
+</pre>
 
 Y tendran su servidor web accesible en la red, tomaré por sentado que pueden instalar y configurar pagekite hasta aquí. Ahora mostrare como hacerlo para que resuelva a su dominio y con el protocolo ssh en lugar del http (corriendo en el puerto 1003).
 
@@ -31,34 +33,34 @@ Y tendran su servidor web accesible en la red, tomaré por sentado que pueden in
 $ ssh home.javier.io
 </pre>
 
-    192.168.1.x       home.javier.io  home.javier.pagekite.me   192.168.1.x
-    :::::::::::        :::::::::::          ::::::::::::        :::::::::::::::
-    | cliente |   =>   | dominio |    =>    | pagekite |     => | servidor ssh|
-    :::::::::::        :::::::::::          ::::::::::::        :::::::::::::::
+           192.168.1.x       home.javier.io  home.javier.pagekite.me   192.168.1.x
+           :::::::::::        :::::::::::          ::::::::::::        :::::::::::::::
+           | cliente |   =>   | dominio |    =>    | pagekite |     => | servidor ssh|
+           :::::::::::        :::::::::::          ::::::::::::        :::::::::::::::
 
 Hay que notar, que aunque el servidor ssh corre en el puerto 1003 (o en el que ustedes quieran), al momento de conectarse, se hace la referencia al puerto por defecto (22), corto y seguro.
 
-1. Cname
+- Cname
 
-Para que esto funcione, home.javier.io debe apuntar a pagekite, esto se hace agregando una entrada CNAME al dns de su dominio, para mi caso, he creado una entrada de **home** a **home.javier.pagekite.me** desde <iwantmyname.com>, que es donde registro mis dominios y que recomiendo.
+Para que esto funcione, home.javier.io debe apuntar a pagekite, esto se hace agregando una entrada CNAME al dns de su dominio, para mi caso, he creado una entrada de **home** a **home.javier.pagekite.me** desde <http://iwantmyname.com>, que es donde registro mis dominios y que recomiendo.
 
-[![alt text](/assets/img/67.png)](/assets/img/67.png)
+[![alt text](/assets/img/69.png)](/assets/img/69.png)
 
-2. Subdominio en pagekite.me
+- Subdominio en [pagekite.me](http://pagekite.net)
 
 Cuando se registra una cuenta, pagekite otorga un subdominio en forma de **su_nick.pagekite.me**, sin embargo a esos subdominios tambien se les [pueden agregar más](https://pagekite.net/signup/?more=free) subdominios a la vez, **subdominio.su_nick.pagekite.me**: 
 
-[![alt text](/assets/img/67.png)](/assets/img/67.png)
+[![alt text](/assets/img/70.png)](/assets/img/70.png)
 
-3. Kite home.javier.io
+- Kite home.javier.io
 
 Finalmente, [se crea una entrada](https://pagekite.net/signup/?more=cname#cnameForm) con **home.javier.io** en el registreo de kites.
 
-[![alt text](/assets/img/67.png)](/assets/img/67.png)
+[![alt text](/assets/img/71.png)](/assets/img/71.png)
 
 De regreso al [índice](https://pagekite.net/home/), la cuenta debería lucir así.
 
-[![alt text](/assets/img/67.png)](/assets/img/67.png)
+[![alt text](/assets/img/72.png)](/assets/img/72.png)
 
 ### Servidor
 
