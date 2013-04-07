@@ -10,24 +10,28 @@ Muy bien, admito que el título pudo ser mejor, pero piensen en esto, una forma 
 
 [![alt text](/assets/img/68.jpg)](/assets/img/68.jpg)
 
-Si han pensado en dyndns y proyectos similares han estado cerca, pero dyndns solo permite mantener un sub dominio (no muy atractivo) y se tienen que seguir configurando los routers para permitir el paso a los puertos que nos interesan. Antes de continuar un poco de background, soy un fanatico de la personalización, mi computadora tiene una configuración que me ha tomado años definir, y que me permite (en mi propia opinion) hacer mas con menos. Cientos de aliases, 5-6 entornos chroots preconfigurados, maquinas virtuales locales (y remotas, ec2), un archivo .bash_history de ~38,000 lineas... También soy fan de la portabilidad, no me gusta llevar nada conmigo a excepción de un telefono, unos audifonos y un libro.
+Si han pensado en dyndns y proyectos similares han estado cerca, pero dyndns solo permite mantener un sub dominio (no muy atractivo) y se tienen que seguir configurando los routers para permitir el paso a los puertos que nos interesan. Antes de continuar un poco de background, soy un fanatico de la personalización, mi computadora tiene una configuración que me ha tomado años definir, y que me permite (en mi propia opinion) hacer mas cosas con menos esfuerzo. Cientos de aliases, 5-6 entornos chroots preconfigurados, maquinas virtuales locales (y remotas, ec2), un archivo .bash_history de ~38,000 lineas... También soy fan de la portabilidad, no me gusta llevar nada conmigo a excepción de un telefono, unos audifonos y un libro.
 
-Así pues, la solución es conectarme a mi equipo desde donde sea que este yo y el, ahora mismo lo hago de esta forma:
+Así pues, la solución que he contemplado es conectarme a mi equipo desde donde sea que este, ahora mismo lo hago de esta forma:
 
 <pre class="sh_sh">
 [algun_lugar] $ ssh home.javier.io
 </pre>
 
-No importa donde este, tampoco importa en que red se encuentre mi equipo personal, este comando funcionará, =) Esto no solo puede usarse para logearse a su computadora, si se dedican al desarrollo web y quieren mostrar su trabajo en menos de 1min y solo por el tiempo que deseen puede servirles. Todo empieza con una cuenta en <http://pagekite.net> (un proyecto de software libre), startup de [Bjarni Einarsson](http://bre.klaki.net/), hacker islandes.
+No importa donde este, tampoco importa en que red se encuentre mi equipo personal, este comando funcionará, =) Esto no solo puede usarse para logearse a su computadora, si se dedican al desarrollo web y quieren mostrar su trabajo en menos de 1min y solo por el tiempo que deseen puede servirles.
+
+Todo empieza con una cuenta en <http://pagekite.net> un startup de [Bjarni Einarsson](http://bre.klaki.net/), hacker islandes.
 
 Una vez con su una cuenta, podran correr:
 
 <pre class="sh_sh">
-$ curl -s https://pagekite.net/pk/ |sudo bash #lo que instalara pagekite, 1 solo archivo
+$ curl -s https://pagekite.net/pk/ |sudo bash #lo que instalara pagekite que es 1 solo archivo
 $ pagekite.py 80 yourname.pagekite.me
 </pre>
 
-Y tendran su servidor web accesible en la red, tomaré por sentado que pueden instalar y configurar pagekite hasta aquí. Ahora mostrare como hacerlo para que resuelva a su dominio y con el protocolo ssh en lugar del http (corriendo en el puerto 1003).
+Y tendran su servidor web accesible en la red, tomaré por sentado que pueden instalar y configurar pagekite hasta aquí. Ahora mostraré como hacerlo para que resuelva a un dominio personalizado y con el protocolo ssh en lugar del http (corriendo en el puerto 1003).
+
+Esto es más o menos lo que pasa cuando se utiliza pagekite:
 
 <pre class="sh_sh">
 $ ssh home.javier.io
@@ -38,11 +42,11 @@ $ ssh home.javier.io
            | cliente |   =>   | dominio |    =>    | pagekite |     => | servidor ssh|
            :::::::::::        :::::::::::          ::::::::::::        :::::::::::::::
 
-Hay que notar, que aunque el servidor ssh corre en el puerto 1003 (o en el que ustedes quieran), al momento de conectarse, se hace la referencia al puerto por defecto (22), corto y seguro.
+Hay que notar, que aunque el servidor ssh corre en el puerto 1003 (o en el que ustedes quieran), al momento de conectarse, se hace la referencia al puerto por defecto (22), esto es corto y seguro.
 
 - Cname
 
-Para que esto funcione, home.javier.io debe apuntar a pagekite, esto se hace agregando una entrada CNAME al dns de su dominio, para mi caso, he creado una entrada de **home** a **home.javier.pagekite.me** desde <http://iwantmyname.com>, que es donde registro mis dominios y que recomiendo.
+Para que esto funcione, home.javier.io debe apuntar a pagekite, esto se hace agregando una entrada CNAME al dns de su dominio, para mi caso, he creado una entrada de **home** a **home.javier.pagekite.me** desde <http://iwantmyname.com>, que es donde registro mis dominios.
 
 [![alt text](/assets/img/69.png)](/assets/img/69.png)
 
@@ -64,7 +68,7 @@ De regreso al [índice](https://pagekite.net/home/), la cuenta debería lucir as
 
 ### Servidor
 
-Si esto es verdad, se puede configurar el 'servidor' (la máquina a la que queremos conectarnos) editando el archivo) **$HOME/.pagekite.rc**:
+Si han finalizado los pasos anteriores, podrán configurar la máquina a la que deseen conectarse agregando un archivo **$HOME/.pagekite.rc**:
 
     ###[ Current settings for pagekite.py v0.5.6a. ]#########
     #
@@ -90,20 +94,26 @@ Si esto es verdad, se puede configurar el 'servidor' (la máquina a la que quere
     ###[ End of pagekite.py configuration ]#########
     END
 
-Una vez hecho eso, se arranca:
+Una vez hecho eso, se descarga y arranca pagekite.
 
-maquina_a_la_que_quiero_conectarme $ ./pagekite.py
+<pre class="sh_sh">
+[maquina_a_la_que_quiero_conectarme] $ ./pagekite.py
+</pre>
 
-Y en menos de 1 minuto las urls se actualizaran para poder entrar a los servicios configurados (para este ejemplo, http y ssh).
+Lo que pondrá todo en marcha.
 
 ### Cliente
 
-Para conectarse desde cualquier cliente via ssh. Se edita **$HOME/.ssh/config**:
+Para conectarse desde cualquier cliente via ssh. Debe configurarse un proxy, para ssh se edita **$HOME/.ssh/config**:
 
     Host home.javier.io
         CheckHostIP no
         ProxyCommand /bin/nc -X connect -x %h:443 %h %p
 
-Es todo, desde ese momento, cada vez que tengan que dejar su equipo en algun lugar, se ejecuta $ pagekite.py , y desde otro equipo, $ ssh subdominio@dominio.com
+OJO: debe ser la version de nc de openbsd, en Ubuntu se llama **netcat-openbsd**, Y despues:
 
-Pagekite es software libre, pueden correr la parte que hace de intermediaria en un [vps](http://es.wikipedia.org/wiki/Servidor_virtual_privado) o en una computadora que tenga ip pública.
+<pre class="sh_sh">
+$ ssh home.javier.io
+</pre>
+
+Pagekite es software libre, pueden correr la parte que hace de intermediaria en un [vps](http://es.wikipedia.org/wiki/Servidor_virtual_privado) o en una computadora que tenga ip pública, aunque es mucho más fácil hacerlo usando su propio servicio y apoyan su desarrollo al mismo tiempo.
