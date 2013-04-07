@@ -8,7 +8,7 @@ title: "conexión a ssh transpasando nats en dominio personalizado"
 
 Muy bien, admito que el título pudo ser mejor, pero piensen en esto, una forma de conectarse a una computadora sin tener que modificar las reglas de nateo de un router y utilizando siempre el mismo dominio (su dominio), incluso cuando la maquina a la que deseen conectarse este cambiando entre redes. Todo esto con solo 1 comando, si esto no los emociona, pueden dejar de leer ahora.
 
-[![alt text](/assets/img/68.png)](/assets/img/68.png)
+[![alt text](/assets/img/68.jpg)](/assets/img/68.jpg)
 
 Si han pensado en dyndns y proyectos similares han estado cerca, pero dyndns solo permite mantener un sub dominio (no muy atractivo) y se tienen que seguir configurando los routers para permitir el paso a los puertos que nos interesan. Antes de continuar un poco de background, soy un fanatico de la personalización, mi computadora tiene una configuración que me ha tomado años definir, y que me permite (en mi propia opinion) hacer mas con menos. Cientos de aliases, 5-6 entornos chroots preconfigurados, maquinas virtuales locales (y remotas, ec2), un archivo .bash_history de ~38,000 lineas... También soy fan de la portabilidad, no me gusta llevar nada conmigo a excepción de un telefono, unos audifonos y un libro.
 
