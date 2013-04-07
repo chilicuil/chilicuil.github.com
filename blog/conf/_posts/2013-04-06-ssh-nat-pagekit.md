@@ -44,6 +44,8 @@ $ ssh home.javier.io
 
 Hay que notar, que aunque el servidor ssh corre en el puerto 1003 (o en el que ustedes quieran), al momento de conectarse, se hace la referencia al puerto por defecto (22), esto es corto y seguro.
 
+### Dns
+
 - Cname
 
 Para que esto funcione, home.javier.io debe apuntar a pagekite, esto se hace agregando una entrada CNAME al dns de su dominio, para mi caso, he creado una entrada de **home** a **home.javier.pagekite.me** desde <http://iwantmyname.com>, que es donde registro mis dominios.
@@ -96,23 +98,21 @@ Si han finalizado los pasos anteriores, podrán configurar la máquina a la que 
 
 Una vez hecho eso, se descarga y arranca pagekite.
 
-<pre class="sh_sh">
-[maquina_a_la_que_quiero_conectarme] $ ./pagekite.py
->>> Hello! This is pagekite v0.5.6a.                            [CTRL+C = Stop]
-    Connecting to front-end 69.164.211.158:443 ...                             
-     - Protocols: http http2 http3 https websocket irc finger httpfinger raw   
-     - Protocols: minecraft                                                    
-     - Ports: 79 80 443 843 2222 3000 4545 5222 5223 5269 5670 6667 8000 8080  
-     - Ports: 8081 9292 25565                                                  
-     - Raw ports: 22 virtual                                                   
-    Quota: You have 2559.74 MB, 29 days and 4 connections left.                
-    Connecting to front-end 173.230.155.164:443 ...                            
-~<> Flying localhost:1003 as ssh://home.javier.io:22/ (HTTP proxied)           
-~<> Flying localhost:1003 as ssh://home.javier.pagekite.me:22/ (HTTP proxied)  
-~<> Flying localhost:1003 as ssh://javier.pagekite.me:22/ (HTTP proxied)       
-~<> Flying localhost:80 as https://javier.pagekite.me/                         
- << pagekite.py [flying]   Kites are flying and all is well.
-</pre>
+    [maquina_a_la_que_quiero_conectarme] $ ./pagekite.py
+    >>> Hello! This is pagekite v0.5.6a.                            [CTRL+C = Stop]
+        Connecting to front-end 69.164.211.158:443 ...                             
+         - Protocols: http http2 http3 https websocket irc finger httpfinger raw   
+         - Protocols: minecraft                                                    
+         - Ports: 79 80 443 843 2222 3000 4545 5222 5223 5269 5670 6667 8000 8080  
+         - Ports: 8081 9292 25565                                                  
+         - Raw ports: 22 virtual                                                   
+        Quota: You have 2559.74 MB, 29 days and 4 connections left.                
+        Connecting to front-end 173.230.155.164:443 ...                            
+    ~<> Flying localhost:1003 as ssh://home.javier.io:22/ (HTTP proxied)           
+    ~<> Flying localhost:1003 as ssh://home.javier.pagekite.me:22/ (HTTP proxied)  
+    ~<> Flying localhost:1003 as ssh://javier.pagekite.me:22/ (HTTP proxied)       
+    ~<> Flying localhost:80 as https://javier.pagekite.me/                         
+     << pagekite.py [flying]   Kites are flying and all is well.
 
 Lo que pondrá todo en marcha.
 
