@@ -128,6 +128,7 @@ OJO: debe ser la version de nc de openbsd, en Ubuntu se llama **netcat-openbsd**
 
 <pre class="sh_sh">
 $ ssh home.javier.io
+chilicuil@home.javier.io's password: 
 </pre>
 
 Pagekite es software libre, pueden correr la parte que hace de intermediaria en un [vps](http://es.wikipedia.org/wiki/Servidor_virtual_privado) o en una computadora que tenga ip pública, aunque es mucho más fácil hacerlo usando su propio servicio y apoyan su desarrollo al mismo tiempo.
