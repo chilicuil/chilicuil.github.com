@@ -87,7 +87,7 @@ _fix()
     #cur=$(_get_cword)
     #prev=$3
     #$4 doesn't exist
-    local cur prev opts #$cur, $prev & $opts are local vars
+    local cur prev opts #$cur, $prev &amp $opts are local vars
     COMPREPLY=() #clean out last completions, important!
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
