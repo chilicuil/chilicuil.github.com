@@ -6,24 +6,19 @@ title: "metasploit - client side attack"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-<div style="text-align: center;"><img style="width: 527px; height: 243px;" src="/assets/img/60.png"></div>
+[![alt text](/assets/img/60.png)](/assets/img/60.png)
 
-<h4>Introducción</h4>
+#### Introducción
 
-<div class="p">Entonces, estaba el otro día hablando sobre temas de seguridad y salíeron a mención metasploit y set, dos herramientas que facilitan el trabajo en el area, no conozco a persona interesada por el tema que no lo conozca. Hace algunos años habia estado interesado en mfs, así que pude notar la gran mejoria respecto a aquellos tiempos. Es increible, me siento como un chico de pelicula de policias cuando lo ejecuto.
-</div>
+Entonces, estaba el otro día hablando sobre temas de seguridad y salíeron a mención metasploit y set, dos herramientas que facilitan el trabajo en el area, no conozco a persona interesada por el tema que no lo conozca. Hace algunos años habia estado interesado en mfs, así que pude notar la gran mejoria respecto a aquellos tiempos. Es increible, me siento como un chico de pelicula de policias cuando lo ejecuto.
 
-<div class="p">Después de la charla, me quede con la espinita de que tan fácil sería montar algo usable por un total noob en el tema (me), y nada, al parecer hemos llegado a un punto donde cualquier persona puede montar una plataforma relativamente robusta para lanzar ataques. MMM, bueno, eso es desde hace tiempo, pero ahora, junto ahora (y justo como lo he experimentado) es muy fácil y no se requieren de mucha preparación. Tenemos servicios, como AWS, Linode que también ayudan a superar las limitaciones de las configuraciones NAT y el uptime. En mi opinión es una de las mejoras epocas para involucrarse en la seguridad informática.
-</div>
+Después de la charla, me quede con la espinita de que tan fácil sería montar algo usable por un total noob en el tema (me), y nada, al parecer hemos llegado a un punto donde cualquier persona puede montar una plataforma relativamente robusta para lanzar ataques. MMM, bueno, eso es desde hace tiempo, pero ahora, junto ahora (y justo como lo he experimentado) es muy fácil y no se requieren de mucha preparación. Tenemos servicios, como AWS, Linode que también ayudan a superar las limitaciones de las configuraciones NAT y el uptime. En mi opinión es una de las mejoras epocas para involucrarse en la seguridad informática.
 
-<div class="p">Sin más preambulos, dejaré unos apuntes...  daré por sentado que se tiene una cuenta en AWS, es todo lo que realmente necesitaremos...
-</div>
+Sin más preambulos, dejaré unos apuntes...  daré por sentado que se tiene una cuenta en AWS, es todo lo que realmente necesitaremos...
 
+### Instalación
 
-<h3>Instalación</h3>
-
-<div class="p">Lo primero que se tendrá que hacer, será instalar msf en la máquina virtual de AWS, en mi caso, he instalado ubuntu 12.04.., también es buena idea, abrir los puertos, 80, 443 y 22, por defecto solo abrira el 22, así que tendran que configurar el perfil de seguridad. Paquetes básicos
-</div>
+Lo primero que se tendrá que hacer, será instalar msf en la máquina virtual de AWS, en mi caso, he instalado ubuntu 12.04.., también es buena idea, abrir los puertos, 80, 443 y 22, por defecto solo abrira el 22, así que tendran que configurar el perfil de seguridad. Paquetes básicos
 
 <pre class="sh_sh">
 $ sudo apt-get install build-essential libreadline-dev libssl-dev libpq5 libpq-dev \
@@ -32,37 +27,32 @@ $ sudo apt-get install build-essential libreadline-dev libssl-dev libpq5 libpq-d
   libyaml-dev ruby1.9.3 nmap
 </pre>
 
-<div class="p">Gemas necesarias:
-</div>
+Gemas necesarias:
 
 <pre class="sh_sh">
 $ sudo gem install wirble msgpack sqlite3 pg activerecord nokogiri
 </pre>
 
-<div class="p">Metasploit
-</div>
+Metasploit
 
 <pre class="sh_sh">
 $ git clone https://github.com/rapid7/metasploit-framework mfs
 </pre>
 
-<div class="p">Esto creará una carpeta llamada 'mfs' con el framework dentro, ahora será momento de obtener privilegios de super usuario (para poder poner a escuchar handlers en cualquier puerto):
-</div>
+Esto creará una carpeta llamada 'mfs' con el framework dentro, ahora será momento de obtener privilegios de super usuario (para poder poner a escuchar handlers en cualquier puerto):
 
 <pre class="sh_sh">
 $ sudo su
 # 
 </pre>
 
-<ul>
-    <li><a href="http://www.darkoperator.com/installing-metasploit-in-ubunt/" target="_blank">http://www.darkoperator.com/installing-metasploit-in-ubunt/</a></li>
-    <li><a href="https://github.com/rapid7/metasploit-framework/wiki/Metasploit-Development-Environment" target="_blank">https://github.com/rapid7/metasploit-framework/wiki/Metasploit-Development-Environment</a></li>
-</ul>
+- <http://www.darkoperator.com/installing-metasploit-in-ubuntu/>
+- <https://github.com/rapid7/metasploit-framework/wiki/Metasploit-Development-Environment>
 
-<h3>Payload</h3>
 
-<div class="p">Una vez instalado, hay que crear un archivo que pueda ser enviado, que explote una vulnerabilidad en el equipo remoto y que nos devuelva el control del mismo, con metasploit es muy fácil:
-</div>
+### Payload
+
+Una vez instalado, hay que crear un archivo que pueda ser enviado, que explote una vulnerabilidad en el equipo remoto y que nos devuelva el control del mismo, con metasploit es muy fácil:
 
 <pre class="sh_sh">
 # cd mfs/
@@ -85,17 +75,13 @@ msf exploit(adobe_utilprintf) > exploit
 [*] Exploit completed, but no session was created.
 </pre>
 
-<div class="p">Por defecto, el archivo que genera mfs no será util, gmail, hotmail, yahoo, no permitiran enviarlo, al detectarlo como un archivo malicioso, así que aquí tendrán que usar su imaginación para hacerlo indetectable.., lamentablemente no puedo ayudar con esa parte.., si lo hiciera y alguien más siguiera estos pasos seguramente dentro de poco, el método que utilice dejaría de ser util.., pero adelanto que no es demasiado complicado, solo es cuestión de buscar un poco y mfs ayuda mucho.., un par de horas de pruebas-errores deberian bastarles para encontrar un método que funcione.
-</div>
+Por defecto, el archivo que genera mfs no será util, gmail, hotmail, yahoo, no permitiran enviarlo, al detectarlo como un archivo malicioso, así que aquí tendrán que usar su imaginación para hacerlo indetectable.., lamentablemente no puedo ayudar con esa parte.., si lo hiciera y alguien más siguiera estos pasos seguramente dentro de poco, el método que utilice dejaría de ser util.., pero adelanto que no es demasiado complicado, solo es cuestión de buscar un poco y mfs ayuda mucho.., un par de horas de pruebas-errores deberian bastarles para encontrar un método que funcione.
 
-<ul>
-    <li><a href="http://www.offensive-security.com/metasploit-unleashed/Client_Side_Attacks" target="_blank">http://www.offensive-security.com/metasploit-unleashed/Client_Side_Attacks</a></li>
-</ul>
+- <http://www.offensive-security.com/metasploit-unleashed/Client_Side_Attacks>
 
-<h3>Handler (servidor)</h3>
+### Handler (servidor)
 
-<div class="p">Listo, una vez que tengan un archivo indetectable, pueden enviarlo masivamente o selectivamente a las personas que lo deseen y a pulse de raton, tendran sesiones en cada una de esas computadoras (siempre y cuando hayan sido afectadas por la vulnerabilidad en cuestión). Para poder usar las sesiones más de una vez, es una buena idea migrar la sesión a un proceso más estable (en lugar de adobe, que en la máquina atacada se vera congelado y después mostrará una pantalla en blanco, pantalla que la mayoría de los usuarios cerraran, terminando la conexión) y luego configurarlo para que inicie con el sistema.
-</div>
+Listo, una vez que tengan un archivo indetectable, pueden enviarlo masivamente o selectivamente a las personas que lo deseen y a pulse de raton, tendran sesiones en cada una de esas computadoras (siempre y cuando hayan sido afectadas por la vulnerabilidad en cuestión). Para poder usar las sesiones más de una vez, es una buena idea migrar la sesión a un proceso más estable (en lugar de adobe, que en la máquina atacada se vera congelado y después mostrará una pantalla en blanco, pantalla que la mayoría de los usuarios cerraran, terminando la conexión) y luego configurarlo para que inicie con el sistema.
 
 <pre class="sh_sh">
 # cat /root/migrate_persistence.rc
@@ -135,17 +121,13 @@ end
 # ./msfconsole -r /root/autoruncommands.rc
 </pre>
 
-<ul>
-    <li><a href="http://johnbabio.wordpress.com/tag/autorunscript/" target="_blank">http://johnbabio.wordpress.com/tag/autorunscript/</a></li>
-    <li><a href="https://community.rapid7.com/community/metasploit/blog/2010/03/22/automating-the-metasploit-console" target="_blank">https://community.rapid7.com/community/metasploit/blog/2010/03/22/automating-the-metasploit-console</a></li>
-</ul>
+- <http://johnbabio.wordpress.com/tag/autorunscript/>
+- <https://community.rapid7.com/community/metasploit/blog/2010/03/22/automating-the-metasploit-console>
 
-<div class="p">Listop, a empezar a divertirnos
-</div>
+Listop, a empezar a divertirnos
 
-<ul>
-    <li><a href="http://www.offensive-security.com/metasploit-unleashed/Metasploit_Meterpreter_Basics" target="_blank">http://www.offensive-security.com/metasploit-unleashed/Metasploit_Meterpreter_Basics</a></li>
-    <li><a href="http://www.offensive-security.com/metasploit-unleashed/Windows_Post_Gather_Modules" target="_blank">http://www.offensive-security.com/metasploit-unleashed/Windows_Post_Gather_Modules</a></li>
-    <li><a href="http://cyruslab.wordpress.com/2012/03/09/metasploit-post-exploitation-with-meterpreter-2/" target="_blank">http://cyruslab.wordpress.com/2012/03/09/metasploit-post-exploitation-with-meterpreter-2/</a></li>
-    <li><a href="http://rajhackingarticles.blogspot.mx/2012/11/best-of-metasploit-meterpreter-script.html" target="_blank">http://rajhackingarticles.blogspot.mx/2012/11/best-of-metasploit-meterpreter-script.html</a></li>
-</ul>
+- <http://www.offensive-security.com/metasploit-unleashed/Metasploit_Meterpreter_Basics>
+- <http://www.offensive-security.com/metasploit-unleashed/Windows_Post_Gather_Modules>
+- <http://cyruslab.wordpress.com/2012/03/09/metasploit-post-exploitation-with-meterpreter-2/>
+- <http://rajhackingarticles.blogspot.mx/2012/11/best-of-metasploit-meterpreter-script.html>
+

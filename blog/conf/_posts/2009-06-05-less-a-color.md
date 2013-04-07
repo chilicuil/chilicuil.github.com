@@ -8,9 +8,9 @@ title: "less is more, and even more with color"
 
 ![](/assets/img/1.png)
 
-No tenia idea de  que la salida de less se podia colorear, es decir a quien no le ha pasado que quiera listar "ls -la" todo el directorio y la salida es tan larga que tiene que recurrir a less, perdiendo con ello el color. Mucho menos estaba enterado de que la salida de man tambien tuviera esta caracteristica, ni tree o similares, la solucion es bien sencilla y probablemente la hubiera descubierto antes si me hubiera leido las respectivas man con cuidado y que sin embargo he encontrado de forma super clara en "Linux desktop hacks", que ademas trae chorrocientos de otros truquillos que podrian interesarles.
+No tenia idea de  que la salida de less se podia colorear, es decir a quien no le ha pasado que quiera listar "ls -la" todo el directorio y la salida es tan larga que tiene que recurrir a less, perdiendo con ello el color. Mucho menos estaba enterado de que la salida de man tambien tuviera esta característica, ni tree o similares, la solucion es sencilla y probablemente la hubiera descubierto antes si hubira leido las respectivas man con cuidado y que sin embargo he encontrado de forma clara en "Linux desktop hacks", que ademas trae muchos otros trucos que podrian interesarles.
 
-Para listar a traves de less sin perder el color, basta con:
+Para listar a traves de less sin perder el color:
 
 <pre class="sh_sh">
 $ ls -la --color |less -R
@@ -41,4 +41,4 @@ $ tree -Ca /sys/ |less -R
 
 ![](/assets/img/4.png)
 
-Pueden encontrar mas de esos codigos raros que se ponen en ~/.bashrc en <http://ascii-table.com/ansi-escape-sequences.php>.
+Pueden encontrar más de esos códigos raros que se ponen en ~/.bashrc en <http://ascii-table.com/ansi-escape-sequences.php>.

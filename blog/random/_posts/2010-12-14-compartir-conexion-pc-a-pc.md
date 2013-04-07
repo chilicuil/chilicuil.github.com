@@ -6,12 +6,10 @@ title: "compartir conexión pc a pc"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-<h3>Inalámbrica a alámbrica</h3>
+### Inalámbrica a alámbrica
 
-<ul>
-        <li><strong>eth0:</strong> conexión cruzada a otra máquina</li>
-        <li><strong>eth1:</strong> conexión inalámbrica a internet</li>
-</ul>
+**eth0:** conexión cruzada a otra máquina
+**eth1:** conexión inalámbrica a internet
 
 <pre class="sh_sh">
 $ sudo ifconfig eth0 10.0.0.1
@@ -20,12 +18,10 @@ $ sudo su
 # echo 1 > /proc/sys/net/ipv4/ip_forward
 </pre>
 
-<h3>Alámbrica a inalámbrica</h3>
+### Alámbrica a inalámbrica
 
-<ul>
-	<li><strong>eth0:</strong> conexión cableada a internet</li>
-	<li><strong>eth1:</strong> access point, compartición ad-hoc</li>
-</ul>
+- **eth0:** conexión cableada a internet
+- **eth1:** access point, compartición ad-hoc
 
 <pre class="sh_sh">
 $ iwconfig wlan0 mode ad-hoc
@@ -36,14 +32,10 @@ $ sudo su
 # echo 1 > /proc/sys/net/ipv4/ip_forward
 </pre>
 
-<div class="p">En la máquina 'cliente', se configura la conexión con los siguientes datos:
-</div>
+En la máquina 'cliente', se configura la conexión con los siguientes datos:
 
-<ul>
-	<li><strong>ip:</strong> 10.0.0.2</li>
-	<li><strong>gatewat:</strong> 10.0.0.1</li>
-	<li><strong>dns:</strong> 10.0.0.1</li>
-</ul>
+- **ip:** 10.0.0.2
+- **gatewat:** 10.0.0.1
+- **dns:** 10.0.0.1
 
-<div class="p"><a href="http://mononeurona.org/entries/view/vendaval/20911" target="_blank">ad-hoc para compartir internet</a>
-</div>
+- [ad-hoc para compartir internet](http://mononeurona.org/entries/view/vendaval/20911)

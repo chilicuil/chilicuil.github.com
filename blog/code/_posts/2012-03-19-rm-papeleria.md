@@ -6,24 +6,19 @@ title: "rm + papelería"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-<div class="p">Nada, a veces me pasa que hago:
-</div>
+Nada, a veces me pasa que hago:
 
 <pre class="sh_sh">
 $ rm foo
 </pre>
 
-<div class="p">y poco después me doy cuenta que hubiera preferido no hacerlo, con esto en mente me puse a hacer un pequeño <a href="https://github.com/chilicuil/learn/blob/master/sh/rm_" target="_blank">script</a> alrededor de rm para enviar los archivos a la papelería en lugar de eliminarlos, lo he hecho compatible con nautilus.
-</div>
+Y poco después me doy cuenta que hubiera preferido no hacerlo, con esto en mente me puse a hacer un pequeño [script](https://github.com/chilicuil/learn/blob/master/sh/rm_) alrededor de rm para enviar los archivos a la papelería en lugar de eliminarlos, lo he hecho compatible con nautilus.
 
-<div class="p"> <em>Ejemplo</em>: Elimino desde terminal <strong>$ rm imagen.png</strong> y luego desde nautilus voy a papelería y lo restauro, o viceversa, lo puedo eliminar desde la papelería y cuando esté en la consola lo recupero con <strong>$ rm -u imagen.png</strong>
-</div>
+Ejemplo: Elimino desde terminal **$ rm imagen.png** y luego desde nautilus voy a papelería y lo restauro, o viceversa, lo puedo eliminar desde la papelería y cuando esté en la consola lo recupero con **$ rm -u imagen.png**
 
-<div align="center"><img src="/assets/img/53.png" style="width: 552px; height: 230px;">
-</div>
+[![alt text](/assets/img/53.png)](/assets/img/53.png)
 
-<div class="p">Para usarlo lo he movido a <strong>/usr/local/bin</strong> y luego he creado un alias en <strong>~/.bashrc</strong>:
-</div>
+Para usarlo lo he movido a **/usr/local/bin** y luego he creado un alias en **~/.bashrc**:
 
 <pre class="sh_sh">
 $ alias rm='/usr/local/bin/rm'

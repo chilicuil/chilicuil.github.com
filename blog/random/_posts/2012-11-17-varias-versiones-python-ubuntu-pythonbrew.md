@@ -6,16 +6,15 @@ title: "instalar varias versiones de python en ubuntu - pythonbrew"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-<div class="p">Para instalar varias versiones de python, se requiere pythonbrew y curl:
-</div>
+Para instalar varias versiones de python, se requiere pythonbrew y curl:
 
 <pre class="sh_sh">
 $ sudo apt-get install curl python-setuptools
 </pre>
 
-<h3>Instalación</h3>
-<div class="p">Cumplidas las dependencias se instala con:
-</div>
+### Instalación
+
+Cumplidas las dependencias se instala con:
 
 <pre class="sh_sh">
 $ sudo easy_install pythonbrew
@@ -45,8 +44,7 @@ The default help messages will popup and tell you what to do!
 Enjoy pythonbrew at /home/chilicuil/.pythonbrew!!
 </pre>
 
-<div class="p">Se siguen las instrucciones
-</div>
+Se siguen las instrucciones
 
 <pre class="sh_sh">
 $ tail ~/.bashrc
@@ -55,29 +53,24 @@ $ source ~/.bashrc
 $ python install 3.2 #or pythonbrew install --force 3.2
 </pre>
 
-<h3>Cambiar entre versiones</h3>
+### Cambiar entre versiones
 
-<div class="p">Para empezar a usar python 3.2:
-</div>
+Para empezar a usar python 3.2:
 
 <pre class="sh_sh">
 $ pythonbrew switch 3.2
 </pre>
 
-<div class="p">Para que el sistema utilice nuevamente la versión de python que viene con el (2.7 en Ubuntu precise):
-</div>
+Para que el sistema utilice nuevamente la versión de python que viene con el (2.7 en Ubuntu precise):
 
 <pre class="sh_sh">
 $ pythonbrew off
 </pre>
 
-<div class="p">Para eliminar una versión instalada con pythonbrew
-</div>
+Para eliminar una versión instalada con pythonbrew
 
 <pre class="sh_sh">
 $ pythonbrew uninstall 3.2
 </pre>
 
-<ul>
-    <li><a href="https://www.edx.org/courses/MITx/6.00x/2012_Fall/wiki/6.00x/installing-different-versions-python-linux-ubuntu/" target="_blank">https://www.edx.org/courses/MITx/6.00x/2012_Fall/wiki/6.00x/installing-different-versions-python-linux-ubuntu/</a></li>
-</ul>
+- <https://www.edx.org/courses/MITx/6.00x/2012_Fall/wiki/6.00x/installing-different-versions-python-linux-ubuntu/>

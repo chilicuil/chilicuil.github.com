@@ -6,8 +6,7 @@ title: "conexión alámbrica e inalámbrica al mismo tiempo con wicd"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-<div class="p">Cuando se esta usando <a href="http://wicd.sourceforge.net" target="_blank">wicd</a>, se pueden configurar 2 conexiones al mismo tiempo editando <strong>/etc/network/interfaces</strong>:
-</div>
+Cuando se esta usando [wicd](http://wicd.sourceforge.net), se pueden configurar 2 conexiones al mismo tiempo editando **/etc/network/interfaces**:
 
 <pre class="sh_sh">
 $ cat /etc/network/interfaces
@@ -19,9 +18,7 @@ $ cat /etc/network/interfaces
           broadcast 10.0.0.255
 </pre>
 
-<div class="p">Y luego eliminando la conexión alámbrica desde |propiedades| en wicd, la máquina se conectará a la red inalámbrica usando wicd y usará ifup/ifdown para configurar la interfaz ethernet.  
-</div>
+Y luego eliminando la conexión alámbrica desde |propiedades| en wicd, la máquina se conectará a la red inalámbrica usando wicd y usará ifup/ifdown para configurar la interfaz ethernet.  
 
-<ul>
-    <li><a href="https://bugs.launchpad.net/wicd/+bug/228578">https://bugs.launchpad.net/wicd/+bug/228578</a></li>
-</ul>
+- <https://bugs.launchpad.net/wicd/+bug/228578>
+

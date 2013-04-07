@@ -35,9 +35,7 @@ $ kexec -l /boot/vmlinuz --command-line="`cat /proc/cmdline`" --initrd=/boot/ini
 $ shutdown -r now
 </pre>
 
-En [penSuse 11.1](http://lizards.opensuse.org/2008/10/13/automatic-reboot-with-kexec/">) ya ni siquiera será necesario hacer eso, vendrá habilitado por default y en [Debian](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug) se habilita por defecto al instalarse.
-
-Links relacionados:
+En [OpenSuse 11.1](http://lizards.opensuse.org/2008/10/13/automatic-reboot-with-kexec/">) ya ni siquiera será necesario hacer eso, vendrá habilitado por default y en [Debian](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug) se habilita por defecto al instalarse.
 
 - <http://www.ibm.com/developerworks/linux/library/l-kexec.html>
 - <http://www.linux.com/feature/150202>

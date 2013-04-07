@@ -6,32 +6,26 @@ title: "correr aplicaciones X desde un chroot"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-<div class="p">Ya había escrito <a href="http://chilicuil.github.com/all/os/2011/11/09/compilar-software-sin-ensuciar-el-sistema.html">anteriormente</a> sobre como compilar programas sin 'ensuciar' el sistema con dependencias, hoy lo haŕe sobre como hacerlo utilizando herramientas gráficas.
-</div>
+Ya había escrito [anteriormente](http://chilicuil.github.com/all/os/2011/11/09/compilar-software-sin-ensuciar-el-sistema.html) sobre como compilar programas sin 'ensuciar' el sistema con dependencias, hoy lo haŕe sobre como hacerlo utilizando herramientas gráficas.
 
-<div class="p"><a href="http://www.lazarus.freepascal.org/">Lazarus</a> es un ide de pascal, <a href="http://magnifier.sourceforge.net/">magnifier</a> es una lupa minimalista, la única que he podido integrar con <a href="http://chilicuil.github.com/all/random/2010/06/16/i3-ebf3.html">i3</a>.
-</div>
+[Lazarus](http://www.lazarus.freepascal.org/) es un ide de pascal, [magnifier](http://magnifier.sourceforge.net/) es una lupa minimalista, la única que he podido integrar con [i3](http://chilicuil.github.com/all/random/2010/06/16/i3-ebf3.html).
 
-<div class="p">Hace poco magnifier dejo de funcionar, así que tuve que recompilarla, sin embargo la única forma que conocía era a través de Lazarous, Lazarous es una aplicacion gui, para hacerla funcionar desde el chroot utilicé '<a href="http://linux.about.com/library/cmd/blcmdl_xhost.htm">xhost</a>' desde FUERA del chroot:
-</div>
+Hace poco magnifier dejo de funcionar, así que tuve que recompilarla, sin embargo la única forma que conocía era a través de Lazarous, Lazarous es una aplicacion gui, para hacerla funcionar desde el chroot utilicé '[xhost](http://linux.about.com/library/cmd/blcmdl_xhost.htm)' desde FUERA del chroot:
 
 <pre class="sh_sh">
 $ xhost + #lo que hará que X acepte cualquier conexión, incluyendo la del chroot
 </pre>
 
-<div class="p">Y luego dentro del chroot:
-</div>
+Y luego dentro del chroot:
 
 <pre class="sh_sh">
 [chroot] # export DISPLAY=:0.0
 </pre>
 
-<div class="p">Después de lo cual he podido correr:
-</div>
+Después de lo cual he podido correr:
 
 <pre class="sh_sh">
 [chroot] # lazarous-ide
 </pre>
 
-<div class="p">Una vez compilado, he podido copiar y usar magnifier satisfactoriamente en el sistema original, dejo el <a href="http://ubuntuone.com/1pA0A2gDBxfQQdxZVGuuTq">binário</a> para amd64 para el que quiera usarlo.
-</div>
+Una vez compilado, he podido copiar y usar magnifier satisfactoriamente en el sistema original, dejo el [binário](http://ubuntuone.com/1pA0A2gDBxfQQdxZVGuuTq) para amd64 para el que quiera usarlo.

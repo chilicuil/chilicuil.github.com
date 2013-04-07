@@ -10,8 +10,6 @@ title: "my current desktop"
 [![alt text](/assets/img/6.png)](/assets/img/6.png)
 [![alt text](/assets/img/7.png)](/assets/img/7png)
 
-<div class="p"><strong>Ubuntu 9.04 + E17 + Ecomorp</strong>
-</div>
+**Ubuntu 9.04 + E17 + Ecomorp**
 
-<div class="p">Casi no le he cambiado nada, me parece cómodo tal como esta.
-</div>
+Casi no le he cambiado nada, me parece cómodo tal como esta.

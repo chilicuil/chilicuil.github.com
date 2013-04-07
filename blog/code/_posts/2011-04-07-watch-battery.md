@@ -6,26 +6,21 @@ title: "watch_battery"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-<div style="text-align: center;" id="img">
-    <a href="/assets/img/40.png" target="_blank"><img src="/assets/img/40.png" style="width: 662px; height: 421px;"></a>
-</div>
+[![alt text](/assets/img/40.png)](/assets/img/40.png)
 
-<div class="p">Hice un pequeño <a href="https://gist.github.com/913004" target="_blank">script</a> para vigilar que no se me apague la computadora cuando ya no tenga pila (mejor que hiberne), requiere de <strong>notify-send</strong>, <strong>hibernate</strong> y <strong>acpi,</strong> en ubuntu:
-</div>
+Hice un pequeño [script](https://gist.github.com/913004) para vigilar que no se me apague la computadora cuando ya no tenga pila (mejor que hiberne), requiere de **notify-send**, **hibernate** y **acpi,** en ubuntu:
 
 <pre class="sh_sh">
 $ sudo apt-get install acpi libnotify-bin hibernate
 </pre>
 
-<div class="p">NOTA: Para que pueda hibernar el equipo debe contar con suficiente espacio SWAP (más de 3 GB). Sugiero que se coloque en /usr/local/bin y que se agregue a crontab -e (aquí para que corra cada 3 minutos)
-</div>
+NOTA: Para que pueda hibernar el equipo debe contar con suficiente espacio SWAP (más de 3 GB). Sugiero que se coloque en /usr/local/bin y que se agregue a crontab -e (aquí para que corra cada 3 minutos)
 
 <pre class="sh_log">
 */3 * * * * /usr/local/bin/watch_battery
 </pre>
 
-<div class="p">Para apagar el equipo en lugar de hibernarlo, se modifica la variable <strong>$ACTION</strong>
-</div>
+Para apagar el equipo en lugar de hibernarlo, se modifica la variable **$ACTION**
 
 <pre class="sh_sh">
 #=====VARS=====
@@ -38,8 +33,7 @@ ACTION="hibernate"
 WATCH_BATTERY_CURRENT=$(cat /tmp/watch_battery_current 2>/dev/null)
 </pre>
 
-<div class="p">Sugiero que se modifique <strong>/etc/sudoers</strong> para que el script no requiera de contraseña para llevar a cabo <strong>$ACTION</strong>
-</div>
+Sugiero que se modifique **/etc/sudoers** para que el script no requiera de contraseña para llevar a cabo **$ACTION**
 
 <pre class="sh_properties">
 #===================================
@@ -51,9 +45,6 @@ usuario ALL=(root) NOPASSWD:SESSION
 #===================================
 </pre>
 
-<div class="p">Gracias a <a href="http://forums.debian.net/viewtopic.php?f=8&amp;t=52115#p299406">smasty</a> por el snippet inicial.
-</div>
+Gracias a [smasty](http://forums.debian.net/viewtopic.php?f=8&amp;t=52115#p299406) por el snippet inicial.
 
-  <ul>
-    <li><a href="https://gist.github.com/913004">https://gist.github.com/913004</a></li>
-  </ul>
+- <https://gist.github.com/913004>

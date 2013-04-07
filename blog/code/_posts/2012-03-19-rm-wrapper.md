@@ -6,28 +6,22 @@ title: "rm wrapper"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-<div class="p">Sometimes when I run:
-</div>
+Sometimes when I run:
 
 <pre class="sh_sh">
 $ rm foo
 </pre>
 
-<div class="p">I realize I didn't mean it, so with this in my mind I made a little <a href="https://github.com/chilicuil/learn/blob/master/sh/rm_" target="_blank">wrapper</a>, now instead of removing my files, it sends them to the trash bin, it's compatible with [nautilus|pcmanfm].
-</div>
+I realize I didn't mean it, so with this in my mind I made a little [wrapper](https://github.com/chilicuil/learn/blob/master/sh/rm_), now instead of removing my files, it sends them to the trash bin, it's compatible with nautilus|pcmanfm.
 
-<div class="p"> <em>Example</em>: If I run from a terminal <strong>$ rm img.png</strong> I can then go to the Trash carpet in Nautilus and restore it. If I delete it in Nautilus (by pressing the [Supr] button) I can open a terminal and type <strong>$ rm -u img.png</strong>
-</div>
+Example: If I run from a terminal **$ rm img.png** I can then go to the Trash carpet in Nautilus and restore it. If I delete it in Nautilus (by pressing the **Supr** button) I can open a terminal and type **$ rm -u img.png**
 
-<div align="center"><img src="/assets/img/53.png" style="width: 552px; height: 230px;">
-</div>
+[![alt text](/assets/img/53.png)](/assets/img/53.png)
 
-<div class="p">If you want use the script, download it, move it to <strong>/usr/local/bin</strong> and add an alias to the <strong>~/.bashrc</strong> file:
-</div>
+If you want use the script, download it, move it to **/usr/local/bin** and add an alias to the **~/.bashrc** file:
 
 <pre class="sh_sh">
 $ alias rm='rm_'
 </pre>
 
-<div class="p">Hope it helps
-</div>
+Hope it helps

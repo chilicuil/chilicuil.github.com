@@ -22,4 +22,4 @@ Y visceversa:
 $ sudo service vboxdrv stop && sudo service qemu-kvm
  </pre>
 
-Para otras distribuciones <strong>rmmod/modprobe/lsmod</strong> hacen el truco
+Para otras distribuciones **rmmod/modprobe/lsmod** hacen el truco
