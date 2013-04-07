@@ -297,7 +297,9 @@ for (( i=0; i < ${#COMP_WORDS[@]}-1; i++ )); do
         special=${COMP_WORDS[i]}
     fi
 done
+</pre>
 
+<pre class="sh_sh">
 if [ -n "$special" ]; then
     case $special in
     ...
