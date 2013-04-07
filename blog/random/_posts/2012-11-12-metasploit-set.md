@@ -124,7 +124,7 @@ end
 - <http://johnbabio.wordpress.com/tag/autorunscript/>
 - <https://community.rapid7.com/community/metasploit/blog/2010/03/22/automating-the-metasploit-console>
 
-Listop, a empezar a divertirnos
+Listop, podemos empezar a divertirnos
 
 - <http://www.offensive-security.com/metasploit-unleashed/Metasploit_Meterpreter_Basics>
 - <http://www.offensive-security.com/metasploit-unleashed/Windows_Post_Gather_Modules>
