@@ -291,19 +291,17 @@ Dependiendo de **$cur** se crea una lista, no existe ni **$prev,** ni **$prev_pr
 
 En el ejemplo anterior se utiliza **case** para determinar los comandos que siguen, sin embargo también se puede iterar para encontrar las palabras clave:
 
-<pre class="sh_sh">
-for (( i=0; i < ${#COMP_WORDS[@]}-1; i++ )); do
-    if [[ ${COMP_WORDS[i]} == @(opcion1|opcion2|opcion3) ]]; then
-        special=${COMP_WORDS[i]}
+    for (( i=0; i < ${#COMP_WORDS[@]}-1; i++ )); do
+        if [[ ${COMP_WORDS[i]} == @(opcion1|opcion2|opcion3) ]]; then
+            special=${COMP_WORDS[i]}
+        fi
+    done
+    
+    if [ -n "$special" ]; then
+        case $special in
+        ...
+        esac
     fi
-done
-
-if [ -n "$special" ]; then
-    case $special in
-    ...
-    esac
-fi
-</pre>
 
 #### Sufijos y prefijos
 
