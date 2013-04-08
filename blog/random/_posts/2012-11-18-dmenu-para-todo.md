@@ -7,7 +7,7 @@ title: "dmenu para todo"
 ###### {{ page.date | date_to_string }}
 
 
-Desde que uso sistemas [minimalistas](http://chilicuil.github.com/all/random/2010/06/16/i3-ebf3.html) siento que tengo mayor control sobre mi computadora, una de las ventajas de tenerlo de esta forma es que puedo hacer que mi escritorio funcione justo como lo deseo. Hoy en la tarde, en vista de haberme visto abriendo constantemente VirtualBox para correr programas que no estan soportados en Ubuntu de 64 bits, se me ocurrio automatizarlo.
+Desde que uso sistemas [minimalistas](http://javier.io/blog/random/2010/06/16/i3-ebf3.html) siento que tengo mayor control sobre mi computadora, una de las ventajas de tenerlo de esta forma es que puedo hacer que mi escritorio funcione justo como lo deseo. Hoy en la tarde, en vista de haberme visto abriendo constantemente VirtualBox para correr programas que no estan soportados en Ubuntu de 64 bits, se me ocurrio automatizarlo.
 
 Antes de automatizarlo, abria Vbox (Alt+esc y escribia vir, lo que me devolvia la aplicacion, entonces daba enter) escogia la máquina virtual que queria correr y estaba listo. Puede parecer rápido en comparación con Ubuntu por defecto, hacer click en el Dash, escribir Vir, seleccionar VirtualBox y después la máquina virtual, pero si lo haces mas de 5 veces al día empiezas a creer que debería ser más rápido. Y así lo es, ahora presiono Altgr+v lo que me abre un menu, escribo 'net' y me completa la máquina de netflix, doy enter y listo, estoy frente a netflix listo para seleccionar la pelicula que deseo ver.
 
@@ -39,7 +39,7 @@ Listo, se reinicia el gestor de ventanas (que por cierto mantiene todas las apli
 
 - <https://github.com/chilicuil/learn/tree/master/sh>
 
-[![alt text](/assets/img/61.png)](/assets/img/61.png)
+**[![alt text](/assets/img/61.png)](/assets/img/61.png)**
 [![alt text](/assets/img/62.png)](/assets/img/62.png)
 [![alt text](/assets/img/63.png)](/assets/img/63.png)
 [![alt text](/assets/img/64.png)](/assets/img/64.png)
