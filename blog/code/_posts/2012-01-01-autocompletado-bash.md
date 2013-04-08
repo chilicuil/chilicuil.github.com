@@ -6,7 +6,7 @@ title: "autocompletado en bash"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-[![alt text](/assets/img/54.png)](/assets/img/54.png)
+[![alt text](/assets/img/54.jpg)](/assets/img/54.jpg)
 
 Me gustan los entornos minimalistas y el uso de la consola, me parece genial poder escribir una línea y obtener un resultado concreto, lamentablemente algunos de los comandos para la terminal no son especialmente amigables, contienen muchas opciones y algunas veces esas opciones tienen nombres largos y extraños. Cuando se trata de scripts que encontraste en Internet, la cosa empeora, las opciones siempre hay que escribirlas porque el 99% de las veces no vienen con autocompletado.
 

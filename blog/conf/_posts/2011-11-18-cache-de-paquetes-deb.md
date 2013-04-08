@@ -22,7 +22,7 @@ Regresando al tema, he optado por **apt-cacher-ng** porque es rápido, estable y
 
 ### Desarrollo
 
-[+] Servidor:
+\[+\] Servidor:
 
 <pre class="sh_sh">
 $ sudo apt-get install apt-cacher-ng
@@ -32,7 +32,7 @@ $ sudo service apt-cacher-ng restart
 
 Lo que lo hará compatible con **apt-proxy** (por lo del puerto 9999)
 
-[+] Cliente:
+\[+\] Cliente:
 
 <pre class="sh_sh">
 $ wget http://ubuntuone.com/4PXwbNWmNj5kK9AUkEb9fF -O add_proxy_repository
@@ -56,7 +56,7 @@ A efectos prácticos y para máquinas de escritorio, solo se correrá una única
 
 Para que los paquetes del servidor también se agreguen al caché, sera necesario configurarlo como cliente
 
-[+] Servidor:
+\[+\] Servidor:
 
 <pre class="sh_sh">
 $ add_proxy_repository add #IP: localhost
@@ -66,7 +66,7 @@ $ add_proxy_repository add #IP: localhost
 
 Se pueden importar los paquetes que han sido descargados con anterioridad en el servidor:
 
-[+] Servidor:
+\[+\] Servidor:
 
 <pre class="sh_sh">
 $ sudo mkdir -pv -m 2755 /var/cache/apt-cacher-ng/_import
@@ -84,13 +84,13 @@ Se va a <http://localhost:9999/acng-report.html> y se presiona '**Start import**
 
 Se limpia _import
 
-[+] Servidor:
+\[+\] Servidor:
 
 <pre class="sh_sh">
 $ sudo rm -rf /var/cache/apt-cacher-ng/_import
 </pre>
 
-[+] Cliente:
+\[+\] Cliente:
 
 Se copian los paquetes \*.deb al servidor, tal vez generando un tar.gz:
 
@@ -99,7 +99,7 @@ $ tar zcvf debs.tar.gz /var/cache/apt/archives/*.deb
 $ sudo python -m SimpleHTTPServer 80
 </pre>
 
-[+] Servidor:
+\[+\] Servidor:
 
 Extrayendo los \*.deb y copiandolos a import
 
@@ -111,26 +111,26 @@ $ sudo mv -vuf import/*deb /var/cache/apt-cacher-ng/_import
 $ sudo chown -R apt-cacher-ng:apt-cacher-ng /var/cache/apt-cacher-ng/_import
 </pre>
 
-[+] Cliente:
+\[+\] Cliente:
 
 <pre class="sh_sh">
 $ sudo apt-get update
 </pre>
 
-[+] Servidor:
+\[+\] Servidor:
 
 Después de lo cual se puede ir a <http://localhost:9999/acng-report.html> y presionar '**Start import**':
 
 #### Eliminar apt-cacher-ng
 
-[+] Servidor:
+\[+\] Servidor:
 
 <pre class="sh_sh">
 $ sudo apt-get remove apt-cacher-ng
 $ sudo rm -rf /var/cache/apt-cacher-ng
 </pre>
 
-[+] Clientes:
+\[+\] Clientes:
 
 <pre class="sh_sh">
 $ sudo add_proxy_repository remove
