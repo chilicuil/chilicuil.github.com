@@ -43,4 +43,4 @@ $ sudo stap -e 'probe kernel.function("do_filp_open")\
  || ext == ".mp4") { system("mplayer /path/to/rirckroll.mp3"); }}'
 </pre>
 
-De paso aprendí­ que [stap](http://sources.redhat.com/systemtap/) sirve para compilar módulos del kernel al momento y cargarlos.
+De paso aprendi que [stap](http://sources.redhat.com/systemtap/) sirve para compilar modulos del kernel al momento y cargarlos.
