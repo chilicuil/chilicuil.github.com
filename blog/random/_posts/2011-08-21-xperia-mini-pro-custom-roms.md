@@ -17,7 +17,7 @@ ANTES
 - Modelo: u20a
 
 [![alt text](/assets/img/41.png)](/assets/img/41.png)
-[![alt text](/assets/img/42.png)](/assets/img/42.png)
+[![alt text](/assets/img/42.jpeg)](/assets/img/42.jpeg)
 [![alt text](/assets/img/43.png)](/assets/img/43.png)
 
 DESPUÉS
@@ -179,7 +179,7 @@ Y luego:
 $ rm -rf /data/data/some_app/cache
 </pre>
 
-- También se puede mover las caches de algunos programas a otros lugares, para eso se hace un softlink
+También se puede mover las caches de algunos programas a otros lugares, para eso se hace un softlink
 
 <pre class="sh_sh">
 $ mkdir -p /sdcard/cache/market

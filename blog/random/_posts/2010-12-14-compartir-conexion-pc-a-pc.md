@@ -38,4 +38,5 @@ En la máquina 'cliente', se configura la conexión con los siguientes datos:
 - **gatewat:** 10.0.0.1
 - **dns:** 10.0.0.1
 
+
 - [ad-hoc para compartir internet](http://mononeurona.org/entries/view/vendaval/20911)
