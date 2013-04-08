@@ -6,7 +6,7 @@ title: "vim + vundle"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-[![alt text](/assets/img/58.png)](/assets/img/58.png)
+**[![](/assets/img/58.png)](/assets/img/58.png)**
 
 En entradas anteriores he escrito sobre [Vim](http://chilicuil.github.com/all/random/2010/04/17/vimmer.html), y aunque no lo hago muy seguido, la verdad es que me la paso modificando su [configuración](https://github.com/chilicuil/dotfiles/blob/master/.vimrc) a tal grado que dudo que justifique el tiempo que le he invertido, de no ser porque me causa alguna clase de enfermiza diversión.
 

@@ -12,4 +12,4 @@ El script muestra como puede usarse curl con cookies para enviar datos a través
 
 <http://gist.github.com/3058885>
 
-[![alt text](/assets/img/25.png)](/assets/img/25.png)
+**[![](/assets/img/25.png)](/assets/img/25.png)**

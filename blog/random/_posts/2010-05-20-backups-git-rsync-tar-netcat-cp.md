@@ -86,7 +86,6 @@ $ sudo cp -av /home /opt /media/hd
 
 Graficamente creo que se vería así:
 
-[![alt text](/assets/img/35.png)](/assets/img/35.png)
+**[![](/assets/img/35.png)](/assets/img/35.png)**
 
 También esta el tema del blog, originalmente no tenia una forma de hacer backup, pero ahora que ha sido movido a github, ya no tengo que preocuparme por el.
-

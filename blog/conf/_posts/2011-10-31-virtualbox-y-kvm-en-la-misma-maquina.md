@@ -6,7 +6,7 @@ title: "virtualbox y kvm en la misma máquina"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-[![](/assets/img/55.png)](/assets/img/55.png)
+**[![](/assets/img/55.png)](/assets/img/55.png)**
 
 La imagen de arriba es el error que sale cada vez que se intenta correr VirtualBox cuando KVM esta instalado, en algunos foros sugieren desinstalar kvm, sin embargo si se quieren usar ambas soluciones se pueden deshabilitar los módulos de uno, cuando se quiera usar el otro.
 

@@ -6,7 +6,7 @@ title: "metasploit - client side attack"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-[![alt text](/assets/img/60.png)](/assets/img/60.png)
+**[![](/assets/img/60.png)](/assets/img/60.png)**
 
 #### Introducción
 
@@ -130,4 +130,3 @@ Listop, podemos empezar a divertirnos
 - <http://www.offensive-security.com/metasploit-unleashed/Windows_Post_Gather_Modules>
 - <http://cyruslab.wordpress.com/2012/03/09/metasploit-post-exploitation-with-meterpreter-2/>
 - <http://rajhackingarticles.blogspot.mx/2012/11/best-of-metasploit-meterpreter-script.html>
-

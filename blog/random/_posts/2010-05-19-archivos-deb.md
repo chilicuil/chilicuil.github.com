@@ -68,10 +68,10 @@ $ find ~/.mozilla/ -type d  -iname searchplugins
 
 $ mv ./usr/lib/firefox-addons/searchplugins/* \
   ~/.mozilla/firefox/h5xyzl6e.default/searchplugins/
-</pr
+</pre>
 
 El resultado final es:
 
-[![](/assets/img/34.png)](/assets/img/34.png)
+**[![](/assets/img/34.png)](/assets/img/34.png)**
 
 - <https://synthesize.us/HOWTO_make_a_deb_archive_without_dpkg>

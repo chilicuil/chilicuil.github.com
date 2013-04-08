@@ -39,7 +39,7 @@ Listo, se reinicia el gestor de ventanas (que por cierto mantiene todas las apli
 
 - <https://github.com/chilicuil/learn/tree/master/sh>
 
-**[![alt text](/assets/img/61.png)](/assets/img/61.png)**
-[![alt text](/assets/img/62.png)](/assets/img/62.png)
-[![alt text](/assets/img/63.png)](/assets/img/63.png)
-[![alt text](/assets/img/64.png)](/assets/img/64.png)
+**[![](/assets/img/61.png)](/assets/img/61.png)**
+**[![](/assets/img/62.png)](/assets/img/62.png)**
+**[![](/assets/img/63.png)](/assets/img/63.png)**
+**[![](/assets/img/64.png)](/assets/img/64.png)**

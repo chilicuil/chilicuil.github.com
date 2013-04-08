@@ -148,8 +148,8 @@ $ sudo apt-get install git-core cvs subversion bzr apt-file synaptic unzip zip r
 
 En general la actualización fue buena, solo encontré 1 problema irresoluble; bugs #[927393](https://bugs.launchpad.net/ubuntu/+source/gdk-pixbuf/+bug/927393) y #[927031](https://bugs.launchpad.net/ubuntu/+source/notification-daemon/+bug/927031) sobre notificaciones, Ubuntu soporta 2 programas para mostrar notificaciones, notification-daemon (el que uso y que esta roto por el momento, solo soporta gtk3), y notify-osd (el que funciona y el que se usa por defecto), fuera de eso encontre mejoras sustanciales, no tuve que compilar: vim, mpd, slim, urxvt debido a que precise viene con versiones suficientemente actuales o con correcciones que no tenía Ubuntu Lucid
 
-[![](/assets/img/50.png)](/assets/img/50.png)
-[![](/assets/img/51.png)](/assets/img/51.png)
-[![](/assets/img/52.png)](/assets/img/52.png)
+**[![](/assets/img/50.png)](/assets/img/50.png)**
+**[![](/assets/img/51.png)](/assets/img/51.png)**
+**[![](/assets/img/52.png)](/assets/img/52.png)**
 
 Me siento en casa =)

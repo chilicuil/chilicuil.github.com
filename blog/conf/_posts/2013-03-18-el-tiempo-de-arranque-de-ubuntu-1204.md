@@ -14,13 +14,13 @@ El proyecto [e4rat](http://e4rat.sourceforge.net/) desarrolla herramientas que m
 
 Mucho del tiempo que se invierte en arrancar una computadora se debe a la espera e inicialización de los discos duros (esto no aplica para la tecnología ssd), pueden verlo por ustedes mismos con la utilidad [bootchart](http://www.bootchart.org/) que crea diagramas sobre el arranque de Linux.
 
-[![alt text](/assets/img/66.png)](/assets/img/66.png)
+**[![](/assets/img/66.png)](/assets/img/66.png)**
 
 El rojo es el tiempo de espera del disco duro, el azul el tiempo de ejecución del cpu
 
 **e4rat** mueve los archivos críticos de arranque a una zona de fácil acceso en el disco duro para que esos archivos se carguen de una sola vez o en pocas lecturas a la ram. Una vez en la ram se continua el arranque y debido a que la ram es mucho más rápida, se mejora el tiempo de arranque.
 
-[![alt text](/assets/img/67.png)](/assets/img/67.png)
+**[![](/assets/img/67.png)](/assets/img/67.png)**
 
 El rojo es el tiempo de espera del disco duro, el azul el tiempo de ejecución del cpu. Se nota una mejora considerable
 

@@ -6,7 +6,7 @@ title: "you just got kernelroll'd ;)"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-[![alt text](/assets/img/56.png)](/assets/img/56.png)
+**[![](/assets/img/56.png)](/assets/img/56.png)**
 
 Esto ha sido demasiado bueno para dejarlo olvidado en las quicknews, rickrolling en el espacio del kernel, intercepta cualquier llamada para abrir archivos multimedia y los reemplaza por rickrolling.mp3 ;)
 

@@ -16,9 +16,9 @@ ANTES
 - versión de banda base **M76XX-TSNCJOLYM-53404006**
 - Modelo: u20a
 
-[![alt text](/assets/img/41.png)](/assets/img/41.png)
-[![alt text](/assets/img/42.jpeg)](/assets/img/42.jpeg)
-[![alt text](/assets/img/43.png)](/assets/img/43.png)
+**[![](/assets/img/41.png)](/assets/img/41.png)**
+**[![](/assets/img/42.jpeg)](/assets/img/42.jpeg)**
+**[![](/assets/img/43.png)](/assets/img/43.png)**
 
 DESPUÉS
 
@@ -26,9 +26,9 @@ DESPUÉS
 - versión de banda base **M76XX-TSNCJOLYM-53404015**
 - Modelo: u20i
 
-[![alt text](/assets/img/44.png)](/assets/img/44.png)
-[![alt text](/assets/img/45.png)](/assets/img/45.png)
-[![alt text](/assets/img/46.png)](/assets/img/46.png)
+**[![](/assets/img/44.png)](/assets/img/44.png)**
+**[![](/assets/img/45.png)](/assets/img/45.png)**
+**[![](/assets/img/46.png)](/assets/img/46.png)**
 
 Descarga:
 
