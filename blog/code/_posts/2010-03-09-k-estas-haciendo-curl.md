@@ -10,6 +10,6 @@ En la <a href="http://mononeurona.org">MN</a> habia una sección de chat al esti
 
 El script muestra como puede usarse curl con cookies para enviar datos a través del protocolo post|get.
 
-<https://gist.github.com/3058885>
+<http://gist.github.com/3058885>
 
 [![alt text](/assets/img/25.png)](/assets/img/25.png)
