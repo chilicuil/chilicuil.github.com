@@ -78,7 +78,7 @@ $ tree /var/cache/apt-cacher-ng
 
 Se va a <http://localhost:9999/acng-report.html> y se presiona '**Start import**':
 
-[![](/assets/img/57.png)](/assets/img/57.png)
+**[![](/assets/img/57.png)](/assets/img/57.png)**
 
 #### Importar paquetes de otras máquinas
 

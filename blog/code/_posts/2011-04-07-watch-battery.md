@@ -6,7 +6,7 @@ title: "watch_battery"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-[![alt text](/assets/img/40.png)](/assets/img/40.png)
+**[![](/assets/img/40.png)](/assets/img/40.png)**
 
 Hice un pequeño [script](https://gist.github.com/913004) para vigilar que no se me apague la computadora cuando ya no tenga pila (mejor que hiberne), requiere de **notify-send**, **hibernate** y **acpi,** en ubuntu:
 

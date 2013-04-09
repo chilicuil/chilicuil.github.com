@@ -60,12 +60,14 @@ h6 {
 
 #content {
     color: #EFEFEF;
-    float: left;
-    line-height: 1.5em;
-    margin: 0px;
-    padding: 0px;
-    text-align: left;
-    width: 750px;
+    /*float: left;*/
+    /*line-height: 1.5em;*/
+    /*margin: 0px;*/
+    /*padding: 0px;*/
+    /*text-align: left;*/
+    /*width: 750px;*/
+    height: auto !important;
+    min-height: 650px;
 }
 
 #footer {
