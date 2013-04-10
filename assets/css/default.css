@@ -1,92 +1,92 @@
-body {
-    background: none repeat scroll 0% 0% #010101;
-    font: 85%/1.2em 'Gibson-Regular','lucida grande';
-    margin: 0px auto;
-    padding: 0px;
-}
+/*body {*/
+    /*background: none repeat scroll 0% 0% #010101;*/
+    /*font: 85%/1.2em 'Gibson-Regular','lucida grande';*/
+    /*margin: 0px auto;*/
+    /*padding: 0px;*/
+/*}*/
 
-a {
-    color: #0383C9;
-    font-weight: 700;
-    text-decoration: none;
-}
+/*a {*/
+    /*color: #0383C9;*/
+    /*font-weight: 700;*/
+    /*text-decoration: none;*/
+/*}*/
 
-a:hover {
-    color: white;
-    text-decoration: underline;
-}
+/*a:hover {*/
+    /*color: white;*/
+    /*text-decoration: underline;*/
+/*}*/
 
-li {
-    color: #CCCCCC;
-    list-style: none outside none;
-    padding: 0px 4px;
-}
+/*li {*/
+    /*color: #CCCCCC;*/
+    /*list-style: none outside none;*/
+    /*padding: 0px 4px;*/
+/*}*/
 
-pre {
-    background: none repeat scroll 0% 0% #191919;
-    border: 2px dashed #E5E5E5;
-    clear: both;
-    font-family: Monaco,Courier;
-    font-size: 1em;
-    line-height: 1em;
-    padding: 5px;
-    width: 740px;
-}
+/*pre {*/
+    /*background: none repeat scroll 0% 0% #191919;*/
+    /*border: 2px dashed #E5E5E5;*/
+    /*clear: both;*/
+    /*font-family: Monaco,Courier;*/
+    /*font-size: 1em;*/
+    /*line-height: 1em;*/
+    /*padding: 5px;*/
+    /*width: 740px;*/
+/*}*/
 
-strong>em,
-em>strong,
-b>i,
-i>b {
-    font-style:normal;
-    font-weight:normal;
-    text-decoration:underline;
-}
+/*strong>em,*/
+/*em>strong,*/
+/*b>i,*/
+/*i>b {*/
+    /*font-style:normal;*/
+    /*font-weight:normal;*/
+    /*text-decoration:underline;*/
+/*}*/
 
-h6 {
-    align: right;
-}
+/*h6 {*/
+    /*align: right;*/
+/*}*/
 
-#post > .p {
-    text-align: justify;
-}
+/*#post > .p {*/
+    /*text-align: justify;*/
+/*}*/
 
-#post img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 60%;
-    height: auto !important;
-}
+/*#post img {*/
+    /*display: block;*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    /*max-width: 60%;*/
+    /*height: auto !important;*/
+/*}*/
 
-#content {
-    color: #EFEFEF;
-    float: left;
-    line-height: 1.5em;
-    margin: 0px;
-    padding: 0px;
-    text-align: left;
-    width: 750px;
-}
+/*#content {*/
+    /*color: #EFEFEF;*/
+    /*float: left;*/
+    /*line-height: 1.5em;*/
+    /*margin: 0px;*/
+    /*padding: 0px;*/
+    /*text-align: left;*/
+    /*width: 750px;*/
+/*}*/
 
-#footer {
-    border-top: 2px solid #DADADA;
-    clear: both;
-    color: gray;
-    font-size: 0.9em;
-    line-height: 1.5em;
-    margin: 0px auto;
-    padding: 10px 0px;
-    text-align: right;
-}
+/*#footer {*/
+    /*border-top: 2px solid #DADADA;*/
+    /*clear: both;*/
+    /*color: gray;*/
+    /*font-size: 0.9em;*/
+    /*line-height: 1.5em;*/
+    /*margin: 0px auto;*/
+    /*padding: 10px 0px;*/
+    /*text-align: right;*/
+/*}*/
 
-#related
+/*#related*/
 
-.related-posts{
-    padding: 0px;
-}
+/*.related-posts{*/
+    /*padding: 0px;*/
+/*}*/
 
-ul.related-posts li span {
-    color: #888888;
-    float: right;
-    font-family: monofur,monaco,courier;
-}
+/*ul.related-posts li span {*/
+    /*color: #888888;*/
+    /*float: right;*/
+    /*font-family: monofur,monaco,courier;*/
+/*}*/
