@@ -1,0 +1,226 @@
+/* encabezado principal */
+@import url('http://fonts.googleapis.com/css?family=Inconsolata');
+
+/* encabezados menores, listas, footer, related */
+@import url('http://fonts.googleapis.com/css?family=PT+Sans');
+
+/* p y resto de textos */
+@import url('http://fonts.googleapis.com/css?family=Vollkorn');
+
+body {
+    /* background: none repeat scroll 0% 0% #010101; */
+    background: #010101;
+    color: #CCC0C;
+    margin: 0px auto;
+    width: 75%;
+    max-width: 70%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+/* encabezado principal y overrides de anchors */
+#header h1 {
+    font: 400%/1em 'Inconsolata', sans-serif;
+    font-weight: bold;
+    text-shadow: 4px 4px 2px rgba(90,90,110,1);
+}
+#header h1 a { color: white; }
+#header h1 a:active { outline: 0; }
+#header h1 a:hover {
+    color: #eee;
+    text-decoration: none;
+}
+#header h1 a:hover:after { content: "*"; }
+
+/* hello world en home */
+center > h1 { color: #111; }
+
+/* menu */
+#header > a { text-shadow: 1px 1px 1px rgba(140, 140, 140, 1); }
+.pink { color: #CC55BC; }
+.green { color: #33CC33; }
+.orange { color: #CCBB33; }
+.pink:hover { color: #CC55BC; }
+.green:hover { color: #33CC33; }
+.orange:hover { color: #CCBB33; }
+
+/* header de entradas */
+h2 {
+    display: block;
+    margin-bottom: 0;
+    padding: 2%;
+    background: black;
+    color: #eee;
+    font: 200%/2em 'PT Sans', sans-serif;
+    text-shadow: 1px 0px 2px rgba(150, 110, 110, 1);
+}
+
+h3 {
+    font-size: 200%/2em;
+    color: #333;
+}
+
+h4 {
+    font-size: .9em;
+    color: #333;
+}
+
+h6 {
+    margin-top: 1%;
+    margin-bottom: 5%;
+    color: #777;
+}
+
+a {
+    text-decoration: none;
+    color: #B03A44;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #CD0D1D;
+}
+
+li {
+    padding-left: 12px;
+    padding-bottom: 1em;
+    color: #666;
+}
+
+ul > li {
+    border-left: 4px solid #777;
+    list-style: none; /* control simple alternativo al selector de abajo */
+}
+
+/* full control sobre viñetas (color, por ejemplo)
+ si no es necesario se puede reemplazar por list-style arriba */
+ul > li:before {
+    position: relative;
+    float: left;
+    padding-right: .25em;
+    content: "\0025AA";
+    color: #333;
+    font: 1.2em "Arial";
+    font-weight: bold;
+}
+
+ul > li > p { margin: 0; }
+
+p {
+    color: #333;
+    font: 1.2em 'Vollkorn','serif';*/
+    text-align: justify;
+}
+
+pre {
+    background: #050505;
+    border: 1px solid #CCCCCC;
+    clear: both;
+    padding: 2px;
+}
+
+/* decoracion primer parrafo en entradas (al usar sibling no es perfecto)
+ si queres agarrar todos los casos directamente poner la primer letra en un
+ span class=decorate o algo asi, aunque la variacion no queda mal tampoco */
+h2 + h6 + p:first-letter,
+h2 + h6 + h3 + p:first-letter,
+h2 + img + p:first-letter {
+    width: 2em;
+    padding: 0 .3em;
+    background: black;
+    color: red;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+}
+
+#content {
+    position: relative;
+    min-height: 500px;
+    margin: 0px;
+}
+
+#content img {
+    max-width: 100%;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+#related {
+    font-family: 'PT Sans', sans-serif;
+    background: white;
+    margin: 0px;
+    padding: 1%;
+}
+
+/* overrides listas en related */
+#related li {
+    border-left: 0;
+    list-style: none;
+}
+
+#related li:before { content: ""; }
+
+#disqus {
+    margin: 0px;
+    background: white;
+}
+
+#footer {
+    font-family: 'PT Sans', sans-serif;
+    margin-top: 0px;
+    padding: 5%;
+    background: #fff;
+    text-align: right;
+}
+
+/* indices: listas y anchors
+ aqui tambien use sibling a falta de clases especificas, en un listado aparece
+ como .posts y en otro como .related-posts, pero esta ultima clase se usa en dos
+ lugares diferentes en el markup */
+.posts, h2 + .related-posts {
+    margin-top: 5%;
+    margin-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.posts li, h2 + .related-posts li {
+    position: relative;
+    font-family: 'PT Sans', sans-serif;
+    border-left: 0;
+    margin: 0;
+    padding-left: 1px;
+    list-style: none;
+}
+
+.posts li:before, h2 + .related-posts li:before {
+    content: "";
+}
+
+.posts li:hover, h2 + .related-posts li:hover {
+    background: white;
+    border-left: 1px solid #777;
+    padding-left: 0px;
+}
+
+.posts a, h2 + .related-posts a {
+    text-decoration: none;
+    color: #B03A44;
+}
+
+.posts a:hover, h2 + .related-posts a:hover {
+    color: #CD0D1D;
+}
+
+.posts li span, h2 + .related-posts li span {
+    position: absolute;
+    right: 1%;
+    color: #888;
+    font-size: 1.6em;
+}
+
+.posts li:hover span, h2 + .related-posts li:hover span {
+    color: #444;
+}
