@@ -49,13 +49,12 @@ center > h1 { color: #111; }
 
 /* header de entradas */
 h2 {
-    display: block;
-    margin-bottom: 0;
-    padding: 2%;
-    background: black;
-    color: #eee;
-    font: 180%/2em 'PT Sans', sans-serif;
-    text-shadow: 1px 0px 2px rgba(150, 110, 110, 1);
+    background: none repeat scroll 50% 50% #010101;
+    color: #EEEEEE;
+    border-bottom: 10px groove white;
+    font: 180%/2em 'PT Sans',sans-serif;
+    margin-bottom: 0px;
+    text-shadow: 1px 0px 2px #966E6E;
 }
 
 h3 {
