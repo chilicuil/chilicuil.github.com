@@ -168,6 +168,10 @@ h2 + img + p:first-letter {
     border-radius: 2em;
 }
 
+#post h2:first-letter {
+    text-transform: uppercase;
+}
+
 #content {
     position: relative;
     min-height: 500px;
