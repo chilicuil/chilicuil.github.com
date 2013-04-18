@@ -80,14 +80,13 @@ form input.st-search-input {
 
 /* Change color of search result text */
 .swiftype-widget .autocomplete ul li p.title {
-  color: white;
-  background: black;
+  color: #B03A44;
 }
 
 /* Change background color of selected search result */
 .swiftype-widget .autocomplete ul li.active {
-  background: black;
-  background-color: firebrick;
+  background: none;
+  background-color: black;
   border-top: 1px solid darkred;
   border-bottom: 1px solid darkred;
   -webkit-box-shadow: 0 1px 0 #C0242D inset;
