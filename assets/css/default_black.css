@@ -33,7 +33,10 @@ body {
 #header h1 a:hover:after { content: " [$] _"; }
 
 /* hello world en home */
-center > h1 { color: #111; }
+center > h1 {
+    color: #111;
+    text-align: center;
+}
 
 /* menu */
 #header > a { 
