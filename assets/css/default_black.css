@@ -84,11 +84,10 @@ form input.st-search-input {
 }
 
 .swiftype-widget .autocomplete ul li p {
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .swiftype-widget .autocomplete ul > li {
-    border-left: 3px solid rgb(119, 119, 119);
     border-right: 3px solid rgb(119, 119, 119);
     list-style: none outside none;
 }
