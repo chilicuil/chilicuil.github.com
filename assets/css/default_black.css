@@ -87,6 +87,12 @@ form input.st-search-input {
     font-size: 10px;
 }
 
+.swiftype-widget .autocomplete ul > li {
+    border-left: 3px solid rgb(119, 119, 119);
+    border-right: 3px solid rgb(119, 119, 119);
+    list-style: none outside none;
+}
+
 .swiftype-widget .autocomplete ul li.active p.title {
     color: #CD0D1D;
     text-decoration: underline;
