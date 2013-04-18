@@ -85,7 +85,7 @@ form input.st-search-input {
 
 /* Change background color of selected search result */
 .swiftype-widget .autocomplete ul li.active {
-  background: none;
+  background: black;
   background-color: firebrick;
   border-top: 1px solid darkred;
   border-bottom: 1px solid darkred;
@@ -94,7 +94,7 @@ form input.st-search-input {
 
 /* change the color of the section text (displayed below the title) */
 .swiftype-widget .autocomplete ul li.active .sections em {
-  color: black;
+  color: white;
 }
 
 /* header de entradas */
