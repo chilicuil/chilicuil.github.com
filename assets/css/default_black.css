@@ -62,6 +62,7 @@ center > h1 {
 .green:hover { color: #33CC33; font-family: 'Strait', sans-serif;}
 .orange:hover { color: #CCBB33; font-family: 'Strait', sans-serif;}
 
+/*=====================SEARCH=========================*/
 form input.st-search-input {
     background: url("//swiftype-assets.a.ssl.fastly.net/assets/embed_mag-034de95a159bfc65ae00bd318e8138ed.png") no-repeat scroll 7px 7px #FCFCFC;
     border: 1px solid #CCCCCC;
@@ -123,6 +124,18 @@ form input.st-search-input {
 .swiftype-widget .autocomplete li.active .sections {
     font-size: 14px;
 }
+
+.swiftype-widget .autocomplete li p.sections {
+    font-size: 12px;
+}
+
+.swiftype .st-result-listing .st-search-summary h2 {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0;
+}
+/*====================================================*/
 
 /* header de entradas */
 h2 {
