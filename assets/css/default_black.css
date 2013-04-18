@@ -97,6 +97,11 @@ form input.st-search-input {
   color: black;
 }
 
+.st-result-listing a:hover {
+    text-decoration: underline;
+    color: #CD0D1D;
+}
+
 /* header de entradas */
 h2 {
     background: none repeat scroll 50% 50% #010101;
