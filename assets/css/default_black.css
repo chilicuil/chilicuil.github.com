@@ -36,7 +36,10 @@ body {
 center > h1 { color: #111; }
 
 /* menu */
-#header > a { text-shadow: 1px 1px 1px rgba(140, 140, 140, 1); }
+#header > a { 
+    font-size: 160%;
+    text-shadow: 1px 1px 1px rgba(140, 140, 140, 1);
+}
 .pink { color: #CC55BC; }
 .green { color: #33CC33; }
 .orange { color: #CCBB33; }
@@ -57,18 +60,18 @@ h2 {
 
 h3 {
     font-size: 180%/2em;
-    color: #333;
+    color: #777;
 }
 
 h4 {
     font-size: .9em;
-    color: #333;
+    color: #999;
 }
 
 h6 {
     margin-top: 1%;
     margin-bottom: 5%;
-    color: #777;
+    color: #aaa;
 }
 
 a {
@@ -107,7 +110,7 @@ ul > li:before {
 ul > li > p { margin: 0; }
 
 p {
-    color: #333;
+    color: #777;
     font: 1.2em 'Vollkorn','serif';*/
     text-align: justify;
 }
