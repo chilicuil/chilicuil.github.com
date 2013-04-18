@@ -78,6 +78,25 @@ form input.st-search-input {
     width: 200px;
 }
 
+/* Change color of search result text */
+.swiftype-widget .autocomplete ul li p.title {
+  color: Indigo;
+}
+
+/* Change background color of selected search result */
+.swiftype-widget .autocomplete ul li.active {
+  background: none;
+  background-color: firebrick;
+  border-top: 1px solid darkred;
+  border-bottom: 1px solid darkred;
+  -webkit-box-shadow: 0 1px 0 #C0242D inset;
+}
+
+/* change the color of the section text (displayed below the title) */
+.swiftype-widget .autocomplete ul li.active .sections em {
+  color: white;
+}
+
 /* header de entradas */
 h2 {
     background: none repeat scroll 50% 50% #010101;
