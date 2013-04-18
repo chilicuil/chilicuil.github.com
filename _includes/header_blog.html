@@ -3,4 +3,53 @@
   <a href="/blog/code.html" class="pink">code</a> | 
   <a href="/blog/conf.html" class="green">conf</a> | 
   <a href="/blog/random.html" class="orange">random</a> |
+  <form>
+    <input type="text" id="st-search-input" class="st-search-input search-box"/>
+  </form>
+  {% if page.url == '/blog/results/index.html' %}
+  
+  <!-- Begin Results Swifttype -->
+  <script type="text/javascript">
+    var Swiftype = window.Swiftype || {};
+    (function() {
+      Swiftype.key = 'k64dV6Rm9QK4z8WnkrcN';
+      Swiftype.inputElement = '#st-search-input';
+      Swiftype.resultContainingElement = '#st-results-container';
+      Swiftype.attachElement = '#st-search-input';
+      Swiftype.renderStyle = "inline";
+  
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = "//swiftype.com/embed.js";
+      var entry = document.getElementsByTagName('script')[0];
+      entry.parentNode.insertBefore(script, entry);
+    }());
+  </script>
+  <!-- End Results Swifttype -->
+  
+  {% else %}
+  
+  <!-- Begin Swifttype -->
+  <script type="text/javascript">
+    var Swiftype = window.Swiftype || {};
+    (function() {
+      Swiftype.key = 'k64dV6Rm9QK4z8WnkrcN';
+      Swiftype.inputElement = '#st-search-input';
+      Swiftype.resultContainingElement = '#st-results-container';
+      Swiftype.attachElement = '#st-search-input';
+      Swiftype.renderStyle = "new_page";
+      Swiftype.resultPageURL = "/blog/results/";
+  
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = "//swiftype.com/embed.js";
+      var entry = document.getElementsByTagName('script')[0];
+      entry.parentNode.insertBefore(script, entry);
+    }());
+  </script>
+  <!-- End Swifttype -->
+
+{% endif %}
 </div>
