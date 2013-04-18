@@ -37,6 +37,7 @@ body {
 /* hello world en home */
 center > h1 {
     color: #111;
+    padding-top: 5%;
 }
 
 /* menu */
