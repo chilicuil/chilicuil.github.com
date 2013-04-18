@@ -2,6 +2,9 @@
 /*@import url('http://fonts.googleapis.com/css?family=Inconsolata');*/
 @import url('http://fonts.googleapis.com/css?family=Roboto+Condensed');
 
+/* categorias */
+@import url('http://fonts.googleapis.com/css?family=Strait');
+
 /* encabezados menores, listas, footer, related */
 @import url('http://fonts.googleapis.com/css?family=PT+Sans');
 
@@ -52,12 +55,12 @@ center > h1 {
     margin: 0;
     padding: 0;
 }
-.pink { color: #CC55BC; }
-.green { color: #33CC33; }
-.orange { color: #CCBB33; }
-.pink:hover { color: #CC55BC; }
-.green:hover { color: #33CC33; }
-.orange:hover { color: #CCBB33; }
+.pink { color: #CC55BC; font-family: 'Strait', sans-serif;}
+.green { color: #33CC33; font-family: 'Strait', sans-serif;}
+.orange { color: #CCBB33; font-family: 'Strait', sans-serif;}
+.pink:hover { color: #CC55BC; font-family: 'Strait', sans-serif;}
+.green:hover { color: #33CC33; font-family: 'Strait', sans-serif;}
+.orange:hover { color: #CCBB33; font-family: 'Strait', sans-serif;}
 
 form input.st-search-input {
     background: url("//swiftype-assets.a.ssl.fastly.net/assets/embed_mag-034de95a159bfc65ae00bd318e8138ed.png") no-repeat scroll 7px 7px #FCFCFC;
