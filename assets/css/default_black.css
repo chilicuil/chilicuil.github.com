@@ -83,6 +83,10 @@ form input.st-search-input {
     color: #B03A44;
 }
 
+.swiftype-widget .autocomplete ul li p {
+    font-size: 10px;
+}
+
 .swiftype-widget .autocomplete ul li.active p.title {
     color: #CD0D1D;
     text-decoration: underline;
@@ -90,15 +94,28 @@ form input.st-search-input {
 
 /* Change background color of selected search result */
 .swiftype-widget .autocomplete ul li.active {
-    background: none;
+    background: black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    box-shadow: 0px 0px 0px rgb(0, 0, 0) inset;
+    -webkit-box-shadow: 0 1px 0 #C0242D inset;
+}
+
+.swiftype-widget .autocomplete ul li {
+    background: black;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     -webkit-box-shadow: 0 1px 0 #C0242D inset;
 }
 
+
 /* change the color of the section text (displayed below the title) */
 .swiftype-widget .autocomplete ul li.active .sections em {
-    color: black;
+    color: white;
+}
+
+.swiftype-widget .autocomplete li.active .sections {
+    font-size: 14px;
 }
 
 /* header de entradas */
