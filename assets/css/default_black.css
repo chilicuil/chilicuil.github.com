@@ -24,10 +24,10 @@ body {
     font-weight: lighter;
     text-shadow: 4px 4px 4px rgba(90,90,120,1);
 }
-#header h1 a { color: white; }
+#header h1 a { color: #fafafa; }
 #header h1 a:active { outline: 0; }
 #header h1 a:hover {
-    color: #fff;
+    color: #fafafa;
     text-decoration: none;
 }
 #header h1 a:hover:after { content: " [$] _"; }
