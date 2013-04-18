@@ -87,8 +87,8 @@ form input.st-search-input {
 .swiftype-widget .autocomplete ul li.active {
   background: none;
   background-color: white;
-  border-top: 1px solid darkred;
-  border-bottom: 1px solid darkred;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
   -webkit-box-shadow: 0 1px 0 #C0242D inset;
 }
 
