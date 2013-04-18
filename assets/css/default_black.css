@@ -185,47 +185,48 @@ h2 + img + p:first-letter {
  como .posts y en otro como .related-posts, pero esta ultima clase se usa en dos
  lugares diferentes en el markup */
 .posts, h2 + .related-posts {
-    margin-top: 5%;
-    margin-bottom: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
+     margin-bottom: 0px;
+     margin-top: 5%;
+     padding-left: 0px;
+     padding-right: 0px;
 }
 
 .posts li, h2 + .related-posts li {
-    position: relative;
-    font-family: 'PT Sans', sans-serif;
-    border-left: 0;
-    margin: 0;
-    padding-left: 1px;
-    list-style: none;
+     border-left: 0px none;
+     font-family: 'PT Sans',sans-serif;
+     font-size: large;
+     list-style: none outside none;
+     margin: 0px;
+     padding-left: 1px;
+     position: relative;
 }
 
 .posts li:before, h2 + .related-posts li:before {
-    content: "";
+     content: "";
 }
 
 .posts li:hover, h2 + .related-posts li:hover {
-    background: white;
-    border-left: 1px solid #777;
-    padding-left: 0px;
+     background: none repeat scroll 0% 0% black;
+     border-left: 1px solid #777777;
+     padding-left: 20px;
 }
 
-.posts a, h2 + .related-posts a {
-    text-decoration: none;
-    color: #B03A44;
+.posts:hover a, h2 + .related-posts a {
+     color: #B03A44;
+     text-decoration: none;
 }
 
 .posts a:hover, h2 + .related-posts a:hover {
-    color: #CD0D1D;
+     color: #CD0D1D;
 }
 
 .posts li span, h2 + .related-posts li span {
-    position: absolute;
-    right: 1%;
-    color: #888;
-    font-size: 1.6em;
+     color: #888888;
+     font-size: 1.2em;
+     position: absolute;
+     right: 1%;
 }
 
 .posts li:hover span, h2 + .related-posts li:hover span {
-    color: #444;
+     color: #444444;
 }
