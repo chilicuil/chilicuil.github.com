@@ -113,8 +113,9 @@ p {
 }
 
 pre {
-    background: #050505;
+    background: #000;
     border: 1px solid #CCCCCC;
+    color: #fff;
     clear: both;
     padding: 2px;
 }
