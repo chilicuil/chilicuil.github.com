@@ -80,26 +80,25 @@ form input.st-search-input {
 
 /* Change color of search result text */
 .swiftype-widget .autocomplete ul li p.title {
-  color: #B03A44;
+    color: #B03A44;
+}
+
+.swiftype-widget .autocomplete a.active {
+    color: #CD0D1D;
+    text-decoration: underline;
 }
 
 /* Change background color of selected search result */
 .swiftype-widget .autocomplete ul li.active {
-  background: none;
-  background-color: white;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  -webkit-box-shadow: 0 1px 0 #C0242D inset;
+    background: none;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    -webkit-box-shadow: 0 1px 0 #C0242D inset;
 }
 
 /* change the color of the section text (displayed below the title) */
 .swiftype-widget .autocomplete ul li.active .sections em {
-  color: black;
-}
-
-.st-result-listing a:hover {
-    text-decoration: underline;
-    color: #CD0D1D;
+    color: black;
 }
 
 /* header de entradas */
