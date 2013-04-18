@@ -51,6 +51,7 @@ center > h1 { color: #111; }
 h2 {
     background: none repeat scroll 50% 50% #010101;
     color: #EEEEEE;
+    border-top: 10px groove white;
     border-bottom: 10px groove white;
     font: 180%/2em 'PT Sans',sans-serif;
     margin-bottom: 0px;
