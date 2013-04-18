@@ -83,7 +83,7 @@ form input.st-search-input {
     color: #B03A44;
 }
 
-.swiftype-widget .autocomplete a.active {
+.swiftype-widget .autocomplete ul li.active p.title {
     color: #CD0D1D;
     text-decoration: underline;
 }
