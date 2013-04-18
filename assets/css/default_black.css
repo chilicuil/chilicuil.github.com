@@ -42,13 +42,18 @@ center > h1 {
     font-size: 160%;
     text-shadow: 1px 1px 1px rgba(140, 140, 140, 1);
 }
+
+#header form {
+    margin: 0;
+    padding: 0;
+}
 .pink { color: #CC55BC; }
 .green { color: #33CC33; }
 .orange { color: #CCBB33; }
 .pink:hover { color: #CC55BC; }
 .green:hover { color: #33CC33; }
 .orange:hover { color: #CCBB33; }
-/*.search-box { }*/
+.search-box { text-align: right; }
 
 /* header de entradas */
 h2 {
