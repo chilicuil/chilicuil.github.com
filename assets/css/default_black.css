@@ -55,12 +55,12 @@ center > h1 {
     margin: 0;
     padding: 0;
 }
-.pink { color: #CC55BC; font-family: 'Strait', sans-serif;}
-.green { color: #33CC33; font-family: 'Strait', sans-serif;}
-.orange { color: #CCBB33; font-family: 'Strait', sans-serif;}
-.pink:hover { color: #CC55BC; font-family: 'Strait', sans-serif;}
-.green:hover { color: #33CC33; font-family: 'Strait', sans-serif;}
-.orange:hover { color: #CCBB33; font-family: 'Strait', sans-serif;}
+.pink { color: #FF5333; font-family: 'Strait', sans-serif;}
+.green { color: #C8F526; font-family: 'Strait', sans-serif;}
+.orange { color: #FFE600; font-family: 'Strait', sans-serif;}
+.pink:hover { color: #FF5333; font-family: 'Strait', sans-serif;}
+.green:hover { color: #C8F526; font-family: 'Strait', sans-serif;}
+.orange:hover { color: #FFE600; font-family: 'Strait', sans-serif;}
 
 /*=====================SEARCH=========================*/
 form input.st-search-input {
