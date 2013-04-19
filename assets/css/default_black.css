@@ -141,6 +141,10 @@ form input.st-search-input {
 /*}*/
 /*====================================================*/
 
+.link a i {
+    font-size:21pt; color:gray; text-decoration: none;
+}
+
 /* header de entradas */
 h2 {
     background: none repeat scroll 50% 50% #010101;
