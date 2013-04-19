@@ -136,9 +136,9 @@ form input.st-search-input {
     margin: 0;
 }
 
-.swiftype .st-result-listing .st-search-summary {
-    border-bottom: 1px solid #000;
-}
+/*.swiftype .st-result-listing .st-search-summary {*/
+    /*border-bottom: 1px solid #000;*/
+/*}*/
 /*====================================================*/
 
 /* header de entradas */
