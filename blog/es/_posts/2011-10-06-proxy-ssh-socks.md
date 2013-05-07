@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "proxy shh + socks"
+title: "proxy ssh + socks"
 ---
 
 ## {{ page.title }}
@@ -11,7 +11,7 @@ title: "proxy shh + socks"
 - No se pueden accesar a páginas como facebook, youtube, foobar.com:3468, etc, porque han sido bloqueadas
 - No se pueden accesar a paginas como foobar.com:3468 por que estan en el mismo rango de IP (configuraciones raras de proveedores de Internet), y se desea accesar a traves de un host intermedio
 
-**Solución** : Utilizar un(os) tunel(es) shh
+**Solución** : Utilizar un(os) tunel(es) ssh
 
 **Ingredientes:**
 
