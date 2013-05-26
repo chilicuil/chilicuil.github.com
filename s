@@ -92,14 +92,13 @@ _getroot()
         sudotest=`type sudo &>/dev/null ; echo $?`
 
         if [ "$sudotest" = 0 ]; then
-            echo "    sudo was found!"
             echo "    Requesting sudo's password, I'll be carefull I promise =)"
             sudo -K
             if [ -e "$tmp_path/sudo.test" ]; then
                 rm -f "$tmp_path/sudo.test"
             fi
             while [ -z "$sudopwd" ]; do
-                echo -n "   - enter sudo-password: "
+                echo -n "    - enter sudo-password: "
                 stty -echo
                 read sudopwd
                 stty echo
@@ -164,10 +163,10 @@ _waitfor()
 
     running=$(pidof $1); running=$?
     if [ "$running" = 1 ]; then
-        echo -e "\b\b\b\b\b done"
+        echo -e "\b\b\b\b\b\b\b       "
     else
         _rotate $(pidof $1)
-        echo -e "\b\b\b\b\b done"
+        echo -e "\b\b\b\b\b\b\b       "
     fi
 }
 
@@ -201,11 +200,11 @@ echo -e "\033[1m----------------------\033[7m Fixing dependencies \033[0m\033[1m
 echo "[+] installing deps ... "
 echo -n "    $ apt-get update ...   "
 echo "$sudopwd" | $sudocmd apt-get update > /dev/null 2>&1 &
-sleep 2s && _rotate $(pidof apt-get); echo -e "\b\b\b\b\b\b\b [done]"
+sleep 2s && _rotate $(pidof apt-get); echo -e "\b\b\b\b\b\b\b       "
 
 echo -n "    $ apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y ...   "
 echo "$sudopwd" | $sudocmd apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y > /dev/null 2>&1 &
-sleep 2s && _rotate $(pidof apt-get); echo -e "\b\b\b\b\b\b\b [done]"
+sleep 2s && _rotate $(pidof apt-get); echo -e "\b\b\b\b\b\b\b       "
 #_cmd echo
 #####################################################################################################
 
@@ -247,10 +246,11 @@ _waitfor git clone --dept=1 https://github.com/gmarik/vundle ~/.vim/bundle/vundl
 _waitfor vim -es -u ~/.vimrc -c "BundleInstall" -c qa
 
 echo "[+] configuring cd ... "
-source $HOME/.bashrc
-_waitfor update-cd
+mkdir $HOME/.wcd; /usr/bin/wcd.exec -GN -j -xf $HOME/.ban.wcd -S $HOME
 
 echo -e "\033[1m----------------------\033[7m DONE \033[0m\033[1m-------------------\033[0m"
 echo "Now, I'll reload the configuration, have a nice day ^_^/" && sleep 3s
+source $HOME/.bashrc
+return 0
 
 #_cleanup 1
