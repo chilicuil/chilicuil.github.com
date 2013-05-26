@@ -194,8 +194,6 @@ _ubuntudev()
 _header
 _getroot
 
-#TODO 26-05-2013 02:17 >> verify previous step, fail to continue
-
 echo -e "\033[1m----------------------\033[7m Fixing dependencies \033[0m\033[1m-------------------------\033[0m"
 
 echo -n "[+] apt-get update ...   "
