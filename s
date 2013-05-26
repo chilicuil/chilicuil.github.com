@@ -156,7 +156,7 @@ _waitfor()
     [ -z $1 ] && return 1
 
     echo "[+] $@"
-    $@ &
+    $@ > /dev/null 2>&1 &
     sleep 1s
 
     running=$(pidof $1); running=$?
@@ -241,7 +241,7 @@ done
 echo -e "\033[1m---------------\033[7m Configuring main apps \033[0m\033[1m-------------------\033[0m"
 echo "[+] configuring vim ... "
 _waitfor git clone --dept=1 https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-_cmd vim -es -u ~/.vimrc -c "BundleInstall" -c q
+_cmd vim -es -u ~/.vimrc -c "BundleInstall" -c qa
 
 
 echo -e "\033[1m----------------------\033[7m DONE \033[0m\033[1m-------------------\033[0m"
