@@ -177,7 +177,7 @@ _smv()
 _ubuntudev()
 {
     echo -e "\033[1m----------------------------\033[7m Preparing the system for Ubuntu dev \033[0m\033[1m------------------------------------\033[0m"
-    echo "$sudopwd" | _waitfor $SUDO apt-get install --no-install-recommends apt-file cvs subversion bzr bzr-builddeb pbuilder -y
+    echo "$sudopwd" | _waitfor $sudocmd apt-get install --no-install-recommends apt-file cvs subversion bzr bzr-builddeb pbuilder -y
 }
 
 _header
@@ -185,8 +185,8 @@ _getroot
 
 echo -e "\033[1m--------------------------------\033[7m Fixing dependencies \033[0m\033[1m--------------------------------\033[0m"
 
-echo "$sudopwd" | _waitfor $SUDO apt-get update
-echo "$sudopwd" | _waitfor $SUDO apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y
+echo "$sudopwd" | _waitfor $sudocmd apt-get update
+echo "$sudopwd" | _waitfor $sudocmd apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y
 #_cmd echo
 #####################################################################################################
 
