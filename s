@@ -127,7 +127,7 @@ _getroot()
 
 _cleanup()
 {
-    echo -e "\033[1m--------------------------------\033[7m Downloading files \033[0m\033[1m-------------------------------\033[0m"
+    echo -e "\033[1m-------------------\033[7m Cleanup \033[0m\033[1m-------------------\033[0m"
     echo "[+] recovering old conf ... "
     for FILE in $HOME/*.old; do
         [ -e "$FILE" ] || continue
@@ -176,29 +176,31 @@ _smv()
 
 _ubuntudev()
 {
-    echo -e "\033[1m----------------------------\033[7m Preparing the system for Ubuntu dev \033[0m\033[1m------------------------------------\033[0m"
+    echo -e "\033[1m----\033[7m Preparing the system for Ubuntu dev \033[0m\033[1m------\033[0m"
     echo "$sudopwd" | _waitfor $sudocmd apt-get install --no-install-recommends apt-file cvs subversion bzr bzr-builddeb pbuilder -y
 }
 
 _header
 _getroot
 
-echo -e "\033[1m--------------------------------\033[7m Fixing dependencies \033[0m\033[1m--------------------------------\033[0m"
+echo -e "\033[1m------------\033[7m Fixing dependencies \033[0m\033[1m--------------\033[0m"
 
+echo "[+] apt-get update ...  "
 echo "$sudopwd" | $sudocmd apt-get update > /dev/null 2>&1 &
 _rotate $(pidof apt-get) && echo -e "\b\b\b\b\b done"
 
+echo "[+] apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y ...  "
 echo "$sudopwd" | $sudocmd apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y > /dev/null 2>&1 &
 _rotate $(pidof apt-get) && echo -e "\b\b\b\b\b done"
 #_cmd echo
 #####################################################################################################
 
-echo -e "\033[1m--------------------------------\033[7m Downloading files \033[0m\033[1m-------------------------------\033[0m"
+echo -e "\033[1m------------\033[7m Downloading files \033[0m\033[1m----------------\033[0m"
 echo "[+] downloading reps ... "
 _waitfor git clone --dept=1 "$dotfiles.git"
 _waitfor git clone --dept=1 "$utils.git"
 
-echo -e "\033[1m--------------------------------\033[7m Installing files \033[0m\033[1m-------------------------------\033[0m"
+echo -e "\033[1m-------------\033[7m Installing files \033[0m\033[1m----------------\033[0m"
 echo "[+] installing dotfiles (old dotfiles will get an .old suffix) ... "
 for FILE in dotfiles/.*; do
     [ -e "$FILE" ] || break
@@ -221,12 +223,12 @@ for FILE in learn/sh/*; do
     smv "$FILE" /usr/local/bin/
 done
 
-echo -e "\033[1m--------------------------------\033[7m Configuring main apps \033[0m\033[1m-------------------------------\033[0m"
+echo -e "\033[1m----------\033[7m Configuring main apps \033[0m\033[1m--------------\033[0m"
 echo "[+] configuring vim ... "
 _waitfor git clone --dept=1 https://github.com/gmarik/vundle ~/.vim/bundle/vundle
 _cmd vim -es -u ~/.vimrc -c "BundleInstall" -c q
 
 
-echo -e "\033[1m-------------------------------------\033[7m DONE \033[0m\033[1m----------------------------------\033[0m"
+echo -e "\033[1m----------------------\033[7m DONE \033[0m\033[1m-------------------\033[0m"
 
 #_cleanup 1
