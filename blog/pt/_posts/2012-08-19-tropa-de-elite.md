@@ -14,8 +14,13 @@ O filme tambem faz um retrato interessante da sociedade do estado do Rio de Jane
 
 Da segunda parte quase nao gostei, tem tintes politicos e o capitao Nascimiento ja nao é um homem normal, mais é como um superman. Quais sao os seus filmes favoritos?
 
-<h4>Tropa de elite 1</h4>
+### Tropa de elite 1
+<center>
 <object width="560" height="315"><param name="movie" value="http://www.youtube.com/v/Jz2DadDoRjg?hl=en_US&amp;version=3"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/Jz2DadDoRjg?hl=en_US&amp;version=3" type="application/x-shockwave-flash" width="560" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+</center>
 
-<h4>Tropa de elite 2</h4>
+### Tropa de elite 2
+
+<center>
 <object width="560" height="315"><param name="movie" value="http://www.youtube.com/v/XL3ybRR1oE0?version=3&amp;hl=en_US"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/XL3ybRR1oE0?version=3&amp;hl=en_US" type="application/x-shockwave-flash" width="560" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+</center>
