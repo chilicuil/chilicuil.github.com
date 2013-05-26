@@ -182,47 +182,47 @@ _ubuntudev()
 _header
 _getroot
 
-echo -e "\033[1m------------\033[7m Fixing dependencies \033[0m\033[1m--------------\033[0m"
+echo -e "\033[1m-----------------------\033[7m Fixing dependencies \033[0m\033[1m-------------------------\033[0m"
 
-echo "[+] apt-get update ...  "
+echo -n "[+] apt-get update ...  "
 echo "$sudopwd" | $sudocmd apt-get update > /dev/null 2>&1 &
 sleep 5s && _rotate $(pidof apt-get) && echo -e "\b\b\b\b\b done"
 
-echo "[+] apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y ...  "
+echo -n "[+] apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y ...  "
 echo "$sudopwd" | $sudocmd apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y > /dev/null 2>&1 &
 sleep 5s && _rotate $(pidof apt-get) && echo -e "\b\b\b\b\b done"
 #_cmd echo
 #####################################################################################################
 
-echo -e "\033[1m------------\033[7m Downloading files \033[0m\033[1m----------------\033[0m"
+echo -e "\033[1m-----------------------\033[7m Downloading files \033[0m\033[1m----------------------------\033[0m"
 echo "[+] downloading reps ... "
 _waitfor git clone --dept=1 "$dotfiles.git"
 _waitfor git clone --dept=1 "$utils.git"
 
-echo -e "\033[1m-------------\033[7m Installing files \033[0m\033[1m----------------\033[0m"
+echo -e "\033[1m------------------------\033[7m Installing files \033[0m\033[1m---------------------------\033[0m"
 echo "[+] installing dotfiles (old dotfiles will get an .old suffix) ... "
 for FILE in dotfiles/.*; do
     [ -e "$FILE" ] || break
-    smv "$FILE" $HOME
+    _smv "$FILE" $HOME
 done
 
 echo "[+] installing utils (old scripts will get an .old suffix) ... "
 for FILE in learn/autocp/bash_completion.d/*; do
     [ -e "$FILE" ] || break
-    smv "$FILE" /etc/bash_completion.d/
+    _smv "$FILE" /etc/bash_completion.d/
 done
 
 for FILE in learn/python/*; do
     [ -f "$FILE" ] || continue
-    smv "$FILE" /usr/local/bin/
+    _smv "$FILE" /usr/local/bin/
 done
 
 for FILE in learn/sh/*; do
     [ -f "$FILE" ] || continue
-    smv "$FILE" /usr/local/bin/
+    _smv "$FILE" /usr/local/bin/
 done
 
-echo -e "\033[1m----------\033[7m Configuring main apps \033[0m\033[1m--------------\033[0m"
+echo -e "\033[1m---------------\033[7m Configuring main apps \033[0m\033[1m-------------------\033[0m"
 echo "[+] configuring vim ... "
 _waitfor git clone --dept=1 https://github.com/gmarik/vundle ~/.vim/bundle/vundle
 _cmd vim -es -u ~/.vimrc -c "BundleInstall" -c q
