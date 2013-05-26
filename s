@@ -185,15 +185,17 @@ _ubuntudev()
 _header
 _getroot
 
+#TODO 26-05-2013 02:17 >> verify previous step, fail to continue
+
 echo -e "\033[1m-----------------------\033[7m Fixing dependencies \033[0m\033[1m-------------------------\033[0m"
 
 echo -n "[+] apt-get update ...   "
 echo "$sudopwd" | $sudocmd apt-get update > /dev/null 2>&1 &
-sleep 5s && _rotate $(pidof apt-get); echo -e "\b\b\b\b\b done"
+sleep 2s && _rotate $(pidof apt-get); echo -e "\b\b\b\b\b done"
 
 echo -n "[+] apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y ...   "
 echo "$sudopwd" | $sudocmd apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y > /dev/null 2>&1 &
-sleep 5s && _rotate $(pidof apt-get); echo -e "\b\b\b\b\b done"
+sleep 2s && _rotate $(pidof apt-get); echo -e "\b\b\b\b\b done"
 #_cmd echo
 #####################################################################################################
 
