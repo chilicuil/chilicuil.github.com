@@ -5,6 +5,7 @@ trap _cleanup SIGINT SIGTERM #trap ctrl-c
 dotfiles="https://github.com/chilicuil/dotfiles"
 utils="https://github.com/chilicuil/learn"
 updates="http://javier.io/s"
+revision=1
 
 _header()
 {
@@ -13,6 +14,8 @@ _header()
     echo -e "\033[1m  Dotfiles:\033[0m        $dotfiles"
     echo -e "\033[1m  Utils:\033[0m           $utils"
     echo -e "\033[1m  Updates:\033[0m         $updates"
+    echo
+    echo -e "\033[1m  Revision:\033[0m        $revision"
     echo
     echo -e "\033[1m  Run with defaults:"
     echo
@@ -241,9 +244,10 @@ done
 echo -e "\033[1m---------------\033[7m Configuring main apps \033[0m\033[1m-------------------\033[0m"
 echo "[+] configuring vim ... "
 _waitfor git clone --dept=1 https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-_cmd vim -es -u ~/.vimrc -c "BundleInstall" -c qa
-
+_waitfor vim -es -u ~/.vimrc -c "BundleInstall" -c qa
 
 echo -e "\033[1m----------------------\033[7m DONE \033[0m\033[1m-------------------\033[0m"
+echo "Now, I'll reload the configuration, have a nice day ^_^/" && sleep 3s
+source $HOME/.bashrc
 
 #_cleanup 1
