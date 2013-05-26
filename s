@@ -185,8 +185,11 @@ _getroot
 
 echo -e "\033[1m--------------------------------\033[7m Fixing dependencies \033[0m\033[1m--------------------------------\033[0m"
 
-echo "$sudopwd" | $sudocmd apt-get update || exit
-echo "$sudopwd" | $sudocmd apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y || exit
+echo "$sudopwd" | $sudocmd apt-get update &
+_rotate $(pidof apt-get) && echo -e "\b\b\b\b\b done"
+
+echo "$sudopwd" | $sudocmd apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y &
+_rotate $(pidof apt-get) && echo -e "\b\b\b\b\b done"
 #_cmd echo
 #####################################################################################################
 
