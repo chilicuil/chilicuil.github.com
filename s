@@ -169,7 +169,10 @@ _waitfor()
 
 _smv()
 {
-    [ -e "$2"/$(basename "$1") ] && mv "$2"/$(basename "$1").old
+    if [ "$(basename $1)" = "." ] && [ "$(basename $1)" = ".." ]; then
+        return
+    fi
+    [ -e "$2"/$(basename "$1") ] && mv "$2"/{$(basename "$1"),.old}
     mv -v "$1" "$2"
 }
 
@@ -184,13 +187,13 @@ _getroot
 
 echo -e "\033[1m-----------------------\033[7m Fixing dependencies \033[0m\033[1m-------------------------\033[0m"
 
-echo -n "[+] apt-get update ...  "
+echo -n "[+] apt-get update ...   "
 echo "$sudopwd" | $sudocmd apt-get update > /dev/null 2>&1 &
-sleep 5s && _rotate $(pidof apt-get) && echo -e "\b\b\b\b\b done"
+sleep 5s && _rotate $(pidof apt-get); echo -e "\b\b\b\b\b done"
 
-echo -n "[+] apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y ...  "
+echo -n "[+] apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y ...   "
 echo "$sudopwd" | $sudocmd apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y > /dev/null 2>&1 &
-sleep 5s && _rotate $(pidof apt-get) && echo -e "\b\b\b\b\b done"
+sleep 5s && _rotate $(pidof apt-get); echo -e "\b\b\b\b\b done"
 #_cmd echo
 #####################################################################################################
 
