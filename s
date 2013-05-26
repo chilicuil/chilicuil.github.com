@@ -170,11 +170,19 @@ _waitfor()
 
 _smv()
 {
-    if [ "$(basename $1)" = "." ] && [ "$(basename $1)" = ".." ]; then
+    if [ "$(basename $1)" = "." ] || [ "$(basename $1)" = ".." ]; then
         return
     fi
-    [ -e "$2"/$(basename "$1") ] && mv "$2"/{$(basename "$1"),.old}
-    mv -v "$1" "$2"
+    owner=$(stat -c %U "$2")
+
+    if [ "$owner" != "$LOGNAME" ]; then
+        [ -e "$2"/$(basename "$1") ] && echo "$sudopwd" | $sudocmd mv "$2"/{$(basename "$1"),.old}
+        echo "$sudopwd" | $sudocmd mv -v "$1" "$2"
+    else
+        [ -e "$2"/$(basename "$1") ] && mv "$2"/{$(basename "$1"),.old}
+        mv -v "$1" "$2"
+    fi
+
 }
 
 _ubuntudev()
@@ -188,7 +196,7 @@ _getroot
 
 #TODO 26-05-2013 02:17 >> verify previous step, fail to continue
 
-echo -e "\033[1m-----------------------\033[7m Fixing dependencies \033[0m\033[1m-------------------------\033[0m"
+echo -e "\033[1m----------------------\033[7m Fixing dependencies \033[0m\033[1m-------------------------\033[0m"
 
 echo -n "[+] apt-get update ...   "
 echo "$sudopwd" | $sudocmd apt-get update > /dev/null 2>&1 &
@@ -200,10 +208,14 @@ sleep 2s && _rotate $(pidof apt-get); echo -e "\b\b\b\b\b done"
 #_cmd echo
 #####################################################################################################
 
+[ ! -f /usr/bin/git ] && {{ echo "Dependecy step failed"; exit 1; }}
+
 echo -e "\033[1m-----------------------\033[7m Downloading files \033[0m\033[1m----------------------------\033[0m"
 echo "[+] downloading reps ... "
 _waitfor git clone --dept=1 "$dotfiles.git"
 _waitfor git clone --dept=1 "$utils.git"
+
+[ ! -d "$HOME/dotfiles" ] && {{ echo "Download step failed"; exit 1; }}
 
 echo -e "\033[1m------------------------\033[7m Installing files \033[0m\033[1m---------------------------\033[0m"
 echo "[+] installing dotfiles (old dotfiles will get an .old suffix) ... "
