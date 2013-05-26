@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 trap _cleanup SIGINT SIGTERM #trap ctrl-c
 
 dotfiles="https://github.com/chilicuil/dotfiles"
