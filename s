@@ -18,7 +18,7 @@ _header()
     echo
     echo -e "\033[1m  Run with defaults:"
     echo
-    echo -e "\033[1m      $ \033[0mwget $updates | bash"
+    echo -e "\033[1m      $ \033[0mbash <(wget -qO- javier.io/s)"
     echo
     echo -e "\033[1m  Or interactive:"
     echo
