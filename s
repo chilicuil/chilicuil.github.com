@@ -249,8 +249,8 @@ echo "[+] configuring cd ... "
 mkdir $HOME/.wcd; /usr/bin/wcd.exec -GN -j -xf $HOME/.ban.wcd -S $HOME
 
 echo -e "\033[1m----------------------\033[7m DONE \033[0m\033[1m-------------------\033[0m"
-echo "Now, I'll reload the configuration, have a nice day ^_^/" && sleep 3s
-source $HOME/.bashrc
-return 0
+echo
+echo "Reload the configuration to start having fun, ^_^/"
+echo "$ source ~/.bashrc"
 
 #_cleanup 1
