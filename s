@@ -153,11 +153,10 @@ _cleanup()
 _waitfor()
 {
     [ -z $1 ] && return 1
-    status=$?
-    [ $status != 0 ] && exit $status
 
     echo "[+] $@"
     $@ &
+    sleep 1s
 
     running=$(pidof $1); running=$?
     if [ "$running" = 1 ]; then
