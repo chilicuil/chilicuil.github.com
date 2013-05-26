@@ -209,14 +209,14 @@ sleep 2s && _rotate $(pidof apt-get); echo -e "\b\b\b\b\b done"
 #_cmd echo
 #####################################################################################################
 
-[ ! -f /usr/bin/git ] && {{ echo "Dependecy step failed"; exit 1; }}
+[ ! -f /usr/bin/git ] && { echo "Dependecy step failed"; exit 1; }
 
 echo -e "\033[1m-----------------------\033[7m Downloading files \033[0m\033[1m----------------------------\033[0m"
 echo "[+] downloading reps ... "
 _waitfor git clone --dept=1 "$dotfiles.git"
 _waitfor git clone --dept=1 "$utils.git"
 
-[ ! -d "$HOME/dotfiles" ] && {{ echo "Download step failed"; exit 1; }}
+[ ! -d "$HOME/dotfiles" ] && { echo "Download step failed"; exit 1; }
 
 echo -e "\033[1m------------------------\033[7m Installing files \033[0m\033[1m---------------------------\033[0m"
 echo "[+] installing dotfiles (old dotfiles will get an .old suffix) ... "
@@ -245,6 +245,9 @@ echo -e "\033[1m---------------\033[7m Configuring main apps \033[0m\033[1m-----
 echo "[+] configuring vim ... "
 _waitfor git clone --dept=1 https://github.com/gmarik/vundle ~/.vim/bundle/vundle
 _waitfor vim -es -u ~/.vimrc -c "BundleInstall" -c qa
+
+echo "[+] configuring cd ... "
+_waitfor update-cd
 
 echo -e "\033[1m----------------------\033[7m DONE \033[0m\033[1m-------------------\033[0m"
 echo "Now, I'll reload the configuration, have a nice day ^_^/" && sleep 3s
