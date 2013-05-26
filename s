@@ -158,7 +158,7 @@ _waitfor()
 {
     [ -z $1 ] && return 1
 
-    echo "[+] $@"
+    echo -n "    $ $@ ...   "
     $@ > /dev/null 2>&1 &
     sleep 1s
 
@@ -179,10 +179,10 @@ _smv()
     owner=$(stat -c %U "$2")
 
     if [ "$owner" != "$LOGNAME" ]; then
-        [ -e "$2"/$(basename "$1") ] && echo "$sudopwd" | $sudocmd mv "$2"/{$(basename "$1"),.old}
+        [ -e "$2"/$(basename "$1") ] && echo "$sudopwd" | $sudocmd mv "$2"/$(basename "$1") "$2"/$(basename "$1").old
         echo "$sudopwd" | $sudocmd mv -v "$1" "$2"
     else
-        [ -e "$2"/$(basename "$1") ] && mv "$2"/{$(basename "$1"),.old}
+        [ -e "$2"/$(basename "$1") ] && mv "$2"/$(basename "$1") "$2"/$(basename "$1").old
         mv -v "$1" "$2"
     fi
 
@@ -198,14 +198,14 @@ _header
 _getroot
 
 echo -e "\033[1m----------------------\033[7m Fixing dependencies \033[0m\033[1m-------------------------\033[0m"
-
-echo -n "[+] apt-get update ...   "
+echo "[+] installing deps ... "
+echo -n "    $ apt-get update ...   "
 echo "$sudopwd" | $sudocmd apt-get update > /dev/null 2>&1 &
-sleep 2s && _rotate $(pidof apt-get); echo -e "\b\b\b\b\b done"
+sleep 2s && _rotate $(pidof apt-get); echo -e "\b\b\b\b\b\b\b [done]"
 
-echo -n "[+] apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y ...   "
+echo -n "    $ apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y ...   "
 echo "$sudopwd" | $sudocmd apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y > /dev/null 2>&1 &
-sleep 2s && _rotate $(pidof apt-get); echo -e "\b\b\b\b\b done"
+sleep 2s && _rotate $(pidof apt-get); echo -e "\b\b\b\b\b\b\b [done]"
 #_cmd echo
 #####################################################################################################
 
@@ -242,15 +242,15 @@ for FILE in learn/sh/*; do
 done
 
 echo -e "\033[1m---------------\033[7m Configuring main apps \033[0m\033[1m-------------------\033[0m"
-echo "[+] configuring vim ... "
+echo "[+] configuring vim (3 min aprox) ... "
 _waitfor git clone --dept=1 https://github.com/gmarik/vundle ~/.vim/bundle/vundle
 _waitfor vim -es -u ~/.vimrc -c "BundleInstall" -c qa
 
 echo "[+] configuring cd ... "
+source $HOME/.bashrc
 _waitfor update-cd
 
 echo -e "\033[1m----------------------\033[7m DONE \033[0m\033[1m-------------------\033[0m"
 echo "Now, I'll reload the configuration, have a nice day ^_^/" && sleep 3s
-source $HOME/.bashrc
 
 #_cleanup 1
