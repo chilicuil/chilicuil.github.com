@@ -127,6 +127,7 @@ _getroot()
 
 _cleanup()
 {
+    echo
     echo -e "\033[1m-------------------\033[7m Cleanup \033[0m\033[1m-------------------\033[0m"
     echo "[+] recovering old conf ... "
     for FILE in $HOME/*.old; do
