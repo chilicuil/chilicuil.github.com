@@ -132,18 +132,18 @@ _cleanup()
     echo -e "\033[1m--------------------------------\033[7m Downloading files \033[0m\033[1m-------------------------------\033[0m"
     echo "[+] recovering old conf ... "
     for FILE in $HOME/*.old; do
-        [ -e "$FILE" ] || contine
+        [ -e "$FILE" ] || continue
         mv -v "$FILE" ${FILE%.old}
     done
 
     echo "[+] recovering scripts ... "
     for FILE in /etc/bash_completion.d/*.old; do
-        [ -e "$FILE" ] || contine
+        [ -e "$FILE" ] || continue
         mv -v "$FILE" ${FILE%.old}
     done
 
     for FILE in /usr/local/bin/*.old; do
-        [ -e "$FILE" ] || contine
+        [ -e "$FILE" ] || continue
         mv -v "$FILE" ${FILE%.old}
     done
 
