@@ -77,7 +77,7 @@ _handscui()
         esac
         sleep 1
     done
-    echo -e -n "\b\b\b\b\b"
+    echo -e "\b\b\b\b\b"
 }
 
 _getroot()
