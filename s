@@ -38,11 +38,6 @@ _header()
     echo
 }
 
-for var
-do
-    #statements
-done
-
 _cmd()
 {   #print current command, exits on fail
     [ -z $1 ] && return 0
