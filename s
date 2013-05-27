@@ -7,6 +7,9 @@ utils="https://github.com/chilicuil/learn"
 updates="http://javier.io/s"
 revision=1
 
+apps_default="git-core vim-nox exuberant-ctags byobu wcd"
+apps_ubuntudev="apt-file cvs subversion bzr bzr-builddeb pbuilder"
+
 _header()
 {
     clear
@@ -21,6 +24,12 @@ _header()
     echo
     echo -e "\033[1m      $ \033[0mbash <(wget -qO- javier.io/s)"
     echo
+    echo    "  Installs:"
+    echo
+    for app in $apps_default; do
+        echo "    [+] $app"
+    done
+    echo
     echo -e "\033[1m  Or interactive:"
     echo
     echo -e "\033[1m      $ \033[0mwget $updates"
@@ -28,6 +37,11 @@ _header()
     echo -e "\033[1m--------------------------------------------------------------------\033[0m"
     echo
 }
+
+for var
+do
+    #statements
+done
 
 _cmd()
 {   #print current command, exits on fail
@@ -40,41 +54,88 @@ _cmd()
     [ $status != 0 ] && exit $status || return
 }
 
-_rotate()
+_barcui()
 {
     [ -z $1 ] && return 1
     pid=$1
     animation_state=1
+    printf "%s" " "
+
+    local c=0; j=0;
+    
+    exec < /dev/tty
+    oldstty=$(stty -g)
+    stty raw -echo min 0
+    echo -en "\033[6n" > /dev/tty
+    IFS=';' read -r -d R -a pos
+    stty $oldstty
+    local col=$((${pos[1]} - 1))
+    col=$((col+4))
 
     while [ "`ps -p $pid -o comm=`" ]; do
-        # rotating star
-        echo -e -n "\b\b\b"
         case $animation_state in
             1)
-                echo -n "["
-                echo -n -e "\033[1m|\033[0m"
-                echo -n "]"
+                printf "%s" "o@o"
                 animation_state=2
                 ;;
             2)
-                echo -n "["
-                echo -n -e "\033[1m/\033[0m"
-                echo -n "]"
-                animation_state=3
+                if (( j < $(tput cols)-col )); then
+                    for (( i = 0; i < c+4; i++ )); do
+                        printf "%b" "\b";
+                    done
+                    printf "%*s%s" $((c+1)) "" "o @o"
+                    (( j=j+1 ))
+                    (( c=c+1 ))
+                    if ! (( j < $(tput cols)-col )); then
+                        animation_state=3
+                    fi
+                fi
                 ;;
             3)
-                echo -n "["
-                echo -n -e "\033[1m-\033[0m"
-                echo -n "]"
+                for (( i = 0; i < c+3; i++ )); do
+                    printf "%b" "\b";
+                done
+                printf "%*s%s" $((c)) "" "o@o "
                 animation_state=4
                 ;;
             4)
-                echo -n "["
-                echo -n -e "\033[1m"
-                echo -n "\\"
-                echo -n -e "\033[0m"
-                echo -n "]"
-                animation_state=1
+                for (( i = 0; i < c+4; i++ )); do
+                    printf "%b" "\b";
+                done
+                printf "%*s%s" $((c)) "" "o@o?"
+                animation_state=5
+                ;;
+            5)
+                for (( i = 0; i < c+4; i++ )); do
+                    printf "%b" "\b";
+                done
+                printf "%*s%s" $((c)) "" "o@o "
+                animation_state=6
+                ;;
+            6)
+                if (( j > 0 )); then
+                    for (( i = 0; i < c+4; i++ )); do
+                        printf "%b" "\b";
+                    done
+                    #set -x
+                    printf "%*s%s" $((c-1)) "" "o@ o"
+                    printf "%*s" 1 ""
+                    printf "%b" "\b";
+                    #set +x
+
+                    (( j=j-1 ))
+                    (( c=c-1 ))
+                else
+                    for (( i = 0; i < 4; i++ )); do
+                        printf "%b" "\b";
+                    done
+                    printf "%4s" ""
+                    for (( i = 0; i < 4; i++ )); do
+                        printf "%b" "\b";
+                    done
+                    printf "%s" "o@o"
+                    animation_state=2
+                fi
                 ;;
         esac
         sleep 1
@@ -131,13 +192,13 @@ _cleanup()
 {
     echo
     echo -e "\033[1m-------------------\033[7m Cleanup \033[0m\033[1m-------------------\033[0m"
-    echo "[+] recovering old conf ... "
+    echo "[+] recovering old conf ..."
     for FILE in $HOME/*.old; do
         [ -e "$FILE" ] || continue
         mv -v "$FILE" ${FILE%.old}
     done
 
-    echo "[+] recovering scripts ... "
+    echo "[+] recovering scripts ..."
     for FILE in /etc/bash_completion.d/*.old; do
         [ -e "$FILE" ] || continue
         mv -v "$FILE" ${FILE%.old}
@@ -147,6 +208,8 @@ _cleanup()
         [ -e "$FILE" ] || continue
         mv -v "$FILE" ${FILE%.old}
     done
+
+    echo "[+] removing installed apps ..."
 
     _cmd rm -rf dotfiles learn
 
@@ -161,13 +224,7 @@ _waitfor()
     $@ > /dev/null 2>&1 &
     sleep 1s
 
-    running=$(pidof $1); running=$?
-    if [ "$running" = 1 ]; then
-        echo -e "\b\b\b\b\b\b\b       "
-    else
-        _rotate $(pidof $1)
-        echo -e "\b\b\b\b\b\b\b       "
-    fi
+    _barcui $(pidof $1)
 }
 
 _smv()
@@ -190,21 +247,21 @@ _smv()
 _ubuntudev()
 {
     echo -e "\033[1m----\033[7m Preparing the system for Ubuntu dev \033[0m\033[1m------\033[0m"
-    echo "$sudopwd" | _waitfor $sudocmd apt-get install --no-install-recommends apt-file cvs subversion bzr bzr-builddeb pbuilder -y
+    echo "$sudopwd" | _waitfor $sudocmd apt-get install --no-install-recommends -y $apps_ubuntudev
 }
 
 _header
 _getroot
 
 echo -e "\033[1m----------------------\033[7m Fixing dependencies \033[0m\033[1m-------------------------\033[0m"
-echo "[+] installing deps ... "
-echo -n "    $ apt-get update ...   "
+echo "[+] installing deps ..."
+echo -n "    $ apt-get update ..."
 echo "$sudopwd" | $sudocmd apt-get update > /dev/null 2>&1 &
-sleep 2s && _rotate $(pidof apt-get); echo -e "\b\b\b\b\b\b\b       "
+sleep 2s && _barcui $(pidof apt-get)
 
-echo -n "    $ apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y ...   "
-echo "$sudopwd" | $sudocmd apt-get install --no-install-recommends git-core vim-nox exuberant-ctags byobu wcd -y > /dev/null 2>&1 &
-sleep 2s && _rotate $(pidof apt-get); echo -e "\b\b\b\b\b\b\b       "
+echo -n "    $ apt-get install --no-install-recommends -y $apps_default ..."
+echo "$sudopwd" | $sudocmd apt-get install --no-install-recommends -y $apps_default > /dev/null 2>&1 &
+sleep 2s && _barcui $(pidof apt-get)
 #_cmd echo
 #####################################################################################################
 
