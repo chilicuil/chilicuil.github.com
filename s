@@ -210,7 +210,7 @@ _waitfor()
 {
     [ -z $1 ] && return 1
 
-    echo -n "    $ $@ ...   "
+    echo -n "    $ $@ ..."
     $@ > /dev/null 2>&1 &
     sleep 1s
 
@@ -288,7 +288,7 @@ for FILE in learn/sh/*; do
 done
 
 echo -e "\033[1m---------------\033[7m Configuring main apps \033[0m\033[1m-------------------\033[0m"
-echo "[+] configuring vim (3 min aprox) ... "
+echo "[+] configuring vim (3 min aprox) ..."
 _waitfor git clone --dept=1 https://github.com/gmarik/vundle ~/.vim/bundle/vundle
 _waitfor vim -es -u ~/.vimrc -c "BundleInstall" -c qa
 
@@ -297,7 +297,7 @@ mkdir $HOME/.wcd; /usr/bin/wcd.exec -GN -j -xf $HOME/.ban.wcd -S $HOME
 
 echo -e "\033[1m----------------------\033[7m DONE \033[0m\033[1m-------------------\033[0m"
 echo
-echo "Reload the configuration to start having fun, ^_^/"
+echo "Reload the configuration to start having fun, n@n/"
 echo "$ source ~/.bashrc"
 
 #_cleanup 1
