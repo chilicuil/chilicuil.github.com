@@ -298,11 +298,11 @@ _waitfor git clone --dept=1 https://github.com/gmarik/vundle ~/.vim/bundle/vundl
 _waitfor vim -es -u ~/.vimrc -c "BundleInstall" -c qa
 
 echo "[+] configuring cd ... "
-mkdir $HOME/.wcd && /usr/bin/wcd.exec -GN -j -xf $HOME/.ban.wcd -S $HOME && mv $HOME/.treedata.wcd $HOME/.wcd/
+mkdir $HOME/.wcd && /usr/bin/wcd.exec -GN -j -xf $HOME/.ban.wcd -S $HOME > /dev/null 2>&1 && mv $HOME/.treedata.wcd $HOME/.wcd/
 
 echo -e "\033[1m----------------------\033[7m DONE \033[0m\033[1m-------------------\033[0m"
 echo
 echo "Reload the configuration to start having fun, n@n/"
-echo "$ source ~/.bashrc"
+echo "    $ source ~/.bashrc"
 
 #_cleanup 1
