@@ -44,7 +44,7 @@ _cmd()
 
 _barcui()
 {
-    [ -z $1 ] && return 1
+    [ -z $1 ] && { printf "%4s\n" ""; return 1; }
     pid=$1
     animation_state=1
 
