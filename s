@@ -203,7 +203,9 @@ _cleanup()
         mv -v "$FILE" ${FILE%.old}
     done
 
-    echo "[+] removing installed apps ..."
+    echo -n "[+] removing installed apps ..."
+    echo "$sudopwd" | $sudocmd apt-get purge $apps_default > /dev/null 2>&1 &
+    sleep 2s && _barcui $(pidof apt-get)
 
     _cmd rm -rf dotfiles learn
 
