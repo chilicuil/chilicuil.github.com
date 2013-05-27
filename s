@@ -77,7 +77,7 @@ _handscui()
         esac
         sleep 1
     done
-    printf "%b" "\b\b\b\b\b" && printf "%s" "     "
+    printf "%b" "\b\b\b\b\b" && printf "%5s\n" ""
 }
 
 _getroot()
