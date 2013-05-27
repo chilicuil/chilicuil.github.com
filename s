@@ -18,18 +18,14 @@ _header()
     echo -e "\033[1m  Utils:\033[0m           $utils"
     echo -e "\033[1m  Updates:\033[0m         $updates"
     echo
-    echo -e "\033[1m  Revision:\033[0m        $revision"
+    echo -n -e "\033[1m  Default app list:\033[0m"
+    for app in $apps_default; do
+        echo -n " $app"
+    done
     echo
     echo -e "\033[1m  Run with defaults:"
     echo
     echo -e "\033[1m      $ \033[0mbash <(wget -qO- javier.io/s)"
-    echo
-    echo    "  Installs:"
-    echo
-    echo -n "    [+]"
-    for app in $apps_default; do
-        echo -n " $app"
-    done
     echo
     echo -e "\033[1m  Or interactive:"
     echo
