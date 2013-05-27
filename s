@@ -7,8 +7,8 @@ utils="https://github.com/chilicuil/learn"
 updates="http://javier.io/s"
 revision=1
 
-apps_default="git-core vim-nox exuberant-ctags byobu wcd"
-apps_ubuntudev="apt-file cvs subversion bzr bzr-builddeb pbuilder"
+apps_default="git-core vim-nox exuberant-ctags byobu wcd rsync curl bzip2 rar gzip unzip p7zip html2text ncurses-bin aria2 sendemail"
+apps_ubuntudev="apt-file cvs subversion bzr bzr-builddeb pbuilder tidy zsync"
 
 _header()
 {
@@ -42,101 +42,42 @@ _cmd()
     [ $status != 0 ] && exit $status || return
 }
 
-_barcui()
+_handscui()
 {
-    [ -z $1 ] && { printf "%4s\n" ""; return 1; }
+    [ -z $1 ] && { printf "%5s\n" ""; return 1; }
     pid=$1
     animation_state=1
 
     if [ ! "$(ps -p $pid -o comm=)" ]; then
-        printf "%4s\n" ""
+        printf "%5s\n" ""
         return
     fi
 
-    printf "%s" " "
-    local c=0; j=0;
-    
-    exec < /dev/tty
-    oldstty=$(stty -g)
-    stty raw -echo min 0
-    echo -en "\033[6n" > /dev/tty
-    IFS=';' read -r -d R -a pos
-    stty $oldstty
-    local col=$((${pos[1]} - 1))
-    col=$((col+4))
+    printf "%s" "      "
 
     while [ "`ps -p $pid -o comm=`" ]; do
+        echo -e -n "\b\b\b\b\b"
         case $animation_state in
             1)
-                printf "%s" "o@o"
+                printf "%s" '\o@o\'
                 animation_state=2
                 ;;
             2)
-                if (( j < $(tput cols)-col )); then
-                    for (( i = 0; i < c+4; i++ )); do
-                        printf "%b" "\b";
-                    done
-                    printf "%*s%s" $((c+1)) "" "o @o"
-                    (( j=j+1 ))
-                    (( c=c+1 ))
-                    if ! (( j < $(tput cols)-col )); then
-                        animation_state=3
-                    fi
-                fi
+                printf "%s" '|o@o|'
+                animation_state=3
                 ;;
             3)
-                for (( i = 0; i < c+3; i++ )); do
-                    printf "%b" "\b";
-                done
-                printf "%*s%s" $((c)) "" "o@o "
+                printf "%s" '/o@o/'
                 animation_state=4
                 ;;
             4)
-                for (( i = 0; i < c+4; i++ )); do
-                    printf "%b" "\b";
-                done
-                printf "%*s%s" $((c)) "" "o@o?"
-                animation_state=5
-                ;;
-            5)
-                for (( i = 0; i < c+4; i++ )); do
-                    printf "%b" "\b";
-                done
-                printf "%*s%s" $((c)) "" "o@o "
-                animation_state=6
-                ;;
-            6)
-                if (( j > 0 )); then
-                    for (( i = 0; i < c+4; i++ )); do
-                        printf "%b" "\b";
-                    done
-                    #set -x
-                    printf "%*s%s" $((c-1)) "" "o@ o"
-                    printf "%*s" 1 ""
-                    printf "%b" "\b";
-                    #set +x
-
-                    (( j=j-1 ))
-                    (( c=c-1 ))
-                else
-                    for (( i = 0; i < 4; i++ )); do
-                        printf "%b" "\b";
-                    done
-                    printf "%4s" ""
-                    for (( i = 0; i < 4; i++ )); do
-                        printf "%b" "\b";
-                    done
-                    printf "%s" "o@o"
-                    animation_state=2
-                fi
+                printf "%s" '|o@o|'
+                animation_state=1
                 ;;
         esac
         sleep 1
     done
-    for (( i = 0; i < 4; i++ )); do
-        printf "%b" "\b";
-    done
-    printf "%4s\n" ""
+    echo -e -n "\b\b\b\b\b"
 }
 
 _getroot()
@@ -219,7 +160,7 @@ _waitfor()
     $@ > /dev/null 2>&1 &
     sleep 1s
 
-    _barcui $(pidof $1)
+    _handscui $(pidof $1)
 }
 
 _smv()
@@ -252,11 +193,11 @@ echo -e "\033[1m----------------------\033[7m Fixing dependencies \033[0m\033[1m
 echo "[+] installing deps ..."
 echo -n "    $ apt-get update ..."
 echo "$sudopwd" | $sudocmd apt-get update > /dev/null 2>&1 &
-sleep 2s && _barcui $(pidof apt-get)
+sleep 2s && _handscui $(pidof apt-get)
 
 echo -n "    $ apt-get install --no-install-recommends -y $apps_default ..."
 echo "$sudopwd" | $sudocmd apt-get install --no-install-recommends -y $apps_default > /dev/null 2>&1 &
-sleep 2s && _barcui $(pidof apt-get)
+sleep 2s && _handscui $(pidof apt-get)
 #_cmd echo
 #####################################################################################################
 
