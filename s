@@ -26,8 +26,9 @@ _header()
     echo
     echo    "  Installs:"
     echo
+    echo -n "    [+]"
     for app in $apps_default; do
-        echo "    [+] $app"
+        echo -n " $app"
     done
     echo
     echo -e "\033[1m  Or interactive:"
@@ -37,6 +38,7 @@ _header()
     echo -e "\033[1m--------------------------------------------------------------------\033[0m"
     echo
 }
+
 
 _cmd()
 {   #print current command, exits on fail
