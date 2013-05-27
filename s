@@ -22,7 +22,8 @@ _header()
     for app in $apps_default; do
         echo -n " $app"
     done
-    echo
+    echo 
+    echo 
     echo -e "\033[1m  Run with defaults:"
     echo
     echo -e "\033[1m      $ \033[0mbash <(wget -qO- javier.io/s)"
