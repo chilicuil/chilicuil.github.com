@@ -47,8 +47,13 @@ _barcui()
     [ -z $1 ] && return 1
     pid=$1
     animation_state=1
-    printf "%s" " "
 
+    if [ ! "$(ps -p $pid -o comm=)" ]; then
+        printf "%4s\n" ""
+        return
+    fi
+
+    printf "%s" " "
     local c=0; j=0;
     
     exec < /dev/tty
