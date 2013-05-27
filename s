@@ -128,6 +128,10 @@ _barcui()
         esac
         sleep 1
     done
+    for (( i = 0; i < 4; i++ )); do
+        printf "%b" "\b";
+    done
+    printf "%4s\n" ""
 }
 
 _getroot()
