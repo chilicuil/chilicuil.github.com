@@ -18,12 +18,6 @@ _header()
     echo -e "\033[1m  Utils:\033[0m           $utils"
     echo -e "\033[1m  Updates:\033[0m         $updates"
     echo
-    echo -n -e "\033[1m  Default app list:\033[0m"
-    for app in $apps_default; do
-        echo -n " $app"
-    done
-    echo 
-    echo 
     echo -e "\033[1m  Run with defaults:"
     echo
     echo -e "\033[1m      $ \033[0mbash <(wget -qO- javier.io/s)"
@@ -202,10 +196,6 @@ _cleanup()
         [ -e "$FILE" ] || continue
         mv -v "$FILE" ${FILE%.old}
     done
-
-    echo -n "[+] removing installed apps ..."
-    echo "$sudopwd" | $sudocmd apt-get purge $apps_default > /dev/null 2>&1 &
-    sleep 2s && _barcui $(pidof apt-get)
 
     _cmd rm -rf dotfiles learn
 
