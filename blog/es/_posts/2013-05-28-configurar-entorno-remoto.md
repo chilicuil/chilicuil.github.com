@@ -30,7 +30,7 @@ Algunos de los cambios, son:
         [+] timg, $ timg imagen.png #sube imagen
         [+] ...
 
-Por defecto, hace backup de cualquier dotfile antes de sobreescribirlo (.old), asi que pueden probarlo sin perder sus cambios, si deciden usarlo no me hago responsable por ningun daño. El script se encuentra en:
+Por defecto hace backup de cualquier archivo antes de sobreescribirlo (.old), asi que pueden probarlo sin perder sus cambios, si deciden usarlo no me hago responsable por ningun daño. El script se encuentra en:
 
 - https://github.com/chilicuil/chilicuil.github.com/blob/master/s
 
