@@ -208,7 +208,7 @@ echo "[+] downloading reps ... "
 _waitfor git clone --dept=1 "$dotfiles.git"
 _waitfor git clone --dept=1 "$utils.git"
 
-[ ! -d "$HOME/dotfiles" ] && { echo "Download step failed"; exit 1; }
+[ ! -d "./dotfiles" ] && { echo "Download step failed"; exit 1; }
 
 echo -e "\033[1m------------------------\033[7m Installing files \033[0m\033[1m---------------------------\033[0m"
 echo "[+] installing dotfiles (old dotfiles will get an .old suffix) ... "
