@@ -32,6 +32,6 @@ Algunos de los cambios, son:
 
 Por defecto hace backup de cualquier archivo antes de sobreescribirlo (.old), asi que pueden probarlo sin perder sus cambios, si deciden usarlo no me hago responsable por ningun daño. El script se encuentra en:
 
-- https://github.com/chilicuil/chilicuil.github.com/blob/master/s
+- [https://github.com/chilicuil/chilicuil.github.com/blob/master/s](https://github.com/chilicuil/chilicuil.github.com/blob/master/s)
 
 Pueden modificarlo y enviar su push request =)
