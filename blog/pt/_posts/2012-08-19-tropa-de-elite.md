@@ -6,13 +6,9 @@ title: "tropa de elite"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-A alguns meses assisti a um filme chamado tropa de elite. É a historia de um homem que lidera um grupo fortemente armado e que sobe aos morros para matar os narcotraficantes.
+A alguns meses assisti a um filme chamado tropa de elite. É a historia de um homem que lidera um grupo fortemente armado e que sobe aos morros para matar os narcotraficantes. Gostei do filme, porque acredito que as pessoas podem olhar o outro lado da polícia, os homens honestos e com vontade de melhorar as coisas. 
 
-Gostei do filme, porque acredito que as pessoas podem olhar o outro lado da polícia, os homens honestos e com vontade de melhorar as coisas. 
-
-O filme tambem faz um retrato interessante da sociedade do estado do Rio de Janeiro, acredito que como no Mexico, lá a profissao precisa ser mais valorizada e os policiais melhor treinados.
-
-Da segunda parte quase nao gostei, tem tintes politicos e o capitao Nascimiento ja nao é um homem normal, mais é como um superman. Quais sao os seus filmes favoritos?
+O filme tambem faz um retrato interessante da sociedade do estado do Rio de Janeiro, acredito que como no Mexico, lá a profissao precisa ser mais valorizada e os policiais melhor treinados. Da segunda parte quase nao gostei, tem tintes politicos e o capitao Nascimiento ja nao é um homem normal, mais é como um superman. Quais sao os seus filmes favoritos?
 
 ### Tropa de elite 1
 <center>
