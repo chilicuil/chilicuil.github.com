@@ -13,7 +13,7 @@ Eu tambem não! =)
 </center>
 
 <center>
-<pre>
+<pre style="max-width: 50%;">
 Vou, pela rua, caminhando mas pensando em meu amor
 e vou, decorando coisas serias que preciso-lhe dizer
 porque amo muito mas entendo que tao só de mi esperar
