@@ -13,7 +13,7 @@ Gosto muito das cancoes de luta social
 </center>
 
 <center>
-<blockquote>
+<pre>
 Há...
 Pouca coisa mudou
 O responsável pela nossa tragédia nao assimilou
@@ -80,7 +80,6 @@ Mais punicao como medida
 Revelando a incompetencia
 Tenho complemento no refrao que há na sequencia
 
-
 Combatente nao aceita
 Comando de canalha que a nós nao respeita
 Excluído, iludido
@@ -125,7 +124,6 @@ Fábrica de gente em condicao marginal
 que nao conseguem pensar, que nao conseguem falar
 Parasitas nao iram prosperar
 
-
 Combatente nao aceita
 Comando de canalha que a nós nao respeita
 Excluído, iludido
@@ -134,5 +132,5 @@ Rouba muito, magnata
 Nao vai para cadeia e usa terno e gravata
 Causa e efeito
 Só dever sem direito 2x
-</blockquote>
+</pre>
 </center>
