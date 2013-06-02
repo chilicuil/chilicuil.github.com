@@ -13,7 +13,7 @@ Gosto muito das cancoes de luta social
 </center>
 
 <center>
-<pre>
+<blockquote>
 Há...
 Pouca coisa mudou
 O responsável pela nossa tragédia nao assimilou
@@ -134,5 +134,5 @@ Rouba muito, magnata
 Nao vai para cadeia e usa terno e gravata
 Causa e efeito
 Só dever sem direito 2x
-</pre>
+</blockquote>
 </center>
