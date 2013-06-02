@@ -21,11 +21,11 @@ e eu, não sou nada sou tao pobe que nao posso-me casar
 
 Não tenho dinheiro nem nada que dar, eu tenho solamente
 amor para amar, si ela me ama vai compreender
-si não para sempre vou te esquecer
+si não para sempre vou ter esquecer
 
 Não tenho dinheiro nem nada que dar, eu tenho solamente
 amor para amar, si ela me ama vai compreender
-si não para sempre vou te esquecer
+si não para sempre vou ter esquecer
 
 Eu sei, que ao seu lado amo muito e me sinto tao feliz
 e sei que adiz cerqui sou tao pobe seu amor já perdi
@@ -35,11 +35,11 @@ Mas eu naci pobre e é por isso que sempre ninguem me quer
 
 Não tenho dinheiro nem nada que dar eu tenho solamente
 amor para amar, si ela me ama vai compreender
-si não para sempre vou te esquecer
+si não para sempre vou ter esquecer
 
 Não tenho dinheiro nem nada que dar eu tenho solamente
 amor para amar, si ela me ama vai compreender
-si não para sempre vou te esquecer
+si não para sempre vou ter esquecer
 
 Não tenho dinheiro nem nada que dar eu tenho solamente
 amor para amar, si ela me ama vai compreender
