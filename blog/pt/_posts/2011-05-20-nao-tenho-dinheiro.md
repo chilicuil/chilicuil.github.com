@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "causa e efeito"
+title: "não tenho dinheiro"
 ---
 
 ## {{ page.title }}
