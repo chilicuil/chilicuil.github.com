@@ -13,7 +13,7 @@ Gosto muito das cancoes de luta social
 </center>
 
 <center>
-<pre>
+<pre style="max-width: 50%;">
 Há...
 Pouca coisa mudou
 O responsável pela nossa tragédia nao assimilou
