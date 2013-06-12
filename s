@@ -191,6 +191,9 @@ _getroot
 
 echo -e "\033[1m----------------------\033[7m Fixing dependencies \033[0m\033[1m-------------------------\033[0m"
 echo "[+] installing deps ..."
+echo "deb http://archive.ubuntu.com/ubuntu/ $(lsb_release -s -c) multiverse" > multiverse.list
+echo "$sudopwd" | $sudocmd mv multiverse.list /etc/apt/sources.list.d/
+
 echo -n "    $ apt-get update ..."
 echo "$sudopwd" | $sudocmd apt-get update > /dev/null 2>&1 &
 sleep 2s && _handscui $(pidof apt-get)
