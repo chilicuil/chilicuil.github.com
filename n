@@ -155,6 +155,9 @@ _smv()
 
 }
 
+_header
+_getroot
+
 echo -e "\033[1m----------------------\033[7m Fixing dependencies \033[0m\033[1m-------------------------\033[0m"
 echo "[+] installing deps ..."
 echo "deb http://archive.ubuntu.com/ubuntu/ $(lsb_release -s -c) multiverse" > multiverse.list
