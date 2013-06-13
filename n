@@ -4,7 +4,7 @@ trap _cleanup SIGINT SIGTERM #trap ctrl-c
 
 uplowup_git="https://code.google.com/p/plowshare/"
 
-apps_default="git-core curl aria2 sendemail make"
+apps_default="git-core curl aria2 sendemail make dos2unix liburi-perl"
 
 _header()
 {
