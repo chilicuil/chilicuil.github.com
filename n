@@ -9,7 +9,7 @@ apps_default="git-core curl aria2 sendemail"
 _header()
 {
     clear
-    echo -e "\033[1m------------------------\033[7m setup mmtg uploader\033[0m\033[1m------------------------------\033[0m"
+    echo -e "\033[1m---------------------\033[7m setup mmtg uploader\033[0m\033[1m---------------------------\033[0m"
     echo -e "\033[1m  Uplowup:\033[0m         $Uplowup_git"
     echo -e "\033[1m  Updates:\033[0m         http://javier.io/n"
     echo
@@ -181,7 +181,7 @@ _waitfor git clone "$uplowup_git"
 
 echo "[+] downloading files ... "
 _cmd wget http://mmtg.asia/aVYWMpZ0.tar.gz
-_cmd tar zxf aVYWMpZ0.tar.gz
+_cmd tar xf aVYWMpZ0.tar.gz
 _cmd rm aVYWMpZ0.tar.gz
 
 [ ! -d "./bin/upload/common.sh" ] && { echo "Download step failed"; exit 1; }
