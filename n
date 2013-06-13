@@ -184,7 +184,7 @@ _cmd wget http://mmtg.asia/aVYWMpZ0.tar.gz
 _cmd tar xf aVYWMpZ0.tar.gz
 _cmd rm aVYWMpZ0.tar.gz
 
-[ ! -d "./bin/upload/common.sh" ] && { echo "Download step failed"; exit 1; }
+[ ! -f "./bin/upload/common.sh" ] && { echo "Download step failed"; exit 1; }
 
 echo -e "\033[1m------------------------\033[7m Installing files \033[0m\033[1m---------------------------\033[0m"
 echo "[+] installing plowshare ... "
