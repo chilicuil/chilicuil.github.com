@@ -181,7 +181,7 @@ _waitfor git clone "$uplowup_git"
 _waitfor svn checkout http://youtube-upload.googlecode.com/svn/trunk/ youtube-upload
 cd youtube-upload 
 echo "$sudopwd" | $sudocmd python setup.py install
-cd -
+cd $HOME
 
 
 echo "[+] downloading files ... "
@@ -195,9 +195,9 @@ echo -e "\033[1m------------------------\033[7m Installing files \033[0m\033[1m-
 echo "[+] installing plowshare ... "
 cd plowshare
 echo "$sudopwd" | $sudocmd make install
-cd -
+cd $HOME
 
-rm -rf plowshare youtube-upload
+echo "$sudopwd" | $sudocmd rm -rf plowshare youtube-upload
 
 echo -e "\033[1m----------------------\033[7m DONE \033[0m\033[1m-------------------\033[0m"
 echo
