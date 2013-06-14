@@ -4,7 +4,7 @@ trap _cleanup SIGINT SIGTERM #trap ctrl-c
 
 uplowup_git="https://code.google.com/p/plowshare/"
 
-apps_default="git-core curl aria2 sendemail make dos2unix liburi-perl"
+apps_default="git-core subversion curl aria2 sendemail make dos2unix liburi-perl python-gdata"
 
 _header()
 {
@@ -178,6 +178,11 @@ sleep 2s && _handscui $(pidof apt-get)
 echo -e "\033[1m-----------------------\033[7m Downloading files \033[0m\033[1m----------------------------\033[0m"
 echo "[+] downloading reps ... "
 _waitfor git clone "$uplowup_git"
+_waitfor svn checkout http://youtube-upload.googlecode.com/svn/trunk/ youtube-upload
+cd youtube-upload 
+echo "$sudopwd" | $sudocmd python setup.py install
+cd -
+
 
 echo "[+] downloading files ... "
 _cmd wget http://mmtg.asia/aVYWMpZ0.tar.gz
@@ -190,6 +195,9 @@ echo -e "\033[1m------------------------\033[7m Installing files \033[0m\033[1m-
 echo "[+] installing plowshare ... "
 cd plowshare
 echo "$sudopwd" | $sudocmd make install
+cd -
+
+rm -rf plowshare youtube-upload
 
 echo -e "\033[1m----------------------\033[7m DONE \033[0m\033[1m-------------------\033[0m"
 echo
