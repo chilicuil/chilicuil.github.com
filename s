@@ -5,9 +5,8 @@ trap _cleanup SIGINT SIGTERM #trap ctrl-c
 dotfiles="https://github.com/chilicuil/dotfiles"
 utils="https://github.com/chilicuil/learn"
 updates="http://javier.io/s"
-revision=1
 
-apps_default="git-core vim-nox exuberant-ctags byobu wcd rsync curl bzip2 rar gzip unzip p7zip html2text ncurses-bin aria2 sendemail"
+apps_default="git-core vim-nox exuberant-ctags byobu wcd rsync curl bzip2 gzip unzip p7zip html2text ncurses-bin aria2"
 apps_ubuntudev="apt-file cvs subversion bzr bzr-builddeb pbuilder tidy zsync"
 
 _header()
