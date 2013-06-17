@@ -6,7 +6,7 @@ dotfiles="https://github.com/chilicuil/dotfiles"
 utils="https://github.com/chilicuil/learn"
 updates="http://javier.io/s"
 
-apps_default="git-core vim-nox exuberant-ctags byobu wcd rsync curl bzip2 gzip unzip p7zip html2text ncurses-bin aria2"
+apps_default="git-core vim-nox exuberant-ctags byobu wcd rsync curl bzip2 gzip unzip p7zip html2text ncurses-bin"
 apps_ubuntudev="apt-file cvs subversion bzr bzr-builddeb pbuilder tidy zsync"
 
 _header()
