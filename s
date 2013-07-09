@@ -6,7 +6,7 @@ dotfiles="https://github.com/chilicuil/dotfiles"
 utils="https://github.com/chilicuil/learn"
 updates="http://javier.io/s"
 
-apps_default="git-core vim-nox exuberant-ctags byobu wcd rsync curl bzip2 gzip unzip p7zip html2text ncurses-bin"
+apps_default="git-core vim-nox exuberant-ctags byobu wcd rsync curl bzip2 gzip html2text ncurses-bin command-not-found"
 apps_ubuntudev="apt-file cvs subversion bzr bzr-builddeb pbuilder tidy zsync"
 
 _header()
@@ -32,19 +32,19 @@ _header()
 
 _cmd()
 {   #print current command, exits on fail
-    [ -z $1 ] && return 0
+    [ -z "$1" ] && return 0
 
     echo "[+] $@"
     $@
 
     status=$?
-    [ $status != 0 ] && exit $status || return
+    [ "$status" != 0 ] && exit $status || return
 }
 
 _handscui()
 {
-    [ -z $1 ] && { printf "%5s\n" ""; return 1; }
-    pid=$1
+    [ -z "$1" ] && { printf "%5s\n" ""; return 1; }
+    pid="$1"
     animation_state=1
 
     if [ ! "$(ps -p $pid -o comm=)" ]; then
@@ -153,7 +153,7 @@ _cleanup()
 
 _waitfor()
 {
-    [ -z $1 ] && return 1
+    [ -z "$1" ] && return 1
 
     echo -n "    $ $@ ..."
     $@ > /dev/null 2>&1 &
@@ -189,9 +189,26 @@ _header
 _getroot
 
 echo -e "\033[1m----------------------\033[7m Fixing dependencies \033[0m\033[1m-------------------------\033[0m"
+
+if [ -f /usr/bin/lsb_release ]; then
+    DISTRO=$(lsb_release -si)
+    RELEASE=$(lsb_release -s -c)
+else
+    if [ -f /etc/debian_version ]; then
+        DISTRO=$(cat /etc/issue | cut -d' ' -f1 | head -1)
+        RELEASE=$(cat /etc/apt/sources.list | grep '^deb .*' | head -1 | cut -d' ' -f 3)
+    fi
+fi
+
 echo "[+] installing deps ..."
-echo "deb http://archive.ubuntu.com/ubuntu/ $(lsb_release -s -c) multiverse" > multiverse.list
-echo "$sudopwd" | $sudocmd mv multiverse.list /etc/apt/sources.list.d/
+
+case $DISTRO in
+    Ubuntu)
+        echo "deb http://archive.ubuntu.com/ubuntu/ $RELEASE multiverse" > multiverse.list
+        echo "$sudopwd" | $sudocmd mv multiverse.list /etc/apt/sources.list.d/
+        ;;
+esac
+
 
 echo -n "    $ apt-get update ..."
 echo "$sudopwd" | $sudocmd apt-get update > /dev/null 2>&1 &
@@ -234,6 +251,12 @@ for FILE in learn/sh/*; do
     [ -f "$FILE" ] || continue
     _smv "$FILE" /usr/local/bin/
 done
+
+echo "[+] fixing locales ... "
+echo "$sudopwd" | $sudocmd locale-gen en_US en_US.UTF-8 > /dev/null 2>&1 &
+sleep 2s && _handscui $(pidof locale-gen)
+echo "$sudopwd" | $sudocmd dpgk-reconfigure locales > /dev/null 2>&1
+
 
 echo -e "\033[1m---------------\033[7m Configuring main apps \033[0m\033[1m-------------------\033[0m"
 echo "[+] configuring vim (3 min aprox) ..."
