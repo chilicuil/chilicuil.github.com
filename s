@@ -6,8 +6,10 @@ dotfiles="https://github.com/chilicuil/dotfiles"
 utils="https://github.com/chilicuil/learn"
 updates="http://javier.io/s"
 
-apps_default="git-core vim-nox exuberant-ctags byobu wcd rsync curl bzip2 gzip html2text ncurses-bin command-not-found"
+apps_default="git-core vim-nox exuberant-ctags byobu wcd htop rsync curl bzip2 gzip html2text ncurses-bin command-not-found"
 apps_ubuntudev="apt-file cvs subversion bzr bzr-builddeb pbuilder tidy zsync"
+
+apps_purge="xinetd sasl2-bin sendmail-base sendmail-bin sensible-mda rmail bsd-mailx apache2.2-common  sendmail apache2"
 
 _header()
 {
@@ -200,8 +202,6 @@ else
     fi
 fi
 
-echo "[+] installing deps ..."
-
 case $DISTRO in
     Ubuntu)
         echo "deb http://archive.ubuntu.com/ubuntu/ $RELEASE multiverse" > multiverse.list
@@ -209,6 +209,7 @@ case $DISTRO in
         ;;
 esac
 
+echo "[+] installing deps ..."
 
 echo -n "    $ apt-get update ..."
 echo "$sudopwd" | $sudocmd apt-get update > /dev/null 2>&1 &
@@ -216,6 +217,12 @@ sleep 2s && _handscui $(pidof apt-get)
 
 echo -n "    $ apt-get install --no-install-recommends -y $apps_default ..."
 echo "$sudopwd" | $sudocmd apt-get install --no-install-recommends -y $apps_default > /dev/null 2>&1 &
+sleep 2s && _handscui $(pidof apt-get)
+
+echo "[+] purging non essential apps ..."
+
+echo -n "    $ apt-get purge $apps_default ..."
+echo "$sudopwd" | $sudocmd apt-get purge $apps_purge > /dev/null 2>&1 &
 sleep 2s && _handscui $(pidof apt-get)
 #_cmd echo
 #####################################################################################################
