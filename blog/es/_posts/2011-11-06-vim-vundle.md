@@ -8,7 +8,7 @@ title: "vim + vundle"
 
 **[![](/assets/img/58.png)](/assets/img/58.png)**
 
-En entradas anteriores he escrito sobre [Vim](http://chilicuil.github.com/all/random/2010/04/17/vimmer.html), y aunque no lo hago muy seguido, la verdad es que me la paso modificando su [configuración](https://github.com/chilicuil/dotfiles/blob/master/.vimrc) a tal grado que dudo que justifique el tiempo que le he invertido, de no ser porque me causa alguna clase de enfermiza diversión.
+Aunque no escribo mucho sobre vim, la verdad es que me la paso modificando su [configuración](https://github.com/chilicuil/dotfiles/blob/master/.vimrc) a tal grado que dudo que justifique el tiempo que le he invertido, de no ser porque me causa alguna clase de enfermiza diversión.
 
 Siendo así, uso/pruebo algunos plugins, por lo que mi **$HOME/.vim/** luce un poco desordenado. Estos plugins se distribuyen de 2 principales formas; desde <http://vim.org> como **.zip/tar.gz/.vba** y como repositorios **git (github)**.
 
