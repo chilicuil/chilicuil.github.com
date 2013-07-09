@@ -196,8 +196,8 @@ if [ -f /usr/bin/lsb_release ]; then
     DISTRO=$(lsb_release -si)
     RELEASE=$(lsb_release -s -c)
 else
-    if [ -f /etc/debian_version ]; then
-        DISTRO=$(cat /etc/issue | cut -d' ' -f1 | head -1)
+    if [ -d /etc/dpkg ]; then
+        DISTRO=$(cat /etc/dpkg/origins/default | grep -i vendor | head -1 | cut -d' ' -f2)
         RELEASE=$(cat /etc/apt/sources.list | grep '^deb .*' | head -1 | cut -d' ' -f 3)
     fi
 fi
