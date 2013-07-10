@@ -71,4 +71,4 @@ Para eliminar una versión instalada con pythonbrew
 $ pythonbrew uninstall 3.2
 </pre>
 
-- <https://www.edx.org/courses/MITx/6.00x/2012_Fall/wiki/6.00x/installing-different-versions-python-linux-ubuntu/>
+- https://www.edx.org/courses/MITx/6.00x/2012_Fall/wiki/6.00x/installing-different-versions-python-linux-ubuntu/

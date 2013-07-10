@@ -21,13 +21,13 @@ Luego he creado el directorio **C:\boot\grub** y descargado el instalador y el k
 
 Para x86:
 
-- <http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-i386/current/images/netboot/ubuntu-installer/i386/initrd.gz>
-- <http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-i386/current/images/netboot/ubuntu-installer/i386/linux>
+- http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-i386/current/images/netboot/ubuntu-installer/i386/initrd.gz
+- http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-i386/current/images/netboot/ubuntu-installer/i386/linux
 
 Para amd64:
 
-- <http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/initrd.gz>
-- <http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/linux>
+- http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/initrd.gz
+- http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/linux
 
 **[![](/assets/img/28.png)](/assets/img/28.png)**
 
@@ -44,4 +44,4 @@ Finalmente lo he agregado al cargador de Windows, de esta forma este le pasará 
 
 He reiniciado y seleccionado la primera opción **Start GRUB** y luego **Install ubuntu** para comenzar la instalación, OJO: el instalador es similar al que se obtendría con el mínimal CD, es decir, viene sin wifitools y wpa_supplicant, por lo que hay que usar un cable ethernet para descargar los paquetes que sean necesarios.
 
-- <https://help.ubuntu.com/community/Installation/FromWindows>
+- https://help.ubuntu.com/community/Installation/FromWindows

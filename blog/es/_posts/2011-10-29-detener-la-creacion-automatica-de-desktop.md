@@ -15,4 +15,4 @@ $ cat $HOME/.config/user-dirs.dirs
 XDG_DESKTOP_DIR="$HOME/./"
 </pre>
 
-- <https://bbs.archlinux.org/viewtopic.php?id=117829>
+- http://tinyurl.com/42wsclj

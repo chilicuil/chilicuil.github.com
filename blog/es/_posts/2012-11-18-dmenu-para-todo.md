@@ -37,7 +37,7 @@ bindsym $Altgr+v exec /usr/local/bin/dmenu_vbox
 
 Listo, se reinicia el gestor de ventanas (que por cierto mantiene todas las aplicaciones abiertas) y puedo usar este nuevo menú, ahora.., el nombre de este post es "dmenu para todo" y en mi caso así es, si tienen curiosidad para saber en que otras cosas lo utilizo (poner música, cerrar sesión, suspender el equipo, forzar a cerrar aplicaciones) pueden ver el resto de scripts (que comienzan con dmenu_\*) en:
 
-- <https://github.com/chilicuil/learn/tree/master/sh>
+- https://github.com/chilicuil/learn/tree/master/sh
 
 **[![](/assets/img/61.png)](/assets/img/61.png)**
 **[![](/assets/img/62.png)](/assets/img/62.png)**

@@ -46,8 +46,8 @@ $ sudo su
 # 
 </pre>
 
-- <http://www.darkoperator.com/installing-metasploit-in-ubuntu/>
-- <https://github.com/rapid7/metasploit-framework/wiki/Metasploit-Development-Environment>
+- http://www.darkoperator.com/installing-metasploit-in-ubuntu/
+- https://github.com/rapid7/metasploit-framework/wiki/Metasploit-Development-Environment
 
 
 ### Payload
@@ -77,7 +77,7 @@ msf exploit(adobe_utilprintf) > exploit
 
 Por defecto, el archivo que genera mfs no será util, gmail, hotmail, yahoo, no permitiran enviarlo, al detectarlo como un archivo malicioso, así que aquí tendrán que usar su imaginación para hacerlo indetectable.., lamentablemente no puedo ayudar con esa parte.., si lo hiciera y alguien más siguiera estos pasos seguramente dentro de poco, el método que utilice dejaría de ser util.., pero adelanto que no es demasiado complicado, solo es cuestión de buscar un poco y mfs ayuda mucho.., un par de horas de pruebas-errores deberian bastarles para encontrar un método que funcione.
 
-- <http://www.offensive-security.com/metasploit-unleashed/Client_Side_Attacks>
+- http://www.offensive-security.com/metasploit-unleashed/Client_Side_Attacks
 
 ### Handler (servidor)
 
@@ -121,12 +121,11 @@ end
 # ./msfconsole -r /root/autoruncommands.rc
 </pre>
 
-- <http://johnbabio.wordpress.com/tag/autorunscript/>
-- <https://community.rapid7.com/community/metasploit/blog/2010/03/22/automating-the-metasploit-console>
+- http://johnbabio.wordpress.com/tag/autorunscript/
 
 Listop, podemos empezar a divertirnos
 
-- <http://www.offensive-security.com/metasploit-unleashed/Metasploit_Meterpreter_Basics>
-- <http://www.offensive-security.com/metasploit-unleashed/Windows_Post_Gather_Modules>
-- <http://cyruslab.wordpress.com/2012/03/09/metasploit-post-exploitation-with-meterpreter-2/>
-- <http://rajhackingarticles.blogspot.mx/2012/11/best-of-metasploit-meterpreter-script.html>
+- http://www.offensive-security.com/metasploit-unleashed/Metasploit_Meterpreter_Basics
+- http://www.offensive-security.com/metasploit-unleashed/Windows_Post_Gather_Modules
+- http://cyruslab.wordpress.com/2012/03/09/metasploit-post-exploitation-with-meterpreter-2/
+- http://rajhackingarticles.blogspot.mx/2012/11/best-of-metasploit-meterpreter-script.html
