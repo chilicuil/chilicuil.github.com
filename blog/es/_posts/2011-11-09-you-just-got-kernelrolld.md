@@ -16,7 +16,7 @@ Para Ubuntu 10.04:
 $ sudo apt-get install systemtap
 </pre>
 
-systemtap requiere de los [simbolos](http://en.wikipedia.org/wiki/Debug_symbol) del kernel, [no instalables](https://bugs.launchpad.net/ubuntu/+source/linux/+bug/289087) a travss de los repositorios para **lucid**, sin embargo accesibles desde: <http://ddebs.ubuntu.com/pool/main/l/linux/>
+systemtap requiere de los [simbolos](http://en.wikipedia.org/wiki/Debug_symbol) del kernel, [no instalables](https://bugs.launchpad.net/ubuntu/+source/linux/+bug/289087) a traves de los repositorios para **lucid**, sin embargo accesibles desde: <http://ddebs.ubuntu.com/pool/main/l/linux/>
 
 Para mi caso particular
 
