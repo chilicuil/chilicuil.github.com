@@ -14,5 +14,3 @@ Firefox sigue las reglas de [freedesktop.org](http://www.freedesktop.org/wiki/So
 $ cat $HOME/.config/user-dirs.dirs
 XDG_DESKTOP_DIR="$HOME/./"
 </pre>
-
-- http://tinyurl.com/42wsclj

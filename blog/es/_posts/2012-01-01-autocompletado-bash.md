@@ -381,4 +381,4 @@ Además de eso tengo algunos scripts de estos en [github](https://github.com/chi
 
 El autocompletado puede parecer complicado, pero en realidad una vez que se leen varios snippets se puede vislumbrar un patrón bien definido, dado que son scripts en bash, la curva de aprendizaje es relativamente baja y provee recompensa inmediata, #bash en freenode ayuda mucho para encontrar sentido a los bashismos que son más dificiles de ver.
 
-- http://bash-completion.alioth.debian.org/
+- [http://bash-completion.alioth.debian.org/](http://bash-completion.alioth.debian.org/)

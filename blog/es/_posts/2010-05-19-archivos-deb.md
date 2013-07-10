@@ -14,7 +14,7 @@ Los archivos .deb son en realidad [contenedores ar](http://en.wikipedia.org/wiki
 
 NOTA: Modificar directamente un archivo .deb no es la forma adecuada de hacer cambios a los programas del sistema, y debe utilizarse solo en caso extremo. Para una guía de como hacerlo de la forma adecuada, vease la guía de empaquetamiento de Debian:
 
-- http://wiki.debian.org/HowToPackageForDebian
+- [http://wiki.debian.org/HowToPackageForDebian](http://wiki.debian.org/HowToPackageForDebian)
 
 Si no es la forma adecuada, ¿por qué alguien querría modificarlo así?, no conozco las razones de otras personas, pero en mi caso, existe un archivo llamado **firefox-launchpad-plugin_0.4_all.deb** que depende de firefox para ser instalado. No tengo instalado firefox desde los repositorios porque es de los pocos programas que tienen un ciclo de actualización mucho más rápido que el de ubuntu. El plugin, contiene la definición de algunas máquinas de búsqueda que integran a <https://launchpad.net> con firefox
 
@@ -74,4 +74,4 @@ El resultado final es:
 
 **[![](/assets/img/34.png)](/assets/img/34.png)**
 
-- https://synthesize.us/HOWTO_make_a_deb_archive_without_dpkg
+- [https://synthesize.us/HOWTO_make_a_deb_archive_without_dpkg](https://synthesize.us/HOWTO_make_a_deb_archive_without_dpkg)
