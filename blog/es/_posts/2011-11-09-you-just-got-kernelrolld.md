@@ -16,7 +16,7 @@ Para Ubuntu 10.04:
 $ sudo apt-get install systemtap
 </pre>
 
-systemtap requiere de los [simbolos](http://en.wikipedia.org/wiki/Debug_symbol) del kernel, [no instalables](https://bugs.launchpad.net/ubuntu/+source/linux/+bug/289087) a través de los repositorios para **lucid**, sin embargo accesibles desde: <http://ddebs.ubuntu.com/pool/main/l/linux/>
+systemtap requiere de los [simbolos](http://en.wikipedia.org/wiki/Debug_symbol) del kernel, [no instalables](https://bugs.launchpad.net/ubuntu/+source/linux/+bug/289087) a traves de los repositorios para **lucid**, sin embargo accesibles desde: <http://ddebs.ubuntu.com/pool/main/l/linux/>
 
 Para mi caso particular
 
@@ -34,7 +34,7 @@ $ wget <a href="http://ddebs.ubuntu.com/pool/main/l/linux/linux-image-2.6.32-34-
 $ sudo dpkg -i linux-image-2.6.32-34-generic-dbgsym_2.6.32-34.77_amd64.ddeb
 </pre>
 
-Después de lo cual lo que se escribe en: <http://blog.yjl.im/2011/09/kernelroll.html> tendrá sentido:
+Despues de lo cual lo que se escribe en: <http://blog.yjl.im/2011/09/kernelroll.html> tendra sentido:
 
 <pre class="sh_sh">
 $ sudo stap -e 'probe kernel.function("do_filp_open")\

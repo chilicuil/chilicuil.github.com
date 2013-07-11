@@ -61,7 +61,7 @@ Para empaquetar ffmpeg
                 --backup=no --deldoc=yes --default
 </pre>
 
-Una vez empaquetado el software que nos interesa se copia al sistema **/var/cache/pbuilder/lucid-amd64/build/[0-9*]/home/user/{x264,lame-3.98.4,ffmpeg}/*.deb**
+Una vez empaquetado el software que nos interesa se copia al sistema **/var/cache/pbuilder/lucid-amd64/build/{numero}/home/user/{x264,lame-3.98.4,ffmpeg}/.deb**
 
 Y fuera del chroot, se instalan los .debs:
 

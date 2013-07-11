@@ -47,4 +47,4 @@ usuario ALL=(root) NOPASSWD:SESSION
 
 Gracias a [smasty](http://forums.debian.net/viewtopic.php?f=8&amp;t=52115#p299406) por el snippet inicial.
 
-- <https://gist.github.com/913004>
+- [https://gist.github.com/913004](https://gist.github.com/913004)

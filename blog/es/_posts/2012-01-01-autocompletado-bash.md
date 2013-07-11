@@ -37,10 +37,10 @@ Una de las opciones que acepta **complete** es **-F** que permite llamar a una f
 
 <pre class="sh_sh">
 $ source script_donde_se_define_primp()
-$ complete -F _primp primp
+$ complete -F \_primp primp
 </pre>
 
-Y **_primp()** se encargaría de crear la lista de opciones, esto es útil para tomar el control total sobre el autocompletado, de esta forma se puede hacer que el autocompletado se comporte de diferente manera dependiendo del contexto.
+Y **\_primp()** se encargaría de crear la lista de opciones, esto es útil para tomar el control total sobre el autocompletado, de esta forma se puede hacer que el autocompletado se comporte de diferente manera dependiendo del contexto.
 
 Los archivos que declaran estas funciones 'viven' en **/etc/bash_completion.d/**, ejemplo, si se tiene el siguiente script, existen dos formas de obtener autocompletado en la terminal, el primero directo (pero menos configurable) y el segundo en forma de función, más dificil de implementar, pero también con mayores posibilidades.
 
@@ -79,7 +79,7 @@ fi
 Para el segundo caso, se crea una función, y se relaciona con el script 'fix', las funciones también se declaran en **/etc/bash_completion.d/fix.autocp**:
 
 <pre class="sh_sh">
-_fix()
+\_fix()
 {
     #program_name=$1
     #cur=$2
@@ -87,7 +87,7 @@ _fix()
     #cur=$(_get_cword)
     #prev=$3
     #$4 doesn't exist
-    local cur prev opts #$cur, $prev &amp $opts are local vars
+    local cur prev opts #$cur, $prev &amp; $opts are local vars
     COMPREPLY=() #clean out last completions, important!
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
@@ -104,7 +104,7 @@ _fix()
     COMPREPLY=( $( compgen -W "$completions" -- $cur ))
     return 0
 }
-complete -F _fix fix
+complete -F \_fix fix
 </pre>
 
 La variable **$cur** es importante porque contra ella se hará la comparación (en una función de opciones anidadas tambien se leera la variable **$prev**, o incluso la **$prev_prev**, que es como le llamo a la opción previa de la previa...), sin embargo este es un ejemplo simple.
@@ -178,7 +178,7 @@ $ android create avd[Tab][Tab]
 Devolvería **-a**, **-c**, **-f**, etc. Es decir dependiendo del contexto devuelve diferentes valores, el archivo completo de este ejemplo esta en [github](https://github.com/chilicuil/learn/blob/master/autocp/bash_completion.d/android.autocp), ahora explicaré las partes más importantes:
 
 <pre class="sh_sh">
-_android()
+\_android()
 {
     local cur prev opts #local vars
     COMPREPLY=() #clean out last completions, important!
@@ -280,7 +280,7 @@ Dependiendo de **$prev** y de **$cur** se devolverá la lista apropiada, **$ and
              ;;
       esac
 }
-complete -F _android android
+complete -F \_android android
 </pre>
 
 Dependiendo de **$cur** se crea una lista, no existe ni **$prev,** ni **$prev_prev**, el comando es de la forma **$ android opcion_incompleta#CURSOR#**
@@ -318,11 +318,11 @@ En ese caso **compgen** con las opciones **-S** y **-P** pueden ayudar con el su
 
 #### Funciones existentes
 
-Se pueden usar funciones existes, por ejemplo si la opcion -f acepta archivos dentro de un comando (de file en inglés), se puede usar **_filedir** de la siguiente manera:
+Se pueden usar funciones existes, por ejemplo si la opcion -f acepta archivos dentro de un comando (de file en inglés), se puede usar **\_filedir** de la siguiente manera:
 
 <pre class="sh_sh">
 -f)
-    _filedir
+    \_filedir
     return 0
     ;;
 </pre>
@@ -381,4 +381,4 @@ Además de eso tengo algunos scripts de estos en [github](https://github.com/chi
 
 El autocompletado puede parecer complicado, pero en realidad una vez que se leen varios snippets se puede vislumbrar un patrón bien definido, dado que son scripts en bash, la curva de aprendizaje es relativamente baja y provee recompensa inmediata, #bash en freenode ayuda mucho para encontrar sentido a los bashismos que son más dificiles de ver.
 
-- <http://bash-completion.alioth.debian.org/>
+- [http://bash-completion.alioth.debian.org/](http://bash-completion.alioth.debian.org/)
