@@ -222,7 +222,7 @@ sleep 2s && _handscui $(pidof apt-get)
 echo "[+] purging non essential apps ..."
 
 echo -n "    $ apt-get purge $apps_purge ..."
-echo "$sudopwd" | $sudocmd apt-get purge -y $apps_purge > /dev/null 2>&1 &
+echo "$sudopwd" | $sudocmd DEBIAN_FRONTEND=noninteractive apt-get purge -y $apps_purge > /dev/null 2>&1 &
 sleep 2s && _handscui $(pidof apt-get)
 
 echo "[+] fixing locales ... "
