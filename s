@@ -221,9 +221,15 @@ sleep 2s && _handscui $(pidof apt-get)
 
 echo "[+] purging non essential apps ..."
 
-echo -n "    $ apt-get purge $apps_default ..."
-echo "$sudopwd" | $sudocmd apt-get purge $apps_purge > /dev/null 2>&1 &
+echo -n "    $ apt-get purge $apps_purge ..."
+echo "$sudopwd" | $sudocmd apt-get purge -y $apps_purge > /dev/null 2>&1 &
 sleep 2s && _handscui $(pidof apt-get)
+
+echo "[+] fixing locales ... "
+echo "$sudopwd" | $sudocmd locale-gen en_US en_US.UTF-8 > /dev/null 2>&1 &
+sleep 2s && _handscui $(pidof locale-gen)
+echo "$sudopwd" | $sudocmd dpgk-reconfigure -f noninteractive locales > /dev/null 2>&1
+
 #_cmd echo
 #####################################################################################################
 
@@ -258,11 +264,6 @@ for FILE in learn/sh/*; do
     [ -f "$FILE" ] || continue
     _smv "$FILE" /usr/local/bin/
 done
-
-echo "[+] fixing locales ... "
-echo "$sudopwd" | $sudocmd locale-gen en_US en_US.UTF-8 > /dev/null 2>&1 &
-sleep 2s && _handscui $(pidof locale-gen)
-echo "$sudopwd" | $sudocmd dpgk-reconfigure locales > /dev/null 2>&1
 
 
 echo -e "\033[1m---------------\033[7m Configuring main apps \033[0m\033[1m-------------------\033[0m"
