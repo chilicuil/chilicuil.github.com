@@ -54,7 +54,7 @@ output {
   }
 </pre>
 
-NOTA: el archivo es luce exactamente asi, lo anterior debe colocarse en las secciones adecuadas (filter, output), copiar y pegar no funcionara, se da por sentado que el lector entiende basicamente como funciona [logstash](http://logstash.net/docs/1.1.13/)
+NOTA: el archivo no luce exactamente asi, lo anterior debe colocarse en las secciones adecuadas (filter, output), copiar y pegar no funcionara, se da por sentado que el lector entiende basicamente como funciona [logstash](http://logstash.net/docs/1.1.13/)
 
 Lo anterior provoca que logstash agregue una etiqueta "Alert_flood" a los mensajes con el patron y que copie esos mensajes (ademas de enviarlos a redis) a */tmp/logstash_alert*, finalmente un [script](https://gist.github.com/chilicuil/6066888) se ejecuta cada minuto para enviar las alertas encontradas:
 
