@@ -22,4 +22,39 @@ $ bash &lt;(wget -qO- https://raw.github.com/chilicuil/learn/master/sh/log-stack
 
 Si ya te convencio, entonces puedes asignarles a cada servicio su maquina(s).
 
+##Extra, patterns
+
+Para enviar correos dependiendo de los eventos se pueden usar varios plugins en logstash(exec, mail, etc), yo use el plugin file:
+
+<pre class="sh_sh">
+$ sudo service logstash-shipper stop
+$ sudo vi /home/logstash/shipper.conf
+$ sudo service logstash-shipper start
+</pre>
+
+<pre>
+filter {
+  grep {
+    type =&gt; "syslog"
+    match =&gt; ["@message","patron_aqui"]
+    add_tag =&gt; "Alert_flood"
+    drop =&gt; false
+  }
+
+output {
+  file {
+    type =&gt; "syslog"
+    tags =&gt; [ "Alert_flood" ]
+    message_format =&gt; "%{@message}"
+    path =&gt; "/tmp/logstash_alert"
+  }
+</pre>
+
+Y luego un script se ejecuta cada minuto para enviar las alertas:
+
+<pre class="sh_sh">
+$ sudo crontab -l
+*/1 * * * * /usr/local/bin/check_alerts_logstash.sh
+</pre>
+
 - [http://cleversoft.wordpress.com/2013/04/05/887/](http://cleversoft.wordpress.com/2013/04/05/887/)
