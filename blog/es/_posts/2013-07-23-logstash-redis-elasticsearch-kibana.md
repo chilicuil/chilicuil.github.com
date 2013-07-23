@@ -54,9 +54,9 @@ output {
   }
 </pre>
 
-NOTA: el archivo es luce exactamente asi, lo anterior debe colocarse en las secciones adecuadas (filter, output), copiar y pegar no funcionara, se da por sentado que el lector entiende como basicamente como funciona [logstash](http://logstash.net/docs/1.1.13/)
+NOTA: el archivo es luce exactamente asi, lo anterior debe colocarse en las secciones adecuadas (filter, output), copiar y pegar no funcionara, se da por sentado que el lector entiende basicamente como funciona [logstash](http://logstash.net/docs/1.1.13/)
 
-La configuracion anterior hace que logstash agregue una etiqueta "Alert_flood" a los mensajes con el patron establecido y que haga una copia de ellos a */tmp/logstash_alert*, finalmente un [script](https://gist.github.com/chilicuil/6066888) revisa cada minuto si existen alertas y las envia:
+Lo anterior provoca que logstash agregue una etiqueta "Alert_flood" a los mensajes con el patron y que copie esos mensajes (ademas de enviarlos a redis) a */tmp/logstash_alert*, finalmente un [script](https://gist.github.com/chilicuil/6066888) se ejecuta cada minuto para enviar las alertas encontradas:
 
 <pre class="sh_sh">
 $ sudo crontab -l
