@@ -20,11 +20,13 @@ Un arcoiris de software libre + aws, linode, digital ocean.., es muy facil ser i
 $ bash &lt;(wget -qO- https://raw.github.com/chilicuil/learn/master/sh/log-stack)
 </pre>
 
+**[![](/assets/img/77.jpg)](/assets/img/77.jpg)**
+
 Si ya te convencio, entonces puedes asignarles a cada servicio su maquina(s).
 
 ##Extra, patterns
 
-Para enviar correos dependiendo se pueden usar varios plugins en logstash(exec, mail, etc), yo use los plugins grep y file:
+Para enviar correos por patrones se pueden usar varias salidas de logstash(exec, mail, etc), yo use grep y file:
 
 <pre class="sh_sh">
 $ sudo service logstash-shipper stop
@@ -52,7 +54,7 @@ output {
   }
 </pre>
 
-Y luego ejecutando un [script](https://gist.github.com/chilicuil/6066888) para recibir las alertas:
+Esto agrega una etiqueta "Alert_flood" a los mensajes con el patron y los guarda en */tmp/logstash_alert*, esto pasa mientras un [script](https://gist.github.com/chilicuil/6066888) se ejecuta cada tanto para recibir los mensajes:
 
 <pre class="sh_sh">
 $ sudo crontab -l
