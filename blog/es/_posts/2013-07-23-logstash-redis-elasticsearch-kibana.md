@@ -22,7 +22,7 @@ $ bash &lt;(wget -qO- https://raw.github.com/chilicuil/learn/master/sh/log-stack
 
 **[![](/assets/img/77.jpg)](/assets/img/77.jpg)**
 
-Si ya te convencio, entonces puedes asignarles a cada servicio su maquina(s).
+Si ya te convencio, entonces puedes asignarle a cada servicio su maquina(s).
 
 ##Extra, patterns
 
