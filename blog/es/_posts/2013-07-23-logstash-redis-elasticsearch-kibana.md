@@ -24,13 +24,15 @@ Si ya te convencio, entonces puedes asignarles a cada servicio su maquina(s).
 
 ##Extra, patterns
 
-Para enviar correos dependiendo de los eventos se pueden usar varios plugins en logstash(exec, mail, etc), yo use el plugin file:
+Para enviar correos dependiendo se pueden usar varios plugins en logstash(exec, mail, etc), yo use los plugins grep y file:
 
 <pre class="sh_sh">
 $ sudo service logstash-shipper stop
 $ sudo vi /home/logstash/shipper.conf
 $ sudo service logstash-shipper start
 </pre>
+
+Agregando a */home/logstash/shipper.conf*
 
 <pre>
 filter {
@@ -50,7 +52,7 @@ output {
   }
 </pre>
 
-Y luego un script se ejecuta cada minuto para enviar las alertas:
+Y luego ejecutando un [script](https://gist.github.com/chilicuil/6066888) para recibir las alertas:
 
 <pre class="sh_sh">
 $ sudo crontab -l
