@@ -28,7 +28,6 @@ _header()
     echo -e "\033[1m      $ \033[0mwget $updates"
     echo -e "\033[1m      $ \033[0mbash s -i"
     echo -e "\033[1m--------------------------------------------------------------------\033[0m"
-    echo
 }
 
 
@@ -36,8 +35,19 @@ _cmd()
 {   #print current command, exits on fail
     [ -z "$1" ] && return 0
 
-    echo "[+] $@"
+    echo "    $ $@"
     $@
+
+    status=$?
+    [ "$status" != 0 ] && exit $status || return
+}
+
+_cmdsudo()
+{   #print current command, exits on fail
+    [ -z "$1" ] && return 0
+
+    echo "    $ sudo $@"
+    echo "$sudopwd" | $sudocmd $@
 
     status=$?
     [ "$status" != 0 ] && exit $status || return
@@ -164,6 +174,17 @@ _waitfor()
     _handscui $(pidof $1)
 }
 
+_waitforsudo()
+{
+    [ -z "$1" ] && return 1
+
+    echo -n "    $ sudo $@ ..."
+    echo "$sudopwd" | $sudocmd $@ > /dev/null 2>&1 &
+    sleep 1s
+
+    _handscui $(pidof $1)
+}
+
 _smv()
 {
     if [ "$(basename $1)" = "." ] || [ "$(basename $1)" = ".." ]; then
@@ -211,24 +232,15 @@ esac
 
 echo "[+] installing deps ..."
 
-echo -n "    $ apt-get update ..."
-echo "$sudopwd" | $sudocmd apt-get update > /dev/null 2>&1 &
-sleep 2s && _handscui $(pidof apt-get)
-
-echo -n "    $ apt-get install --no-install-recommends -y $apps_default ..."
-echo "$sudopwd" | $sudocmd apt-get install --no-install-recommends -y $apps_default > /dev/null 2>&1 &
-sleep 2s && _handscui $(pidof apt-get)
+_waitforsudo apt-get update
+_waitforsudo apt-get install --no-install-recommends -y $apps_default
 
 echo "[+] purging non essential apps ..."
-
-echo -n "    $ apt-get purge $apps_purge ..."
-echo "$sudopwd" | $sudocmd DEBIAN_FRONTEND=noninteractive apt-get purge -y $apps_purge > /dev/null 2>&1 &
-sleep 2s && _handscui $(pidof apt-get)
+_waitforsudo DEBIAN_FRONTEND=noninteractive apt-get purge -y $apps_purge
 
 echo "[+] fixing locales ... "
-echo "$sudopwd" | $sudocmd locale-gen en_US en_US.UTF-8 > /dev/null 2>&1 &
-sleep 2s && _handscui $(pidof locale-gen)
-echo "$sudopwd" | $sudocmd dpgk-reconfigure -f noninteractive locales > /dev/null 2>&1
+_waitforsudo locale-gen en_US en_US.UTF-8
+_cmdsudo dpkg-reconfigure -f noninteractive locales
 
 #_cmd echo
 #####################################################################################################
@@ -249,6 +261,9 @@ for FILE in dotfiles/.*; do
     _smv "$FILE" $HOME
 done
 
+#special case, ssh, don't want to block myself
+[ -d "$HOME/.ssh.old" ] && mv $HOME/.ssh.old/* $HOME/.ssh
+
 echo "[+] installing utils (old scripts will get an .old suffix) ... "
 for FILE in learn/autocp/bash_completion.d/*; do
     [ -e "$FILE" ] || break
@@ -264,6 +279,8 @@ for FILE in learn/sh/*; do
     [ -f "$FILE" ] || continue
     _smv "$FILE" /usr/local/bin/
 done
+
+rm -rf dotfiles learn
 
 
 echo -e "\033[1m---------------\033[7m Configuring main apps \033[0m\033[1m-------------------\033[0m"

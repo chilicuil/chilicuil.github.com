@@ -24,8 +24,8 @@ $ sudo grub-install /dev/sda
 Después descargue el instalador y el kernel (20Mb~) y los puse en la raíz **"/"**
 
 <pre class="sh_sh">
-$ sudo wget  http://preview.tinyurl.com/7uedctd -O /initrd.gz #instalador
-$ sudo wget http://preview.tinyurl.com/72wwv2c -O /linux #kernel
+$ sudo wget http://tinyurl.com/le9llg2 -O /initrd.gz #instalador
+$ sudo wget http://tinyurl.com/l2znz8e -O /linux #kernel
 </pre>
 
 Los agregué al grub, para que cuando reiniciara, viera una opción "Instalar Ubuntu":
