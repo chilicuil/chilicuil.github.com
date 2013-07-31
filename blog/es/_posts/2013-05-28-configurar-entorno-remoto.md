@@ -18,11 +18,12 @@ $ bash $(wget -qO- javier.io/s)
 
 Algunos de los cambios, son:
 
-    [+] Instalacion de: byobu, vim-nox, curl, html2txt, sendemail, etc (no mas de 20 programas para terminal)
+    [+] Instalacion de: byobu, vim-nox, curl, html2txt, etc (no mas de 20 programas para terminal)
+    [+] Eliminacion de programas no esenciales, sendemail, apache, etc
     [+] $PS1 coloreada y con acortamiento de direcciones, historial eterno, +100 aliases (ver .alias* y .bashrc)
-    [+] Un vim amigable y con modos adicionales para redactar cartas (ingles|español), desarrollar y presentar (ver ~/.vimrc)
-    [+] Wcd como reemplazo a cd, desde ahora si tienen ~/dir1/dir2 pueden ir a dir2 asi: $ cd dir2
-    [+] +50 scripts en /usr/local/bin con cosas como:
+    [+] Vim amigable y con modos adicionales para redactar cartas (ingles|español), desarrollar y hacer presentaciones (ver ~/.vimrc)
+    [+] Wcd como reemplazo a cd
+    [+] +50 scripts en /usr/local/bin:
         [+] pastebin, $ cat archivo | pastebin
         [+] extract, $ extract archivo.comprimido
         [+] fu-search, $ fu-search comando #busca ejemplos
