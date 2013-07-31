@@ -233,7 +233,6 @@ esac
 
 echo "[+] installing deps ..."
 
-echo -n "    $ apt-get update ..."
 _waitforsudo apt-get update
 _waitforsudo apt-get install --no-install-recommends -y $apps_default
 
