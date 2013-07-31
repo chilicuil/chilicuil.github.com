@@ -262,6 +262,9 @@ for FILE in dotfiles/.*; do
     _smv "$FILE" $HOME
 done
 
+#special case, ssh, don't want to block myself
+[ -d "$HOME/.ssh.old" ] && mv $HOME/.ssh.old/* $HOME/.ssh
+
 echo "[+] installing utils (old scripts will get an .old suffix) ... "
 for FILE in learn/autocp/bash_completion.d/*; do
     [ -e "$FILE" ] || break
