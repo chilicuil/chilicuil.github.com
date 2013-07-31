@@ -279,6 +279,8 @@ for FILE in learn/sh/*; do
     _smv "$FILE" /usr/local/bin/
 done
 
+rm -rf dotfiles learn
+
 
 echo -e "\033[1m---------------\033[7m Configuring main apps \033[0m\033[1m-------------------\033[0m"
 echo "[+] configuring vim (3 min aprox) ..."
