@@ -103,7 +103,7 @@ Después de lo cual se puede ir a <http://localhost:9999/acng-report.html> y pre
 
 Los pasos descritos en la parte superior son buenos si ya se sabe de antemano el roll que desempeñara el equipo que tenemos, sin embargo que pasa cuando llegas a una nueva red?, como saber si ya existe un cache de apt-get?. Como el servicio se anuncia vía avahi, se puede hacer una busqueda e instalar solo la parte servidor/cliente dependiendo de si existe o no un proxy de apt-get.
 
-<script src="https://gist.github.com/chilicuil/6207489.js"></script>
+- [https://gist.github.com/chilicuil/6207489](https://gist.github.com/chilicuil/6207489)
 
 #### Eliminar apt-cacher-ng
 
