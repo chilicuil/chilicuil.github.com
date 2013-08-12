@@ -103,28 +103,7 @@ Después de lo cual se puede ir a <http://localhost:9999/acng-report.html> y pre
 
 Los pasos descritos en la parte superior son buenos si ya se sabe de antemano el roll que desempeñara el equipo que tenemos, sin embargo que pasa cuando llegas a una nueva red?, como saber si ya existe un cache de apt-get?. Como el servicio se anuncia vía avahi, se puede hacer una busqueda e instalar solo la parte servidor/cliente dependiendo de si existe o no un proxy de apt-get.
 
-<pre class="sh_sh">
-#!/bin/bash
-
-_existaptproxy()
-{
-  avahi-browse -a  -t | grep -qs apt-cacher-ng && return 0
-  return 1
-}
-
-echo "Setting up an apt-get proxy ... "
-sudo apt-get update
-sudo apt-get install --no-install-recommends -y avahi-utils
-
-if _existaptproxy; then
-  echo "Exist an apt-get proxy in the network, using that ... "
-    sudo apt-get install --no-install-recommends -y squid-deb-proxy-client
-  else
-    echo "No apt-get proxy found, installing one locally ... "
-    sudo apt-get install --no-install-recommends -y squid-deb-proxy-client apt-cacher-ng
-    sudowget http://javier.io/mirror/apt-cacher-ng.service -O /etc/avahi/services/apt-cacher-ng.service
-fi
-</pre>
+<script src="https://gist.github.com/chilicuil/6207489.js"></script>
 
 #### Eliminar apt-cacher-ng
 
