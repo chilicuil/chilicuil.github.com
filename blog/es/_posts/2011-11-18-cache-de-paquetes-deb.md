@@ -18,49 +18,27 @@ Algunas de estas herramientas son **apt-proxy**, **apt-cacher**, **apt-cacher-ng
 
 A propósito de askubuntu, es increible ver la cantidad de respuestas útiles que se encuentran en ese sitio, creo que ha desbancado a <http://answers.launchpad.net/ubuntu> como el sitio predilecto para hacer preguntas de cualquier nivel técnico asociados a Ubuntu.
 
-Regresando al tema, he optado por **apt-cacher-ng** porque es rápido, estable y mantiene todas las cosas unidas desde un solo programa, uno no requiere instalar un servidor web por ejemplo.
+Regresando al tema, he optado por una combinación entre **apt-cacher-ng** y **squid-deb-proxy-client**, juntos crean una solución rápida, estables, fácil de usar y dinámica.
 
 ### Desarrollo
 
 &#91;+&#93; Servidor:
 
 <pre class="sh_sh">
-$ sudo apt-get install apt-cacher-ng
-$ sudo sed -i -e 's/3142/9999/g' /etc/apt-cacher-ng/acng.conf
+$ sudo apt-get install apt-cacher-ng squid-deb-proxy-client
+$ sudo wget http://javier.io/mirror/apt-cacher-ng.service -O /etc/avahi/services/apt-cacher-ng.service
 $ sudo service apt-cacher-ng restart
 </pre>
-
-Lo que lo hará compatible con **apt-proxy** (por lo del puerto 9999)
 
 &#91;+&#93; Cliente:
 
 <pre class="sh_sh">
-$ wget http://ubuntuone.com/4PXwbNWmNj5kK9AUkEb9fF -O add_proxy_repository
-$ sudo chmod +x $_ 
-$ sudo mv -v $_ /usr/local/bin
+$ squid-deb-proxy-client
 </pre>
 
-Lo que dejará un script en **/usr/local/bin** llamado **add_proxy_repository**, el cual puede ser llamado de cualquiera de estas formas:
-
-<pre class="sh_sh">
-$ add_proxy_repository [add|remove]
-</pre>
-
-Por alguna torpe razón, apt-get se empeñará en usar el proxy aún cuando no este disponible.., cuando esto pase, se debe usar el script para deshabilitar el proxy, en caso de querer automatizarlo, se puede usar **_squid-deb-proxy-client_** que verifica la conexión y dependiendo del estado en [avahi](http://avahi.org) habilitaran deshabilitaran la línea que afecta a apt..., creo que sería mucho más práctico que apt-get siguiera leyendo sources.list y tomará los repositorios declarados ahí en caso de no encontrar accesible la dirección del proxy...
-
-A efectos prácticos y para máquinas de escritorio, solo se correrá una única vez **$ add_proxy_repository add**.., mientras que para laptops significa estar habilitando/deshabilitando de acuerdo a la red en la que se encuentre, por lo que si puedo sugerir algo, es que se use este script para máquinas de escritorio y se de preferencia a **squid-deb-proxy** cuando se trate de una laptop
+Esto hará que el servidor anuncie apt-cacher-ng y que los clientes lo usen, cuando se encuentren en la misma red copiaran paquetes desde ahí, y cuando se muevan a otras localidades descargaran de Internet.
 
 ### Extra
-
-#### Servidor / cliente
-
-Para que los paquetes del servidor también se agreguen al caché, sera necesario configurarlo como cliente
-
-&#91;+&#93; Servidor:
-
-<pre class="sh_sh">
-$ add_proxy_repository add #IP: localhost
-</pre>
 
 #### Importar paquetes del servidor
 
@@ -76,7 +54,7 @@ $ sudo apt-get update
 $ tree /var/cache/apt-cacher-ng
 </pre>
 
-Se va a <http://localhost:9999/acng-report.html> y se presiona '**Start import**':
+Ahora se va a <http://localhost:9999/acng-report.html> y se presiona '**Start import**':
 
 **[![](/assets/img/57.png)](/assets/img/57.png)**
 
@@ -104,7 +82,7 @@ $ sudo python -m SimpleHTTPServer 80
 Extrayendo los \*.deb y copiandolos a import
 
 <pre class="sh_sh">
-$ wget http://ip_cliente/debs.tar.gz        
+$ wget http://ip_cliente/debs.tar.gz
 $ tar zxvf debs.tar.gz import/
 $ sudo mkdir -pv -m 2755 /var/cache/apt-cacher-ng/_import
 $ sudo mv -vuf import/*deb /var/cache/apt-cacher-ng/_import
@@ -121,20 +99,46 @@ $ sudo apt-get update
 
 Después de lo cual se puede ir a <http://localhost:9999/acng-report.html> y presionar '**Start import**':
 
+#### Nuevos equipos en nueva red
+
+Los pasos descritos en la parte superior son buenos si ya se sabe de antemano el roll que desempeñara el equipo que tenemos, sin embargo que pasa cuando llegas a una nueva red?, como saber si ya existe un cache de apt-get?. Como el servicio se anuncia vía avahi, se puede hacer una busqueda e instalar solo la parte servidor/cliente dependiendo de si existe o no un proxy de apt-get.
+
+<pre class="sh_sh">
+#!/bin/bash
+
+_existaptproxy()
+{
+  avahi-browse -a  -t | grep -qs apt-cacher-ng && return 0
+  return 1
+}
+
+echo "Setting up an apt-get proxy ... "
+sudo apt-get update
+sudo apt-get install --no-install-recommends -y avahi-utils
+
+if _existaptproxy; then
+  echo "Exist an apt-get proxy in the network, using that ... "
+    sudo apt-get install --no-install-recommends -y squid-deb-proxy-client
+  else
+    echo "No apt-get proxy found, installing one locally ... "
+    sudo apt-get install --no-install-recommends -y squid-deb-proxy-client apt-cacher-ng
+    sudowget http://javier.io/mirror/apt-cacher-ng.service -O /etc/avahi/services/apt-cacher-ng.service
+fi
+</pre>
+
 #### Eliminar apt-cacher-ng
 
 &#91;+&#93; Servidor:
 
 <pre class="sh_sh">
-$ sudo apt-get remove apt-cacher-ng
+$ sudo apt-get remove apt-cacher-ng squid-deb-proxy-client
 $ sudo rm -rf /var/cache/apt-cacher-ng
 </pre>
 
 &#91;+&#93; Clientes:
 
 <pre class="sh_sh">
-$ sudo add_proxy_repository remove
-$ sudo rm -rf /usr/local/bin/add_proxy_repository
+$ sudo apt-get remove squid-deb-proxy-client
 </pre>
 
 ### Conclusión
