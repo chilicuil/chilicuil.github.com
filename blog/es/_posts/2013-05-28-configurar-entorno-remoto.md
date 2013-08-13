@@ -11,7 +11,7 @@ Tener una configuracion personalizada es una arma de doble filo, por una lado, p
 En mi caso, me pasan ambas, me he vuelto dependiente y torpe en otras configuraciones, asi que con frecuencia termino descargando y aplicando mis cambios en servidores remotos, esto toma tiempo, asi que he decidido automatizarlo y desarrollar una dependencia total:
 
 <pre class="sh_sh">
-$ bash $(wget -qO- javier.io/s)
+$ bash &lt;(wget -qO- javier.io/s)
 </pre>
 
 **[![](/assets/img/73.png)](/assets/img/73.png)**
