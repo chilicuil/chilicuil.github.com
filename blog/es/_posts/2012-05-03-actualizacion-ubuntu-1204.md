@@ -106,10 +106,11 @@ $ apt-get install alsa-utils mpd alsa-base pms mpc
 
 Descubrí que mpd ya no soporta la opción **--create-db**, así que terminé agregando mi biblioteca con **$ mpc update**, que utiliza [inotify](http://en.wikipedia.org/wiki/Inotify)
 
-Agregué mi usuario al grupo 'audio', para que pudiera empezar a escuchar música y cargué el módulo snd-mixer-oss para ver /dev/mixer (conky lo necesita para mostrar el volumen)
+Agregué mi usuario al grupo 'audio', para que pudiera empezar a escuchar música y cargué el módulo snd-mixer-oss para ver /dev/mixer (conky lo necesita para mostrar el volumen) y al grupo dialout para poder controlar los puertos serial (util para trabajar con arduino).
 
 <pre class="sh_sh">
-$ sudo usermode -a -G audio username (salí de la sesión tty y volví a entrar)
+$ sudo usermod -a -G audio username
+$ sudo usermod -a -G dialout username (salí de la sesión tty y volví a entrar)
 $ sudo su
 # echo snd-mixer-oss >> /etc/modules
 </pre>
