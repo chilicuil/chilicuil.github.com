@@ -649,7 +649,7 @@ _localsetup()
 
     echo "[+] configuring groups ..."
     _cmdsudo usermod -a -G dialout $(whoami)
-    _cmdsudo usermod -a -G admin $(whoami)
+    _cmdsudo usermod -a -G sudo $(whoami)
 
     echo "[+] configuring login manager ..."
     _cmdsudo mv iconf/slim/slim.conf /etc/
