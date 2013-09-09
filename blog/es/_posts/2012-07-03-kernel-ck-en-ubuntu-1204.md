@@ -6,7 +6,7 @@ title: "kernel -ck en ubuntu precise"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-###UPDATE: 05/Mar/03 el script se ha actualizado para que compile la version 3.8.2 del kernel
+###UPDATE: 08/Sep/13 el script se ha actualizado para que compile la version 3.9.2 del kernel
 
 **[ck](http://ck-hack.blogspot.mx/)** es la extensión de los parches de [Con Kolivas](http://en.wikipedia.org/wiki/Con_Kolivas) para incrementar el rendimiento de Linux en PC's y laptops "normales". Tradicionalmente el kernel viene optimizado para servidores, clusters, y mainframes, de ahí que estos parches sean populares entre las personas que desean mejorar su entorno para juegos, multimedia y trabajo ordinario (navegación en internet, edición de textos, mensajería instantanea, etc).
 
@@ -55,8 +55,12 @@ Si no desean compilarlo, he preparado paquetes para amd64 y para x86
 - [amd64](http://ubuntuone.com/0rslvlUGVTieUrCSfjM5GC)
 - [x86](http://ubuntuone.com/0ZRJ1mvi4vPu8NvVblM96j)
 
-
 *3.8.2*
 
 - [amd64](http://ubuntuone.com/6fYQQlVPzQuaRRoogpJ3Dd)
 - [x86](http://ubuntuone.com/66JgpjRzUronOX1UXz2rh7)
+
+*3.9.2*
+
+- [amd64](https://files.one.ubuntu.com/EIay6Vw4QA2d1cQ8IHtsRA)
+- [x86](https://files.one.ubuntu.com/sZp9nOJZTuGuc2sfVL55fw)
