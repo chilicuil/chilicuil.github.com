@@ -138,10 +138,10 @@ _cmdsudo()
     [ -z "$1" ] && return 0
 
     echo "    $ sudo $@"
-    echo "$sudopwd" | $sudocmd "$@"
+    echo "$sudopwd" | $sudocmd "$@" > /tmp/serr.out 2>&1
 
     status=$?
-    [ "$status" != 0 ] && exit $status || return
+    [ "$status" != 0 ] && { cat /tmp/serr.out; rm /tmp/serr.out; exit $status; } || return
 }
 
 _arch()
@@ -255,18 +255,18 @@ _cleanup()
     echo "[+] recovering old conf ..."
     for FILE in $HOME/*.old; do
         [ -e "$FILE" ] || continue
-        mv -v "$FILE" ${FILE%.old}
+        mv "$FILE" ${FILE%.old}
     done
 
     echo "[+] recovering scripts ..."
     for FILE in /etc/bash_completion.d/*.old; do
         [ -e "$FILE" ] || continue
-        mv -v "$FILE" ${FILE%.old}
+        mv "$FILE" ${FILE%.old}
     done
 
     for FILE in /usr/local/bin/*.old; do
         [ -e "$FILE" ] || continue
-        mv -v "$FILE" ${FILE%.old}
+        mv "$FILE" ${FILE%.old}
     done
 
     _cmd rm -rf dotfiles learn
@@ -308,11 +308,11 @@ _smv()
     owner=$(stat -c %U "$2")
 
     if [ "$owner" != "$LOGNAME" ]; then
-        [ -e "$2"/$(basename "$1") ] && echo "$sudopwd" | $sudocmd mv "$2"/$(basename "$1") "$2"/$(basename "$1").old
-        echo "$sudopwd" | $sudocmd mv -v "$1" "$2"
+        [ -e "$2"/$(basename "$1") ] && echo "$sudopwd" | $sudocmd mv "$2"/$(basename "$1") "$2"/$(basename "$1").old > /dev/null 2>&1
+        echo "$sudopwd" | $sudocmd mv "$1" "$2"  > /dev/null 2>&1
     else
         [ -e "$2"/$(basename "$1") ] && mv "$2"/$(basename "$1") "$2"/$(basename "$1").old
-        mv -v "$1" "$2"
+        mv "$1" "$2"
     fi
 }
 
@@ -363,14 +363,16 @@ _setrepos()
 
             echo "deb http://ppa.launchpad.net/chilicuil/sucklesstools/ubuntu $RELEASE main" > chilicuil-sucklesstools.list
             _cmdsudo mv chilicuil-sucklesstools.list /etc/apt/sources.list.d/
-            _waitforsudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8AC54C683AC7B5E8
 
             echo "deb http://dl.google.com/linux/talkplugin/deb/ stable main" > google-talkplugin.list
             _cmdsudo mv google-talkplugin.list /etc/apt/sources.list.d/
-            _waitforsudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A040830F7FAC5991
 
-            _waitforsudo wget http://www.medibuntu.org/sources.list.d/$RELEASE.list -O /etc/apt/sources.list.d/medibuntu.list
-            _waitforsudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 2EBC26B60C5A2783
+            echo "deb http://download.videolan.org/pub/debian/stable/ /" > libdvdcss.list
+            _cmdsudo mv libdvdcss.list /etc/apt/sources.list.d/
+
+            _waitforsudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8AC54C683AC7B5E8
+            _waitforsudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A040830F7FAC5991
+            _waitforsudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6BCA5E4DB84288D9
             ;;
     esac
 }
@@ -504,7 +506,7 @@ _remotesetup()
 
     #####################################################################################################
 
-    echo -e "\033[1m-------------------\033[7m Downloading files \033[0m\033[1m------------------------\033[0m"
+    echo -e "\033[1m-------------\033[7m Downloading files \033[0m\033[1m-----------------\033[0m"
     echo "[+] downloading reps ..."
     _waitfor git clone --dept=1 "$dotfiles.git"
     _waitfor git clone --dept=1 "$utils.git"
@@ -596,6 +598,8 @@ _localsetup()
     _waitforsudo apt-get update
     _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y $apps_local
 
+    [ ! -f /usr/bin/i3 ] && _die "Dependecy step failed"
+
     if [ ! -d $HOME/.bin/firefox$(_arch) ]; then
         mkdir -p $HOME/.bin
         _installfirefoxnightly
@@ -606,11 +610,10 @@ _localsetup()
     echo "[+] purging non essential apps ..."
     _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get purge -y $apps_purge
 
-    [ ! -f /usr/bin/i3 ] && _die "Dependecy step failed"
 
     #####################################################################################################
 
-    echo -e "\033[1m-------------------\033[7m Downloading theme files \033[0m\033[1m------------------------\033[0m"
+    echo -e "\033[1m---------------\033[7m Downloading theme files \033[0m\033[1m--------------------\033[0m"
     echo "[+] downloading confs, themes and so on ..."
     _waitfor wget http://files.javier.io/repository/s/iconfaa.bin
     _waitfor wget http://files.javier.io/repository/s/iconfab.bin
@@ -625,7 +628,7 @@ _localsetup()
 
     #####################################################################################################
 
-    echo -e "\033[1m--------------\033[7m Configuring system \033[0m\033[1m---------------\033[0m"
+    echo -e "\033[1m--------------------\033[7m Configuring system \033[0m\033[1m-------------------\033[0m"
     echo "[+] configuring swappiness ..."
     FSYSCTL="/etc/sysctl.conf"
     if grep -qs vm.swappiness $FSYSCTL; then
@@ -643,7 +646,7 @@ _localsetup()
 
     echo "[+] configuring audio ..."
     _cmdsudo usermod -a -G audio $(whoami)
-    echo snd-mixer-oss | _cmdsudo tee -a /etc/modules
+    _cmdsudo sed -i -e "\$asnd-mixer-oss" /etc/modules
     _cmdsudo mv iconf/mpd/mpd.conf /etc
     _cmdsudo sed -i -e "/music_directory/ s:chilicuil:$(whoami):" /etc/mpd.conf
 
@@ -651,10 +654,23 @@ _localsetup()
     _cmdsudo usermod -a -G dialout $(whoami)
     _cmdsudo usermod -a -G sudo $(whoami)
 
+    echo "[+] configuring cron ..."
+    echo "    $ echo \"*/1 * * * * /usr/local/bin/watch_battery\" | crontab -"
+    crontab -l | { cat; echo "*/1 * * * * /usr/local/bin/watch_battery"; } | crontab -
+    if [ -f "$HOME"/misc/conf/ubuntu/etc/lenovo-edge-netbook/crontabs.tar.gz ]; then
+        _waitforsudo tar zxf "$HOME"/misc/conf/ubuntu/etc/lenovo-edge-netbook/crontabs.tar.gz -C /
+    fi
+
     echo "[+] configuring login manager ..."
     _cmdsudo mv iconf/slim/slim.conf /etc/
     _cmdsudo mv iconf/slim/custom /usr/share/slim/themes/
     _cmdsudo sed -i -e "/default_user/ s:chilicuil:$(whoami):" /etc/slim.conf
+    [ -f /usr/share/xsessions/i3.desktop ] && _cmdsudo sed -i -e "/Exec/ s:=.*:=/etc/X11/Xsession:" /usr/share/xsessions/i3.desktop
+
+    echo "[+] configuring gpg/ssh agents ..."
+    [ -f /etc/X11/Xsession.d/90gpg-agent ] && _cmdsudo sed -i -e "/STARTUP/ s:=.*:=\"\$GPGAGENT --enable-ssh-support --daemon --sh --write-env-file=\$PID_FILE \$STARTUP\":" /etc/X11/Xsession.d/90gpg-agent
+    [ -f /etc/X11/Xsession.options ] && _cmdsudo sed -i -e "s:use-ssh-agent:#use-ssh-agent:g" /etc/X11/Xsession.options
+
     #allow use of shutdown/reboot through dbus-send
     _waitforsudo wget http://javier.io/mirror/org.freedesktop.consolekit.pkla -O /etc/polkit-1/localauthority/50-local.d/org.freedesktop.consolekit.pkla
 
@@ -669,7 +685,7 @@ _localsetup()
         _waitfor tar jxf iconf/firefox/mozilla.tar.bz2 -C iconf/firefox
         mozilla_profile=$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 8 | tr -d '\n'; echo)
         _cmd mv iconf/firefox/.mozilla/firefox/*.default iconf/firefox/.mozilla/firefox/$mozilla_profile.default
-        sed -i -e "/Path/ s:=.*:=$mozilla_profile.default:" iconf/firefox/.mozilla/firefox/profiles.ini
+        mozilla_files=$(grep -rl h5xyzl6e iconf/firefox/.mozilla) && { echo $mozilla_files | xargs sed -i -e "s/h5xyzl6e/$mozilla_profile/g"; echo $mozilla_files | xargs sed -i -e "s/admin/$(whoami)/g"; }
         _smv iconf/firefox/.mozilla "$HOME"
     fi
 
@@ -682,6 +698,7 @@ _localsetup()
     _cmd mv iconf/gtk/themes/* $HOME/.themes
     _cmd mv iconf/fonts/* $HOME/.fonts
     _waitforsudo fc-cache -f -v
+    _cmdsudo update-alternatives --set x-terminal-emulator /usr/bin/urxvt
 
     [ ! -d $HOME/.data ] && _cmd mv iconf/data $HOME/.data
 
@@ -691,6 +708,9 @@ _localsetup()
     _cmd rm s
     _cmd touch $HOME/.not_override
 
+    if [ -d "$HOME"/.gvfs ]; then
+        fusermount -u "$HOME"/.gvfs
+    fi
     _cmdsudo chown -R $(whoami):$(whoami) $HOME
 
     #stackoverflow.com/q/8887972
@@ -698,6 +718,10 @@ _localsetup()
          -o -type f -iname "*Xdefaults*"        \
          -o -type f -iname "*bazaar.conf*"      \
          -o -type f -iname "*conkyrc*" \) -exec sed -i "s/chilicuil/$(whoami)/g" '{}' \;
+
+    if [ -d /proc/acpi/battery/BAT0 ]; then
+        _cmd sed -i "s/BAT1/BAT0/g" ~/.conkyrc
+    fi
 
     echo "[+] cleaning up ..."
     _cmdsudo rm -rf iconf*
