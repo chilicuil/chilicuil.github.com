@@ -670,6 +670,8 @@ _localsetup()
     echo "[+] configuring gpg/ssh agents ..."
     [ -f /etc/X11/Xsession.d/90gpg-agent ] && _cmdsudo sed -i -e "/STARTUP/ s:=.*:=\"\$GPGAGENT --enable-ssh-support --daemon --sh --write-env-file=\$PID_FILE \$STARTUP\":" /etc/X11/Xsession.d/90gpg-agent
     [ -f /etc/X11/Xsession.options ] && _cmdsudo sed -i -e "s:use-ssh-agent:#use-ssh-agent:g" /etc/X11/Xsession.options
+    _cmd mkdir -p "$HOME"/.gnupg
+    [ ! -f "$HOME"/.gnupg/gpg.conf ] && echo "use-agent" > "$HOME"/.gnupg/gpg.conf
 
     #allow use of shutdown/reboot through dbus-send
     _waitforsudo wget http://javier.io/mirror/org.freedesktop.consolekit.pkla -O /etc/polkit-1/localauthority/50-local.d/org.freedesktop.consolekit.pkla
