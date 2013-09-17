@@ -724,6 +724,7 @@ _localsetup()
 
     #stackoverflow.com/q/8887972
     find $HOME -maxdepth 3 \( -type f -iname "*gtkrc*" \
+         -o -type f -iname "*Trolltech.conf*"      \
          -o -type f -iname "*Xdefaults*"        \
          -o -type f -iname "*bazaar.conf*"      \
          -o -type f -iname "*conkyrc*" \) -exec sed -i "s/chilicuil/$(whoami)/g" '{}' \;
