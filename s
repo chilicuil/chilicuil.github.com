@@ -15,7 +15,8 @@ apps_local="i3-wm alsa-utils alsa-base mpd pms mpc slim rxvt-unicode-256color xo
             redshift zram-config gvfs gvfs-common gvfs-daemons gvfs-fuse gvfs-libs libatasmart4 lame unzip
             libdevmapper-event1.02.1 libgdu0 libgnome-keyring-common libgnome-keyring0 libgudev-1.0-0
             liblvm2app2.2 libsgutils2-2 udisks policykit-1 google-talkplugin libmad0 libdvdcss2 sxiv
-            libdvdread4 curl dkms libio-socket-ssl-perl libnet-ssleay-perl sendemail xdotool dbus-x11"
+            libdvdread4 curl dkms libio-socket-ssl-perl libnet-ssleay-perl sendemail xdotool dbus-x11
+            gxmessage"
 apps_ubuntudev="apt-file cvs subversion bzr bzr-builddeb pbuilder tidy zsync"
 apps_purge="xinetd sasl2-bin sendmail-base sendmail-bin sensible-mda rmail bsd-mailx apache2.2-common
             sendmail apache2 nano"
@@ -502,7 +503,7 @@ _remotesetup()
     echo "[+] purging non essential apps ..."
     _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get purge -y $apps_purge
 
-    [ ! -f /usr/bin/git ] && _die "Dependecy step failed"
+    [ ! -f /usr/bin/git ] && _die "Dependency step failed"
 
     #####################################################################################################
 
@@ -598,14 +599,20 @@ _localsetup()
     _waitforsudo apt-get update
     _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y $apps_local
 
-    [ ! -f /usr/bin/i3 ] && _die "Dependecy step failed"
+    [ ! -f /usr/bin/i3 ] && _die "Dependency step failed"
 
-    if [ ! -d $HOME/.bin/firefox$(_arch) ]; then
-        mkdir -p $HOME/.bin
+    if [ ! -d "$HOME"/.bin/firefox$(_arch) ]; then
+        mkdir -p "$HOME"/.bin
         _installfirefoxnightly
     fi
 
     [ ! -f /usr/local/bin/firefox ] && _cmdsudo ln -s $HOME/.bin/firefox$(_arch)/firefox /usr/local/bin/
+
+    if [ ! -f /usr/local/bin/magnifier ]; then
+        if [ "$(_arch)" -eq 64 ]; then
+        _cmdsudo wget http://files.javier.io/repository/s/magnifier.bin -O /usr/local/bin/magnifier
+        _cmdsudo chmod +x /usr/local/bin/magnifier
+    fi
 
     echo "[+] purging non essential apps ..."
     _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get purge -y $apps_purge
