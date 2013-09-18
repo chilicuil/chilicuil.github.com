@@ -610,8 +610,9 @@ _localsetup()
 
     if [ ! -f /usr/local/bin/magnifier ]; then
         if [ "$(_arch)" -eq 64 ]; then
-        _cmdsudo wget http://files.javier.io/repository/s/magnifier.bin -O /usr/local/bin/magnifier
-        _cmdsudo chmod +x /usr/local/bin/magnifier
+            _cmdsudo wget http://files.javier.io/repository/s/magnifier.bin -O /usr/local/bin/magnifier
+            _cmdsudo chmod +x /usr/local/bin/magnifier
+        fi
     fi
 
     echo "[+] purging non essential apps ..."
