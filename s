@@ -21,6 +21,19 @@ apps_ubuntudev="apt-file cvs subversion bzr bzr-builddeb pbuilder tidy zsync"
 apps_purge="xinetd sasl2-bin sendmail-base sendmail-bin sensible-mda rmail bsd-mailx apache2.2-common
             sendmail apache2 nano"
 
+if [ -z "${BASH_ARGV[0]}" ]; then
+    mode="remote"
+else
+    case "${BASH_ARGV[0]}" in
+        l|local)
+            mode="local" ;;
+        b|boot)
+            mode="boot" ;;
+        *)
+            mode="remote" ;;
+    esac
+fi
+
 #############################################################################################################
 # General functions #########################################################################################
 #############################################################################################################
@@ -29,33 +42,27 @@ _header()
 {
     clear
     echo -e "\033[1m----------------------\033[7m The Setup \033[0m\033[1m---------------------------\033[0m"
-    echo -e "\033[1m  Dotfiles:\033[0m        $dotfiles"
-    echo -e "\033[1m  Utils:\033[0m           $utils"
-    echo -e "\033[1m  Updates:\033[0m         $updates"
+    echo -e "\033[1m Dotfiles:\033[0m        $dotfiles"
+    echo -e "\033[1m Utils:\033[0m           $utils"
+    echo -e "\033[1m Updates:\033[0m         $updates"
     echo
-    if [ -z "${BASH_ARGV[0]}" ]; then
-        echo -e "\033[1m  > Remote:                \033[0m$ bash <(wget -qO- javier.io/s)"
-        echo -e "\033[1m  Local (includes Remote): \033[0m$ bash <(wget -qO- javier.io/s) l"
-        echo -e "\033[1m  Boot:                    \033[0m$ bash <(wget -qO- javier.io/s) b"
-    else
-        case "${BASH_ARGV[0]}" in
-            l|local)
-                echo -e "\033[1m  Remote:                    \033[0m$ bash <(wget -qO- javier.io/s)"
-                echo -e "\033[1m  > Local (includes Remote): \033[0m$ bash <(wget -qO- javier.io/s) l"
-                echo -e "\033[1m  Boot:                      \033[0m$ bash <(wget -qO- javier.io/s) b"
-                ;;
-            b|boot)
-                echo -e "\033[1m  Remote:                  \033[0m$ bash <(wget -qO- javier.io/s)"
-                echo -e "\033[1m  Local (includes Remote): \033[0m$ bash <(wget -qO- javier.io/s) l"
-                echo -e "\033[1m  > Boot:                  \033[0m$ bash <(wget -qO- javier.io/s) b"
-                ;;
-            *)
-                echo -e "\033[1m  > Remote:                \033[0m$ bash <(wget -qO- javier.io/s)"
-                echo -e "\033[1m  Local (includes Remote): \033[0m$ bash <(wget -qO- javier.io/s) l"
-                echo -e "\033[1m  Boot:                    \033[0m$ bash <(wget -qO- javier.io/s) b"
-                ;;
+
+    case $mode in
+        remote)
+            echo -e "\033[1m > Remote:                \033[0m$ bash <(wget -qO- javier.io/s)"
+            echo -e "\033[1m Local (includes Remote): \033[0m$ bash <(wget -qO- javier.io/s) l"
+            echo -e "\033[1m Boot:                    \033[0m$ bash <(wget -qO- javier.io/s) b"
+            ;;
+        local)
+            echo -e "\033[1m Remote:                    \033[0m$ bash <(wget -qO- javier.io/s)"
+            echo -e "\033[1m > Local (includes Remote): \033[0m$ bash <(wget -qO- javier.io/s) l"
+            echo -e "\033[1m Boot:                      \033[0m$ bash <(wget -qO- javier.io/s) b"
+            ;;
+        boot)
+            echo -e "\033[1m Remote:                  \033[0m$ bash <(wget -qO- javier.io/s)"
+            echo -e "\033[1m Local (includes Remote): \033[0m$ bash <(wget -qO- javier.io/s) l"
+            echo -e "\033[1m > Boot:                  \033[0m$ bash <(wget -qO- javier.io/s) b"
         esac
-    fi
     echo -e "\033[1m------------------------------------------------------------\033[0m"
 }
 
@@ -343,6 +350,19 @@ _existaptproxy()
 
 _setrepos()
 {
+    if [ "$mode" = local ]; then
+        for repository in /etc/apt/sources.list.d/*.list; do
+            if [ -f "${repository}" ]; then
+                non_standard_repositories="true"
+                _cmdsudo mv "${repository}" "${repository}".s || true
+            fi
+        done
+
+        if [ -n "$non_standard_repositories" ]; then
+            echo "[+] disabling temporaly non standard repos ..."
+        fi
+    fi
+
     echo "[+] adding repos ..."
 
     if [ -f /usr/bin/lsb_release ]; then
@@ -390,6 +410,7 @@ _homedetected()
 
 _sethome()
 {
+    #TODO 17-09-2013 02:54 >> mount only partitions with id 83 (linux)
     if mountpoint -q /home; then
         local sd=$(cat /etc/mtab | grep '^/' | grep '/home' | sed 's/[ ].*//')
         local uuid=$(_getuuid "$sd")
@@ -507,7 +528,7 @@ _remotesetup()
 
     #####################################################################################################
 
-    echo -e "\033[1m-------------\033[7m Downloading files \033[0m\033[1m-----------------\033[0m"
+    echo -e "\033[1m--------------------\033[7m Downloading files \033[0m\033[1m---------------------\033[0m"
     echo "[+] downloading reps ..."
     _waitfor git clone --dept=1 "$dotfiles.git"
     _waitfor git clone --dept=1 "$utils.git"
@@ -516,7 +537,7 @@ _remotesetup()
 
     #####################################################################################################
 
-    echo -e "\033[1m--------------------\033[7m Installing files \033[0m\033[1m-----------------------\033[0m"
+    echo -e "\033[1m--------------------\033[7m Installing files \033[0m\033[1m----------------------\033[0m"
 
     if [ ! -f $HOME/.not_override ]; then
         echo "[+] installing dotfiles (old dotfiles will get an .old suffix) ..."
@@ -551,7 +572,7 @@ _remotesetup()
 
     #####################################################################################################
 
-    echo -e "\033[1m-----------\033[7m Configuring main apps \033[0m\033[1m---------------\033[0m"
+    echo -e "\033[1m-----------------\033[7m Configuring main apps \033[0m\033[1m--------------------\033[0m"
     echo "[+] configuring vim (3 min aprox) ..."
     _waitfor git clone --dept=1 https://github.com/gmarik/vundle ~/.vim/bundle/vundle
     _waitfor vim -es -u ~/.vimrc -c "BundleInstall" -c qa
@@ -561,7 +582,7 @@ _remotesetup()
 
     #####################################################################################################
 
-    echo -e "\033[1m------------------\033[7m DONE \033[0m\033[1m---------------\033[0m"
+    echo -e "\033[1m-------------------------\033[7m DONE \033[0m\033[1m-----------------------------\033[0m"
     echo
     echo "Reload the configuration to start having fun, n@n/"
     echo "    $ source ~/.bashrc"
@@ -731,6 +752,17 @@ _localsetup()
 
     if [ -d /proc/acpi/battery/BAT0 ]; then
         _cmd sed -i "s/BAT1/BAT0/g" ~/.conkyrc
+    fi
+
+    if [ -n "$non_standard_repositories" ]; then
+        echo "[+] renabling non standard repos ..."
+
+        for repository in /etc/apt/sources.list.d/*.list.s; do
+            if [ -f "${repository}" ]; then
+                _cmdsudo mv "${repository}" "${repository%.s}" || true
+            fi
+        done
+        fi
     fi
 
     echo "[+] cleaning up ..."
