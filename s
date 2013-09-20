@@ -528,7 +528,7 @@ _remotesetup()
 
     #####################################################################################################
 
-    echo -e "\033[1m--------------------\033[7m Downloading files \033[0m\033[1m---------------------\033[0m"
+    echo -e "\033[1m-------------------\033[7m Downloading files \033[0m\033[1m-----------------------\033[0m"
     echo "[+] downloading reps ..."
     _waitfor git clone --dept=1 "$dotfiles.git"
     _waitfor git clone --dept=1 "$utils.git"
@@ -572,7 +572,7 @@ _remotesetup()
 
     #####################################################################################################
 
-    echo -e "\033[1m-----------------\033[7m Configuring main apps \033[0m\033[1m--------------------\033[0m"
+    echo -e "\033[1m-----------------\033[7m Configuring main apps \033[0m\033[1m---------------------\033[0m"
     echo "[+] configuring vim (3 min aprox) ..."
     _waitfor git clone --dept=1 https://github.com/gmarik/vundle ~/.vim/bundle/vundle
     _waitfor vim -es -u ~/.vimrc -c "BundleInstall" -c qa
@@ -582,7 +582,7 @@ _remotesetup()
 
     #####################################################################################################
 
-    echo -e "\033[1m-------------------------\033[7m DONE \033[0m\033[1m-----------------------------\033[0m"
+    echo -e "\033[1m-----------------------------\033[7m DONE \033[0m\033[1m--------------------------\033[0m"
     echo
     echo "Reload the configuration to start having fun, n@n/"
     echo "    $ source ~/.bashrc"
@@ -631,8 +631,9 @@ _localsetup()
 
     if [ ! -f /usr/local/bin/magnifier ]; then
         if [ "$(_arch)" -eq 64 ]; then
-        _cmdsudo wget http://files.javier.io/repository/s/magnifier.bin -O /usr/local/bin/magnifier
-        _cmdsudo chmod +x /usr/local/bin/magnifier
+            _cmdsudo wget http://files.javier.io/repository/s/magnifier.bin -O /usr/local/bin/magnifier
+            _cmdsudo chmod +x /usr/local/bin/magnifier
+        fi
     fi
 
     echo "[+] purging non essential apps ..."
