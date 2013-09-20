@@ -763,7 +763,6 @@ _localsetup()
                 _cmdsudo mv "${repository}" "${repository%.s}" || true
             fi
         done
-        fi
     fi
 
     echo "[+] cleaning up ..."
