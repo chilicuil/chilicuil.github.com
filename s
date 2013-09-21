@@ -562,7 +562,12 @@ _remotesetup()
             _smv "$FILE" /usr/local/bin/
         done
 
-        for FILE in learn/sh/*; do
+        for FILE in learn/sh/is/*; do
+            [ -f "$FILE" ] || continue
+            _smv "$FILE" /usr/local/bin/
+        done
+
+        for FILE in learn/sh/tools/*; do
             [ -f "$FILE" ] || continue
             _smv "$FILE" /usr/local/bin/
         done
