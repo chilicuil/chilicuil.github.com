@@ -13,8 +13,21 @@ En algunos casos puede ser util habilitar una papelera para archivos compartidos
 El archivo tradicional para establecer las preferencias de samba es /etc/samba/smb.conf, en openfiler sin embargo se modifica otro archivo para mantener los cambios despues de usar la interfaz web.
 
 Línea 1588:
-
-<script src="https://gist.github.com/chilicuil/6678260.js"></script>
+ 
+<pre>
+/* papelera - auditoria */
+$ac_smb_fp-&gt;AddLine( "\n");
+$ac_smb_fp-&gt;AddLine( " ; papelera - auditoria");
+$ac_smb_fp-&gt;AddLine( " vfs objects = audit recycle" );
+$ac_smb_fp-&gt;AddLine( " recycle: repository = /ruta/.papelera " );
+$ac_smb_fp-&gt;AddLine( " recycle: keeptree = Yes" );
+$ac_smb_fp-&gt;AddLine( " recycle: exclude = *.tmp, *.temp, *.log, *.ldb" );
+$ac_smb_fp-&gt;AddLine( " recycle: exclude_dir = tmp " );
+$ac_smb_fp-&gt;AddLine( " recycle: versions = Yes " );
+$ac_smb_fp-&gt;AddLine( " recycle: noversions = *.docx|*.doc|*.xls|*xlsx|*.ppt|*.odt" );
+$ac_smb_fp-&gt;AddLine( "\n");
+/* termina configuracion de la papelera */
+</pre>
 
 Adicionalmente, se puede configurar un trabajo en cron para eliminar los archivos mas viejos de X dias:
 
