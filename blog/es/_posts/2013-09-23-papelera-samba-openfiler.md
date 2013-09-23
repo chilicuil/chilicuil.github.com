@@ -32,5 +32,5 @@ $ac_smb_fp-&gt;AddLine( "\n");
 Adicionalmente, se puede configurar un trabajo en cron para eliminar los archivos mas viejos de X dias:
 
 <pre>
-0 6 * * * root    find /mnt/vol/compartido/.papelera -type f -mtime +14 -delete &gt; /dev/null
+0 6 * * * root    find /ruta/.papelera -type f -mtime +14 -delete &gt; /dev/null
 </pre>
