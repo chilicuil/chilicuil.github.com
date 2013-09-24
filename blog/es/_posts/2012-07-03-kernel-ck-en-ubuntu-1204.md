@@ -29,12 +29,12 @@ Afortunadamente los usuarios de ubuntu-br.org han estado siguiendo la discusión
 
 Después de revisarlo, lo he modificado un poco (para evitar algunos errores y agregar un par de cosas) y lo he puesto en:
 
-- [https://github.com/chilicuil/learn/blob/master/sh/kernel-ck-ubuntu](https://github.com/chilicuil/learn/blob/master/sh/kernel-ck-ubuntu)
+- [https://github.com/chilicuil/learn/blob/master/sh/is/kernel-ck-ubuntu](https://github.com/chilicuil/learn/blob/master/sh/is/kernel-ck-ubuntu)
 
 La idea es que cada tanto revise el script y lo modifique para tener siempre la última versión de los parches para la última versión LTS de Ubuntu, al menos hasta que aprenda a empaquetarlo para subirlo a un ppa, si desean usarlo pueden descargarlo y ejecutarlo así:
 
 <pre class="sh_sh">
-$ wget https://raw.github.com/chilicuil/learn/master/sh/kernel-ck-ubuntu
+$ wget https://raw.github.com/chilicuil/learn/master/sh/is/kernel-ck-ubuntu
 $ time bash kernel-ck-ubuntu
 $ sudo dpkg -i ./linux-*.deb
 </pre>

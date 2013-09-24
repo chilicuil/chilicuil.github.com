@@ -4,18 +4,18 @@ layout: nil
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
- <title>4xFlavor</title>
- <link href="http://chilicuil.github.com/atom.xml" rel="self"/>
- <link href="http://chilicuil.github.com/"/>
+ <title>Javier Lopez</title>
+ <link href="http://javier.io/atom.xml" rel="self"/>
+ <link href="http://javier.io/"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>http://chilicuil.github.com/</id>
+ <id>http://javier.io/</id>
 
  {% for post in site.posts %}
  <entry>
    <title>{{ post.title }}</title>
-   <link href="http://chilicuil.github.com{{ post.url }}"/>
+   <link href="http://javier.io{{ post.url }}"/>
    <updated>{{ post.date | date_to_xmlschema }}</updated>
-   <id>http://chilicuil.github.com{{ post.id }}</id>
+   <id>http://javier.io{{ post.id }}</id>
    <content type="html">{{ post.content | xml_escape }}</content>
  </entry>
  {% endfor %}

@@ -6,7 +6,7 @@ title: "mejorar el tiempo de arranque en ubuntu precise"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-Antes de empezar quiero aclarar que las siguientes instrucciones funcionan para Ubuntu desde la versión 11.04, hago énfasis en Ubuntu Precise porque es la versión LTS. Comparto los pasos porque en mi máquina se nota la diferencia incluso cuando mi configuración ya estaba [optimizada](http://chilicuil.github.com/all/os/2012/05/03/actualizacion-ubuntu-1204.html) (kernel -ck, slim/i3wm), eso no quiere decir que funcione en la suya.
+Antes de empezar quiero aclarar que las siguientes instrucciones funcionan para Ubuntu desde la versión 11.04, hago énfasis en Ubuntu Precise porque es la versión LTS. Comparto los pasos porque en mi máquina se nota la diferencia incluso cuando mi configuración ya estaba [optimizada](http://javier.io/blog/es/2012/05/03/actualizacion-ubuntu-1204.html) (kernel -ck, slim/i3wm), eso no quiere decir que funcione en la suya.
 
 El proyecto [e4rat](http://e4rat.sourceforge.net/) desarrolla herramientas que mejoran el tiempo de arranque en Linux, para ello se apoya en la reasignación de archivos de arranque en sistemas [ext4](http://es.wikipedia.org/wiki/Ext4), así que si no usan ext4, no servirá de nada. Tampoco servirá si sus discos son [SSD](http://es.wikipedia.org/wiki/Unidad_de_estado_s%C3%B3lido) (de estado sólido), para esos discos [ureadahead](https://launchpad.net/ureadahead) ya hace un buen trabajo.
 
@@ -30,7 +30,7 @@ Sabiendo esto, se comprende porque el procedimiento debe repetirse cada vez que 
 
 #### Instalación
 
-Para poder tomar partido de **e4rat** se requiere una versión del kernel no menor a 2.6.31, en Ubuntu, desde la versión 11.04 se instalan kernels superiores, también funciona sobre el [kernel vanilla + ck](http://chilicuil.github.com/all/os/2012/07/03/kernel-ck-en-ubuntu-1204.html) que recomiendo.
+Para poder tomar partido de **e4rat** se requiere una versión del kernel no menor a 2.6.31, en Ubuntu, desde la versión 11.04 se instalan kernels superiores, también funciona sobre el [kernel vanilla + ck](http://javier.io/blog/es/2012/07/03/kernel-ck-en-ubuntu-1204.html) que recomiendo.
 
 Si se cumple ese requisito entonces puede descargarse de:
 

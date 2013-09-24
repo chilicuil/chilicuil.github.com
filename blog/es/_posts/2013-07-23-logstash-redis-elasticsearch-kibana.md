@@ -17,7 +17,7 @@ title: "logstash + redis + elasticsearch + kibana3"
 Un arcoiris de software libre + aws, linode, digital ocean.., es muy facil ser informatico en estos dias =), ¿interesado?, pruebalo (todo en uno, no recomendable para produccion, min 2gb):
 
 <pre class="sh_sh">
-$ bash &lt;(wget -qO- https://raw.github.com/chilicuil/learn/master/sh/log-stack)
+$ bash &lt;(wget -qO- https://raw.github.com/chilicuil/learn/master/sh/is/log-stack)
 </pre>
 
 **[![](/assets/img/77.jpg)](/assets/img/77.jpg)**

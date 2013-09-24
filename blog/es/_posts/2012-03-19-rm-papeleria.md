@@ -12,7 +12,7 @@ Nada, a veces me pasa que hago:
 $ rm foo
 </pre>
 
-Y poco después me doy cuenta que hubiera preferido no hacerlo, con esto en mente me puse a hacer un pequeño [script](https://github.com/chilicuil/learn/blob/master/sh/rm_) alrededor de rm para enviar los archivos a la papelería en lugar de eliminarlos, lo he hecho compatible con nautilus.
+Y poco después me doy cuenta que hubiera preferido no hacerlo, con esto en mente me puse a hacer un pequeño [script](https://github.com/chilicuil/learn/blob/master/sh/tools/rm_) alrededor de rm para enviar los archivos a la papelería en lugar de eliminarlos, lo he hecho compatible con nautilus.
 
 Ejemplo: Elimino desde terminal **$ rm imagen.png** y luego desde nautilus voy a papelería y lo restauro, o viceversa, lo puedo eliminar desde la papelería y cuando esté en la consola lo recupero con **$ rm -u imagen.png**
 
