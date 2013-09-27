@@ -40,4 +40,10 @@ DEBOOTSTRAPOPTS=(
 $ sudo DIST=sid ARCH=amd64 pbuilder create
 </pre>
 
+En lugar de modificar temporalmente $HOME/.pbuilderrc tambien se puede pasar ese parametro desde la linea de comandos:
+
+<pre>
+$ sudo DIST=sid ARCH=amd64 pbuilder create --debootstrapopts --keyring=/etc/apt/trusted.gpg
+</pre>
+
 Ojala pueda conseguir esta meta antes de quedarme ciego n_n!
