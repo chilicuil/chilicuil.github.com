@@ -270,17 +270,13 @@ ul.icons li [class*=" icon-"] {
   }
 }.icon-heart:before		{ content: "\f021"; }
 .icon-pencil:before		{ content: "\f022"; }
-.icon-phone:before		{ content: "\f023"; }
-.icon-twitter:before		{ content: "\f024"; }
-.icon-facebook:before		{ content: "\f025"; }
-.icon-globe:before		{ content: "\f026"; }
-.icon-google-plus:before		{ content: "\f027"; }
-.icon-envelope-alt:before		{ content: "\f028"; }
+.icon-key:before		{ content: "\f023"; }
+.icon-phone:before		{ content: "\f024"; }
+.icon-twitter:before		{ content: "\f025"; }
+.icon-facebook:before		{ content: "\f026"; }
+.icon-globe:before		{ content: "\f027"; }
+.icon-google-plus:before		{ content: "\f028"; }
 .icon-linkedin:before		{ content: "\f029"; }
-.icon-double-angle-left:before		{ content: "\f02a"; }
-.icon-double-angle-right:before		{ content: "\f02b"; }
-.icon-double-angle-up:before		{ content: "\f02c"; }
-.icon-double-angle-down:before		{ content: "\f02d"; }
-.icon-quote-left:before		{ content: "\f02e"; }
-.icon-quote-right:before		{ content: "\f02f"; }
-.icon-github-alt:before		{ content: "\f030"; }
+.icon-quote-left:before		{ content: "\f02a"; }
+.icon-quote-right:before		{ content: "\f02b"; }
+.icon-github-alt:before		{ content: "\f02c"; }

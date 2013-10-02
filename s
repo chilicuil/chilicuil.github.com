@@ -16,7 +16,7 @@ apps_local="i3-wm alsa-utils alsa-base mpd pms mpc slim rxvt-unicode-256color xo
             libdevmapper-event1.02.1 libgdu0 libgnome-keyring-common libgnome-keyring0 libgudev-1.0-0
             liblvm2app2.2 libsgutils2-2 udisks policykit-1 google-talkplugin libmad0 libdvdcss2 sxiv
             libdvdread4 curl dkms libio-socket-ssl-perl libnet-ssleay-perl sendemail xdotool dbus-x11
-            gxmessage"
+            gxmessage wcd"
 apps_ubuntudev="apt-file cvs subversion bzr bzr-builddeb pbuilder tidy zsync"
 apps_purge="xinetd sasl2-bin sendmail-base sendmail-bin sensible-mda rmail bsd-mailx apache2.2-common
             sendmail apache2 nano"
@@ -141,6 +141,12 @@ _cmd()
     [ "$status" != 0 ] && exit $status || return
 }
 
+_addcron()
+{   #adds cron job, returns 1 on error
+    [ -z "$1" ] && return 1
+    crontab -l | { cat; echo "$@"; } | crontab -
+}
+
 _cmdsudo()
 {   #print && execute a command, exits if command fails
     [ -z "$1" ] && return 0
@@ -262,18 +268,18 @@ _cleanup()
     echo -e "\033[1m---------------\033[7m Cleanup \033[0m\033[1m---------------\033[0m"
     echo "[+] recovering old conf ..."
     for FILE in $HOME/*.old; do
-        [ -e "$FILE" ] || continue
+        [ ! -e "$FILE" ] && continue
         mv "$FILE" ${FILE%.old}
     done
 
     echo "[+] recovering scripts ..."
     for FILE in /etc/bash_completion.d/*.old; do
-        [ -e "$FILE" ] || continue
+        [ ! -e "$FILE" ] && continue
         mv "$FILE" ${FILE%.old}
     done
 
     for FILE in /usr/local/bin/*.old; do
-        [ -e "$FILE" ] || continue
+        [ ! -e "$FILE" ] && continue
         mv "$FILE" ${FILE%.old}
     done
 
@@ -354,7 +360,7 @@ _setrepos()
         for repository in /etc/apt/sources.list.d/*.list; do
             if [ -f "${repository}" ]; then
                 non_standard_repositories="true"
-                _cmdsudo mv "${repository}" "${repository}".s || true
+                _cmdsudo mv "${repository}" "${repository}".s
             fi
         done
 
@@ -474,7 +480,7 @@ _sethome()
                 done
             fi
         fi
-        [ -d /home/$(whoami) ] || _cmdsudo mkdir -p /home/$(whoami)
+        [ ! -d /home/$(whoami) ] && _cmdsudo mkdir -p /home/$(whoami)
     fi
 }
 
@@ -542,7 +548,7 @@ _remotesetup()
     if [ ! -f $HOME/.not_override ]; then
         echo "[+] installing dotfiles (old dotfiles will get an .old suffix) ..."
         for FILE in dotfiles/.*; do
-            [ -e "$FILE" ] || break
+            [ ! -e "$FILE" ] && break
             _smv "$FILE" "$HOME"
         done
 
@@ -553,22 +559,22 @@ _remotesetup()
     if [ ! -f /usr/local/bin/not_override ]; then
         echo "[+] installing utils (old scripts will get an .old suffix) ..."
         for FILE in learn/autocp/bash_completion.d/*; do
-            [ -e "$FILE" ] || break
+            [ ! -e "$FILE" ] && break
             _smv "$FILE" /etc/bash_completion.d/
         done
 
         for FILE in learn/python/*; do
-            [ -f "$FILE" ] || continue
+            [ ! -f "$FILE" ] && continue
             _smv "$FILE" /usr/local/bin/
         done
 
         for FILE in learn/sh/is/*; do
-            [ -f "$FILE" ] || continue
+            [ ! -f "$FILE" ] && continue
             _smv "$FILE" /usr/local/bin/
         done
 
         for FILE in learn/sh/tools/*; do
-            [ -f "$FILE" ] || continue
+            [ ! -f "$FILE" ] && continue
             _smv "$FILE" /usr/local/bin/
         done
     fi
@@ -637,7 +643,7 @@ _localsetup()
 
     if [ ! -f /usr/local/bin/magnifier ]; then
         if [ "$(_arch)" -eq 64 ]; then
-            _cmdsudo wget http://files.javier.io/repository/s/magnifier.bin -O /usr/local/bin/magnifier
+            _cmdsudo wget http://files.javier.io/repository/s/magnifier64.bin -O /usr/local/bin/magnifier
             _cmdsudo chmod +x /usr/local/bin/magnifier
         fi
     fi
@@ -690,8 +696,16 @@ _localsetup()
     _cmdsudo usermod -a -G sudo $(whoami)
 
     echo "[+] configuring cron ..."
-    echo "    $ echo \"*/1 * * * * /usr/local/bin/watch_battery\" | crontab -"
-    crontab -l | { cat; echo "*/1 * * * * /usr/local/bin/watch_battery"; } | crontab -
+    if [ -f /usr/local/bin/watch-battery ]; then
+        echo "    $ echo \"*/1 * * * * /usr/local/bin/watch-battery\" | crontab -"
+        _addcron "*/1 * * * * /usr/local/bin/watch-battery";
+    fi
+
+    if [ -f /usr/local/bin/wcd ] && [ -f /usr/bin/wcd.exec ] && [ -f /usr/local/bin/update-cd ]; then
+        echo "    $ echo \"* 23 * * *  /usr/local/bin/update-cd\" | crontab -"
+        _addcron "* 23 * * *  /usr/local/bin/update-cd";
+    fi
+
     if [ -f "$HOME"/misc/conf/ubuntu/etc/lenovo-edge-netbook/crontabs.tar.gz ]; then
         _waitforsudo tar zxf "$HOME"/misc/conf/ubuntu/etc/lenovo-edge-netbook/crontabs.tar.gz -C /
     fi
@@ -766,7 +780,7 @@ _localsetup()
 
         for repository in /etc/apt/sources.list.d/*.list.s; do
             if [ -f "${repository}" ]; then
-                _cmdsudo mv "${repository}" "${repository%.s}" || true
+                _cmdsudo mv "${repository}" "${repository%.s}"
             fi
         done
     fi
