@@ -224,6 +224,15 @@ pre {
     padding: 2px;
 }
 
+.gpg-key pre {
+    background: #000;
+    text-align: left;
+    border: 1px solid #CCCCCC;
+    color: #fff;
+    clear: both;
+    padding: 2px;
+}
+
 /* decoracion primer parrafo en entradas (al usar sibling no es perfecto)
  si queres agarrar todos los casos directamente poner la primer letra en un
  span class=decorate o algo asi, aunque la variacion no queda mal tampoco */
