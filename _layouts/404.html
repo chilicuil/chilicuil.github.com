@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% include meta.html %}
+    <script type="text/javascript">
+      var PIECE_NUMBER = 1;
+    </script>
+
+    <script type="text/javascript" src="assets/js/js-sm2/soundmanager2-nodebug-jsmin.js"></script>
+    <script type="text/javascript" src="assets/js/js-modernizr/modernizr-1.6.min.js"></script>
+    <script type="text/javascript" src="assets/js/js-baroque/min/song-data.min.js"></script>
+    <script type="text/javascript" src="assets/js/js-baroque/min/thread.min.js"></script>
+    <script type="text/javascript" src="assets/js/js-baroque/min/machine.min.js"></script>
+    <script type="text/javascript" src="assets/js/js-baroque/min/wheel.min.js"></script>
+    <script type="text/javascript" src="assets/js/js-baroque/min/nub.min.js"></script>
+    <script type="text/javascript" src="assets/js/js-baroque/min/common.min.js"></script>
+    <script type="text/javascript" src="assets/js/js-baroque/min/main.min.js"></script>
+
+    <link href="assets/css/404.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/flashblock.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript">
+      var PIECE_NUMBER = 1;
+      var aboutURL = 'http://blog.chenalexander.com/2011/baroque-bach-cello/';
+      /* The rest of the code is in main.js */
+      </script>
+      <title>{{ site.name }}</title>
+  </head>
+
+<body onload="init()" class="piece1">
+      {% include header.html %}
+      <div id="content">  
+        {{ content }}
+      </div>
+</body>
+</html>

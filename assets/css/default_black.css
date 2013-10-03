@@ -35,7 +35,8 @@ body {
     color: #fafafa;
     text-decoration: none;
 }
-#header h1 a:hover:after { content: " [$] _"; }
+
+/*#header h1 a:hover:after { content: " [$] _"; }*/
 
 /* hello world en home */
 center > h1 {
