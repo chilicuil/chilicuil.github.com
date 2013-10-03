@@ -231,6 +231,7 @@ pre {
     color: #fff;
     clear: both;
     padding: 2px;
+    display: inline-block;
 }
 
 /* decoracion primer parrafo en entradas (al usar sibling no es perfecto)
