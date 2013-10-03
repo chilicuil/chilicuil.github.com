@@ -286,7 +286,7 @@ h2 + img + p:first-letter {
     font-family: 'PT Sans', sans-serif;
     color: #fff;
     margin-top: 0px;
-    padding: 5%;
+    padding: 3%;
     background: #010101;
     text-align: right;
 }
