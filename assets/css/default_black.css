@@ -224,14 +224,18 @@ pre {
     padding: 2px;
 }
 
-.gpg-key pre {
+.gpg pre {
     background: #000;
-    text-align: left;
+    display: inline-block;
     border: 1px solid #CCCCCC;
     color: #fff;
-    clear: both;
-    padding: 2px;
-    display: inline-block;
+}
+
+.gpg h1 {
+    color: #777;
+    padding-top: 5%;
+    font-family: 'Vollkorn','serif';
+    font-size: 220%;
 }
 
 /* decoracion primer parrafo en entradas (al usar sibling no es perfecto)
