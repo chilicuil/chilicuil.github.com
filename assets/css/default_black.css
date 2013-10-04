@@ -60,6 +60,13 @@ center > h1 {
 /******************************* blog **********************************/
 /************************************************************************/
 
+.pink { color: #FF5333; font-family: 'Strait', sans-serif;}
+.green { color: #C8F526; font-family: 'Strait', sans-serif;}
+.orange { color: #FFE600; font-family: 'Strait', sans-serif;}
+.pink:hover { color: #FF5333; font-family: 'Strait', sans-serif;}
+.green:hover { color: #C8F526; font-family: 'Strait', sans-serif;}
+.orange:hover { color: #FFE600; font-family: 'Strait', sans-serif;}
+
 /***************************** search box *******************************/
 #header form {
     margin: 0;
