@@ -67,7 +67,7 @@ center > h1 {
 .green:hover {color: #C8F526; font-family: 'Strait', sans-serif;}
 .yellow:hover {color: #FFE600; font-family: 'Strait', sans-serif;}
 
-.rss {color:white;text-decoration:none;float:right;padding-right:3%;}
+.rss {color:white;text-decoration:none;float:right;padding-right:1%;font-size:80%}
 .rss a i {color:white; float: right; padding-right: 3%; font-size:21pt; text-decoration: none;}
 
 .rss a i:hover {color: #888;}
