@@ -81,7 +81,7 @@ canvas {
 }
 
 /*#header h1 a:hover:after { content: " [$] _"; }*/
-#header h1 a:hover:after {
+#header h1 a:hover {
     border-bottom-style: solid;
     border-bottom-width: 1px;
 }
