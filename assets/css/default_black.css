@@ -65,13 +65,13 @@ center > h1 {
 .yellow {color: #FFE600; font-family: 'Strait', sans-serif;}
 .red:hover {color: #FF5333; font-family: 'Strait', sans-serif;}
 .green:hover {color: #C8F526; font-family: 'Strait', sans-serif;}
-.yellow :hover {color: #FFE600; font-family: 'Strait', sans-serif;}
+.yellow:hover {color: #FFE600; font-family: 'Strait', sans-serif;}
 
-.rss a {color: white;text-decoration: none;float: right; padding-right: 3%;}
+.rss {color:white;text-decoration:none;float:right;padding-right:3%;}
 .rss a i {color:white; float: right; padding-right: 3%; font-size:21pt; text-decoration: none;}
 
-.rss a i:hover {color: #888; }
-.rss a:hover {color: #888; }
+.rss a i:hover {color: #888;}
+.rss:hover {color:white;text-decoration:none}
 
 /***************************** search box *******************************/
 #header form {
