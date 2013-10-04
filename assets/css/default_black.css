@@ -81,6 +81,10 @@ canvas {
 }
 
 /*#header h1 a:hover:after { content: " [$] _"; }*/
+#header h1 a:hover:after {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
 
 /* hello world en home */
 center > h1 {
