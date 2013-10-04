@@ -60,12 +60,18 @@ center > h1 {
 /******************************* blog **********************************/
 /************************************************************************/
 
-.pink { color: #FF5333; font-family: 'Strait', sans-serif;}
-.green { color: #C8F526; font-family: 'Strait', sans-serif;}
-.orange { color: #FFE600; font-family: 'Strait', sans-serif;}
-.pink:hover { color: #FF5333; font-family: 'Strait', sans-serif;}
-.green:hover { color: #C8F526; font-family: 'Strait', sans-serif;}
-.orange:hover { color: #FFE600; font-family: 'Strait', sans-serif;}
+.red {color: #FF5333; font-family: 'Strait', sans-serif;}
+.green {color: #C8F526; font-family: 'Strait', sans-serif;}
+.yellow {color: #FFE600; font-family: 'Strait', sans-serif;}
+.red:hover {color: #FF5333; font-family: 'Strait', sans-serif;}
+.green:hover {color: #C8F526; font-family: 'Strait', sans-serif;}
+.yellow :hover {color: #FFE600; font-family: 'Strait', sans-serif;}
+
+.rss a {color: white;text-decoration: none;float: right; padding-right: 3%;}
+.rss a i {color:white; float: right; padding-right: 3%; font-size:21pt; text-decoration: none;}
+
+.rss a i:hover {color: #888; }
+.rss a:hover {color: #888; }
 
 /***************************** search box *******************************/
 #header form {
