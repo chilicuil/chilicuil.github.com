@@ -374,7 +374,9 @@ canvas {
     /*font-weight: bold;*/
     width: 150px;
     /*color: #FFFFFF;*/
+    color: #777;
     /*font-size: 11px;*/
+    font: 1.2em 'Vollkorn','serif';*/
 }
 
 /*a, a:visited, a:hover, a:active {*/
