@@ -371,10 +371,10 @@ canvas {
 /* time box */
 #loader {
     position: absolute;
-    font-weight: bold;
+    /*font-weight: bold;*/
     width: 150px;
-    color: #FFFFFF;
-    font-size: 11px;
+    /*color: #FFFFFF;*/
+    /*font-size: 11px;*/
 }
 
 /*a, a:visited, a:hover, a:active {*/
