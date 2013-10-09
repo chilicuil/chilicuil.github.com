@@ -57,6 +57,8 @@ center > h1 {
 }
 
 /************************ page, /remote **************************/
+.page {padding-left:3%;}
+
 h1.page {
     color: #777;
     padding-top: 3%;
@@ -72,6 +74,7 @@ h2.page {
 }
 
 .page input {display:none;}
+.page label {padding-left:5%;}
 
 .page #vnc-windows-instructions, #vnc-linux-instructions, .page #ssh-windows-instructions, #ssh-linux-instructions {display:none;}
 
@@ -100,7 +103,7 @@ h2.page {
 .green:hover {color: #C8F526; font-family: 'Strait', sans-serif;}
 .yellow:hover {color: #FFE600; font-family: 'Strait', sans-serif;}
 
-.rss {color:white;text-decoration:none;float:right;padding-right:1%;font-size:80%}
+ .rss {color:white;text-decoration:none;float:right;padding-right:1%;font-size:80%}
 .rss a i {color:white; float: right; padding-right: 3%; font-size:21pt; text-decoration: none;}
 
 .rss a i:hover {color: #888;}
