@@ -391,6 +391,11 @@ h2 + img + p:first-letter {
     color: #FFF;
 }
 
+.page ol > li {
+    border-left: 4px solid #777777;
+    list-style: none outside none;
+}
+
 .page a i {
     font-size:55pt; color:gray; text-decoration: none;
 }
