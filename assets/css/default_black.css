@@ -70,32 +70,20 @@ h2.page {
     font-size: 180%;
 }
 
-/************************ instructions /remote **************************/
-/* windows */
-.hide-windows-instructions:focus + .show-windows-instructions {display: inline;}
-.show-windows-instructions {display: none;}
-.hide-windows-instructions:focus {display: none;}
-#windows-instructions {display:none}
-.hide-windows-instructions:focus ~ #windows-instructions {display:none;}
-.hide-windows-instructions:focus + .show-windows-instructions ~ #windows-instructions {
-    display:inline;
-}
-@media print {
-    .hide-windows-instructions, .show-windows-instructions {display: none;}
-}
+/************************ page, /remote **************************/
+.page input {display:none;}
 
-/* linux */
-.hide-linux-instructions:focus + .show-linux-instructions {display: inline;}
-.show-linux-instructions {display: none;}
-#linux-instructions {display:none}
-.hide-linux-instructions:focus {display: none;}
-.hide-linux-instructions:focus ~ #linux-instructions {display:none;}
-.hide-linux-instructions:focus + .show-linux-instructions ~ #linux-instructions {
-    display:inline;
-}
-@media print {
-    .hide-linux-instructions, .show-linux-instructions {display: none;}
-}
+.page #vnc-windows-instructions, #vnc-linux-instructions, .page #ssh-windows-instructions, #ssh-linux-instructions {display:none;}
+
+.page input#show-vnc-windows-instructions:checked ~ #vnc-windows-instructions {display:inline;}
+.page input#hide-vnc-windows-instructions:checked ~ #vnc-windows-instructions {display:none;}
+.page input#show-ssh-windows-instructions:checked ~ #ssh-windows-instructions {display:inline;}
+.page input#hide-ssh-windows-instructions:checked ~ #ssh-windows-instructions {display:none;}
+
+.page input#show-vnc-linux-instructions:checked ~ #vnc-linux-instructions {display:inline;}
+.page input#hide-vnc-linux-instructions:checked ~ #vnc-linux-instructions {display:none;}
+.page input#show-ssh-linux-instructions:checked ~ #ssh-linux-instructions {display:inline;}
+.page input#hide-ssh-linux-instructions:checked ~ #ssh-linux-instructions {display:none;}
 
 /************************************************************************/
 /******************************* blog **********************************/
