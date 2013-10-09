@@ -7,11 +7,11 @@ title: javier.io
 <div class="page">
   <h2>VNC</h1>
 
-  <a href="#" class="hide-vnc-windows-instructions"><i class="icon-windows"></i></a>
-  <a href="#" class="show-vnc-windows-instructions"><i class="icon-windows"></i></a>
+  <label for="show-vnc-windows-instructions"><span><i class="icon-windows"></i></span></label>
+  <input type=radio id="show-vnc-windows-instructions" name="vnc">
 
-  <a href="#" class="hide-vnc-linux-instructions"><i class="icon-linux"></i></a>
-  <a href="#" class="show-vnc-linux-instructions"><i class="icon-linux"></i></a>
+  <label for="show-vnc-linux-instructions"><span><i class="icon-linux"></i></span></label>
+  <input type=radio id="show-vnc-linux-instructions" name="vnc">
 
   <div id="vnc-windows-instructions">
     <ol>
@@ -20,6 +20,8 @@ title: javier.io
       <li>Open <strong>ssvnc</strong></li>
       <li>Configure</li>
       <li>Connect</li>
+      <li><label for="hide-vnc-windows-instructions"><span>x</span></label>    
+      <input type=radio id="hide-vnc-windows-instructions" name="vnc"></li>
     </ol>
   </div>
 
@@ -28,6 +30,8 @@ title: javier.io
       <li>linux</li>
       <li>linux</li>
       <li>linux</li>
+      <label for="hide-vnc-linux-instructions"><span>x</span></label>    
+      <input type=radio id="hide-vnc-linux-instructions" name="vnc">
     </ol>
   </div>
 </div>
@@ -35,17 +39,19 @@ title: javier.io
 <div class="page">
   <h2>SSH</h1>
 
-  <a href="#" class="hide-ssh-windows-instructions"><i class="icon-windows"></i></a>
-  <a href="#" class="show-ssh-windows-instructions"><i class="icon-windows"></i></a>
+  <label for="show-ssh-windows-instructions"><span><i class="icon-windows"></i></span></label>
+  <input type=radio id="show-ssh-windows-instructions" name="ssh">
 
-  <a href="#" class="hide-ssh-linux-instructions"><i class="icon-linux"></i></a>
-  <a href="#" class="show-ssh-linux-instructions"><i class="icon-linux"></i></a>
+  <label for="show-ssh-linux-instructions"><span><i class="icon-linux"></i></span></label>
+  <input type=radio id="show-ssh-linux-instructions" name="ssh">
 
   <div id="ssh-windows-instructions">
     <ol>
       <li>windows2</li>
       <li>windows2</li>
       <li>windows2</li>
+      <li><label for="hide-ssh-windows-instructions"><span>x</span></label>    
+      <input type=radio id="hide-ssh-windows-instructions" name="ssh"></li>
     </ol>
   </div>
 
