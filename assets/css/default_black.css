@@ -56,6 +56,40 @@ center > h1 {
     font-size: 220%;
 }
 
+#page h1 {
+    color: #777;
+    padding-top: 5%;
+    font-family: 'Vollkorn','serif';
+    font-size: 200%;
+}
+
+/************************ instructions /remote **************************/
+/* windows */
+.hide-windows-instructions:focus + .show-windows-instructions {display: inline;}
+.show-windows-instructions {display: none;}
+.hide-windows-instructions:focus {display: none;}
+#windows-instructions {display:none}
+.hide-windows-instructions:focus ~ #windows-instructions {display:none;}
+.hide-windows-instructions:focus + .show-windows-instructions ~ #windows-instructions {
+    display:inline;
+}
+@media print {
+    .hide-windows-instructions, .show-windows-instructions {display: none;}
+}
+
+/* linux */
+.hide-linux-instructions:focus + .show-linux-instructions {display: inline;}
+.show-linux-instructions {display: none;}
+#linux-instructions {display:none}
+.hide-linux-instructions:focus {display: none;}
+.hide-linux-instructions:focus ~ #linux-instructions {display:none;}
+.hide-linux-instructions:focus + .show-linux-instructions ~ #linux-instructions {
+    display:inline;
+}
+@media print {
+    .hide-linux-instructions, .show-linux-instructions {display: none;}
+}
+
 /************************************************************************/
 /******************************* blog **********************************/
 /************************************************************************/
@@ -229,7 +263,7 @@ pre {
     padding: 2px;
 }
 
-/* first letter effeect */
+/* first letter effect */
 h2 + h6 + p:first-letter,
 h2 + h6 + h3 + p:first-letter,
 h2 + img + p:first-letter {
