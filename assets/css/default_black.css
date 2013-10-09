@@ -63,6 +63,13 @@ h1.page {
     font-size: 200%;
 }
 
+h2.page {
+    color: #777;
+    padding-top: 1%;
+    font-family: 'Vollkorn','serif';
+    font-size: 180%;
+}
+
 /************************ instructions /remote **************************/
 /* windows */
 .hide-windows-instructions:focus + .show-windows-instructions {display: inline;}
@@ -381,6 +388,14 @@ h2 + img + p:first-letter {
 }
 
 .link a i:hover {
+    color: #FFF;
+}
+
+.page a i {
+    font-size:55pt; color:gray; text-decoration: none;
+}
+
+.page a i:hover {
     color: #FFF;
 }
 
