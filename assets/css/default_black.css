@@ -75,6 +75,7 @@ h2.page {
 
 .page input {display:none;}
 .page label {padding-left:5%;}
+.page #vnc-windows-instructions ol a img {height: auto;width: 240px;display:inline;}
 
 .page #vnc-windows-instructions, #vnc-linux-instructions, .page #ssh-windows-instructions, #ssh-linux-instructions {display:none;}
 
