@@ -56,6 +56,7 @@ center > h1 {
     font-size: 220%;
 }
 
+/************************ page, /remote **************************/
 h1.page {
     color: #777;
     padding-top: 3%;
@@ -70,7 +71,6 @@ h2.page {
     font-size: 180%;
 }
 
-/************************ page, /remote **************************/
 .page input {display:none;}
 
 .page #vnc-windows-instructions, #vnc-linux-instructions, .page #ssh-windows-instructions, #ssh-linux-instructions {display:none;}
@@ -84,6 +84,10 @@ h2.page {
 .page input#hide-vnc-linux-instructions:checked ~ #vnc-linux-instructions {display:none;}
 .page input#show-ssh-linux-instructions:checked ~ #ssh-linux-instructions {display:inline;}
 .page input#hide-ssh-linux-instructions:checked ~ #ssh-linux-instructions {display:none;}
+
+/*based on links*/
+.page i {font-size:55pt; color:gray; text-decoration: none;}
+.page i:hover {color: #FFF;}
 
 /************************************************************************/
 /******************************* blog **********************************/
@@ -376,14 +380,6 @@ h2 + img + p:first-letter {
 }
 
 .link a i:hover {
-    color: #FFF;
-}
-
-.page a i {
-    font-size:55pt; color:gray; text-decoration: none;
-}
-
-.page a i:hover {
     color: #FFF;
 }
 
