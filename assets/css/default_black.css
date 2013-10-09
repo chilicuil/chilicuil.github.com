@@ -393,7 +393,6 @@ h2 + img + p:first-letter {
 
 .page ol > li {
     border-left: 4px solid #777777;
-    list-style: none outside none;
 }
 
 .page a i {
