@@ -31,8 +31,8 @@ body {
     text-shadow: 4px 4px 4px rgba(90,90,120,1);
 }
 #header h1 a { color: #fafafa; }
-#header h1 a:active { outline: 0; }
-#header h1 a:hover {
+/*#header h1 a:active { outline: 0; }*/
+#header h1 a:hover, a:active, a:focus {
     color: #fafafa;
     text-decoration: none;
 }
@@ -43,7 +43,7 @@ body {
 }
 
 /*#header h1 a:hover:after { content: " [$] _"; }*/
-#header h1 a:hover {
+#header h1 a:hover, a:active, a:focus {
     border-bottom-style: solid;
     border-bottom-width: 1px;
 }
@@ -228,7 +228,7 @@ a {
     color: #B03A44;
 }
 
-a:hover {
+a:hover, a:active, a:focus {
     text-decoration: underline;
     color: #CD0D1D;
 }
@@ -412,7 +412,7 @@ h2 + img + p:first-letter {
     color:gray; text-decoration:none;
 }
 
-#footer a:hover {
+#footer a:hover, a:active, a:focus {
     color:#FFF; text-decoration:none;
 }
 
