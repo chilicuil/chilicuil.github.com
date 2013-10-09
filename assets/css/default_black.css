@@ -248,7 +248,7 @@ h2 + img + p:first-letter {
 
 #content {
     position: relative;
-    min-height: 500px;
+    min-height: 200px;
     margin: 0px;
 }
 
@@ -347,7 +347,7 @@ h2 + img + p:first-letter {
     font-family: 'PT Sans', sans-serif;
     color: #fff;
     margin-top: 0px;
-    padding: 3%;
+    padding: 1%;
     background: #010101;
     text-align: right;
 }
