@@ -10,7 +10,6 @@ _header()
 {
     clear
     echo -e "\033[1m---------------------\033[7m setup mmtg uploader\033[0m\033[1m---------------------------\033[0m"
-    echo -e "\033[1m  Uplowup:\033[0m         $Uplowup_git"
     echo -e "\033[1m  Updates:\033[0m         http://javier.io/n"
     echo
     echo -e "\033[1m  Run with defaults:"
@@ -20,22 +19,33 @@ _header()
     echo
 }
 
-
 _cmd()
 {   #print current command, exits on fail
-    [ -z $1 ] && return 0
+    [ -z "$1" ] && return 0
 
-    echo "[+] $@"
-    $@
+    echo "    $ $@"
+    "$@"
 
-    status=$?
-    [ $status != 0 ] && exit $status || return
+    local status=$?
+    [ X"$status" != X"0" ] && exit $status || return 0
+}
+
+_cmdsudo()
+{   #print && execute a command, exits if command fails
+    [ -z "$1" ] && return 0
+    local serr=$$
+
+    echo "    $ sudo $@"
+    echo "$sudopwd" | $sudocmd "$@" > /tmp/"$serr".out 2>&1
+
+    local status=$?
+    [ X"$status" != X"0" ] && { cat /tmp/"$serr".out; rm -rf /tmp/"$serr".out; exit $status; } || { rm -rf /tmp/"$serr".out; return; }
 }
 
 _handscui()
-{
-    [ -z $1 ] && { printf "%5s\n" ""; return 1; }
-    pid=$1
+{   #waiting animation
+    [ -z "$1" ] && { printf "%5s\n" ""; return 1; }
+    pid="$1"
     animation_state=1
 
     if [ ! "$(ps -p $pid -o comm=)" ]; then
@@ -75,19 +85,18 @@ _getroot()
 
     local tmp_path="/tmp"; local sudotest; local insudoers;
 
-    if [ ! "$LOGNAME" = root ]; then
+    if [ ! X"$LOGNAME" = X"root" ]; then
         echo "Detecting user $LOGNAME (non-root) ..."
         echo "Checking if sudo is available ..."
         sudotest=`type sudo &>/dev/null ; echo $?`
 
-        if [ "$sudotest" = 0 ]; then
-            echo "    Requesting sudo's password, I'll be carefull I promise =)"
+        if [ X"$sudotest" = X"0" ]; then
             sudo -K
             if [ -e "$tmp_path/sudo.test" ]; then
                 rm -f "$tmp_path/sudo.test"
             fi
             while [ -z "$sudopwd" ]; do
-                echo -n "    - enter sudo-password: "
+                echo -n "   - enter sudo-password: "
                 stty -echo
                 read sudopwd
                 stty echo
@@ -118,6 +127,7 @@ _getroot()
 
 _cleanup()
 {
+    stty echo
     echo
     echo -e "\033[1m-------------------\033[7m Cleanup \033[0m\033[1m-------------------\033[0m"
     echo "[+] canceling installation ..."
@@ -129,13 +139,28 @@ _cleanup()
 
 _waitfor()
 {
-    [ -z $1 ] && return 1
+    [ -z "$1" ] && return 1
 
     echo -n "    $ $@ ..."
     $@ > /dev/null 2>&1 &
     sleep 1s
 
     _handscui $(pidof $1)
+}
+
+_waitforsudo()
+{
+    [ -z "$1" ] && return 1
+
+    echo -n "    $ sudo $@ ..."
+    echo "$sudopwd" | $sudocmd $@ > /dev/null 2>&1 &
+    sleep 1s
+
+    if [ X"$1" = X"DEBIAN_FRONTEND=noninteractive" ]; then
+        _handscui $(pidof $2)
+    else
+        _handscui $(pidof $1)
+    fi
 }
 
 _smv()
@@ -145,7 +170,7 @@ _smv()
     fi
     owner=$(stat -c %U "$2")
 
-    if [ "$owner" != "$LOGNAME" ]; then
+    if [ X"$owner" != X"$LOGNAME" ]; then
         [ -e "$2"/$(basename "$1") ] && echo "$sudopwd" | $sudocmd mv "$2"/$(basename "$1") "$2"/$(basename "$1").old
         echo "$sudopwd" | $sudocmd mv -v "$1" "$2"
     else
@@ -161,43 +186,42 @@ _getroot
 echo -e "\033[1m----------------------\033[7m Fixing dependencies \033[0m\033[1m-------------------------\033[0m"
 echo "[+] installing deps ..."
 echo "deb http://archive.ubuntu.com/ubuntu/ $(lsb_release -s -c) multiverse" > multiverse.list
-echo "$sudopwd" | $sudocmd mv multiverse.list /etc/apt/sources.list.d/
+_cmdsudo mv multiverse.list /etc/apt/sources.list.d/
 
-echo -n "    $ apt-get update ..."
-echo "$sudopwd" | $sudocmd apt-get update > /dev/null 2>&1 &
-sleep 2s && _handscui $(pidof apt-get)
-
-echo -n "    $ apt-get install --no-install-recommends -y $apps_default ..."
-echo "$sudopwd" | $sudocmd apt-get install --no-install-recommends -y $apps_default > /dev/null 2>&1 &
-sleep 2s && _handscui $(pidof apt-get)
-#_cmd echo
+_waitforsudo apt-get update
+_waitforsudo apt-get install --no-install-recommends -y $apps_default
+[ ! -f /usr/bin/git ] && { echo "Dependecy step failed"; exit 1; }
 #####################################################################################################
 
-[ ! -f /usr/bin/git ] && { echo "Dependecy step failed"; exit 1; }
 
 echo -e "\033[1m-----------------------\033[7m Downloading files \033[0m\033[1m----------------------------\033[0m"
 echo "[+] downloading reps ... "
 _waitfor git clone "$uplowup_git"
 _waitfor svn checkout http://youtube-upload.googlecode.com/svn/trunk/ youtube-upload
 cd youtube-upload 
-echo "$sudopwd" | $sudocmd python setup.py install
+_waitforsudo python setup.py install
 cd $HOME
 
 
 echo "[+] downloading files ... "
-_cmd wget http://mmtg.asia/aVYWMpZ0.tar.gz
-_cmd tar zxf aVYWMpZ0.tar.gz
+_waitfor wget http://mmtg.asia/aVYWMpZ0.tar.gz
+_waitfor tar zxf aVYWMpZ0.tar.gz
 _cmd rm aVYWMpZ0.tar.gz
 
 [ ! -f "./bin/upload/common.sh" ] && { echo "Download step failed"; exit 1; }
 
 echo -e "\033[1m------------------------\033[7m Installing files \033[0m\033[1m---------------------------\033[0m"
-echo "[+] installing plowshare ... "
+echo "[+] installing plowshare ..."
 cd plowshare
-echo "$sudopwd" | $sudocmd make install
+_waitforsudo make install
 cd $HOME
+echo "[+] updating youtube-dl ..."
+_waitforsudo curl https://yt-dl.org/downloads/2013.10.23/youtube-dl -o /usr/local/bin/youtube-dl
+_cmdsudo chmod a+x /usr/local/bin/youtube-dl
+_waitfor youtube-dl --update
 
-echo "$sudopwd" | $sudocmd rm -rf plowshare youtube-upload
+
+_cmdsudo rm -rf plowshare youtube-upload
 
 echo -e "\033[1m----------------------\033[7m DONE \033[0m\033[1m-------------------\033[0m"
 echo

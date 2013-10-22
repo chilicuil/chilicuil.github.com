@@ -78,13 +78,15 @@ _die()
 }
 
 _distro()
-{
-    DIST_INFO="/etc/lsb-release"
-    if [ -r $DIST_INFO ]; then
+{   #return distro name in a lower string
+
+    local DIST_INFO="/etc/lsb-release"
+    if [ -r "$DIST_INFO" ]; then
         . $DIST_INFO
     fi
 
-    if [ -z $DISTRIB_ID ]; then
+    if [ -z "$DISTRIB_ID" ]; then
+        local DISTRIB_ID="Unknown";
         if [ -f /etc/arch-release ]; then
             DISTRIB_ID="Arch"
         elif [ -r /etc/knoppix-version ]; then
@@ -95,7 +97,7 @@ _distro()
             DISTRIB_ID="Debian"
         elif [ -r /etc/issue ]; then
             DISTRIB_ID=$(cat /etc/issue.net | awk '{print $1}')
-            if [ "$DISTRIB_ID" == Ubuntu ]; then
+            if [ X"$DISTRIB_ID" = X"Ubuntu" ]; then
                 DISTRIB_ID=Ubuntu
             fi
         elif [ -r /etc/gentoo-release ]; then
@@ -122,8 +124,6 @@ _distro()
             DISTRIB_ID="YellowDog Linux"
         elif [ -f /etc/zenwalk-version  ]; then
             DISTRIB_ID="Zenwalk"
-        else
-            DISTRIB_ID="Unknown"
         fi
     fi
 
@@ -131,14 +131,14 @@ _distro()
 }
 
 _cmd()
-{   #print && execute a command, exits if command fails
+{   #print current command, exits on fail
     [ -z "$1" ] && return 0
 
     echo "    $ $@"
     "$@"
 
-    status=$?
-    [ "$status" != 0 ] && exit $status || return
+    local status=$?
+    [ X"$status" != X"0" ] && exit $status || return 0
 }
 
 _addcron()
@@ -150,12 +150,13 @@ _addcron()
 _cmdsudo()
 {   #print && execute a command, exits if command fails
     [ -z "$1" ] && return 0
+    local serr=$$
 
     echo "    $ sudo $@"
-    echo "$sudopwd" | $sudocmd "$@" > /tmp/serr.out 2>&1
+    echo "$sudopwd" | $sudocmd "$@" > /tmp/"$serr".out 2>&1
 
-    status=$?
-    [ "$status" != 0 ] && { cat /tmp/serr.out; rm /tmp/serr.out; exit $status; } || return
+    local status=$?
+    [ X"$status" != X"0" ] && { cat /tmp/"$serr".out; rm -rf /tmp/"$serr".out; exit $status; } || { rm -rf /tmp/"$serr".out; return; }
 }
 
 _arch()
@@ -218,21 +219,21 @@ _handscui()
 
 _getroot()
 {   #get sudo's password, define $sudopasswd and $sudocmd
+
     local tmp_path="/tmp"; local sudotest; local insudoers;
 
-    if [ ! "$LOGNAME" = root ]; then
+    if [ ! X"$LOGNAME" = X"root" ]; then
         echo "Detecting user $LOGNAME (non-root) ..."
         echo "Checking if sudo is available ..."
         sudotest=`type sudo &>/dev/null ; echo $?`
 
-        if [ "$sudotest" = 0 ]; then
-            echo "    Requesting sudo's password, I'll be carefull I promise =)"
+        if [ X"$sudotest" = X"0" ]; then
             sudo -K
             if [ -e "$tmp_path/sudo.test" ]; then
                 rm -f "$tmp_path/sudo.test"
             fi
             while [ -z "$sudopwd" ]; do
-                echo -n "    - enter sudo-password: "
+                echo -n "   - enter sudo-password: "
                 stty -echo
                 read sudopwd
                 stty echo
@@ -256,7 +257,7 @@ _getroot()
             echo
         else
             echo "You're not root and sudo isn't available. Please run this script as root!"
-            exit
+            #exit
         fi
     fi
 }
@@ -307,7 +308,7 @@ _waitforsudo()
     echo "$sudopwd" | $sudocmd $@ > /dev/null 2>&1 &
     sleep 1s
 
-    if [ "$1" = DEBIAN_FRONTEND=noninteractive ]; then
+    if [ X"$1" = X"DEBIAN_FRONTEND=noninteractive" ]; then
         _handscui $(pidof $2)
     else
         _handscui $(pidof $1)
@@ -321,7 +322,7 @@ _smv()
     fi
     owner=$(stat -c %U "$2")
 
-    if [ "$owner" != "$LOGNAME" ]; then
+    if [ X"$owner" != X"$LOGNAME" ]; then
         [ -e "$2"/$(basename "$1") ] && echo "$sudopwd" | $sudocmd mv "$2"/$(basename "$1") "$2"/$(basename "$1").old > /dev/null 2>&1
         echo "$sudopwd" | $sudocmd mv "$1" "$2"  > /dev/null 2>&1
     else
@@ -349,8 +350,8 @@ _getfs()
 }
 
 _existaptproxy()
-{
-    avahi-browse -a  -t | grep -qs apt-cacher-ng && return 0
+{   #test if an apt proxy exist on the local network, return 0 on sucess, 1 otherwise
+    avahi-browse -a  -t | grep apt-cacher-ng >/dev/null && return 0
     return 1
 }
 
@@ -499,10 +500,10 @@ _supported()
 _installfirefoxnightly()
 {
     arch=$(_arch)
-    if [ "$arch" -eq 32 ]; then
-        nightly=$(curl http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/ 2>&1 | grep -o -E 'href="([^"#]+)"' | cut -d'"' -f2 |  grep "linux-i686.tar.bz2")
+    if [ X"$arch" = X"32" ]; then
+        nightly=$(curl http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/ 2>&1 | egrep -o 'href="([^"#]+)"' | cut -d'"' -f2 |  grep "linux-i686.tar.bz2")
     else
-        nightly=$(curl http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/ 2>&1 | grep -o -E 'href="([^"#]+)"' | cut -d'"' -f2 | grep "linux-x86_64.tar.bz2")
+        nightly=$(curl http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/ 2>&1 | egrep -o 'href="([^"#]+)"' | cut -d'"' -f2 | grep "linux-x86_64.tar.bz2")
     fi
         _waitfor wget -c http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/"$nightly"
         _waitfor tar jxf firefox*bz2
@@ -672,7 +673,7 @@ _localsetup()
     echo -e "\033[1m--------------------\033[7m Configuring system \033[0m\033[1m-------------------\033[0m"
     echo "[+] configuring swappiness ..."
     FSYSCTL="/etc/sysctl.conf"
-    if grep -qs vm.swappiness $FSYSCTL; then
+    if grep vm.swappiness $FSYSCTL >/dev/null; then
         _cmdsudo cp $FSYSCTL $FSYSCTL.old
         _cmdsudo sed -i -e "/vm.swappiness/ s:=.*:=10:" $FSYSCTL
     else
