@@ -15,13 +15,14 @@ Para reportar un problema en Debian desde Ubuntu se usa **reportbug -B debian pa
 Para solucionarlo, y mientras el sistema BTS no tenga una alternativa moderna (escuche que se esta trabajando en una nueva plataforma basada en django.., no pudieron adaptar launchpad?...), se debe reconfigurar reportbug:
 
 <pre>
-$ reportbug --reconfigure
+$ reportbug --configure
 </pre>
 
 Y asegurarse de introducir los siguientes datos:
 
 - smtp.gmail.com:587
 - usuario@gmail.com
+- habilitar tls
 
 O los datos de su proveedor.., una vez finalizado este paso se generara un archivo en *$HOME/.reportbugrc*, si se ha creado, se puede volver a lanzar reportbug:
 
