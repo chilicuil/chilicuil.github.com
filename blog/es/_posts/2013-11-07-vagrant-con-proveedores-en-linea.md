@@ -22,7 +22,7 @@ $ juju boostrap
 $ juju ssh/0
 </pre>
 
-Esto crea una máquina remota y hace login, una vez ahí, se puede correr manualmente el [provisionamiento](http://javier.io/s) y empezar a trabajar, no más de 5 min, pero tampoco no menos de 3. Ya desde que usaba juju me dí cuenta que tendría que usar otra cosa, juju nunca fue diseñado para lo que hacía, y la forma correcta de usarlo no me parecía que fuera a tener éxito (hice un par de juju charms, así que mi opinión no es sin fundamento).
+Esto crea una máquina remota y hace login, una vez ahí, se puede correr manualmente el [provisionamiento](http://javier.io/s) y empezar a trabajar, no más de 5 min, pero tampoco menos de 3. Ya desde que usaba juju me dí cuenta que tendría que usar otra cosa, juju nunca fue diseñado para lo que hacía, y la forma correcta de usarlo no me parecía que fuera a tener éxito (hice [un](https://jujucharms.com/fullscreen/search/precise/wesnoth-1/?text=wesnoth) [par](https://jujucharms.com/fullscreen/search/~chilicuil/precise/assaultcube-2/?text=assaultcube) de juju charms así que no creo que mi opinión sea sin fundamento).
 
 Poco después empecé a buscar alternativas y encontré [http://instantserver.io/](http://instantserver.io/) . Durante el poco tiempo que estuvo en servicio ha sido lo más cercano a una interfaz sobria que haya usado. Un click y se tenía una máquina accesible en un tiempo de 1-2 segundos (supongo que siempre se tenian máquinas precargadas). No solo eso, la máquina se autodestruía pasados 40 minutos, suficiente para instalar/compilar lo que fuera necesario. Lamentablemente debido al uso indebido de algunos individuos el servicio fue suspendido. No pierdo la esperanza de que en el futuro cercano regrese en una versión de pago, estaré feliz de aventarles dinero a las manos.
 
@@ -35,11 +35,11 @@ $ vagrant up --provider=aws
 $ vagrant up --provider=digital_ocean
 </pre>
 
-Dependiendo del proveedor que quiera usar (suelo usar primero aws, por que es gratis y ¿qué vence a lo gratis?, pero uso digitalocean si ya tengo corriendo una instancia en aws por que es más barato).
+Dependiendo del proveedor que quiera usar (suelo usar primero aws, porque es gratis y ¿qué vence a lo gratis?, pero uso digitalocean si ya tengo corriendo una instancia en aws porque es más barato).
 
 ## Vagrant
 
-La versión de vagrant que se distribuye con Ubuntu 12.04 es antigua, es mejor descargar la version del sitio oficial:
+La versión de vagrant que se distribuye con Ubuntu 12.04 es antigua, es mejor descargar la versión del sitio oficial:
 
 - [http://downloads.vagrantup.com/](http://downloads.vagrantup.com/)
 
