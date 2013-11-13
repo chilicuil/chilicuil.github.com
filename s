@@ -549,7 +549,7 @@ _remotesetup()
 
     #####################################################################################################
 
-    printf "%b\\n" "\033[1m--------------------\033[7m Installing files \033[0m\033[1m----------------------\033[0m"
+    printf "%b\\n" "\033[1m--------------------\033[7m Installing files \033[0m\033[1m-----------------------\033[0m"
 
     if [ ! -f $HOME/.not_override ]; then
         printf "%s\\n" "[+] installing dotfiles (old dotfiles will get an .old suffix) ..."
@@ -599,7 +599,7 @@ _remotesetup()
 
     printf "%s\\n" "[+] configuring shell (1 min aprox) ..."
     _waitfor git clone --dept=1 https://github.com/chilicuil/shundle.git ~/.shundle/bundle/shundle
-    _waitfor ~/.shundle/bundle/shundle/shundle install
+    _waitfor ~/.shundle/bundle/shundle/bin/shundle install
 
     printf "%s\\n" "[+] configuring cd ..."
     mkdir $HOME/.wcd; /usr/bin/wcd.exec -GN -j -xf $HOME/.ban.wcd -S $HOME > /dev/null 2>&1 && mv $HOME/.treedata.wcd $HOME/.wcd/
