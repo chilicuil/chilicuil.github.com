@@ -155,7 +155,7 @@ _cmdsudo()
 
     printf "%s " "    $ $@"
     printf "\\n"
-    printf "%s" "$sudopwd" | $sudocmd eval "$@" > /tmp/"$_cmdsudo_var_serr".out 2>&1
+    printf "%s" "$sudopwd" | $sudocmd "$@" > /tmp/"$_cmdsudo_var_serr".out 2>&1
 
     _cmdsudo_var_status=$?
     [ X"$_cmdsudo_var_status" != X"0" ] && { cat /tmp/"$_cmdsudo_var_serr".out; \
@@ -182,7 +182,7 @@ _arch()
     printf "%s" "$_arch_var_arch"
 }
 
-_animcui()
+_handscui()
 {
     [ -z "$1" ] && { printf "%5s\n" ""; return 1; }
     printf "%s" "$1" | grep -v "[^0-9]" >/dev/null || { printf "%5s\n" ""; return 1; }
@@ -566,7 +566,9 @@ _remotesetup()
         printf "%s\\n" "[+] installing utils (old scripts will get an .old suffix) ..."
         for FILE in learn/autocp/completions/*; do
             [ ! -e "$FILE" ] && break
-            _smv "$FILE" /usr/share/bash-completion/completions/
+            [ -d /usr/share/bash-completion/completions/ ] && \
+            _smv "$FILE" /usr/share/bash-completion/completions/ || \
+            _smv "$FILE" /etc/bash_completion.d/
         done
 
         for FILE in learn/python/*; do
@@ -597,8 +599,7 @@ _remotesetup()
 
     printf "%s\\n" "[+] configuring shell (1 min aprox) ..."
     _waitfor git clone --dept=1 https://github.com/chilicuil/shundle.git ~/.shundle/bundle/shundle
-    . ~/.bashrc
-    _waitfor shundle install
+    _waitfor ~/.shundle/bundle/shundle/shundle install
 
     printf "%s\\n" "[+] configuring cd ..."
     mkdir $HOME/.wcd; /usr/bin/wcd.exec -GN -j -xf $HOME/.ban.wcd -S $HOME > /dev/null 2>&1 && mv $HOME/.treedata.wcd $HOME/.wcd/
@@ -831,3 +832,4 @@ else
 fi
 
 #_cleanup 1
+
