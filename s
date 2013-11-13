@@ -599,7 +599,7 @@ _remotesetup()
 
     printf "%s\\n" "[+] configuring shell (1 min aprox) ..."
     _waitfor git clone --dept=1 https://github.com/chilicuil/shundle.git ~/.shundle/bundle/shundle
-    _waitfor ~/.shundle/bundle/shundle/bin/shundle install
+    _waitfor SHUNDLE_RC=~/.bashrc ~/.shundle/bundle/shundle/bin/shundle install
 
     printf "%s\\n" "[+] configuring cd ..."
     mkdir $HOME/.wcd; /usr/bin/wcd.exec -GN -j -xf $HOME/.ban.wcd -S $HOME > /dev/null 2>&1 && mv $HOME/.treedata.wcd $HOME/.wcd/
