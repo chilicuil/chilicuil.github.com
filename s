@@ -41,29 +41,29 @@ fi
 _header()
 {
     clear
-    echo -e "\033[1m----------------------\033[7m The Setup \033[0m\033[1m---------------------------\033[0m"
-    echo -e "\033[1m Dotfiles:\033[0m        $dotfiles"
-    echo -e "\033[1m Utils:\033[0m           $utils"
-    echo -e "\033[1m Updates:\033[0m         $updates"
-    echo
+    printf "%b\\n" "\033[1m----------------------\033[7m The Setup \033[0m\033[1m---------------------------\033[0m"
+    printf "%b\\n" "\033[1m Dotfiles:\033[0m        $dotfiles"
+    printf "%b\\n" "\033[1m Utils:\033[0m           $utils"
+    printf "%b\\n" "\033[1m Updates:\033[0m         $updates"
+    printf "\\n"
 
     case $mode in
         remote)
-            echo -e "\033[1m > Remote:                \033[0m$ bash <(wget -qO- javier.io/s)"
-            echo -e "\033[1m Local (includes Remote): \033[0m$ bash <(wget -qO- javier.io/s) l"
-            echo -e "\033[1m Boot:                    \033[0m$ bash <(wget -qO- javier.io/s) b"
+            printf "%b\\n" "\033[1m > Remote:                \033[0m$ bash <(wget -qO- javier.io/s)"
+            printf "%b\\n" "\033[1m Local (includes Remote): \033[0m$ bash <(wget -qO- javier.io/s) l"
+            printf "%b\\n" "\033[1m Boot:                    \033[0m$ bash <(wget -qO- javier.io/s) b"
             ;;
         local)
-            echo -e "\033[1m Remote:                    \033[0m$ bash <(wget -qO- javier.io/s)"
-            echo -e "\033[1m > Local (includes Remote): \033[0m$ bash <(wget -qO- javier.io/s) l"
-            echo -e "\033[1m Boot:                      \033[0m$ bash <(wget -qO- javier.io/s) b"
+            printf "%b\\n" "\033[1m Remote:                    \033[0m$ bash <(wget -qO- javier.io/s)"
+            printf "%b\\n" "\033[1m > Local (includes Remote): \033[0m$ bash <(wget -qO- javier.io/s) l"
+            printf "%b\\n" "\033[1m Boot:                      \033[0m$ bash <(wget -qO- javier.io/s) b"
             ;;
         boot)
-            echo -e "\033[1m Remote:                  \033[0m$ bash <(wget -qO- javier.io/s)"
-            echo -e "\033[1m Local (includes Remote): \033[0m$ bash <(wget -qO- javier.io/s) l"
-            echo -e "\033[1m > Boot:                  \033[0m$ bash <(wget -qO- javier.io/s) b"
+            printf "%b\\n" "\033[1m Remote:                  \033[0m$ bash <(wget -qO- javier.io/s)"
+            printf "%b\\n" "\033[1m Local (includes Remote): \033[0m$ bash <(wget -qO- javier.io/s) l"
+            printf "%b\\n" "\033[1m > Boot:                  \033[0m$ bash <(wget -qO- javier.io/s) b"
         esac
-    echo -e "\033[1m------------------------------------------------------------\033[0m"
+    printf "%b\\n" "\033[1m------------------------------------------------------------\033[0m"
 }
 
 _die()
@@ -73,143 +73,147 @@ _die()
         $((frame=frame+1));
     done
 
-    echo "$*"
+    printf "%s\\n" "$*"
     exit 1
 }
 
 _distro()
 {   #return distro name in a lower string
-
-    local DIST_INFO="/etc/lsb-release"
-    if [ -r "$DIST_INFO" ]; then
-        . $DIST_INFO
+    _distro_var_DIST_INFO="/etc/lsb-release"
+    if [ -r "$_distro_var_DIST_INFO" ]; then
+        . "$_distro_var_DIST_INFO"
     fi
 
     if [ -z "$DISTRIB_ID" ]; then
-        local DISTRIB_ID="Unknown";
+        _distro_var_DISTRIB_ID="Unknown";
         if [ -f /etc/arch-release ]; then
-            DISTRIB_ID="Arch"
+            _distro_var_DISTRIB_ID="Arch"
         elif [ -r /etc/knoppix-version ]; then
-            DISTRIB_ID="Knoppix"
+            _distro_var_DISTRIB_ID="Knoppix"
         elif [ -r /etc/sidux-version ]; then
-            DISTRIB_ID="Sidux"
+            _distro_var_DISTRIB_ID="Sidux"
         elif [ -r /etc/debian_version ]; then
-            DISTRIB_ID="Debian"
+            _distro_var_DISTRIB_ID="Debian"
         elif [ -r /etc/issue ]; then
-            DISTRIB_ID=$(cat /etc/issue.net | awk '{print $1}')
-            if [ X"$DISTRIB_ID" = X"Ubuntu" ]; then
-                DISTRIB_ID=Ubuntu
+            _distro_var_DISTRIB_ID=$(cat /etc/issue.net | awk '{print $1}')
+            if [ X"$_distro_var_DISTRIB_ID" = X"Ubuntu" ]; then
+                _distro_var_DISTRIB_ID=Ubuntu
             fi
         elif [ -r /etc/gentoo-release ]; then
-            DISTRIB_ID="Gentoo"
+            _distro_var_DISTRIB_ID="Gentoo"
         elif [ -f /etc/lfs-version ]; then
-            DISTRIB_ID="LFS"
+            _distro_var_DISTRIB_ID="LFS"
         elif [ -r /etc/pclinuxos-release ]; then
-            DISTRIB_ID="PCLinuxOS"
+            _distro_var_DISTRIB_ID="PCLinuxOS"
         elif [ -f /etc/mandriva-release ] || [ -f /etc/mandrake-release ]; then
-            DISTRIB_ID="Mandriva"
+            _distro_var_DISTRIB_ID="Mandriva"
         elif [ -f /etc/redhat-release ]; then
-            DISTRIB_ID="RedHat"
+            _distro_var_DISTRIB_ID="RedHat"
         elif [ -f /etc/fedora-release ]; then
-            DISTRIB_ID="Fedora"
+            _distro_var_DISTRIB_ID="Fedora"
         elif [ -r /etc/vector-version ]; then
-            DISTRIB_ID="VectorLinux"
+            _distro_var_DISTRIB_ID="VectorLinux"
         elif [ -r /etc/slackware-version ]; then
-            DISTRIB_ID="$(cat /etc/slackware-version)"
+            _distro_var_DISTRIB_ID="$(cat /etc/slackware-version)"
         elif [ -f /etc/release ]; then
-            DISTRIB_ID="Solaris"
+            _distro_var_DISTRIB_ID="Solaris"
         elif [ -r /etc/SuSE-release ]; then
-            DISTRIB_ID="$(grep -i suse /etc/SuSE-release)"
+            _distro_var_DISTRIB_ID="$(grep -i suse /etc/SuSE-release)"
         elif [ -f /etc/yellowdog-release ]; then
-            DISTRIB_ID="YellowDog Linux"
+            _distro_var_DISTRIB_ID="YellowDog Linux"
         elif [ -f /etc/zenwalk-version  ]; then
-            DISTRIB_ID="Zenwalk"
+            _distro_var_DISTRIB_ID="Zenwalk"
         fi
+        printf "%s\\n" "$_distro_var_DISTRIB_ID" | tr 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' 'abcdefghijklmnopqrstuvwxyz'
+    else
+        printf "%s\\n" "$DISTRIB_ID" | tr 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' 'abcdefghijklmnopqrstuvwxyz'
     fi
-
-    echo $DISTRIB_ID | tr '[:upper:]' '[:lower:]'
 }
 
 _cmd()
 {   #print current command, exits on fail
-    [ -z "$1" ] && return 0
+    [ -z "$1" ] && return 1
 
-    echo "    $ $@"
-    "$@"
+    printf "%s " "    $ $@"
+    printf "\\n"
+    eval "$@"
 
-    local status=$?
-    [ X"$status" != X"0" ] && exit $status || return 0
+    _cmd_var_status=$?
+    [ X"$_cmd_var_status" != X"0" ] && exit $_cmd_var_status || return 0
 }
 
 _addcron()
 {   #adds cron job, returns 1 on error
     [ -z "$1" ] && return 1
-    crontab -l | { cat; echo "$@"; } | crontab -
+    ( crontab -l; printf "%s\\n" "$1" ) | crontab -
 }
 
 _cmdsudo()
 {   #print && execute a command, exits if command fails
-    [ -z "$1" ] && return 0
-    local serr=$$
+    [ -z "$1" ] && return 1
+    _cmdsudo_var_serr=$$
 
-    echo "    $ sudo $@"
-    echo "$sudopwd" | $sudocmd "$@" > /tmp/"$serr".out 2>&1
+    printf "%s " "    $ $@"
+    printf "\\n"
+    printf "%s" "$sudopwd" | $sudocmd eval "$@" > /tmp/"$_cmdsudo_var_serr".out 2>&1
 
-    local status=$?
-    [ X"$status" != X"0" ] && { cat /tmp/"$serr".out; rm -rf /tmp/"$serr".out; exit $status; } || { rm -rf /tmp/"$serr".out; return; }
+    _cmdsudo_var_status=$?
+    [ X"$_cmdsudo_var_status" != X"0" ] && { cat /tmp/"$_cmdsudo_var_serr".out; \
+        rm -rf /tmp/"$_cmdsudo_var_serr".out; exit $_cmdsudo_var_status; } \
+        || { rm -rf /tmp/"$_cmdsudo_var_serr".out; return $_cmdsudo_var_status; }
 }
 
 _arch()
 {   #check for system arch, returns [64|32]
-    local arch
-    [ -z "$MACHTYPE" ] && arch=$(uname -m) || arch=$(echo $MACHTYPE | cut -d- -f1)
+    [ -z "$MACHTYPE" ] && _arch_var_arch=$(uname -m) || _arch_var_arch=$(printf "%s" "$MACHTYPE" | cut -d- -f1)
 
-    case $arch in
+    case $_arch_var_arch in
         x86_64)
-            arch=64;
+            _arch_var_arch=64;
             ;;
         i686)
-            arch=32;
+            _arch_var_arch=32;
             ;;
         *)
-            exit 1
+            return 1
             ;;
     esac
 
-    echo $arch
+    printf "%s" "$_arch_var_arch"
 }
 
-_handscui()
-{   #waiting animation
+_animcui()
+{
     [ -z "$1" ] && { printf "%5s\n" ""; return 1; }
-    pid="$1"
-    animation_state=1
+    printf "%s" "$1" | grep -v "[^0-9]" >/dev/null || { printf "%5s\n" ""; return 1; }
+    _animcui_var_pid="$1"
+    _animcui_var_animation_state=1
 
-    if [ ! "$(ps -p $pid -o comm=)" ]; then
+    if [ ! "$(ps -p $_animcui_var_pid -o comm=)" ]; then
         printf "%5s\n" ""
-        return
+        return 1
     fi
 
     printf "%s" "      "
 
-    while [ "`ps -p $pid -o comm=`" ]; do
-        echo -e -n "\b\b\b\b\b"
-        case $animation_state in
+    while [ "$(ps -p $_animcui_var_pid -o comm=)" ]; do
+        printf "%b" "\b\b\b\b\b"
+        case $_animcui_var_animation_state in
             1)
                 printf "%s" '\o@o\'
-                animation_state=2
+                _animcui_var_animation_state=2
                 ;;
             2)
                 printf "%s" '|o@o|'
-                animation_state=3
+                _animcui_var_animation_state=3
                 ;;
             3)
                 printf "%s" '/o@o/'
-                animation_state=4
+                _animcui_var_animation_state=4
                 ;;
             4)
                 printf "%s" '|o@o|'
-                animation_state=1
+                _animcui_var_animation_state=1
                 ;;
         esac
         sleep 1
@@ -219,45 +223,43 @@ _handscui()
 
 _getroot()
 {   #get sudo's password, define $sudopasswd and $sudocmd
-
-    local tmp_path="/tmp"; local sudotest; local insudoers;
+    _getroot_var_tmp_path="/tmp"
 
     if [ ! X"$LOGNAME" = X"root" ]; then
-        echo "Detecting user $LOGNAME (non-root) ..."
-        echo "Checking if sudo is available ..."
-        sudotest=`type sudo &>/dev/null ; echo $?`
+        printf "%s\\n" "Detecting user $LOGNAME (non-root) ..."
+        printf "%s\\n" "Checking if sudo is available ..."
+        _getroot_var_sudotest=$(type sudo >/dev/null 2>/dev/null; printf "%s\\n" "$?")
 
-        if [ X"$sudotest" = X"0" ]; then
+        if [ X"$_getroot_var_sudotest" = X"0" ]; then
             sudo -K
-            if [ -e "$tmp_path/sudo.test" ]; then
-                rm -f "$tmp_path/sudo.test"
+            if [ -e "$_getroot_var_tmp_path/sudo.test" ]; then
+                rm -f "$_getroot_var_tmp_path/sudo.test"
             fi
             while [ -z "$sudopwd" ]; do
-                echo -n "   - enter sudo-password: "
+                printf "%s" "   - enter sudo-password: "
                 stty -echo
                 read sudopwd
                 stty echo
 
                 # password check
-                echo "$sudopwd" | sudo -S touch "$tmp_path/sudo.test" > "$tmp_path/sudo.output" 2>&1
-                insudoers=$(grep -i "sudoers" "$tmp_path/sudo.output")
-                if [ -n "$insudoers" ]; then
-                    echo "$sudopwd" | sudo -S rm "$tmp_path/sudo.output" > /dev/null 2>&1
+                printf "%s" "$sudopwd" | sudo -S touch "$_getroot_var_tmp_path/sudo.test" > "$_getroot_var_tmp_path/sudo.output" 2>&1
+                _getroot_var_insudoers=$(grep -i "sudoers" "$_getroot_var_tmp_path/sudo.output")
+                if [ -n "$_getroot_var_insudoers" ]; then
+                    printf "%s" "$sudopwd" | sudo -S rm "$_getroot_var_tmp_path/sudo.output" > /dev/null 2>&1
                     exit
-                fi
-
-                if [ ! -e "$tmp_path/sudo.test" ]; then
+                fi 
+                if [ ! -e "$_getroot_var_tmp_path/sudo.test" ]; then
                     sudopwd=""
                 fi
             done
 
             sudocmd="/usr/bin/sudo -S"
 
-            echo "$sudopwd" | $sudocmd rm -f "$tmp_path/sudo.test" > /dev/null 2>&1
-            echo
+            printf "%s" "$sudopwd" | $sudocmd rm -f "$_getroot_var_tmp_path/sudo.test" > /dev/null 2>&1
+            printf "\\n"
         else
-            echo "You're not root and sudo isn't available. Please run this script as root!"
-            #exit
+            printf "%s\\n" "You're not root and sudo isn't available. Please run this script as root!"
+            exit
         fi
     fi
 }
@@ -265,15 +267,15 @@ _getroot()
 _cleanup()
 {
     stty echo
-    echo
-    echo -e "\033[1m---------------\033[7m Cleanup \033[0m\033[1m---------------\033[0m"
-    echo "[+] recovering old conf ..."
+    printf "\\n"
+    printf "%b\\n" "\033[1m---------------\033[7m Cleanup \033[0m\033[1m---------------\033[0m"
+    printf "%s\\n" "[+] recovering old conf ..."
     for FILE in $HOME/*.old; do
         [ ! -e "$FILE" ] && continue
         mv "$FILE" ${FILE%.old}
     done
 
-    echo "[+] recovering scripts ..."
+    printf "%s\\n" "[+] recovering scripts ..."
     for FILE in /etc/bash_completion.d/*.old; do
         [ ! -e "$FILE" ] && continue
         mv "$FILE" ${FILE%.old}
@@ -293,8 +295,8 @@ _waitfor()
 {
     [ -z "$1" ] && return 1
 
-    echo -n "    $ $@ ..."
-    $@ > /dev/null 2>&1 &
+    printf "%s " "    $ $@ ..."
+    eval "$@" > /dev/null 2>/dev/null &
     sleep 1s
 
     _handscui $(pidof $1)
@@ -304,8 +306,8 @@ _waitforsudo()
 {
     [ -z "$1" ] && return 1
 
-    echo -n "    $ sudo $@ ..."
-    echo "$sudopwd" | $sudocmd $@ > /dev/null 2>&1 &
+    printf "%s " "    $ sudo $@ ..."
+    printf "%s" "$sudopwd" | $sudocmd "$@" > /dev/null 2>&1 &
     sleep 1s
 
     if [ X"$1" = X"DEBIAN_FRONTEND=noninteractive" ]; then
@@ -323,8 +325,8 @@ _smv()
     owner=$(stat -c %U "$2")
 
     if [ X"$owner" != X"$LOGNAME" ]; then
-        [ -e "$2"/$(basename "$1") ] && echo "$sudopwd" | $sudocmd mv "$2"/$(basename "$1") "$2"/$(basename "$1").old > /dev/null 2>&1
-        echo "$sudopwd" | $sudocmd mv "$1" "$2"  > /dev/null 2>&1
+        [ -e "$2"/$(basename "$1") ] && printf "%s" "$sudopwd" | $sudocmd mv "$2"/$(basename "$1") "$2"/$(basename "$1").old > /dev/null 2>&1
+        printf "%s" "$sudopwd" | $sudocmd mv "$1" "$2"  > /dev/null 2>&1
     else
         [ -e "$2"/$(basename "$1") ] && mv "$2"/$(basename "$1") "$2"/$(basename "$1").old
         mv "$1" "$2"
@@ -334,7 +336,10 @@ _smv()
 _strreplace()
 {
     [ -z "$1" ] && return 1
-    echo ${1//$2/$3}
+    [ -z "$2" ] && return 1
+    [ -z "$3" ] && return 1
+    _strreplace_var_replace=$(printf "%s\\n" "$1" | sed -e "s/${2}/${3}/g")
+    printf "%s" "${_strreplace_var_replace}"
 }
 
 _getuuid()
@@ -366,11 +371,11 @@ _setrepos()
         done
 
         if [ -n "$non_standard_repositories" ]; then
-            echo "[+] disabling temporaly non standard repos ..."
+            printf "%s\\n" "[+] disabling temporaly non standard repos ..."
         fi
     fi
 
-    echo "[+] adding repos ..."
+    printf "%s\\n" "[+] adding repos ..."
 
     if [ -f /usr/bin/lsb_release ]; then
         DISTRO=$(lsb_release -si)
@@ -384,18 +389,18 @@ _setrepos()
 
     case $DISTRO in
         Ubuntu)
-            echo "deb http://archive.ubuntu.com/ubuntu/ $RELEASE multiverse" > multiverse.list
+            printf "%s\\n" "deb http://archive.ubuntu.com/ubuntu/ $RELEASE multiverse" > multiverse.list
             _cmdsudo mv multiverse.list /etc/apt/sources.list.d/
 
             [ -z "${BASH_ARGV[0]}" ] && return 1
 
-            echo "deb http://ppa.launchpad.net/chilicuil/sucklesstools/ubuntu $RELEASE main" > chilicuil-sucklesstools.list
+            printf "%s\\n" "deb http://ppa.launchpad.net/chilicuil/sucklesstools/ubuntu $RELEASE main" > chilicuil-sucklesstools.list
             _cmdsudo mv chilicuil-sucklesstools.list /etc/apt/sources.list.d/
 
-            echo "deb http://dl.google.com/linux/talkplugin/deb/ stable main" > google-talkplugin.list
+            printf "%s\\n" "deb http://dl.google.com/linux/talkplugin/deb/ stable main" > google-talkplugin.list
             _cmdsudo mv google-talkplugin.list /etc/apt/sources.list.d/
 
-            echo "deb http://download.videolan.org/pub/debian/stable/ /" > libdvdcss.list
+            printf "%s\\n" "deb http://download.videolan.org/pub/debian/stable/ /" > libdvdcss.list
             _cmdsudo mv libdvdcss.list /etc/apt/sources.list.d/
 
             _waitforsudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8AC54C683AC7B5E8
@@ -424,8 +429,8 @@ _sethome()
         local fs=$(_getfs "$sd")
 
         if ! grep -qs "^UUID=$uuid" /etc/fstab; then
-            echo "[+] /home esta montado pero no esta en /etc/fstab, agregando ..."
-            echo "UUID=$uuid /home $fs errors=remount-ro 0 1" | _cmdsudo tee -a /etc/fstab
+            printf "%s\\n" "[+] /home esta montado pero no esta en /etc/fstab, agregando ..."
+            printf "%s\\n" "UUID=$uuid /home $fs errors=remount-ro 0 1" | _cmdsudo tee -a /etc/fstab
         fi
     else
         local total_partitions=$(awk '{print $4}' /proc/partitions | sed -e '/name/d' -e '/^$/d' -e '/[1-9]/!d')
@@ -454,8 +459,8 @@ _sethome()
                     mkdir /tmp/$partition
                     _cmdsudo mount /dev/$partition /tmp/$partition
                     if _homedetected /tmp/$partition; then
-                        echo "[+] Se encontro una partición /home en: $partition"
-                        echo "[+] Reemplazando directorio /home con particion y agregando a /etc/fstab ..."
+                        printf "%s\\n" "[+] Se encontro una partición /home en: $partition"
+                        printf "%s\\n" "[+] Reemplazando directorio /home con particion y agregando a /etc/fstab ..."
 
                         _cmdsudo umount /tmp/$partition && rm -rf /tmp/$partition
                         cd /; _cmdsudo rm -rf /home
@@ -468,7 +473,7 @@ _sethome()
                         local fs=$(_getfs "$sd")
 
                         if ! grep -qs "^UUID=$uuid" /etc/fstab; then
-                            echo "UUID=$uuid /home $fs errors=remount-ro 0 1" | _cmdsudo tee -a /etc/fstab
+                            printf "%s" "UUID=$uuid /home $fs errors=remount-ro 0 1" | _cmdsudo tee -a /etc/fstab
                         fi
 
                         break
@@ -517,26 +522,26 @@ _installfirefoxnightly()
 
 _remotesetup()
 {
-    echo -e "\033[1m------------------\033[7m Fixing dependencies \033[0m\033[1m---------------------\033[0m"
+    printf "%b\\n" "\033[1m------------------\033[7m Fixing dependencies \033[0m\033[1m---------------------\033[0m"
     _setrepos
 
-    echo "[+] fixing locales ..."
+    printf "%s\\n" "[+] fixing locales ..."
     _waitforsudo locale-gen en_US en_US.UTF-8
     _waitforsudo dpkg-reconfigure -f noninteractive locales
 
-    echo "[+] installing deps ..."
+    printf "%s\\n" "[+] installing deps ..."
     _waitforsudo apt-get update
     _waitforsudo apt-get install --no-install-recommends -y $apps_remote
 
-    echo "[+] purging non essential apps ..."
+    printf "%s\\n" "[+] purging non essential apps ..."
     _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get purge -y $apps_purge
 
     [ ! -f /usr/bin/git ] && _die "Dependency step failed"
 
     #####################################################################################################
 
-    echo -e "\033[1m-------------------\033[7m Downloading files \033[0m\033[1m-----------------------\033[0m"
-    echo "[+] downloading reps ..."
+    printf "%b\\n" "\033[1m-------------------\033[7m Downloading files \033[0m\033[1m-----------------------\033[0m"
+    printf "%s\\n" "[+] downloading reps ..."
     _waitfor git clone --dept=1 "$dotfiles.git"
     _waitfor git clone --dept=1 "$utils.git"
 
@@ -544,10 +549,10 @@ _remotesetup()
 
     #####################################################################################################
 
-    echo -e "\033[1m--------------------\033[7m Installing files \033[0m\033[1m----------------------\033[0m"
+    printf "%b\\n" "\033[1m--------------------\033[7m Installing files \033[0m\033[1m----------------------\033[0m"
 
     if [ ! -f $HOME/.not_override ]; then
-        echo "[+] installing dotfiles (old dotfiles will get an .old suffix) ..."
+        printf "%s\\n" "[+] installing dotfiles (old dotfiles will get an .old suffix) ..."
         for FILE in dotfiles/.*; do
             [ ! -e "$FILE" ] && break
             _smv "$FILE" "$HOME"
@@ -558,10 +563,10 @@ _remotesetup()
     fi
 
     if [ ! -f /usr/local/bin/not_override ]; then
-        echo "[+] installing utils (old scripts will get an .old suffix) ..."
-        for FILE in learn/autocp/bash_completion.d/*; do
+        printf "%s\\n" "[+] installing utils (old scripts will get an .old suffix) ..."
+        for FILE in learn/autocp/completions/*; do
             [ ! -e "$FILE" ] && break
-            _smv "$FILE" /etc/bash_completion.d/
+            _smv "$FILE" /usr/share/bash-completion/completions/
         done
 
         for FILE in learn/python/*; do
@@ -584,52 +589,57 @@ _remotesetup()
 
     #####################################################################################################
 
-    echo -e "\033[1m-----------------\033[7m Configuring main apps \033[0m\033[1m---------------------\033[0m"
-    echo "[+] configuring vim (3 min aprox) ..."
+    printf "%b\\n" "\033[1m-----------------\033[7m Configuring main apps \033[0m\033[1m---------------------\033[0m"
+    printf "%s\\n" "[+] configuring vim (3 min aprox) ..."
     _waitfor git clone --dept=1 https://github.com/chilicuil/vundle.git ~/.vim/bundle/vundle
     #_waitfor git clone --dept=1 https://github.com/gmarik/vundle ~/.vim/bundle/vundle #till shallow clone doesn't get implemented, my own version is faster
     _waitfor vim -es -u ~/.vimrc -c "BundleInstall" -c qa
 
-    echo "[+] configuring cd ..."
+    printf "%s\\n" "[+] configuring shell (1 min aprox) ..."
+    _waitfor git clone --dept=1 https://github.com/chilicuil/shundle.git ~/.shundle/bundle/shundle
+    . ~/.bashrc
+    _waitfor shundle install
+
+    printf "%s\\n" "[+] configuring cd ..."
     mkdir $HOME/.wcd; /usr/bin/wcd.exec -GN -j -xf $HOME/.ban.wcd -S $HOME > /dev/null 2>&1 && mv $HOME/.treedata.wcd $HOME/.wcd/
 
     #####################################################################################################
 
-    echo -e "\033[1m-----------------------------\033[7m DONE \033[0m\033[1m--------------------------\033[0m"
-    echo
-    echo "Reload the configuration to start having fun, n@n/"
-    echo "    $ source ~/.bashrc"
+    printf "%b\\n" "\033[1m-----------------------------\033[7m DONE \033[0m\033[1m--------------------------\033[0m"
+    printf "\\n"
+    printf "%s\\n" "Reload the configuration to start having fun, n@n/"
+    printf "%s\\n" "    $ source ~/.bashrc"
 }
 
 _localsetup()
 {
-    echo -e "\033[1m------------------\033[7m Fixing dependencies \033[0m\033[1m---------------------\033[0m"
+    printf "%b\\n" "\033[1m------------------\033[7m Fixing dependencies \033[0m\033[1m---------------------\033[0m"
     _setrepos
     _sethome
 
-    echo "[+] fixing locales ..."
+    printf "%s\\n" "[+] fixing locales ..."
     _waitforsudo locale-gen en_US en_US.UTF-8
     _waitforsudo dpkg-reconfigure -f noninteractive locales
 
-    echo "[+] setting up an apt-get proxy ..."
+    printf "%s\\n" "[+] setting up an apt-get proxy ..."
     _waitforsudo apt-get update
     _waitforsudo apt-get install --no-install-recommends -y avahi-utils
 
     if _existaptproxy; then
-        echo "[+] exists an apt-get proxy in the network, using it ..."
+        printf "%s\\n" "[+] exists an apt-get proxy in the network, using it ..."
         _waitforsudo apt-get install --no-install-recommends -y squid-deb-proxy-client
     else
-        echo "[+] no apt-get proxy found, installing one locally ..."
+        printf "%s\\n" "[+] no apt-get proxy found, installing one locally ..."
         _waitforsudo apt-get install --no-install-recommends -y squid-deb-proxy-client apt-cacher-ng
         _waitforsudo wget http://javier.io/mirror/apt-cacher-ng.service -O /etc/avahi/services/apt-cacher-ng.service
         if [ -d "$HOME"/misc/ubuntu/proxy/apt-cacher-ng/ ]; then
-            echo "[+] exporting files ..."
+            printf "%s\\n" "[+] exporting files ..."
             _cmdsudo rm -rf /var/cache/apt-cacher-ng
             _cmdsudo ln -s $HOME/misc/ubuntu/proxy/apt-cacher-ng/ /var/cache/apt-cacher-ng
         fi
     fi
 
-    echo "[+] installing apps ..."
+    printf "%s\\n" "[+] installing apps ..."
     _waitforsudo apt-get update
     _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y $apps_local
 
@@ -649,14 +659,14 @@ _localsetup()
         fi
     fi
 
-    echo "[+] purging non essential apps ..."
+    printf "%s\\n" "[+] purging non essential apps ..."
     _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get purge -y $apps_purge
 
 
     #####################################################################################################
 
-    echo -e "\033[1m---------------\033[7m Downloading theme files \033[0m\033[1m--------------------\033[0m"
-    echo "[+] downloading confs, themes and so on ..."
+    printf "%b\\n" "\033[1m---------------\033[7m Downloading theme files \033[0m\033[1m--------------------\033[0m"
+    printf "%s\\n" "[+] downloading confs, themes and so on ..."
     _waitfor wget http://files.javier.io/repository/s/iconfaa.bin
     _waitfor wget http://files.javier.io/repository/s/iconfab.bin
     _waitfor wget http://files.javier.io/repository/s/iconfac.bin
@@ -670,8 +680,8 @@ _localsetup()
 
     #####################################################################################################
 
-    echo -e "\033[1m--------------------\033[7m Configuring system \033[0m\033[1m-------------------\033[0m"
-    echo "[+] configuring swappiness ..."
+    printf "%b\\n" "\033[1m--------------------\033[7m Configuring system \033[0m\033[1m-------------------\033[0m"
+    printf "%s\\n" "[+] configuring swappiness ..."
     FSYSCTL="/etc/sysctl.conf"
     if grep vm.swappiness $FSYSCTL >/dev/null; then
         _cmdsudo cp $FSYSCTL $FSYSCTL.old
@@ -680,30 +690,30 @@ _localsetup()
         _cmdsudo sed -i -e "\$avm.swappiness=10" $FSYSCTL
     fi
 
-    echo "[+] configuring network ..."
-    echo "auto lo" > interfaces
-    echo "iface lo inet loopback" >> interfaces
+    printf "%s\\n" "[+] configuring network ..."
+    printf "%s\\n" "auto lo" > interfaces
+    printf "%s\\n" "iface lo inet loopback" >> interfaces
     _smv interfaces /etc/network/
     _cmdsudo usermod -a -G netdev $(whoami)
 
-    echo "[+] configuring audio ..."
+    printf "%s\\n" "[+] configuring audio ..."
     _cmdsudo usermod -a -G audio $(whoami)
     _cmdsudo sed -i -e "\$asnd-mixer-oss" /etc/modules
     _cmdsudo mv iconf/mpd/mpd.conf /etc
     _cmdsudo sed -i -e "/music_directory/ s:chilicuil:$(whoami):" /etc/mpd.conf
 
-    echo "[+] configuring groups ..."
+    printf "%s\\n" "[+] configuring groups ..."
     _cmdsudo usermod -a -G dialout $(whoami)
     _cmdsudo usermod -a -G sudo $(whoami)
 
-    echo "[+] configuring cron ..."
+    printf "%s\\n" "[+] configuring cron ..."
     if [ -f /usr/local/bin/watch-battery ]; then
-        echo "    $ echo \"*/1 * * * * /usr/local/bin/watch-battery\" | crontab -"
+        printf "%s\\n" "    $ echo \"*/1 * * * * /usr/local/bin/watch-battery\" | crontab -"
         _addcron "*/1 * * * * /usr/local/bin/watch-battery";
     fi
 
     if [ -f /usr/local/bin/wcd ] && [ -f /usr/bin/wcd.exec ] && [ -f /usr/local/bin/update-cd ]; then
-        echo "    $ echo \"* 23 * * *  /usr/local/bin/update-cd\" | crontab -"
+        printf "%s\\n" "    $ echo \"* 23 * * *  /usr/local/bin/update-cd\" | crontab -"
         _addcron "* 23 * * *  /usr/local/bin/update-cd";
     fi
 
@@ -711,37 +721,37 @@ _localsetup()
         _waitforsudo tar zxf "$HOME"/misc/conf/ubuntu/etc/lenovo-edge-netbook/crontabs.tar.gz -C /
     fi
 
-    echo "[+] configuring login manager ..."
+    printf "%s\\n" "[+] configuring login manager ..."
     _cmdsudo mv iconf/slim/slim.conf /etc/
     _cmdsudo mv iconf/slim/custom /usr/share/slim/themes/
     _cmdsudo sed -i -e "/default_user/ s:chilicuil:$(whoami):" /etc/slim.conf
     [ -f /usr/share/xsessions/i3.desktop ] && _cmdsudo sed -i -e "/Exec/ s:=.*:=/etc/X11/Xsession:" /usr/share/xsessions/i3.desktop
 
-    echo "[+] configuring gpg/ssh agents ..."
+    printf "%s\\n" "[+] configuring gpg/ssh agents ..."
     [ -f /etc/X11/Xsession.d/90gpg-agent ] && _cmdsudo sed -i -e "/STARTUP/ s:=.*:=\"\$GPGAGENT --enable-ssh-support --daemon --sh --write-env-file=\$PID_FILE \$STARTUP\":" /etc/X11/Xsession.d/90gpg-agent
     [ -f /etc/X11/Xsession.options ] && _cmdsudo sed -i -e "s:use-ssh-agent:#use-ssh-agent:g" /etc/X11/Xsession.options
     _cmd mkdir -p "$HOME"/.gnupg
-    [ ! -f "$HOME"/.gnupg/gpg.conf ] && echo "use-agent" > "$HOME"/.gnupg/gpg.conf
+    [ ! -f "$HOME"/.gnupg/gpg.conf ] && printf "%s\\n" "use-agent" > "$HOME"/.gnupg/gpg.conf
 
     #allow use of shutdown/reboot through dbus-send
     _waitforsudo wget http://javier.io/mirror/org.freedesktop.consolekit.pkla -O /etc/polkit-1/localauthority/50-local.d/org.freedesktop.consolekit.pkla
 
-    echo "[+] configuring file manager ..."
+    printf "%s\\n" "[+] configuring file manager ..."
     #https://bugs.launchpad.net/ubuntu/+source/policykit-1/+bug/600575
     _waitforsudo wget http://javier.io/mirror/55-storage.pkla -O /etc/polkit-1/localauthority/50-local.d/55-storage.pkla
     _cmdsudo usermod -a -G plugdev $(whoami)
 
-    echo "[+] configuring browser ..."
+    printf "%s\\n" "[+] configuring browser ..."
     _cmdsudo mv iconf/firefox/libflashplayer$(_arch).so /usr/lib/mozilla/plugins/libflashplayer.so
     if [ ! -f $HOME/.not_override ]; then
         _waitfor tar jxf iconf/firefox/mozilla.tar.bz2 -C iconf/firefox
-        mozilla_profile=$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 8 | tr -d '\n'; echo)
+        mozilla_profile=$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 8 | tr -d '\n'; printf "\\n")
         _cmd mv iconf/firefox/.mozilla/firefox/*.default iconf/firefox/.mozilla/firefox/$mozilla_profile.default
-        mozilla_files=$(grep -rl h5xyzl6e iconf/firefox/.mozilla) && { echo $mozilla_files | xargs sed -i -e "s/h5xyzl6e/$mozilla_profile/g"; echo $mozilla_files | xargs sed -i -e "s/admin/$(whoami)/g"; }
+        mozilla_files=$(grep -rl h5xyzl6e iconf/firefox/.mozilla) && { printf "%s\\n" "$mozilla_files" | xargs sed -i -e "s/h5xyzl6e/$mozilla_profile/g"; printf "%s\\n" "$mozilla_files" | xargs sed -i -e "s/admin/$(whoami)/g"; }
         _smv iconf/firefox/.mozilla "$HOME"
     fi
 
-    echo "[+] configuring gtk, icon, cursor themes ..."
+    printf "%s\\n" "[+] configuring gtk, icon, cursor themes ..."
     _cmd mkdir -p $HOME/.icons
     _cmd mkdir -p $HOME/.themes
     _cmd mkdir -p $HOME/.fonts
@@ -754,7 +764,7 @@ _localsetup()
 
     [ ! -d $HOME/.data ] && _cmd mv iconf/data $HOME/.data
 
-    echo "[+] applying rock star dotfiles ..."
+    printf "%s\\n" "[+] applying rock star dotfiles ..."
     _waitfor wget --quiet javier.io/s
     _waitforsudo bash ./s
     _cmd rm s
@@ -777,7 +787,7 @@ _localsetup()
     fi
 
     if [ -n "$non_standard_repositories" ]; then
-        echo "[+] renabling non standard repos ..."
+        printf "%s\\n" "[+] renabling non standard repos ..."
 
         for repository in /etc/apt/sources.list.d/*.list.s; do
             if [ -f "${repository}" ]; then
@@ -786,19 +796,19 @@ _localsetup()
         done
     fi
 
-    echo "[+] cleaning up ..."
+    printf "%s\\n" "[+] cleaning up ..."
     _cmdsudo rm -rf iconf*
 
     #####################################################################################################
 
-    echo -e "\033[1m------------------\033[7m DONE \033[0m\033[1m---------------\033[0m"
-    echo
-    echo "Restart your computer to start having fun, n@n/"
+    printf "%b\\n" "\033[1m------------------\033[7m DONE \033[0m\033[1m---------------\033[0m"
+    printf "\\n"
+    printf "%s\\n" "Restart your computer to start having fun, n@n/"
 }
 
 _ubuntudev()
 {
-    echo -e "\033[1m----\033[7m Preparing the system for Ubuntu dev \033[0m\033[1m------\033[0m"
+    printf "%b\\n" "\033[1m----\033[7m Preparing the system for Ubuntu dev \033[0m\033[1m------\033[0m"
 
     _waitforsudo apt-get update
     _waitforsudo apt-get install --no-install-recommends -y $apps_ubuntudev
@@ -817,7 +827,7 @@ if _supported; then
         _localsetup
     fi
 else
-    echo "FAILED: Non supported distribution system detected, run this script on $supported systems only"
+    printf "%s\\n" "FAILED: Non supported distribution system detected, run this script on $supported systems only"
 fi
 
 #_cleanup 1
