@@ -83,5 +83,5 @@ $ rm -rf pxe_setup
 </pre>
 
 <br>
-- [https://github.com/psychomario/PyPXE](https://github.com/psychomario/PyPX)
+- [https://github.com/psychomario/PyPXE](https://github.com/psychomario/PyPXE)
 - [http://javier.io/blog/es/2010/12/14/compartir-conexion-pc-a-pc.html](http://javier.io/blog/es/2010/12/14/compartir-conexion-pc-a-pc.html)
