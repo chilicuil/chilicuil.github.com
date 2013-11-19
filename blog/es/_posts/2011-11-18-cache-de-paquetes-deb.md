@@ -6,6 +6,8 @@ title: "caché de paquetes .deb"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
+**Nota:** He creado un [script](https://github.com/chilicuil/learn/blob/master/sh/is/apt-proxy) que hace lo descrito en este post y es portable.
+
 ### Introducción
 
 Hay varias soluciones para crear cachés de paquetes, las únicas que he utilizado han sido [debmirror](http://packages.qa.debian.org/d/debmirror.html) y [apt-cacher-ng](http://www.unix-ag.uni-kl.de/%7Ebloch/acng/), la primera crea una copia exacta de los repositorios que se deseen, es decir 35GB~ por cada distribucion / arquitectura, lo que ha efectos prácticos no me parece óptimo (si de lo que se trata es de ahorrar ancho de banda), no solo se descargan demasiados GB inicialmente sino que cada noche se debe correr una actualización general. Tal vez sea práctico para organizaciones con no menos de 100 equipos.
