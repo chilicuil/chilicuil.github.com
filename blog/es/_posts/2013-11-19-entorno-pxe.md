@@ -40,7 +40,7 @@ $ wget http://archive.ubuntu.com/.../amd64/linux     -O ubuntu/1204/amd64/initrd
 
 Despues de lo cual se edita *./pxe_setup/ubuntu/ubuntu.menu*, o el menú que corresponda, sin embargo en este caso no es necesario porque instalo con tanta frecuencia Ubuntu TLS en amd64 e i386 que el script citado ya crea su configuración.
 
-Con los archivos en su lugar, se puede ejecutar el servidor dhcpd y tftp para comenzar a instalar equipos en red. Algunas veces no es necesario ejecutar el primero, depende de si en la red local existe un router con soporte para PXE. Los router profesionales (cisco) o con un firmware libre potente ([pfsense](http://www.pfsense.org/)) tienen esa opción (incluso se pueden crear [vlans](http://es.wikipedia.org/wiki/VLAN)), en caso contrario (routers de telmex, etc.) no.
+Con los archivos en su lugar, se puede ejecutar el servidor dhcpd y tftp para comenzar a instalar equipos en red. Algunas veces no es necesario ejecutar el primero, depende de si en la red local existe un router con soporte para PXE. Los router profesionales (cisco) o con un firmware libre potente (<a href="http://www.pfsense.org/" target="_blank">pfsense</a>) tienen esa opción (incluso se pueden crear <a href="http://es.wikipedia.org/wiki/VLAN" target="_blank">vlans</a>), en caso contrario (routers de telmex, etc.) no.
 
 ## router con soporte pxe
 
