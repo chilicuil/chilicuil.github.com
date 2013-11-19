@@ -8,6 +8,8 @@ title: "actualización ubuntu 12.04"
 
 [![](/assets/img/49.png)](/assets/img/49.png)
 
+**Nota:** He creado un [script](http://javier.io/blog/es/2013/05/28/configurar-entorno-remoto.html) para automatizar el proceso
+
 He actualizado mi laptop de Ubuntu 10.04 a la 12.04 LTS (n___n)/, así que pasaré a describir el proceso por si necesito volver a hacerlo.
 
 Mi computadora es una netbook, así que no tiene disquetera, mmm, sin embargo eso no importa porque desde que [descubrí](http://javier.io/blog/es/2010/05/19/ubuntu-desde-windows-nowubi-netinstaller.html) que Ubuntu se puede instalar sin USB ni CDROM, no descargo imágenes ISO a menos que quiera participar en el testing (<http://iso.qa.ubuntu.com>), así pues lo primero que hice, fue cambiar el gestor de grub2 a grub-legacy

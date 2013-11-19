@@ -8,6 +8,8 @@ title: "autocompletado en bash"
 
 **[![](/assets/img/54.jpg)](/assets/img/54.jpg)**
 
+**Nota:** Es recomendable actualizar a la version &gt;= 2.0  de [bash-completion](https://viajemotu.wordpress.com/2013/10/16/upgrade-to-bash-completion-2-0/) para un rendimiento optimo
+
 Me gustan los entornos minimalistas y el uso de la consola, me parece genial poder escribir una línea y obtener un resultado concreto, lamentablemente algunos de los comandos para la terminal no son especialmente amigables, contienen muchas opciones y algunas veces esas opciones tienen nombres largos y extraños. Cuando se trata de scripts que encontraste en Internet, la cosa empeora, las opciones siempre hay que escribirlas porque el 99% de las veces no vienen con autocompletado.
 
 Viendo este problema y habiendo generado archivos de autocompletado para mis propios scripts, he decidido escribir algunas notas.
