@@ -35,7 +35,7 @@ $ sendemail -f from@foo.org        \
 
 Esto funciona la mayoría de las veces. Por ejemplo, cuando se envian los correos desde la misma computadora donde se suela revisar el correo. Pero no cuando se utiliza desde servidores remotos, gmail rechazara el login desde ips desconocidas, una buena practica de seguridad, pero inconveniente cuando quiero enviar correos rapidos desde otros lugares.
 
-Afortunadamente, existe http://mailgun.com un servicio que encapsula el protocolo smtp en servicios web. Con ello, pude crear en poco tiempo un script *mail* que hace justamente lo que quiero, enviar correos, desde cualquier lugar rapido y sin configuraciones. Este ultimo, solo require **curl**. Así que es lo que uso ahora.
+Afortunadamente, existe [http://mailgun.com](http://mailgun.com) un servicio que encapsula el protocolo smtp en servicios web. Con ello, pude crear en poco tiempo un script *mail* que hace justamente lo que quiero, enviar correos, desde cualquier lugar rapido y sin configuraciones. Este ultimo, solo require **curl**, así que es lo que uso ahora.
 
 <pre class="sh_sh">
 $ wget https://github.com/chilicuil/learn/blob/master/sh/tools/mail
