@@ -61,7 +61,7 @@ $ echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
 
 Es importante hacer esto porque casi siempre los archivos *linux* y *initrd.gz* contienen instaladores que dependen de internet.
 
-A la interfaz eth0 se asigna una IP local (donde se ejecute dhcpd), así existira comunicación entre los hosts entre ellos y hacia internet. La ip que se configura puede ser cualquiera siempre y cuando sea local (eg, 192.X.X.X, 169.X.X.X o 10.X.X.X).
+A la interfaz eth0 se le asigna una IP local (donde se ejecute dhcpd), así existira comunicación entre los hosts entre ellos y hacia internet. La ip que se configura puede ser cualquiera siempre y cuando sea local (eg, 192.X.X.X, 169.X.X.X o 10.X.X.X).
 
 <pre class="sh_sh">
 $ sudo ifconfig eth0 10.99.88.1
