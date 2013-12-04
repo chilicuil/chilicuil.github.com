@@ -28,4 +28,4 @@ Después de lo cual he podido correr:
 [chroot] # lazarous-ide
 </pre>
 
-Una vez compilado, he podido copiar y usar magnifier satisfactoriamente en el sistema original, dejo el [binário](http://f.javier.io/repository/s/magnifier.bin) para amd64 para el que quiera usarlo.
+Una vez compilado, he podido copiar y usar magnifier satisfactoriamente en el sistema original, dejo el [binário](http://f.javier.io/rep/s/magnifier.bin) para amd64 para el que quiera usarlo.
