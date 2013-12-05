@@ -14,8 +14,7 @@ title: "compartir conexión pc a pc"
 <pre class="sh_sh">
 $ sudo ifconfig eth0 10.0.0.1
 $ sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
-$ sudo su
-# echo 1 > /proc/sys/net/ipv4/ip_forward
+$ echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
 </pre>
 
 ### Alámbrica a inalámbrica
@@ -28,8 +27,7 @@ $ iwconfig wlan0 mode ad-hoc
 $ iwconfig wlan0 essid proxywlan
 $ ifconfig wlan0 10.0.0.1 up #o la ip que gustes
 $ iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-$ sudo su
-# echo 1 > /proc/sys/net/ipv4/ip_forward
+$ echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
 </pre>
 
 En la máquina 'cliente', se configura la conexión con los siguientes datos:
