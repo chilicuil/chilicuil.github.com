@@ -70,8 +70,8 @@ NOTA: En sistemas con NetworkManager, es mejor configurar la ip desde su interfa
 Configuradas ambas interfaces se ejecuta dhcp y tftp:
 
 <pre class="sh_sh">
-$ sudo python simple-dhcpd -i eth0 -a 10.99.88.1
-$ sudo python simple-tftpd
+$ sudo python ./simple-dhcpd -i eth0 -a 10.99.88.1
+$ sudo python ./simple-tftpd
 </pre>
 
 Ahora se pueden conectar equipos a eth0 y arrancarlos en red, cuando se termine, se puede eliminar el entorno con:
