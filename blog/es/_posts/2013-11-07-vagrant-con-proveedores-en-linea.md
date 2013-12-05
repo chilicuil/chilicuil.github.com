@@ -8,27 +8,27 @@ title: "vagrant con proveedores en línea: aws, digitalocean"
 
 **[![](/assets/img/86.png)](/assets/img/86.png)**
 
-Me gusta mantener una computadora rápida y estable, por eso cada vez que puedo instalo o compilo en máquinas virtuales, contenedores, chroots, o en la nube. La nube es genial por que puedo trabajar más rápido de lo que lo haría con mi conexión (las conexiones en México son lentas). Algunas de las nubes más baratas y rápidas que conozco son [Ec2](http://aws.amazon.com/ec2/) (de amazon, gratis 1 año) y [DigitalOcean](http://digitalocean.com/) (5 USD en promedio por mes). De la nube a una máquina [LEB](http://lowendbox.com/), prefiero las segundas cuando se trata de correr servicios a largo/mediano plazo. Tengo
+Me gusta mantener una computadora rápida y estable, por eso cada vez que puedo instalo o compilo en máquinas virtuales, contenedores, o en la nube. La nube es genial porque puedo trabajar más rápido de lo que lo haría con mi conexión (las conexiones en México son lentas). Algunas de las nubes más baratas y rápidas que conozco son [Ec2](http://aws.amazon.com/ec2/) (de amazon, gratis 1 año) y [DigitalOcean](http://digitalocean.com/) (5 USD en promedio por mes). De la nube a una máquina [LEB](http://lowendbox.com/), prefiero las segundas cuando se trata de correr servicios a largo/mediano plazo. Tengo
 
 - l1.javier.io
 - m1.javier.io
 - m2.javier.io
 - ...
 
-Sin embargo, estas vps no tienen [apis](http://es.wikipedia.org/wiki/Interfaz_de_programaci%C3%B3n_de_aplicaciones), por lo que son lentas para hacer provisionamiento y ademas, casi siempre estan ocupadas. Tener un comando o una página desde donde pueda provisionar en menos de 5 minutos es un must en mi configuración. Al principio usaba [juju](http://juju.ubuntu.com), esta herramienta aunque no esta diseñada para ello, puede usarse para este fin así:
+Sin embargo, estas vps no tienen [apis](http://es.wikipedia.org/wiki/Interfaz_de_programaci%C3%B3n_de_aplicaciones), por lo que son lentas para hacer provisionamiento y ademas, casi siempre estan ocupadas. Tener un comando o una página desde donde pueda provisionar en menos de 5 minutos es un must en mi configuración. Al principio usaba [juju](http://juju.ubuntu.com), esta herramienta aunque no esta diseñada para ello puede usarse para este fin:
 
 <pre class="sh_sh">
 $ juju boostrap
 $ juju ssh/0
 </pre>
 
-Esto crea una máquina remota y hace login, una vez ahí, se puede correr manualmente el [provisionamiento](http://javier.io/s) y empezar a trabajar, no más de 5 min, pero tampoco menos de 3. Ya desde que usaba juju me dí cuenta que tendría que usar otra cosa, juju nunca fue diseñado para lo que hacía, y la forma correcta de usarlo no me parecía que fuera a tener éxito (hice [un](https://jujucharms.com/fullscreen/search/precise/wesnoth-1/?text=wesnoth) [par](https://jujucharms.com/fullscreen/search/~chilicuil/precise/assaultcube-2/?text=assaultcube) de juju charms así que no creo que mi opinión sea sin fundamento).
+El comando anterior creara una máquina remota y hara login, una vez ahí, se puede correr manualmente el [provisionamiento](http://javier.io/s) y empezar a trabajar, no más de 5 min, pero tampoco menos de 3. Ya desde que usaba juju me dí cuenta que tendría que usar otra cosa, juju nunca fue diseñado para lo que hacía, y la forma correcta de usarlo no me parecía que fuera a tener éxito (hice [un](https://jujucharms.com/fullscreen/search/precise/wesnoth-1/?text=wesnoth) [par](https://jujucharms.com/fullscreen/search/~chilicuil/precise/assaultcube-2/?text=assaultcube) de juju charms que mi opinion creo que tiene un fundamento).
 
 Poco después empecé a buscar alternativas y encontré [http://instantserver.io/](http://instantserver.io/) . Durante el poco tiempo que estuvo en servicio ha sido lo más cercano a una interfaz sobria que haya usado. Un click y se tenía una máquina accesible en un tiempo de 1-2 segundos (supongo que siempre se tenian máquinas precargadas). No solo eso, la máquina se autodestruía pasados 40 minutos, suficiente para instalar/compilar lo que fuera necesario. Lamentablemente debido al uso indebido de algunos individuos el servicio fue suspendido. No pierdo la esperanza de que en el futuro cercano regrese en una versión de pago, estaré feliz de aventarles dinero a las manos.
 
 Finalmente, en una tercera búsqueda, me esforce por encontrar una solución que soportara diversas nubes y soluciones de virtualización y di con vagrant. No había sido la primera vez que escuchaba del proyecto, pero sí la primera que sabía que soportaba proveedores adicionales. La primera vez, leí que solo era una interfaz cli de VirtualBox (y dado que por ese entonces había escrito algunos scripts propios, no me daba la gana usar otra cosa).
 
-Con vagrant y su sistema de plugin, ahora puedo provisionar una máquina en 1 minuto.
+Con vagrant y su sistema de plugins, ahora puedo provisionar una máquina en 1 minuto.
 
 <pre class="sh_sh">
 $ vagrant up --provider=aws
@@ -57,7 +57,7 @@ El plugin de vagrant-aws, aunque en el README del proyecto no se lea, require la
 $ sudo apt-get install build-essential libxslt-dev libxml2-dev zlib1g-dev
 </pre>
 
-El plugin require que se cree un grupo de seguridad o que se modifique el habilitado por defecto (en ec2) para permitir las conexiones entrantes al puerto 22 (ssh), este paso se me hace absurdo (al igual que el siguiente), el plugin debería crear un grupo para vagrant con los permisos necesarios y subirlo la primera vez que se ejecute, sin embargo, mientras no se solucione, reporte [95](https://github.com/mitchellh/vagrant-aws/issues/95), deberá hacerse o vagrant esperara por siempre para establecer una conexión ssh. Este paso se hace en el panel de control de [Amazon Ec2](http://aws.amazon.com/ec2/), solo 1 vez.
+Ademas tambien necesita que se cree un grupo de seguridad o que se modifique el que se usa por defecto (en ec2) para permitir las conexiones entrantes al puerto 22 (ssh), este paso se me hace absurdo (al igual que el siguiente), el plugin debería crear un grupo para vagrant con los permisos necesarios y subirlo la primera vez que se ejecute, sin embargo, mientras no se solucione, reporte [95](https://github.com/mitchellh/vagrant-aws/issues/95), deberá hacerse o vagrant esperara por siempre para establecer una conexión ssh. Este paso se hace en el panel de control de [Amazon Ec2](http://aws.amazon.com/ec2/), solo 1 vez.
 
 También debe subirse la parte pública de una llave ssh, en mi caso esta llave se encuentra en **.ssh/id_rsa.pub**, en su caso puede variar, o puede que no tengan llaves ssh, si ese es el caso, deberan [crear](http://git-scm.com/book/es/Git-en-un-servidor-Generando-tu-clave-p%C3%BAblica-SSH) una. Para subir la llave pública, se accede al panel de control de [Amazon Ec2](http://aws.amazon.com/ec2/), este paso solo se hace 1 vez.
 
@@ -85,7 +85,7 @@ Vagrant originalmente fue diseñado para desarrolladores que programan por proye
 $ vagrant up
 </pre>
 
-Es una [idea poderosa](http://mitchellh.com/the-tao-of-vagrant), sin embargo en mi caso, uso vagrant para tener tener acceso a cajas vacias tan pronto como sea posible. Para lograrlo he creado un directorio **vagrant** en un lugar al cual puedo llegar rápido en mi sistema de archivos **$HOME/misc/vagrant**. El suyo puede variar, o tal vez deseen usar vagrant en la forma *correcta*. Dentro de ese directorio he declarado el siguiente archivo **Vagranfile**:
+Es una [idea poderosa](http://mitchellh.com/the-tao-of-vagrant), sin embargo en mi caso, uso vagrant para tener tener acceso a cajas vacias tan pronto como sea posible. Para lograrlo he creado un directorio **vagrant** en un lugar al cual puedo llegar rápido **$HOME/misc/vagrant**. El suyo puede variar, o tal vez deseen usar vagrant en la forma *correcta*. Dentro de ese directorio he declarado el siguiente archivo **Vagranfile**:
 
 <pre>
 VAGRANT_API_VERSION = "2"
@@ -133,11 +133,11 @@ end
 # vi:ft=ruby:
 </pre>
 
-Con esto, se puede provisionar una máquina virtual con:
+Ahora se puede provisionar una máquina virtual con:
 
 <pre class="sh_sh">
 $ cd misc/vagrant
-$ vagrant up --provider=aws #o con digitalocean
+$ vagrant up --provider=aws #o digitalocean
 </pre>
 
 Se espera 1 minuto, y se entra:
@@ -170,4 +170,4 @@ alias vup.digitalocean="vagrant up --provider=digital_ocean"
 alias vup.aws="vagrant up --provider=aws"
 </pre>
 
-Por el momento voy a permanecer con vagrant, su sistema de plugin es un éxito, tiene proveedores para [virtualbox](https://www.virtualbox.org/), [vmware](http://www.vmware.com), [kvm](http://www.linux-kvm.org/page/Main_Page), [lxc](http://linuxcontainers.org/), y otras nubes, provisionadores extra como [puppet](http://puppetlabs.com/), [chef](http://www.opscode.com/) y [ansible](http://www.ansibleworks.com/), incluso esta siendo integrado con [docker](http://www.docker.com/) (un sistema que parecer popular ultimamente).
+Por el momento voy a permanecer con vagrant, su sistema de plugins es un éxito, tiene proveedores para [virtualbox](https://www.virtualbox.org/), [vmware](http://www.vmware.com), [kvm](http://www.linux-kvm.org/page/Main_Page), [lxc](http://linuxcontainers.org/), y otras nubes, provisionadores extra como [puppet](http://puppetlabs.com/), [chef](http://www.opscode.com/) y [ansible](http://www.ansibleworks.com/), incluso esta siendo integrado con [docker](http://www.docker.com/) (un sistema que parecer popular ultimamente).
