@@ -42,7 +42,7 @@ Lamentablemente, aun queda otro paso, que parece ser el mas complicado, configur
 
 Por lo general, el equipo donde se instala el entorno pxe tiene 2 interfaces de red (una conectada a internet, y otra conectada al equipo que se desea arrancar). Puede estar conectada directa o indirectamente (que se conecten entre si con switches u otros routers). Si el equipo solo tiene 1 interfaz de red, entonces se require un router con soporte pxe.
 
-### Caso 1, router con soporte pxe (facil)
+## Caso 1, router con soporte pxe (facil)
 
 Existen routers comerciales (cisco) y firmwares libres (pfsense) que pueden redireccionar peticiones de arranque (dhcp) hacia otros equipos. En este caso se configura el router para que envie la peticion a la ip del equipo donde se ejecuto el script con la direccion **pxelinux.0** y se inicia el servidor tftp:
 
@@ -50,7 +50,7 @@ Existen routers comerciales (cisco) y firmwares libres (pfsense) que pueden redi
 $ sudo python ./simple-tftpd
 </pre>
 
-### Caso 2, router sin soporte pxe, servidor pxe con al menos 2 interfaces de red
+## Caso 2, router sin soporte pxe, servidor pxe con al menos 2 interfaces de red
 
 El segundo caso, es mucho mas frecuente, ya sea porque el router no soporte redirecciones de peticiones pxe o porque no se tenga acceso. Ejemplo, una laptop en una cafeteria.
 
