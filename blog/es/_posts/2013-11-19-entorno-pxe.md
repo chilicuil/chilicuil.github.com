@@ -8,7 +8,9 @@ title: "configurar entorno pxe"
 
 **[![](/assets/img/87.jpg)](/assets/img/87.jpg)**
 
-Existen varias guías en internet para configurar entornos <a href="http://es.wikipedia.org/wiki/Preboot_Execution_Environment" target="_blank">pxe</a>, una forma de arrancar máquinas desde la red (muy util en la instalacion masiva de equipos), la mayoría de ellas son largas y complicadas. O si son faciles, requieren que descargues medio internet. Me gustan los sistemas minimalistas y sencillos, como no vi nada que me satisfaciera, tome algunos dias para estudiar el tema, y este es el resultado. Un entorno pxe en 68KB con baterias incluidas, pxelinux, dhcpd, tftp y manos libres.
+Existen varias guías en internet para configurar entornos <a href="http://es.wikipedia.org/wiki/Preboot_Execution_Environment" target="_blank">pxe</a> (muy util en la instalacion masiva de equipos), la mayoría de ellas son largas y complicadas. O si son faciles, requieren que descargues medio internet. Me gustan los sistemas minimalistas y sencillos, como no vi nada que me satisfaciera, tome algunos dias para estudiar el tema, y este es el resultado.
+
+Un entorno pxe en 68KB con baterias incluidas, pxelinux, dhcpd, tftp y manos libres.
 
 <pre>
 $ bash &lt;(wget -qO- https://raw.github.com/chilicuil/learn/master/sh/is/pxe)
@@ -23,7 +25,7 @@ $ bash &lt;(wget -qO- https://raw.github.com/chilicuil/learn/master/sh/is/pxe)
   - creating ./pxe_setup/tools/tools.menu ...
 </pre>
 
-El comando anterior es el corazon del entorno, un script que genera una estructura de directorios con las herramientas y menus preconfiguradoras para arrancar por lo menos ubuntu y fedora (puede personalizarse facilmente si se leen los archivos con terminacion .menu). El script anterior, solo crea la estructura, aun hay que descargar los sistemas que se desean arrancar, es decir por lo menos 2 archivos de su distribucion favorita.
+El comando anterior es el corazon del sistema, un script que genera una estructura de directorios con las herramientas y menus preconfiguradoras para arrancar por lo menos ubuntu y fedora (puede personalizarse facilmente si se leen los archivos con terminacion .menu). El script anterior, solo crea la estructura, aun hay que descargar los sistemas que se desean arrancar, es decir por lo menos 2 archivos de su distribucion favorita.
 
 - [linux](http://archive.ubuntu.com/ubuntu/dists/precise-updates/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/linux) (kernel)
 - [initrd.gz](http://archive.ubuntu.com/ubuntu/dists/precise-updates/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/initrd.gz) (sistema base)
