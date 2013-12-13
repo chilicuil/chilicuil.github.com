@@ -22,13 +22,13 @@ $ juju boostrap
 $ juju ssh/0
 </pre>
 
-El comando anterior creara una máquina remota y hara login, una vez ahí, se puede correr manualmente el [provisionamiento](http://javier.io/s) y empezar a trabajar, no más de 5 min, pero tampoco menos de 3. Ya desde que usaba juju me dí cuenta que tendría que usar otra cosa, juju nunca fue diseñado para lo que hacía, y la forma correcta de usarlo no me parecía que fuera a tener éxito (hice [un](https://jujucharms.com/fullscreen/search/precise/wesnoth-1/?text=wesnoth) [par](https://jujucharms.com/fullscreen/search/~chilicuil/precise/assaultcube-2/?text=assaultcube) de juju charms que mi opinion creo que tiene un fundamento).
+El comando anterior creara una máquina remota y hara login, una vez ahí, se puede correr manualmente el [provisionamiento](http://javier.io/s) y empezar a trabajar, no más de 5 min, pero tampoco menos de 3. Ya desde que usaba juju me dí cuenta que tendría que usar otra cosa, juju nunca fue diseñado para lo que hacía, y la forma correcta de usarlo no me parecía que fuera a tener éxito (hice [un](https://jujucharms.com/fullscreen/search/precise/wesnoth-1/?text=wesnoth) [par](https://jujucharms.com/fullscreen/search/~chilicuil/precise/assaultcube-2/?text=assaultcube) de juju charms).
 
 Poco después empecé a buscar alternativas y encontré [http://instantserver.io/](http://instantserver.io/) . Durante el poco tiempo que estuvo en servicio ha sido lo más cercano a una interfaz sobria que haya usado. Un click y se tenía una máquina accesible en un tiempo de 1-2 segundos (supongo que siempre se tenian máquinas precargadas). No solo eso, la máquina se autodestruía pasados 40 minutos, suficiente para instalar/compilar lo que fuera necesario. Lamentablemente debido al uso indebido de algunos individuos el servicio fue suspendido. No pierdo la esperanza de que en el futuro cercano regrese en una versión de pago, estaré feliz de aventarles dinero a las manos.
 
-Finalmente, en una tercera búsqueda, me esforce por encontrar una solución que soportara diversas nubes y soluciones de virtualización y di con vagrant. No había sido la primera vez que escuchaba del proyecto, pero sí la primera que sabía que soportaba proveedores adicionales. La primera vez, leí que solo era una interfaz cli de VirtualBox (y dado que por ese entonces había escrito algunos scripts propios, no me daba la gana usar otra cosa).
+Finalmente, en una tercera búsqueda, me esforce por encontrar una solución que soportara diversas nubes y soluciones de virtualización y di con vagrant. No había sido la primera vez que escuchaba del proyecto, pero sí la primera que sabía que soportaba proveedores adicionales. La primera vez solo era una interfaz cli de VirtualBox (y dado que por ese entonces había escrito algunos scripts, no me daba la gana usar otra cosa).
 
-Con vagrant y su sistema de plugins, ahora puedo provisionar una máquina en 1 minuto.
+Con vagrant y su sistema de plugins, ahora puedo provisionar en 1 minuto.
 
 <pre class="sh_sh">
 $ vagrant up --provider=aws
