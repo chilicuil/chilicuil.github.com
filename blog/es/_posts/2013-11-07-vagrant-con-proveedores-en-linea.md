@@ -6,7 +6,8 @@ title: "vagrant con proveedores en línea: aws, digitalocean"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-**[![](/assets/img/86.png)](/assets/img/86.png)**
+<!--**[![](/assets/img/86.png)](/assets/img/86.png)**-->
+<iframe src="http://showterm.io/ce9681926ec6875d743f1" width="640" height="350" style="display:block; margin: 0 auto;">&nbsp;</iframe> 
 
 Me gusta mantener una computadora rápida y estable, por eso cada vez que puedo instalo o compilo en máquinas virtuales, contenedores, o en la nube. La nube es genial porque puedo trabajar más rápido de lo que lo haría con mi conexión (las conexiones en México son lentas). Algunas de las nubes más baratas y rápidas que conozco son [Ec2](http://aws.amazon.com/ec2/) (de amazon, gratis 1 año) y [DigitalOcean](http://digitalocean.com/) (5 USD en promedio por mes). De la nube a una máquina [LEB](http://lowendbox.com/), prefiero las segundas cuando se trata de correr servicios a largo/mediano plazo. Tengo
 
@@ -28,7 +29,7 @@ Poco después empecé a buscar alternativas y encontré [http://instantserver.io
 
 Finalmente, en una tercera búsqueda, me esforce por encontrar una solución que soportara diversas nubes y soluciones de virtualización y di con vagrant. No había sido la primera vez que escuchaba del proyecto, pero sí la primera que sabía que soportaba proveedores adicionales. La primera vez solo era una interfaz cli de VirtualBox (y dado que por ese entonces había escrito algunos scripts, no me daba la gana usar otra cosa).
 
-Con vagrant y su sistema de plugins, ahora puedo provisionar en 1 minuto.
+Con vagrant y su sistema de plugins, ahora puedo provisionar en ~2 minutos (1 min para crear la instancia y otro para provisionar).
 
 <pre class="sh_sh">
 $ vagrant up --provider=aws
