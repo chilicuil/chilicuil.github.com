@@ -6,7 +6,8 @@ title: "configurar entorno pxe"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-**[![](/assets/img/87.jpg)](/assets/img/87.jpg)**
+<!--**[![](/assets/img/87.jpg)](/assets/img/87.jpg)**-->
+<iframe src="http://showterm.io/99d75eac1666a82038b12" width="350" height="480" style="display:block; margin: 0 auto;">&nbsp;</iframe> 
 
 Existen varias guías en internet para configurar entornos <a href="http://es.wikipedia.org/wiki/Preboot_Execution_Environment" target="_blank">pxe</a> (muy util en la instalacion masiva de equipos), la mayoría de ellas son largas y complicadas. O si son faciles, requieren que descargues medio internet. Me gustan los sistemas minimalistas y sencillos, como no vi nada que me satisfaciera, tome algunos dias para estudiar el tema, y este es el resultado.
 
