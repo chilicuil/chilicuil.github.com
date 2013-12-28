@@ -14,7 +14,7 @@ En mi caso, me pasan ambas, me he vuelto dependiente y torpe en otras configurac
 $ sh &lt;(wget -qO- javier.io/s)
 </pre>
 
-<iframe src="http://showterm.io/3bfc94afe0f51e8d6411f" width="350" height="480" style="display:block; margin: 0 auto;">&nbsp;</iframe> 
+<iframe src="http://showterm.io/3bfc94afe0f51e8d6411f" width="640" height="350" style="display:block; margin: 0 auto;">&nbsp;</iframe> 
 
 Algunos de los cambios, son:
 
