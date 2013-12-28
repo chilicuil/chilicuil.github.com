@@ -11,23 +11,23 @@ Tener una configuracion personalizada es una arma de doble filo, por una lado, p
 En mi caso, me pasan ambas, me he vuelto dependiente y torpe en otras configuraciones, asi que con frecuencia termino descargando y aplicando mis cambios en servidores remotos, esto toma tiempo, asi que he decidido automatizarlo y desarrollar una dependencia total:
 
 <pre class="sh_sh">
-$ bash &lt;(wget -qO- javier.io/s)
+$ sh &lt;(wget -qO- javier.io/s)
 </pre>
 
-**[![](/assets/img/73.png)](/assets/img/73.png)**
+<iframe src="http://showterm.io/3bfc94afe0f51e8d6411f" width="640" height="480"></iframe> 
 
 Algunos de los cambios, son:
 
-    [+] Instalacion de: byobu, vim-nox, curl, html2txt, etc (no mas de 20 aplicaciones)
+    [+] Instalacion de: byobu, vim-nox, curl, command-not-found, libpam-captcha y htop
     [+] Eliminacion de programas no esenciales, sendemail, apache, etc
-    [+] $PS1 coloreada con acortamiento de direcciones, historial eterno, modo VI en bash, +100 aliases (ver .alias* y .bashrc)
-    [+] Vim amigable y con modos adicionales para redactar cartas (ingles|español), desarrollar y hacer presentaciones (ver ~/.vimrc)
+    [+] Shundle ($PS1 coloreada, historial eterno, modo VI en bash, +100 aliases, buscar por shundle en github)
+    [+] Vim con modos adicionales y plugins (ver ~/.vimrc)
     [+] Wcd como reemplazo a cd
-    [+] +50 scripts en /usr/local/bin:
+    [+] +60 scripts en /usr/local/bin:
         [+] pastebin, $ cat archivo | pastebin
         [+] extract, $ extract archivo.comprimido
-        [+] fu-search, $ fu-search comando #busca ejemplos
-        [+] rm_, $ rm archivo && rm -u archivo #envia a papelera en lugar de eliminar archivos
+        [+] fu-search, $ fu-search grep
+        [+] rm_, $ rm .bashrc && rm -u .bashrc
         [+] timg, $ timg imagen.png #sube imagen
         [+] ...
 
