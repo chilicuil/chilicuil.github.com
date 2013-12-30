@@ -23,3 +23,5 @@ Para usarlo lo he movido a **/usr/local/bin** y luego he creado un alias en **~/
 <pre class="sh_sh">
 $ alias rm='/usr/local/bin/rm'
 </pre>
+
+<iframe src="http://showterm.io/0a5b334fd24f82bd5ede1" width="640" height="350" style="display:block; margin: 0 auto;">&nbsp;</iframe> 

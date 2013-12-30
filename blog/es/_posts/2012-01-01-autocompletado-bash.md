@@ -177,7 +177,7 @@ Devolvería **avd**, **project**, **test-project** o **lib-project**:
 $ android create avd[Tab][Tab]
 </pre>
 
-Devolvería **-a**, **-c**, **-f**, etc. Es decir dependiendo del contexto devuelve diferentes valores, el archivo completo de este ejemplo esta en [github](https://github.com/chilicuil/learn/blob/master/autocp/bash_completion.d/android.autocp), ahora explicaré las partes más importantes:
+Devolvería **-a**, **-c**, **-f**, etc. Es decir dependiendo del contexto devuelve diferentes valores, el archivo completo de este ejemplo esta en [github](https://github.com/chilicuil/learn/blob/master/autocp/completions/android), ahora explicaré las partes más importantes:
 
 <pre class="sh_sh">
 \_android()
@@ -351,7 +351,7 @@ esac
 La forma de corregir errores es habilitando el modo verbose de bash:
 
 <pre class="sh_sh">
-$ set -v
+$ set -x
 </pre>
 
 Recargando la lista de funciones
@@ -377,10 +377,10 @@ Una lista no exaustiva de archivos /etc/bash_completion.d donde he encontrado es
 - nslookup
 - ...
 
-Además de eso tengo algunos scripts de estos en [github](https://github.com/chilicuil/learn/tree/master/autocp/bash_completion.d), tal vez a alguién se le ocurra usarlos como esqueletos a la hr de crear nuevos scripts.
+Además de eso tengo algunos scripts de estos en [github](https://github.com/chilicuil/learn/tree/master/autocp/completions), tal vez a alguién se le ocurra usarlos como esqueletos a la hr de crear nuevos scripts.
 
 ### Conclusión
 
-El autocompletado puede parecer complicado, pero en realidad una vez que se leen varios snippets se puede vislumbrar un patrón bien definido, dado que son scripts en bash, la curva de aprendizaje es relativamente baja y provee recompensa inmediata, #bash en freenode ayuda mucho para encontrar sentido a los bashismos que son más dificiles de ver.
+El autocompletado puede parecer complicado, pero en realidad una vez que se leen varios snippets se vislumbra un patrón bien definido, al ser scripts para bash, la curva de aprendizaje es relativamente baja y provee recompensa inmediata, #bash en freenode ayuda mucho para encontrar sentido a los bashismos que son más dificiles de entender.
 
 - [http://bash-completion.alioth.debian.org/](http://bash-completion.alioth.debian.org/)

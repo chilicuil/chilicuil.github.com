@@ -37,6 +37,6 @@ Por defecto hace backup de cualquier archivo antes de sobreescribirlo (.old), as
 
 Pueden modificarlo y enviar su push request =)
 
-- [Dotfiles](https://github.com/chilicuil/dotfiles/)
-- [Shundle](https://github.com/chilicuil/shundle)
-- [Utils](https://github.com/chilicuil/learn/)
+- [dotfiles](https://github.com/chilicuil/dotfiles/)
+- [shundle](https://github.com/chilicuil/shundle)
+- [utils](https://github.com/chilicuil/learn/)

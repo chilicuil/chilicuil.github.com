@@ -24,4 +24,4 @@ If you want use the script, download it, move it to **/usr/local/bin** and add a
 $ alias rm='rm_'
 </pre>
 
-Hope it helps
+<iframe src="http://showterm.io/0a5b334fd24f82bd5ede1" width="640" height="350" style="display:block; margin: 0 auto;">&nbsp;</iframe> 
