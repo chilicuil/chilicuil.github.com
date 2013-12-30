@@ -38,8 +38,8 @@ Esto funciona la mayoría de las veces. Por ejemplo, cuando se envian los correo
 Afortunadamente, existe [http://mailgun.com](http://mailgun.com) un servicio que encapsula el protocolo smtp en servicios web. Con ello, pude crear en poco tiempo un script *mail* que hace justamente lo que quiero, enviar correos, desde cualquier lugar rapido y sin configuraciones. Este ultimo, solo require **curl**, así que es lo que uso ahora.
 
 <pre class="sh_sh">
-$ wget https://github.com/chilicuil/learn/blob/master/sh/tools/mail
+$ wget https://raw.github.com/chilicuil/learn/master/sh/tools/mail
 $ bash mail "hacia@gmail.com" "mensaje"
 </pre>
 
-<br>
+<iframe src="http://showterm.io/6d595bb4e5424b943e54f" width="640" height="300" style="display:block; margin: 0 auto;">&nbsp;</iframe> 

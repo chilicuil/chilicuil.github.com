@@ -20,6 +20,6 @@ Y visceversa:
 
 <pre class="sh_sh">
 $ sudo service vboxdrv stop &amp;&amp; sudo service qemu-kvm
- </pre>
+</pre>
 
 Para otras distribuciones **rmmod/modprobe/lsmod** hacen el truco
