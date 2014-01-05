@@ -929,8 +929,7 @@ _what-virt()
 
 _enableremotevnc()
 {
-    _printfl "Enabling Xvnc"
-    _printfs "installing dependencies ..."
+    _printfs "enabling xvnc"
     _waitforsudo apt-get install --no-install-recommends -y x11vnc xserver-xorg-video-dummy
     _printfs "forcing xorg to use dummy driver ..."
 
@@ -964,8 +963,8 @@ _enableremotevnc()
 
     _smv xorg.conf /etc/X11/
 
+    #TODO 05-01-2014 03:48 >> create a service instead
     _printfs "run $ sudo x11vnc -display :0 -auth /var/run/slim.auth -forever -safer -shared"
-    _printfl
 }
 
 ################################################################################
@@ -1352,9 +1351,14 @@ _localsetup()
         _cmd sed -i \\\"s:BAT1:BAT0:g\\\" "$HOME"/.conkyrc
     fi
 
+    #some virtualization technologies used in vps's don't have displays
     localsetup_var_virt=$(_what-virt)
     case $localsetup_var_virt in
-        openvz|uml|xen) _enableremotevnc ;;
+        openvz|uml|xen) 
+            _printfl "Virtualization addons"
+            _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get purge -y zram-config
+            _enableremotevnc ;;
+            _printfl
     esac
 
     _printfs "cleaning up ..."
