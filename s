@@ -1357,8 +1357,9 @@ _localsetup()
         openvz|uml|xen) 
             _printfl "Virtualization addons"
             _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get purge -y zram-config
-            _enableremotevnc ;;
+            _enableremotevnc
             _printfl
+            ;;
     esac
 
     _printfs "cleaning up ..."
