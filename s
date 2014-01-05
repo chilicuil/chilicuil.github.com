@@ -1343,7 +1343,7 @@ _localsetup()
     fi
 
     case $localsetup_var_virt in
-        openvz|linux_vserver|*xen*|) _enableremotevnc ;;
+        openvz|linux_vserver|*xen*) _enableremotevnc ;;
     esac
 
     _printfs "cleaning up ..."
