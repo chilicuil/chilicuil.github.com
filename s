@@ -1295,7 +1295,7 @@ _localsetup()
 
     _printfs "configuring browser ..."
     _waitfor tar jxf iconf/firefox/mozilla.tar.bz2 -C iconf/firefox
-    for mozilla_old_profile in iconf/firefox/.mozilla/firefox/*.default; do break done
+    for mozilla_old_profile in iconf/firefox/.mozilla/firefox/*.default; do break; done
     mozilla_old_profile=$(basename "$mozilla_old_profile" .default)
     mozilla_new_profile=$(strings /dev/urandom | grep -o '[[:alnum:]]' | \
                           head -n 8 | tr -d '\n'; printf "\\n")
