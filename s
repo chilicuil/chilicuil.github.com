@@ -1144,7 +1144,12 @@ _localsetup()
     _waitforsudo locale-gen en_US en_US.UTF-8
     _waitforsudo dpkg-reconfigure -f noninteractive locales
     #https://bugs.launchpad.net/ubuntu/+source/pam/+bug/155794
-    [ -f /etc/default/locale ] || _cmdsudo update-locale
+    if [ ! -f /etc/default/locale ]; then
+        #printf "%s\\n%s\\n" 'LANG="en_US.UTF-8"' \
+                            #'LANGUAGE="en_US:en"' > locale
+        #_smv locale /etc/default/
+        _cmdsudo update-locale LANG=en_US.UTF-8 LC_MESSAGES=POSIX
+    fi
 
     _printfs "setting up an apt-get proxy ..."
     _waitforsudo apt-get update
