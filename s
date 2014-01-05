@@ -1294,23 +1294,22 @@ _localsetup()
     fi
 
     _printfs "configuring browser ..."
-    _smv iconf/firefox/libflashplayer${_remotesetup_var_arch}.so /usr/lib/mozilla/plugins/
-    if [ ! -f $HOME/.not_override ]; then
-        _waitfor tar jxf iconf/firefox/mozilla.tar.bz2 -C iconf/firefox
-        mozilla_new_profile=$(strings /dev/urandom | grep -o '[[:alnum:]]' | \
-                              head -n 8 | tr -d '\n'; printf "\\n")
-        mozilla_old_profile=iconf/firefox/.mozilla/firefox/*.default
-        mozilla_old_profile=$(basename "$mozilla_old_profile" .default)
+    _waitfor tar jxf iconf/firefox/mozilla.tar.bz2 -C iconf/firefox
+    mozilla_old_profile=iconf/firefox/.mozilla/firefox/*.default
+    mozilla_old_profile=$(basename "$mozilla_old_profile" .default)
+    mozilla_new_profile=$(strings /dev/urandom | grep -o '[[:alnum:]]' | \
+                          head -n 8 | tr -d '\n'; printf "\\n")
 
-        _cmd mv iconf/firefox/.mozilla/firefox/$mozilla_old_profile.default \
-                iconf/firefox/.mozilla/firefox/$mozilla_new_profile.default
-        if mozilla_files=$(grep -rl "$mozilla_old_profile" iconf/firefox/.mozilla); then
-            printf "%s\\n" "$mozilla_files" | xargs sed -i -e "s/$mozilla_old_profile/$mozilla_new_profile/g"
-            printf "%s\\n" "$mozilla_files" | xargs sed -i -e "s/admin/$(whoami)/g"
-            printf "%s\\n" "$mozilla_files" | xargs sed -i -e "s/chilicuil/$(whoami)/g"
-        fi
-        _smv iconf/firefox/.mozilla "$HOME"
+    _smv iconf/firefox/libflashplayer${_remotesetup_var_arch}.so /usr/lib/mozilla/plugins/
+    _cmd mv iconf/firefox/.mozilla/firefox/$mozilla_old_profile.default \
+            iconf/firefox/.mozilla/firefox/$mozilla_new_profile.default
+    if mozilla_files=$(grep -rl "$mozilla_old_profile" iconf/firefox/.mozilla); then
+        printf "%s\\n" "$mozilla_files" | xargs sed -i -e "s/$mozilla_old_profile/$mozilla_new_profile/g"
+        printf "%s\\n" "$mozilla_files" | xargs sed -i -e "s/admin/$(whoami)/g"
+        printf "%s\\n" "$mozilla_files" | xargs sed -i -e "s/chilicuil/$(whoami)/g"
     fi
+    _smv iconf/firefox/.mozilla "$HOME"
+
     _cmd rm -rf ~/.macromedia ~/.adobe
     _cmd ln -s      /dev/null ~/.adobe
     _cmd ln -s      /dev/null ~/.macromedia
