@@ -914,7 +914,7 @@ _ensuresetting()
     fi
 }
 
-_what-virt()
+_whatvirt()
 {   #check for virtualization system, returns technology used
     if [ -d /proc/vz ] && [ ! -d /proc/bc ]; then
         printf "openvz"
@@ -1352,7 +1352,7 @@ _localsetup()
     fi
 
     #some virtualization technologies used in vps's don't have displays
-    localsetup_var_virt=$(_what-virt)
+    localsetup_var_virt=$(_whatvirt)
     case $localsetup_var_virt in
         openvz|uml|xen) 
             _printfl "Virtualization addons"
