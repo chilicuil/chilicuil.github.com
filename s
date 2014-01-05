@@ -1171,7 +1171,7 @@ _localsetup()
     _cmd mkdir "$HOME"/.s
     _cmd touch "$HOME"/.s/config
     printf "%s" "sudopwd=$sudopwd" > "$HOME"/.s/config
-    _waitfor sh ./s
+    _cmd sh ./s
     _cmd touch "$HOME"/.not_override
     _cmd rm -rf s .s/
 
