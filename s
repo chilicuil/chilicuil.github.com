@@ -10,7 +10,7 @@ liner="$ sh <(wget -qO- javier.io/s)"
 #default apps
 apps_remote="git-core vim-nox byobu wcd htop rsync curl bzip2 gzip html2text
 ncurses-bin command-not-found libpam-captcha"
-apps_local="i3-wm alsa-utils alsa-base mpd ncmpcpp mpc slim virt-what
+apps_local="i3-wm alsa-utils alsa-base mpd ncmpcpp mpc slim
 rxvt-unicode-256color xorg git-core autocutsel acpi suckless-tools feh sxiv
 notify-osd hibernate html2text htop irssi mplayer2 mutt-patched dzen2 pcmanfm
 pm-utils rlpr unetbootin wodim xclip zsync gnupg-agent lxappearance
@@ -20,7 +20,7 @@ gvfs-common gvfs-daemons gvfs-fuse gvfs-libs policykit-1 google-talkplugin
 libmad0 libdvdcss2 libdvdread4 curl dkms xdotool dbus-x11 gxmessage wcd"
 apps_ubuntudev="apt-file cvs subversion bzr bzr-builddeb pbuilder tidy zsync"
 apps_purge="xinetd sasl2-bin sendmail sendmail-base sendmail-bin sensible-mda
-rmail bsd-mailx apache2.2-common apache2 nano virt-what"
+rmail bsd-mailx apache2.2-common apache2 nano"
 
 if [ -z "$1" ]; then
     mode="remote"; rx="\b>"
@@ -914,6 +914,19 @@ _ensuresetting()
     fi
 }
 
+_what-virt()
+{   #check for virtualization system, returns technology used
+    if [ -d /proc/vz ] && [ ! -d /proc/bc ]; then
+        printf "openvz"
+    elif grep 'UML' /proc/cpuinfo >/dev/null; then
+        printf "uml"
+    elif  [ -f /proc/xen/capabilities ]; then
+        printf "xen"
+    elif grep 'QEMU' /proc/cpuinfo >/dev/null; then
+        printf "qemu"
+    fi
+}
+
 _enableremotevnc()
 {
     _printfl "Enabling Xvnc"
@@ -1151,9 +1164,6 @@ _localsetup()
         #_cmdsudo update-locale LANG=en_US.UTF-8 LC_MESSAGES=POSIX
     fi
 
-    #detect if we're in a virtualized environment
-    localsetup_var_virt=$(_cmdsudo virt-what)
-
     _printfs "setting up an apt-get proxy ..."
     _waitforsudo apt-get update
     _waitforsudo apt-get install --no-install-recommends -y avahi-utils
@@ -1342,8 +1352,9 @@ _localsetup()
         _cmd sed -i \\\"s:BAT1:BAT0:g\\\" "$HOME"/.conkyrc
     fi
 
+    localsetup_var_virt=$(_what-virt)
     case $localsetup_var_virt in
-        openvz|linux_vserver|*xen*) _enableremotevnc ;;
+        openvz|uml|xen) _enableremotevnc ;;
     esac
 
     _printfs "cleaning up ..."
