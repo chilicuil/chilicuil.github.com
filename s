@@ -2,6 +2,9 @@
 
 trap _cleanup INT QUIT #trap ctrl-c
 
+#TODO 05-01-2014 03:55 >> only download when no override file exist
+#TODO 05-01-2014 03:56 >> test on x86, 12.10, 13.10..., debian
+
 dotfiles="https://github.com/chilicuil/dotfiles"
 utils="https://github.com/chilicuil/learn"
 updates="http://javier.io/s"
@@ -64,6 +67,7 @@ _arch()
 
 _addcron()
 {   #adds cron job, returns 1 on error
+    #TODO 05-01-2014 03:54 >> ensure
     [ -z "$1" ] && return 1
     ( crontab -l 2>/dev/null; printf "%s\\n" "$1" ) | crontab -
 }
@@ -946,16 +950,19 @@ _enableremotevnc()
     printf "%s\\n" '    Identifier "Card0"' >> xorg.conf
     printf "%s\\n" '    Option "NoDDC" "true"' >> xorg.conf
     printf "%s\\n" '    Option "IgnoreEDID" "true"' >> xorg.conf
+    printf "%s\\n" '    Option "ShadowFB" "true"' >> xorg.conf
     printf "%s\\n" '    Driver "dummy"' >> xorg.conf
     printf "%s\\n" 'EndSection' >> xorg.conf
 
     printf "%s\\n" 'Section "Screen"' >> xorg.conf
-    printf "%s\\n" '    DefaultDepth 24' >> xorg.conf
+    printf "%s\\n" '    #DefaultDepth 24' >> xorg.conf
+    printf "%s\\n" '    DefaultDepth 16' >> xorg.conf
     printf "%s\\n" '    Identifier "Screen0"' >> xorg.conf
     printf "%s\\n" '    Device "Card0"' >> xorg.conf
     printf "%s\\n" '    Monitor "Monitor0"' >> xorg.conf
     printf "%s\\n" '    SubSection "Display"' >> xorg.conf
-    printf "%s\\n" '        Depth 24' >> xorg.conf
+    printf "%s\\n" '        #Depth 24' >> xorg.conf
+    printf "%s\\n" '        Depth 16' >> xorg.conf
     printf "%s\\n" '        #    Virtual 1280 800' >> xorg.conf
     printf "%s\\n" '        Modes "1224x685"' >> xorg.conf
     printf "%s\\n" '    EndSubSection' >> xorg.conf
@@ -1358,7 +1365,6 @@ _localsetup()
             _printfl "Virtualization addons"
             _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get purge -y zram-config
             _enableremotevnc
-            _printfl
             ;;
     esac
 
@@ -1401,3 +1407,5 @@ else
     printf "%s %s\\n" "FAILED: Non supported distribution system detected," \
             "run this script on $supported systems only"
 fi
+
+# vim: set ts=8 sw=4 tw=0 ft=sh : 
