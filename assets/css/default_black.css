@@ -50,6 +50,7 @@ body {
 
 /************************ hello world in home ***************************/
 #hello h1 {
+    text-align: center;
     color: #777;
     padding-top: 5%;
     font-family: 'Vollkorn','serif';
