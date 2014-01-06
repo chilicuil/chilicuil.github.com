@@ -11,7 +11,7 @@ title: "actualización ubuntu 12.04"
 **Nota:** He creado un [script](http://javier.io/s) para automatizar el proceso en versiones de Ubuntu superiores a 12.04. Si estas interesado en usarlo, ejecuta desde una terminal.
 
 <pre>
-$ sh <(wget -qO- javier.io/s) local
+$ sh &lt;(wget -qO- javier.io/s) local
 </pre>
 
 ADVERTENCIA: Las personalizaciones que se hacen son extremadamente intrusivas, sugiero que se previsualice el sistema en un entorno virtual.
