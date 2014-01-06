@@ -10,7 +10,7 @@ title: "multicursor en ubuntu"
 
 Durante las últimas vacaciones me encontré en una situación donde tuve que compartir mi laptop con otras personas. Sabía de un tiempo que era posible, pero nunca lo había hecho.., hasta ahora =)
 
-En el lugar a donde fuí, tuve acceso a una [pantalla](/assets/img/89.jpg) y a un [mouse](/assets/img/90.jpg) extra (adoro ese mouse). Supongo que no tiene mucho sentido hacer esto cuando se tiene solo una pantalla ...
+En el lugar a donde fuí, tuve acceso a una [pantalla](/assets/img/89.jpg) y a un [mouse](/assets/img/90.jpg) extra (adoro ese mouse). Supongo que no tiene mucho sentido hacer esto cuando se tiene solo una pantalla...
 
 En [i3](http://i3wm.org/) se puede agregar otro monitor con el comando:
 
