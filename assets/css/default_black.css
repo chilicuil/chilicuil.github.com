@@ -49,7 +49,7 @@ body {
 }
 
 /************************ hello world in home ***************************/
-center > h1 {
+#hello h1 {
     color: #777;
     padding-top: 5%;
     font-family: 'Vollkorn','serif';
