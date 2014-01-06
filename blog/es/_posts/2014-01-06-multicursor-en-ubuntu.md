@@ -7,7 +7,6 @@ title: "multicursor en ubuntu"
 ###### {{ page.date | date_to_string }}
 
 **[![](/assets/img/88.png)](/assets/img/88.png)**
-<!--<iframe src="http://showterm.io/53a85bc1b41c096c83130" width="640" height="350" style="display:block; margin: 0 auto;">&nbsp;</iframe> -->
 
 Durante las últimas vacaciones me encontré en una situación donde tuve que compartir mi laptop con otras personas. Sabía de un tiempo que era posible, pero nunca lo había hecho.., hasta ahora =)
 
