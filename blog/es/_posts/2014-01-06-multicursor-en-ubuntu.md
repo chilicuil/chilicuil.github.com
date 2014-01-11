@@ -53,6 +53,6 @@ xinput list
     ↳ Auxiliary XTEST keyboard                	id=20	[slave  keyboard (18)]
 </pre>
 
-Parece ser que el proceso es similar para los teclados, pero eso ya no lo verifique (tal vez debería comenzar a cargar teclados extra =P). La experencia en general fue buena, el soporte de i3 para multi punteros no esta mal, aunque de repente pueda existir confusión, es manejable. Por otra parte, me causo alegría ver que el [entorno minimalista](http://javier.io/blog/es/2012/05/03/actualizacion-ubuntu-1204.html) que uso no fue impedimento para que otras personas usaran el equipo =D
+Parece ser que el proceso es similar para los teclados, pero eso ya no lo verifique (tal vez debería comenzar a cargar teclados extra =P). La experiencia en general fue buena, el soporte de i3 para multi punteros no esta mal, aunque de repente pueda existir confusión, es manejable. Por otra parte, me causo alegría ver que el [entorno minimalista](http://javier.io/blog/es/2012/05/03/actualizacion-ubuntu-1204.html) que uso no fue impedimento para que otras personas usaran el equipo =D
 
 - [https://wiki.archlinux.org/index.php/Multi-pointer_X](https://wiki.archlinux.org/index.php/Multi-pointer_X)
