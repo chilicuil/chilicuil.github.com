@@ -13,7 +13,7 @@ liner="$ sh <(wget -qO- javier.io/s)"
 #default apps
 apps_remote="git-core vim-nox byobu wcd htop rsync curl bzip2 gzip html2text
 ncurses-bin command-not-found libpam-captcha"
-apps_local="i3-wm alsa-utils alsa-base mpd ncmpcpp mpc slim
+apps_local="i3-wm alsa-utils alsa-base mpd ncmpcpp mpc slim libnotify-bin
 rxvt-unicode-256color xorg git-core autocutsel acpi suckless-tools feh sxiv
 notify-osd hibernate html2text htop irssi mplayer2 mutt-patched dzen2 pcmanfm
 pm-utils rlpr unetbootin wodim xclip zsync gnupg-agent lxappearance
@@ -23,7 +23,7 @@ gvfs-common gvfs-daemons gvfs-fuse gvfs-libs policykit-1 google-talkplugin
 libmad0 libdvdcss2 libdvdread4 curl dkms xdotool dbus-x11 gxmessage wcd"
 apps_ubuntudev="apt-file cvs subversion bzr bzr-builddeb pbuilder tidy zsync"
 apps_purge="xinetd sasl2-bin sendmail sendmail-base sendmail-bin sensible-mda
-rmail bsd-mailx apache2.2-common apache2 nano"
+rmail bsd-mailx apache2.2-common apache2 nano bind9"
 
 if [ -z "$1" ]; then
     mode="remote"; rx="\b>"
@@ -51,15 +51,9 @@ _arch()
     fi
 
     case "$_arch_var_arch" in
-        x86_64)
-            _arch_var_arch="64";
-            ;;
-        i686)
-            _arch_var_arch="32";
-            ;;
-        *)
-            return 1
-            ;;
+        x86_64) _arch_var_arch="64" ;;
+        i686)   _arch_var_arch="32" ;;
+        *)      return 1 ;;
     esac
 
     printf "%s" "$_arch_var_arch"
@@ -146,7 +140,7 @@ _getroot()
                     sudocmd="sudo -S"
                 fi 
                 printf "%s\\n" "    - all set ..."
-                return
+                return 0
             fi
 
             i=0 ; while [ "$i" -lt 3 ]; do
@@ -919,16 +913,17 @@ _ensuresetting()
 }
 
 _whatvirt()
-{   #check for virtualization system, returns technology used
+{   #check for virtualization systems, returns technology used
     if [ -d /proc/vz ] && [ ! -d /proc/bc ]; then
         printf "openvz"
     elif grep 'UML' /proc/cpuinfo >/dev/null; then
         printf "uml"
-    elif  [ -f /proc/xen/capabilities ]; then
+    elif [ -f /proc/xen/capabilities ]; then
         printf "xen"
     elif grep 'QEMU' /proc/cpuinfo >/dev/null; then
         printf "qemu"
     fi
+    return 1
 }
 
 _enableremotevnc()
@@ -997,8 +992,7 @@ _remotesetup()
     _waitforsudo dpkg-reconfigure -f noninteractive locales
     #https://bugs.launchpad.net/ubuntu/+source/pam/+bug/155794
     if [ ! -f /etc/default/locale ]; then
-        printf "%s\\n%s\\n" 'LANG="en_US.UTF-8"' \
-                            'LANGUAGE="en_US:en"' > locale
+        printf "%s\\n%s\\n" 'LANG="en_US.UTF-8"' 'LANGUAGE="en_US:en"' > locale
         _smv locale /etc/default/
         #_cmdsudo update-locale LANG=en_US.UTF-8 LC_MESSAGES=POSIX
     fi
@@ -1086,6 +1080,8 @@ _remotesetup()
     #http://javier.io/blog/es/2013/12/17/captcha-para-ssh.html
     if [ -f /etc/pam.d/sshd ]; then
         if ! grep "pam_captcha.so" /etc/pam.d/sshd >/dev/null; then
+            #needs to be before anything else, that's why _ensuresetting cannot
+            #be used here (which adds settings at the end of a file)
             _cmdsudo sed -i                                           \
             1i\\\"auth requisite pam_captcha.so math randomstring\\\" \
             /etc/pam.d/sshd
@@ -1196,12 +1192,12 @@ _localsetup()
     _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y $apps_local
 
     _printfs "installing /usr/local/bin utilities and dotfiles ..."
+    #call itself in remote (default) mode (see _remotesetup)
     _fetchfile http://javier.io/s
     _cmd mkdir "$HOME"/.s
     _cmd touch "$HOME"/.s/config
     printf "%s" "sudopwd=$sudopwd" > "$HOME"/.s/config
-    _cmd sh ./s
-    _cmd touch "$HOME"/.not_override
+    _cmd sh ./s #_waitfor would be fancier, but there is no easy way to track for sh processes
     _cmd rm -rf s .s/
 
     [ ! -f /usr/bin/i3 ] && _die "Dependency step failed"
@@ -1226,7 +1222,7 @@ _localsetup()
     _printfs   "downloading confs, themes and so on ..."
     _fetchfile http://files.javier.io/rep/s/iconf.tar.bz2
     _waitfor   tar jxf iconf.tar.bz2
-    _cmd       rm iconf.tar.bz2
+    _waitfor   rm iconf.tar.bz2
 
     [ ! -d "./iconf" ] && _die "Download step failed"
 
@@ -1369,6 +1365,8 @@ _localsetup()
     esac
 
     _printfs "cleaning up ..."
+    #_cmd touch "$HOME"/.not_override
+    #_cmdsudo touch /usr/local/bin/not_override
     _cmd rm -rf iconf*
 
     ############################################################################
@@ -1400,7 +1398,7 @@ if _supported; then
              #e.g, _cmdsudo mkdir /root/forbidden_directory
     case "$mode" in
         remote) _remotesetup;;
-        local)  _localsetup;;
+        local)  _localsetup ;;
     esac
     _hooks C; : #finish script with 0, independly of latest hooks result
 else
