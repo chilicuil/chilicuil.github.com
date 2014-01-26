@@ -77,14 +77,14 @@ _animcui()
 
     _animcui_var_animation_state="1"
 
-    if [ ! "$(ps -p "$(pidof "$1")" -o comm=)" ]; then
+    if [ ! "$(ps -p "$(pidof "$1")" -o comm= 2>/dev/null)" ]; then
         printf "%5s\n" ""
         return 1
     fi
 
     printf "%5s" ""
 
-    while [ "$(ps -p "$(pidof "$1")" -o comm=)" ]; do
+    while [ "$(ps -p "$(pidof "$1")" -o comm= 2>/dev/null)" ]; do
         printf "%b" "\b\b\b\b\b"
         case "$_animcui_var_animation_state" in
             1)
