@@ -99,7 +99,6 @@ The localize.drupal.org server has po files with a drupal version prefix, if dow
     drupal-7.26.es.po -&gt; es.po
 </pre>
 
-<br />
 - [https://drupal.org/node/1326106](https://drupal.org/node/1326106)
 
 ### .install
