@@ -70,22 +70,21 @@ _animcui()
 {   #wait animation
     [ -z "$1" ] && { printf "%5s\n" ""; return 1; }
 
-    if ! printf "%s" "$1" | grep -v "[^0-9]" >/dev/null; then
+    if ! printf "%s" "$(pidof "$1")" | grep -v "[^0-9]" >/dev/null; then
         printf "%5s\n" ""
         return 1; 
     fi
 
-    _animcui_var_pid="$1"
     _animcui_var_animation_state="1"
 
-    if [ ! "$(ps -p "$_animcui_var_pid" -o comm=)" ]; then
+    if [ ! "$(ps -p "$(pidof "$1")" -o comm=)" ]; then
         printf "%5s\n" ""
         return 1
     fi
 
     printf "%5s" ""
 
-    while [ "$(ps -p "$_animcui_var_pid" -o comm=)" ]; do
+    while [ "$(ps -p "$(pidof "$1")" -o comm=)" ]; do
         printf "%b" "\b\b\b\b\b"
         case "$_animcui_var_animation_state" in
             1)
@@ -545,7 +544,7 @@ _waitfor()
     eval "$@" >/dev/null 2>&1 &
     sleep 1s
 
-    _animcui $(pidof "$1")
+    _animcui $1
 }
 
 _waitforsudo()
@@ -557,9 +556,9 @@ _waitforsudo()
     sleep 1s
 
     if [ X"$1" = X"DEBIAN_FRONTEND=noninteractive" ]; then
-        _animcui $(pidof "$2")
+        _animcui $2
     else
-        _animcui $(pidof "$1")
+        _animcui $1
     fi
 }
 
