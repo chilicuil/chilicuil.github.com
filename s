@@ -21,7 +21,6 @@ exuberant-ctags i3lock conky-cli zathura gtk2-engines-pixbuf openssh-server
 wicd-curses geoclue-ubuntu-geoip redshift zram-config lame unzip udisks gvfs
 gvfs-common gvfs-daemons gvfs-fuse gvfs-libs policykit-1 google-talkplugin
 libmad0 libdvdcss2 libdvdread4 curl dkms xdotool dbus-x11 gxmessage wcd"
-apps_ubuntudev="apt-file cvs subversion bzr bzr-builddeb pbuilder tidy zsync"
 apps_purge="xinetd sasl2-bin sendmail sendmail-base sendmail-bin sensible-mda
 rmail bsd-mailx apache2.2-common apache2 nano bind9"
 
@@ -664,6 +663,30 @@ _supported()
     return 1
 }
 
+_installaptproxy()
+{
+    _waitforsudo apt-get update
+    _waitforsudo apt-get install --no-install-recommends -y avahi-utils
+
+    if _existaptproxy; then
+        _remotesetup_var_apt_proxy_server=$(avahi-browse -a -t -r -p | grep apt-cacher-ng | grep = | cut -d";" -f8)
+        _printfs "exists an apt-get proxy in the network at $_remotesetup_var_apt_proxy_server, setting up the client ..."
+        _waitforsudo apt-get install --no-install-recommends -y squid-deb-proxy-client
+    else
+        _printfs "no apt-get proxy found, installing one locally ..."
+        _waitforsudo apt-get install --no-install-recommends -y squid-deb-proxy-client apt-cacher-ng
+        if [ ! -f /etc/avahi/services/apt-cacher-ng.service ]; then
+            _fetchfile http://javier.io/mirror/apt-cacher-ng.service
+            _cmdsudo mv apt-cacher-ng.service /etc/avahi/services/apt-cacher-ng.service
+        fi
+        if [ -d "$HOME"/misc/ubuntu/proxy/apt-cacher-ng/ ]; then
+            _printfs "exporting files ..."
+            _cmdsudo rm -rf /var/cache/apt-cacher-ng
+            _cmdsudo ln -s "$HOME"/misc/ubuntu/proxy/apt-cacher-ng/ /var/cache/apt-cacher-ng
+        fi
+    fi
+}
+
 _installfirefoxnightly()
 {   #custom ff version
     _installfirefoxnightly_var_arch=$(_arch)
@@ -813,6 +836,16 @@ _recoverreps()
             _cmdsudo mv "$_recoverreps_var_file" "${_recoverreps_var_file%.backup_rep}"
         fi
     done
+}
+
+_ensureonline()
+{   #ensure site is online
+    [ -z "$1" ] && return 1
+    _printfs "testing $1 ... "
+    if ! _siteup "$1"; then
+        _die "$1 seems down, retry when up"
+    fi
+    return 0
 }
 
 _ensurerepo()
@@ -978,7 +1011,7 @@ _remotesetup()
     _remotesetup_var_release=$(_getrelease)
     if [ -n "$_remotesetup_var_release" ]; then
         _backupreps
-        _printfs "adding repos ..."
+        _printfs    "adding repos ..."
         _ensurerepo "deb http://ppa.launchpad.net/chilicuil/sucklesstools/ubuntu $_remotesetup_var_release main" "8AC54C683AC7B5E8"
         _ensurerepo "deb http://archive.ubuntu.com/ubuntu/ $_remotesetup_var_release multiverse"
         _ensurerepo "deb http://archive.ubuntu.com/ubuntu/ $_remotesetup_var_release-updates multiverse"
@@ -986,7 +1019,7 @@ _remotesetup()
         _die "Impossible to find release"
     fi
 
-    _printfs "fixing locales ..."
+    _printfs     "fixing locales ..."
     _waitforsudo locale-gen en_US en_US.UTF-8
     _waitforsudo dpkg-reconfigure -f noninteractive locales
     #https://bugs.launchpad.net/ubuntu/+source/pam/+bug/155794
@@ -996,21 +1029,22 @@ _remotesetup()
         #_cmdsudo update-locale LANG=en_US.UTF-8 LC_MESSAGES=POSIX
     fi
 
-    _printfs "installing deps ..."
+    _printfs     "installing deps ..."
     _waitforsudo apt-get update
     _waitforsudo apt-get install --no-install-recommends -y $apps_remote
 
-    _printfs "purging non essential apps ..."
+    _printfs     "purging non essential apps ..."
     _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get purge -y $apps_purge
     _diesendmail
 
-    [ ! -f /usr/bin/git ] && _die "Dependency step failed"
+    if ! command -v "git" >/dev/null; then
+        _die "Dependency step failed"
+    fi
 
     ############################################################################
 
-    _printfl "Downloading files"
-    _printfs "getting reps ..."
-
+    _printfl   "Downloading files"
+    _printfs   "getting reps ..."
     _fetchrepo "$dotfiles.git"
     _fetchrepo "$utils.git"
 
@@ -1075,7 +1109,6 @@ _remotesetup()
     _printfl "Configuring main apps"
 
     _printfs "configuring ssh ..."
-
     #http://javier.io/blog/es/2013/12/17/captcha-para-ssh.html
     if [ -f /etc/pam.d/sshd ]; then
         if ! grep "pam_captcha.so" /etc/pam.d/sshd >/dev/null; then
@@ -1125,24 +1158,20 @@ _remotesetup()
 
 _localsetup()
 {
-    _printfl "Verifying mirrors"
-    _printfs "testing http://files.javier.io ..."
-    if ! _siteup "http://files.javier.io"; then
-        _die "http://files.javier.io seems down, retry when up"
-    fi
+    _printfl      "Verifying mirrors"
+    _ensureonline "http://files.javier.io"
+    _ensureonline "http://javier.io"
+    _ensureonline "http://launchpad.net"
+    _ensureonline "http://dl.google.com"
+    _ensureonline "http://download.videolan.org"
+    _printfs      "everything seems ok, continuing..."
 
-    _printfs "testing http://javier.io ..."
-    if ! _siteup "http://.javier.io"; then
-        _die "http://javier.io seems down, retry when up"
-    fi
-    _printfs "everything seems ok, continuing..."
-
-    _printfl "Fixing dependencies"
+    _printfl      "Fixing dependencies"
     _remotesetup_var_release=$(_getrelease)
     _remotesetup_var_arch=$(_arch)
     if [ -n "$_remotesetup_var_release" ]; then
         _backupreps
-        _printfs "adding repos ..."
+        _printfs    "adding repos ..."
         _ensurerepo "deb http://ppa.launchpad.net/chilicuil/sucklesstools/ubuntu $_remotesetup_var_release main" "8AC54C683AC7B5E8"
         _ensurerepo "deb http://archive.ubuntu.com/ubuntu/ $_remotesetup_var_release multiverse"
         _ensurerepo "deb http://archive.ubuntu.com/ubuntu/ $_remotesetup_var_release-updates multiverse"
@@ -1152,102 +1181,86 @@ _localsetup()
         _die "Impossible to find release"
     fi
 
+    #mount/use home if available
     _sethome
 
-    _printfs "fixing locales ..."
+    _printfs     "fixing locales ..."
     _waitforsudo locale-gen en_US en_US.UTF-8
     _waitforsudo dpkg-reconfigure -f noninteractive locales
     #https://bugs.launchpad.net/ubuntu/+source/pam/+bug/155794
     if [ ! -f /etc/default/locale ]; then
-        printf "%s\\n%s\\n" 'LANG="en_US.UTF-8"' \
-                            'LANGUAGE="en_US:en"' > locale
+        printf "%s\\n%s\\n" 'LANG="en_US.UTF-8"' 'LANGUAGE="en_US:en"' > locale
         _smv locale /etc/default/
         #_cmdsudo update-locale LANG=en_US.UTF-8 LC_MESSAGES=POSIX
     fi
 
     _printfs "setting up an apt-get proxy ..."
-    _waitforsudo apt-get update
-    _waitforsudo apt-get install --no-install-recommends -y avahi-utils
+    _installaptproxy
 
-    if _existaptproxy; then
-        _remotesetup_var_apt_proxy_server=$(avahi-browse -a -t -r -p | grep apt-cacher-ng | grep = | cut -d";" -f8)
-        _printfs "exists an apt-get proxy in the network at $_remotesetup_var_apt_proxy_server, setting up the client ..."
-        _waitforsudo apt-get install --no-install-recommends -y squid-deb-proxy-client
-    else
-        _printfs "no apt-get proxy found, installing one locally ..."
-        _waitforsudo apt-get install --no-install-recommends -y squid-deb-proxy-client apt-cacher-ng
-        if [ ! -f /etc/avahi/services/apt-cacher-ng.service ]; then
-            _fetchfile http://javier.io/mirror/apt-cacher-ng.service
-            _cmdsudo mv apt-cacher-ng.service /etc/avahi/services/apt-cacher-ng.service
-        fi
-        if [ -d "$HOME"/misc/ubuntu/proxy/apt-cacher-ng/ ]; then
-            _printfs "exporting files ..."
-            _cmdsudo rm -rf /var/cache/apt-cacher-ng
-            _cmdsudo ln -s "$HOME"/misc/ubuntu/proxy/apt-cacher-ng/ /var/cache/apt-cacher-ng
-        fi
-    fi
-
-    _printfs "installing apps ..."
+    _printfs     "installing apps ..."
     _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y $apps_local
 
-    _printfs "installing /usr/local/bin utilities and dotfiles ..."
-    #call itself in remote (default) mode (see _remotesetup)
-    _fetchfile http://javier.io/s
-    _cmd mkdir "$HOME"/.s
-    _cmd touch "$HOME"/.s/config
-    printf "%s" "sudopwd=$sudopwd" > "$HOME"/.s/config
-    _cmd sh ./s #_waitfor would be fancier, but there is no easy way to track for sh processes
-    _cmd rm -rf s .s/
+    if ! command -v "i3" >/dev/null; then
+        _die "Dependency step failed"
+    fi
 
-    [ ! -f /usr/bin/i3 ] && _die "Dependency step failed"
+    _printfs     "installing /usr/local/bin utilities and dotfiles ..."
+    #call itself in remote (default) mode (see _remotesetup)
+    _fetchfile   http://javier.io/s
+    _cmd mkdir   "$HOME"/.s
+    _cmd touch   "$HOME"/.s/config
+    printf       "%s" "sudopwd=$sudopwd" > "$HOME"/.s/config
+    _cmd         sh ./s #_waitfor would be fancier, but there is no easy way to track sh processes
+    _cmd         rm -rf s .s/
 
     if [ ! -d "$HOME"/.bin/firefox${_remotesetup_var_arch} ]; then
         _cmd mkdir "$HOME"/.bin
         _installfirefoxnightly
     fi
 
-    if [ ! -f /usr/local/bin/magnifier ]; then
+    if ! command -v "magnifier" >/dev/null; then
         _fetchfile http://files.javier.io/rep/s/magnifier${_remotesetup_var_arch}.bin magnifier
         _cmd chmod +x magnifier
         _cmdsudo mv magnifier /usr/local/bin/
     fi
 
-    _printfs "purging non essential apps ..."
+    _printfs     "purging non essential apps ..."
     _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get purge -y $apps_purge
 
     ############################################################################
 
-    _printfl   "Downloading theme files"
-    _printfs   "downloading confs, themes and so on ..."
-    _fetchfile http://files.javier.io/rep/s/iconf.tar.bz2
-    _waitfor   tar jxf iconf.tar.bz2
-    _waitfor   rm iconf.tar.bz2
+    _printfl     "Downloading theme files"
+    _printfs     "downloading confs, themes and so on ..."
+    _fetchfile   http://files.javier.io/rep/s/iconf.tar.bz2
+    _waitfor     tar jxf iconf.tar.bz2
+    _waitfor     rm iconf.tar.bz2
 
     [ ! -d "./iconf" ] && _die "Download step failed"
 
     ############################################################################
 
-    _printfl "Configuring system"
-    _printfs "configuring swappiness ..."
+    _printfl       "Configuring system"
+
+    _printfs       "configuring swappiness ..."
     _ensuresetting "vm.swappiness=10" /etc/sysctl.conf
-    _printfs "configuring kernel messages ..."
+    _printfs       "configuring kernel messages ..."
     _ensuresetting "kernel.printk = 4 4 1 7" /etc/sysctl.conf
 
-    _printfs "configuring network ..."
-    printf "%s\\n" "auto lo" > interfaces
-    printf "%s\\n" "iface lo inet loopback" >> interfaces
-    _cmdsudo mv interfaces /etc/network/
-    _cmdsudo usermod -a -G netdev $(whoami)
+    _printfs       "configuring network ..."
+    printf         "%s\\n" "auto lo"                > interfaces
+    printf         "%s\\n" "iface lo inet loopback" >> interfaces
+    _cmdsudo       mv interfaces /etc/network/
+    _cmdsudo       usermod -a -G netdev $(whoami)
 
-    _printfs "configuring audio ..."
+    _printfs       "configuring audio ..."
     _ensuresetting "snd-mixer-oss" /etc/modules
-    _cmdsudo mv iconf/mpd/mpd.conf /etc
-    _cmdsudo sed -i -e \\\"/music_directory/ s:chilicuil:$(whoami):\\\" /etc/mpd.conf
+    _cmdsudo       mv iconf/mpd/mpd.conf /etc
+    _cmdsudo       sed -i -e \\\"/music_directory/ s:chilicuil:$(whoami):\\\" /etc/mpd.conf
 
-    _printfs "configuring groups ..."
-    _cmdsudo usermod -a -G dialout $(whoami)
-    _cmdsudo usermod -a -G sudo    $(whoami)
-    _cmdsudo usermod -a -G plugdev $(whoami)
+    _printfs       "configuring groups ..."
+    _cmdsudo       usermod -a -G dialout $(whoami)
+    _cmdsudo       usermod -a -G sudo    $(whoami)
+    _cmdsudo       usermod -a -G plugdev $(whoami)
 
     _printfs "configuring cron ..."
     if [ -f /usr/local/bin/watch-battery ]; then
@@ -1270,11 +1283,9 @@ _localsetup()
     fi
 
     _printfs "configuring login manager ..."
-    _smv iconf/slim/slim.conf /etc/
-    _smv iconf/slim/custom /usr/share/slim/themes/
+    _smv     iconf/slim/slim.conf /etc/
+    _smv     iconf/slim/custom /usr/share/slim/themes/
     _cmdsudo sed -i -e \\\"/default_user/ s:chilicuil:$(whoami):\\\" /etc/slim.conf
-    #[ -f /usr/share/xsessions/i3.desktop ] && \
-        #_cmdsudo sed -i -e \\\"/Exec/ s:=.*:=/etc/X11/Xsession:\\\" /usr/share/xsessions/i3.desktop
 
     _printfs "configuring gpg/ssh agents ..."
     if [ -f /etc/X11/Xsession.d/90gpg-agent ]; then
@@ -1293,48 +1304,53 @@ _localsetup()
     [ -d "$HOME"/.gnupg ]          || _cmd mkdir "$HOME"/.gnupg
     [ -f "$HOME"/.gnupg/gpg.conf ] || _ensuresetting "use-agent" "$HOME"/.gnupg/gpg.conf
 
+    _printfs "configuring dbus ..."
     #allow use of shutdown/reboot through dbus-send
     if [ ! -f /etc/polkit-1/localauthority/50-local.d/org.freedesktop.consolekit.pkla ]; then
         _fetchfile http://javier.io/mirror/org.freedesktop.consolekit.pkla
-        _cmdsudo mv org.freedesktop.consolekit.pkla \
-        /etc/polkit-1/localauthority/50-local.d/org.freedesktop.consolekit.pkla
+        _cmdsudo   mv org.freedesktop.consolekit.pkla \
+                   /etc/polkit-1/localauthority/50-local.d/org.freedesktop.consolekit.pkla
     fi
 
     _printfs "configuring file manager ..."
     #https://bugs.launchpad.net/ubuntu/+source/policykit-1/+bug/600575
     if [ ! -f /etc/polkit-1/localauthority/50-local.d/55-storage.pkla ]; then
         _fetchfile http://javier.io/mirror/55-storage.pkla
-        _cmdsudo mv 55-storage.pkla /etc/polkit-1/localauthority/50-local.d/55-storage.pkla
+        _cmdsudo   mv 55-storage.pkla /etc/polkit-1/localauthority/50-local.d/55-storage.pkla
     fi
 
     _printfs "configuring browser ..."
-    _waitfor tar jxf iconf/firefox/mozilla.tar.bz2 -C iconf/firefox
-    for mozilla_old_profile in iconf/firefox/.mozilla/firefox/*.default; do break; done
-    mozilla_old_profile=$(basename "$mozilla_old_profile" .default)
-    mozilla_new_profile=$(strings /dev/urandom | grep -o '[[:alnum:]]' | \
-                          head -n 8 | tr -d '\n'; printf "\\n")
+    if [ ! -f "$HOME"/.not_override ]; then
+        _waitfor tar jxf iconf/firefox/mozilla.tar.bz2 -C iconf/firefox
+        for mozilla_old_profile in iconf/firefox/.mozilla/firefox/*.default; do break; done
+        mozilla_old_profile=$(basename "$mozilla_old_profile" .default)
+        mozilla_new_profile=$(strings /dev/urandom | grep -o '[[:alnum:]]' | \
+                              head -n 8 | tr -d '\n'; printf "\\n")
 
-    _smv iconf/firefox/libflashplayer${_remotesetup_var_arch}.so /usr/lib/mozilla/plugins/
-    _cmd mv iconf/firefox/.mozilla/firefox/$mozilla_old_profile.default \
-            iconf/firefox/.mozilla/firefox/$mozilla_new_profile.default
-    find iconf/firefox/.mozilla -type f | xargs sed -i -e "s/$mozilla_old_profile/$mozilla_new_profile/g"
-    find iconf/firefox/.mozilla -type f | xargs sed -i -e "s/admin/$(whoami)/g"
-    find iconf/firefox/.mozilla -type f | xargs sed -i -e "s/chilicuil/$(whoami)/g"
-    _smv iconf/firefox/.mozilla "$HOME"
+        _smv iconf/firefox/libflashplayer${_remotesetup_var_arch}.so /usr/lib/mozilla/plugins/
+        _cmd mv iconf/firefox/.mozilla/firefox/$mozilla_old_profile.default \
+                iconf/firefox/.mozilla/firefox/$mozilla_new_profile.default
+        find iconf/firefox/.mozilla -type f | xargs sed -i -e "s/$mozilla_old_profile/$mozilla_new_profile/g"
+        find iconf/firefox/.mozilla -type f | xargs sed -i -e "s/admin/$(whoami)/g"
+        find iconf/firefox/.mozilla -type f | xargs sed -i -e "s/chilicuil/$(whoami)/g"
+        _smv iconf/firefox/.mozilla "$HOME"
 
-    _cmd rm -rf ~/.macromedia ~/.adobe
-    _cmd ln -s      /dev/null ~/.adobe
-    _cmd ln -s      /dev/null ~/.macromedia
+        _cmd rm -rf ~/.macromedia ~/.adobe
+        _cmd ln -s      /dev/null ~/.adobe
+        _cmd ln -s      /dev/null ~/.macromedia
+    fi
 
     _printfs "configuring gtk, icon, cursor themes ..."
-    mv iconf/icons iconf/.icons
-    mv iconf/gtk/themes iconf/gtk/.themes
-    mv iconf/fonts iconf/.fonts
-    mv iconf/data iconf/.data
-    _smv iconf/.icons      "$HOME"
-    _smv iconf/gtk/.themes "$HOME"
-    _smv iconf/.fonts      "$HOME"
-    _smv iconf/.data       "$HOME"
+    if [ ! -f "$HOME"/.not_override ]; then
+        mv   iconf/icons iconf/.icons
+        mv   iconf/gtk/themes iconf/gtk/.themes
+        mv   iconf/fonts iconf/.fonts
+        mv   iconf/data iconf/.data
+        _smv iconf/.icons      "$HOME"
+        _smv iconf/gtk/.themes "$HOME"
+        _smv iconf/.fonts      "$HOME"
+        _smv iconf/.data       "$HOME"
+    fi
 
     _waitforsudo fc-cache -f -v #required for update font information
     _cmdsudo update-alternatives --set x-terminal-emulator /usr/bin/urxvt
@@ -1357,29 +1373,22 @@ _localsetup()
     localsetup_var_virt=$(_whatvirt)
     case $localsetup_var_virt in
         openvz|uml|xen) 
-            _printfl "Virtualization addons"
+            _printfl     "Virtualization addons"
             _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get purge -y zram-config
             _enableremotevnc
             ;;
     esac
 
     _printfs "cleaning up ..."
-    #_cmd touch "$HOME"/.not_override
-    #_cmdsudo touch /usr/local/bin/not_override
-    _cmd rm -rf iconf*
+    _cmd     touch "$HOME"/.not_override
+    _cmdsudo touch /usr/local/bin/not_override
+    _cmd     rm -rf iconf*
 
     ############################################################################
 
     _printfl "DONE"
-    printf "\\n"
-    printf "%s\\n" "Restart your computer to start having fun, n@n/"
-}
-
-_ubuntudev()
-{
-    _printfl "Preparing the system for Ubuntu dev"
-    _waitforsudo apt-get update
-    _waitforsudo apt-get install --no-install-recommends -y $apps_ubuntudev
+    printf   "\\n"
+    printf   "%s\\n" "Restart your computer to start having fun, n@n/"
 }
 
 ################################################################################
