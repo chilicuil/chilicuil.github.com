@@ -9,7 +9,20 @@
     <script type="text/javascript" src="/assets/js/shjs/shjs_main.js"></script>
     <link type="text/css" rel="stylesheet" href="/assets/css/shjs/sh_darkness.css">
 
-    <!--lightbox http://gettopup.com, the other part of the lib is called in the post.html file-->
+    <!-- lightbox http://gettopup.com, the other part of the lib is called in the post.html file-->
     <script type="text/javascript" src="/assets/js/top-up/top_up-min.js"></script> 
     <script type="text/javascript">TopUp.host = "http://javier.io/";</script>
     <script type="text/javascript">TopUp.images_path = "assets/js/top-up/images/";</script> 
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-47664650-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
