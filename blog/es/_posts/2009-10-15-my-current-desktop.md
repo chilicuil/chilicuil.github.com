@@ -12,4 +12,4 @@ title: "my current desktop"
 
 **Ubuntu 9.04 + E17 + Ecomorp**
 
-Casi no le he cambiado nada, me parece cómodo tal como esta.
+E17 es muy rapido
