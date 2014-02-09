@@ -6,7 +6,7 @@ title: "use flags (gentoo) para portatil"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-Flags para un portatil basado en un pentium-m, con soporte para gnome y sin soporte para kde, multimedia, red, programacion y algunas otras cosas.
+Flags para un portatil basado en un pentium-m, con soporte para gnome, multimedia, red, programacion y algunas otras cosas.
 
     #**************Variables USE**************** #Actualizado a vie feb 29
     17:42:10 CST 2008
@@ -55,7 +55,7 @@ Flags para un portatil basado en un pentium-m, con soporte para gnome y sin sopo
     #*******************************************
     #*******************************************
         
-Para recompilar el sistema despues de cambiar las use flags:
+Para recompilar el sistema despues de cambiar las use flags, se ejecuta:
 
 <pre class="sh_sh">
 $ emerge --update --deep --with-bdeps=y --newuse world
