@@ -6,7 +6,7 @@ title: "geek songs"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-Nunca habia escuchado este tipo de canciones, me sorprende que algunas tengan buena tonada =)
+Nunca habia escuchado este tipo de canciones, algunas tienen buena tonada =)
 
 #### Code monkey
 <div style="text-align:center;">
@@ -28,12 +28,13 @@ Nunca habia escuchado este tipo de canciones, me sorprende que algunas tengan bu
 
 #### Mc hawking -Entropy
 <div style="text-align:center;">
+<object width="420" height="315"><param name="movie" value="http://www.youtube.com/v/2knWCuzcdJo?hl=en_US&amp;version=3"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/2knWCuzcdJo?hl=en_US&amp;version=3" type="application/x-shockwave-flash" width="420" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
 </div>
 \[+\] [Letra](http://www.litetext.com/43qb)
 
 ####  Mac or PC
 <div style="text-align:center;">
-<object width="420" height="315"><param name="movie" value="http://www.youtube.com/v/2knWCuzcdJo?hl=en_US&amp;version=3"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/2knWCuzcdJo?hl=en_US&amp;version=3" type="application/x-shockwave-flash" width="420" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+<object width="420" height="315"><param name="movie" value="http://www.youtube.com/v/Jkrn6ecxthM?hl=en_US&amp;version=3"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/Jkrn6ecxthM?hl=en_US&amp;version=3" type="application/x-shockwave-flash" width="420" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
 </div>
 \[+\] [Letra](http://www.litetext.com/g87q)
 
@@ -48,4 +49,4 @@ Nunca habia escuchado este tipo de canciones, me sorprende que algunas tengan bu
 <object width="560" height="315"><param name="movie" value="http://www.youtube.com/v/B1b-oM72Pac?version=3&amp;hl=en_US"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/B1b-oM72Pac?version=3&amp;hl=en_US" type="application/x-shockwave-flash" width="560" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
 </div>
 
-Si conocen mas, no duden en ponerlos en los comentarios ;), la mayoria de los tracks fueron sacados de [catonmat.net](http://www.catonmat.net/blog/category/musical-geek-friday/).
+Si conocen mas, no duden en ponerlos en los comentarios, la mayoria de los tracks fueron obtenidos de [catonmat.net](http://www.catonmat.net/blog/category/musical-geek-friday/).
