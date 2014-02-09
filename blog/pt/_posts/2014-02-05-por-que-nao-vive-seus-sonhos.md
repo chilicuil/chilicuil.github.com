@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Por que não está vivendo seus sonhos?"
+title: "por que não está vivendo seus sonhos?"
 ---
 
 ## {{ page.title }}

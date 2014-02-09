@@ -24,7 +24,7 @@ Lo que significa que pbuilder (espeficamente debootstrap no ha podido verificar 
 Analizando el problema, parece un tanto logico que una llave publica de Debian no se encuentre en el anillo de confianza de Ubuntu (hay que probar muchos paquetes de Ubuntu contra versiones en desarrollo de Debian, quien dijo que desarrollar Ubuntu era facil?). Para solucionarlo se puede agregar la llave **8B48AD6246925553** al anillo de seguridad:
 
 <pre>
-$ gpg --no-default-keyring --keyring /usr/share/keyrings/ubuntu-archive-keyring.gpg --recv-keys 8B48AD6246925553
+$ sudo gpg --no-default-keyring --keyring /usr/share/keyrings/ubuntu-archive-keyring.gpg --recv-keys 8B48AD6246925553
 $ sudo DIST=sid ARCH=amd64 pbuilder create
 </pre>
 
