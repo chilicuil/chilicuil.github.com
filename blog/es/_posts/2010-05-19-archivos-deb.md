@@ -6,7 +6,7 @@ title: "archivos .deb"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-Los archivos .deb son en realidad [contenedores ar](http://en.wikipedia.org/wiki/Ar_%28Unix%29) lo que los diferencia a parte de la extensión, es que integran 3 binarios:
+Los archivos .deb son en realidad [contenedores ar](http://en.wikipedia.org/wiki/Ar_%28Unix%29) lo que los diferencia a parte de la extensión, es que se componen de 3 binarios:
 
 - debian-binary: la versión del paquete, actualmente la 2.0
 - control.tar.gz: la [sumatoria](http://en.wikipedia.org/wiki/Cryptographic_hash_function) de verificación, descripción y los scripts [post y pre](http://www.debian.org/doc/FAQ/ch-pkg_basics.html) de instalación / eliminación

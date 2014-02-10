@@ -6,7 +6,7 @@ title: "caché de paquetes .deb"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-**Nota:** He creado un [script](https://raw.github.com/chilicuil/learn/master/sh/is/apt-proxy) que hace lo descrito en este post y es portable.
+**Nota:** He creado un [script](https://raw.github.com/chilicuil/learn/master/sh/is/apt-proxy) que hace lo descrito en este post.
 
 <iframe src="http://showterm.io/cfdfdda6da61dad9d9d5e" width="640" height="350" style="display:block; margin: 0 auto;">&nbsp;</iframe> 
 
