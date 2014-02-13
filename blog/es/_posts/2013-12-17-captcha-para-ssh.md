@@ -57,6 +57,5 @@ $ sudo service ssh restart
 
 Los ultimos 3 pasos se pueden automatizar facilmente, se puede utilizar grep para revisar en ambos archivos si las opciones se encuentran habilitadas, y habilitarlas (con sed) en el caso de que no lo estuvieran.
 
-<br>
 - [http://www.semicomplete.com/projects/pam_captcha/](https://github.com/psychomario/PyPXE)
 - [http://javier.io/blog/es/2010/12/14/compartir-conexion-pc-a-pc.html](http://javier.io/blog/es/2010/12/14/compartir-conexion-pc-a-pc.html)
