@@ -7,7 +7,7 @@ title: "vagrant con proveedores en línea: aws, digitalocean"
 ###### {{ page.date | date_to_string }}
 
 <!--**[![](/assets/img/86.png)](/assets/img/86.png)**-->
-<iframe src="http://showterm.io/ce9681926ec6875d743f1" width="640" height="350" style="display:block; margin: 0 auto;">&nbsp;</iframe> 
+<iframe class="showterm" src="http://showterm.io/ce9681926ec6875d743f1" width="640" height="350">&nbsp;</iframe> 
 
 Me gusta mantener una computadora rápida y estable, por eso cada vez que puedo instalo o compilo en máquinas virtuales, contenedores, o en la nube. La nube es genial porque puedo trabajar más rápido de lo que lo haría con mi conexión (las conexiones en México son lentas). Algunas de las nubes más baratas y rápidas que conozco son [Ec2](http://aws.amazon.com/ec2/) (de amazon, gratis 1 año) y [DigitalOcean](http://digitalocean.com/) (5 USD en promedio por mes). De la nube a una máquina [LEB](http://lowendbox.com/), prefiero las segundas cuando se trata de correr servicios a largo/mediano plazo. Tengo
 

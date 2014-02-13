@@ -7,7 +7,7 @@ title: "vim + vundle"
 ###### {{ page.date | date_to_string }}
 
 <!--**[![](/assets/img/58.png)](/assets/img/58.png)**-->
-<iframe src="http://showterm.io/089d8dde66aeec9b1ac7e" width="640" height="350" style="display:block; margin: 0 auto;">&nbsp;</iframe> 
+<iframe class="showterm" src="http://showterm.io/089d8dde66aeec9b1ac7e" width="640" height="350">&nbsp;</iframe> 
 
 Aunque no escribo mucho sobre vim, la verdad es que me la paso modificando su [configuración](https://github.com/chilicuil/dotfiles/blob/master/.vimrc) a tal grado que dudo que justifique el tiempo que le he invertido, de no ser porque me causa alguna clase de enfermiza diversión.
 

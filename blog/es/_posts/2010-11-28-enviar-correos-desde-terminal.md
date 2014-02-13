@@ -42,4 +42,5 @@ $ wget https://raw.github.com/chilicuil/learn/master/sh/tools/mail
 $ bash mail "hacia@gmail.com" "mensaje"
 </pre>
 
-<iframe src="http://showterm.io/6d595bb4e5424b943e54f" width="640" height="300" style="display:block; margin: 0 auto;">&nbsp;</iframe> 
+<iframe class="showterm" src="http://showterm.io/6d595bb4e5424b943e54f" width="640" height="300">&nbsp;</iframe> 
+<br />

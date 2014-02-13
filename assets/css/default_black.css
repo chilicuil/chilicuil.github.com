@@ -267,6 +267,16 @@ pre {
     padding: 2px;
 }
 
+pre.lyric {
+    margin: auto;
+    max-width: 50%;
+}
+
+iframe.showterm {
+    display: block;
+    margin:  0 auto;
+}
+
 /* first letter effect */
 h2 + h6 + p:first-letter,
 h2 + h6 + h3 + p:first-letter,

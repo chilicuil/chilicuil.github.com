@@ -12,7 +12,7 @@ Existen varias guías en internet para configurar entornos <a href="http://es.wi
 
 Un entorno pxe en 68KB con baterias incluidas, pxelinux, dhcpd, tftp y manos libres.
 
-<iframe src="http://showterm.io/ccd5bb10d887b3e6bbd87" width="640" height="300" style="display:block; margin: 0 auto;">&nbsp;</iframe> 
+<iframe class="showterm" src="http://showterm.io/ccd5bb10d887b3e6bbd87" width="640" height="300">&nbsp;</iframe> 
 
 <!--
    -<pre>

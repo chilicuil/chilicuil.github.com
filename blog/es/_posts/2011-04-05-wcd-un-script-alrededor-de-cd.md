@@ -6,7 +6,7 @@ title: "wcd, un script alrededor de cd"
 ## {{ page.title }}
 ###### {{ page.date | date_to_string }}
 
-<iframe src="http://showterm.io/ae29f68bee555cd89c65d" width="640" height="350" style="display:block; margin: 0 auto;">&nbsp;</iframe> 
+<iframe  class="showterm" src="http://showterm.io/ae29f68bee555cd89c65d" width="640" height="350">&nbsp;</iframe> 
 
 Usar la consola, tiene varios inconvenientes, algunos de los cuales son, desde mi punto de vista, la manipulación de archivos, los cambios de directorios y las opciones de los comandos (lo que es para uno no lo es para otro y menos entre SO's).
 
