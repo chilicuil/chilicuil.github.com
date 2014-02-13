@@ -33,5 +33,5 @@ e já somos pais
 não temos tempo de madurar, não temos
 
 Juan Gregorio Regino / Nuestra infancia (Nga kamá xixií)
-<pre style="max-width: 50%;">
+</pre>
 <br />
