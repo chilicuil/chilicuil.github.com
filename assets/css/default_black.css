@@ -9,7 +9,7 @@
 @import url('http://fonts.googleapis.com/css?family=PT+Sans');
 /* categories */
 @import url('http://fonts.googleapis.com/css?family=Strait');
-/* p y other text */
+/* p and other text */
 @import url('http://fonts.googleapis.com/css?family=Vollkorn');
 
 body {
@@ -194,7 +194,6 @@ form input.st-search-input {
 /*}*/
 
 /***************************** entry format *******************************/
-/* entry title */
 h2 {
     background: none repeat scroll 50% 50% #010101;
     color: #EEEEEE;
