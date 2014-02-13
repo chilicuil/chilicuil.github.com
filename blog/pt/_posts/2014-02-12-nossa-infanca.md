@@ -1,0 +1,37 @@
+---
+layout: post
+title: "nossa infância"
+---
+
+## {{ page.title }}
+###### {{ page.date | date_to_string }}
+
+<br />
+<pre class="lyric">
+Nossa infância é só uma lembrança
+demasiada vaga
+longe ficou aquela nossa terra
+a terra que nos viu crescer
+
+Partiram nossos primeiros suspiros
+sim nos dar tempo de madurar
+ainda nos despertamos
+e já somos homens
+e já somos pais
+sim nos dar tempo de olhar ao futuro
+
+Não jogaremos mais
+embora nossa mente siga brincando
+já somos pais
+o tempo não da trégua para pensar
+encontramo-nos, desmaia-nos
+o tempo não da trégua para curar
+
+Nossos sonhos já não existem em céu nenhum
+nossos primeiros suspiros partiram ontem
+e já somos pais
+não temos tempo de madurar, não temos
+
+Juan Gregorio Regino / Nuestra infancia (Nga kamá xixií)
+<pre style="max-width: 50%;">
+<br />
