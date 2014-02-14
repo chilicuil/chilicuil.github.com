@@ -385,10 +385,10 @@ h2 + img + p:first-letter {
 
 #footer {
     font-family: 'PT Sans', sans-serif;
-    color: #fff;
+    color: #000;
     margin-top: 0px;
     padding: 1%;
-    background: #010101;
+    background: #fff;
     text-align: right;
 }
 
@@ -397,7 +397,7 @@ h2 + img + p:first-letter {
 }
 
 #footer a:hover {
-    color:#FFF; text-decoration:none;
+    color:#000; text-decoration:none;
 }
 
 /************************************************************************/
