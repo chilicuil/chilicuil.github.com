@@ -2,6 +2,16 @@
 <html>
   <head>
     {% include meta.html %}
+    <link href="assets/css/flashblock.css" rel="stylesheet" type="text/css">
+    <title>javier.io | 404</title>
+  </head>
+
+  <body onload="init()">
+    {% include header.html %}
+    <div id="content">  
+      {{ content }}
+    </div>
+
     <script type="text/javascript">
       var PIECE_NUMBER = 1;
     </script>
@@ -20,21 +30,12 @@
     <script type="text/javascript" src="assets/js/js-baroque/min/common.min.js"></script>
     <script type="text/javascript" src="assets/js/js-baroque/min/main.min.js"></script>
 
-    <link href="assets/css/flashblock.css" rel="stylesheet" type="text/css">
-
     <script type="text/javascript">
       var PIECE_NUMBER = 1;
       /* from genius Alexander Chen: http://www.youtube.com/watch?v=JTWp25pzFCc */
       /* var aboutURL = 'http://blog.chenalexander.com/2011/baroque-bach-cello/'; */
       /* The rest of the code is in main.js */
-      </script>
-      <title>javier.io | 404</title>
-  </head>
-
-<body onload="init()">
-      {% include header.html %}
-      <div id="content">  
-        {{ content }}
-      </div>
-</body>
+    </script>
+    {% include js.html %}
+  </body>
 </html>
