@@ -1,10 +1,10 @@
     <!-- syntax http://shjs.sourceforge.net/-->
-    <script type="text/javascript" src="/assets/js/shjs/shjs_main.js"></script>
+    <script type="text/javascript" src="/assets/js/shjs/shjs_main.js" data-no-instant></script>
 
     <!-- lightbox http://gettopup.com, the other part of the lib is called in the post.html file-->
-    <script type="text/javascript" src="/assets/js/top-up/top_up-min.js"></script> 
-    <script type="text/javascript">TopUp.host = "http://javier.io/";</script>
-    <script type="text/javascript">TopUp.images_path = "assets/js/top-up/images/";</script> 
+    <script type="text/javascript" src="/assets/js/top-up/top_up-min.js" data-no-instant></script>
+    <script type="text/javascript" data-no-instant>TopUp.host = "http://javier.io/";</script>
+    <script type="text/javascript" data-no-instant>TopUp.images_path = "assets/js/top-up/images/";</script>
     <script type="text/javascript">
       TopUp.addPresets({
           "#content strong a": {
@@ -24,3 +24,6 @@
        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
        })();
     </script>
+
+    <script type="text/javascript" src="/assets/js/instantclick/instantclick.min.js" data-no-instant></script>
+    <script data-no-instant>InstantClick.init();</script>
