@@ -5,6 +5,12 @@
     <script type="text/javascript" src="/assets/js/top-up/top_up-min.js"></script> 
     <script type="text/javascript">TopUp.host = "http://javier.io/";</script>
     <script type="text/javascript">TopUp.images_path = "assets/js/top-up/images/";</script> 
+    <script type="text/javascript">
+      TopUp.addPresets({
+          "#content strong a": {
+    readAltText: 1, effect: "clip", overlayClose: 0, shaded: 1, group: "img" }
+    });
+    </script>
 
     <!-- google analytics -->
     <script type="text/javascript">
