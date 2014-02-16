@@ -268,7 +268,8 @@ pre {
 
 pre.lyric {
   margin: auto;
-  max-width: 50%;
+  max-width: 40%;
+  text-align: center;
 }
 
 a.gpg {
