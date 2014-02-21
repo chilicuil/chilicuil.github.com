@@ -8,9 +8,9 @@ title: "unstressed direct, indirect pronouns in Spanish"
 
 **[![](/assets/img/92.png)](/assets/img/92.png)**
 
-Sometimes I help friends with Spanish grammar, I'm not an expert but I remember I wasn't that bad on my Spanish classes neither. It's also a good change to practice my English, though. Anyway, last time I explained what were unstressed pronouns (pronómbres átonos) and I though it would be cool to start writing about it.
+Sometimes I help friends with Spanish grammar, I'm not an expert but I remember I wasn't that bad on my Spanish classes neither. It's also a good chance to practice my English, though. Anyway, last time I explained what were unstressed pronouns (pronómbres átonos) and I though it would be cool to start writing about it.
 
-Unstressed object pronouns are used in Spanish to replace direct and indirect objects with pronouns, it's one of the trickiest Spanish structures and even native speakers can misuse them, so they should be studied carefully. They can be translated sometimes as: me, you, him, her, it, us and them. However people should be aware that they don't the exactly same meaning.
+Unstressed object pronouns are used in Spanish to replace direct and indirect objects with pronouns, it's one of the trickiest Spanish structures and even native speakers can misuse them, so they should be studied carefully. They can be translated sometimes as: me, you, him, her, it, us and them. However people should be aware that they don't have exactly the same meaning.
 
 To use correctly unstressed object pronouns, you should be able to recognize with ease when a phrase contain either a direct or indirect object. Let me wrap it up, A direct object is the part of the sentence which receives the action of the main verb, it can be discovered by asking what? and whom? to the verb.
 
@@ -21,7 +21,7 @@ Pepe eats fish / Pepe come pescado (what does Pepe eat?)
 do(direct object) = fish = pescado
 </pre>
 
-## Exercises: Find the direct object of the following sentences
+## Exercises: Find the direct object in the following sentences
 
 > Juan Loves María / Juan ama a María
 
@@ -39,7 +39,7 @@ do (direct object) = a watermelon = una sandía
 io(indirect object) = for Sandra = para Sandra
 </pre>
 
-## Exercises: Find the direct and indirect object of the following phrases:
+## Exercises: Find the direct and indirect object of the following phrases
 
 > Margarita made coffee for Marcos / Margarita hizo café para Marcos
 
@@ -75,7 +75,7 @@ On this case, 'a Maria' must be replaced with 'la' (it's female):
 Juan *la* ama
 </pre>
 
-## Exercises: Replace the direct object in the following sentences with the appropriate pronoun
+## Exercises: Replace the direct object with the appropriate pronoun
 
 > Did you find your mother's ring? / ¿Has encontrado el anillo de tu madre?
 
@@ -99,7 +99,7 @@ Sandra refers to a third person in singular (she, Sandra) and it can be replaced
 Lucas *le* compra una sandía
 </pre>
 
-## Exercises: Replace the indirect object in the following sentences with the appropriate pronoun
+## Exercises: Replace the indirect object with the appropriate pronoun
 
 > Tomorrow I'll give the money to Eduardo / Mañana entregaré el dinero a Eduardo
 
@@ -123,7 +123,7 @@ Lucas se la compra (replacing both)
 
 Pay attention to the *'se'* which replaces *'le'* for the indirect object
 
-## Exercises: Replace the direct/indirect objects in the following sentences with the appropriate pronouns
+## Exercises: Replace the direct/indirect objects with the appropriate pronouns
 
 > I told the girls the reasons of my decision / Les dije a las chicas las razones de mi decisión
 
@@ -131,7 +131,9 @@ Pay attention to the *'se'* which replaces *'le'* for the indirect object
 
 > Diana wrote a letter to Hugo / Diana escribio una carta para Hugo
 
-*keywords, palabras clave:* **leismo, laismo, loismo, objeto directo, objeto indirecto**
+That's it
+
+**keywords, palabras clave:** *leismo, laismo, loismo, objeto directo, objeto indirecto*
 
 - [http://www.youtube.com/watch?v=N_3flr9ni0s](http://www.youtube.com/watch?v=N_3flr9ni0s) (direct object / objeto directo)
 - [http://www.youtube.com/watch?v=jMzAQ2bQEx0](http://www.youtube.com/watch?v=jMzAQ2bQEx0) (indirect object / objeto indirecto)
