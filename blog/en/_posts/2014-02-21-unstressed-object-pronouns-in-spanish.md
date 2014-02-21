@@ -91,7 +91,7 @@ Sandra refers to a third person in singular (she, Sandra) and it can be replaced
 
 <pre>
 Lucas *le* compra una sandía
-<pre>
+</pre>
 
 ## Exercises: Replace the indirect object in the following sentences with the appropriate pronoun:
 
