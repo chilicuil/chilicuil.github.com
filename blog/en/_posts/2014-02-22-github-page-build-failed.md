@@ -12,16 +12,14 @@ I &#x2661; [github](https://github.com/), it has never been easier to start work
 
 Github pages could be perfect, however they're not (although they're really close), sometimes when you're using markdown and the translation markdown &#x21E8; html fails you'll get a nice mail such as this one:
 
-<pre class="lyric">
-The page build failed with the following error:
+    The page build failed with the following error:
 
-page build failed
+    page build failed
 
-For information on troubleshooting Jekyll see:
- https://help.github.com/articles/using-jekyll-with-pages#troubleshooting
+    For information on troubleshooting Jekyll see:
+     https://help.github.com/articles/using-jekyll-with-pages#troubleshooting
 
-If you have any questions please contact GitHub Support.
-</pre>
+    If you have any questions please contact GitHub Support.
 
 Isn't beautiful?, no signal of what went wrong =), ok, to be fair, github recently has started to [add more details](https://github.com/blog/1706-descriptive-error-messages-for-failed-github-pages-builds), however it's still not sufficient, I still require to mirror their jekyll setup in order to see what's really happening. Since I've done more than a couple of times, I thought it would be a good idea to automatize it.
 
