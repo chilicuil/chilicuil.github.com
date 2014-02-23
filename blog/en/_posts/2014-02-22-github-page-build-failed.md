@@ -10,17 +10,18 @@ title: "setting up jekyll locally"
 
 I &#x2661; [github](https://github.com/), it has never been easier to start working on open source projects =). One of their rock star services is [github pages](http://pages.github.com/), which allows people to setup static pages for their projects, it even provides some nice themes so your page doesn't look awful. Many people however (mostly technical) use it to host their blogs (such as this one), you get great infrastructure, a subdomain (and the possibility of using your own domain), revisions (git) and markdown. All for free!, isn't that freaking awesome!?
 
-Github pages could be perfect, however they're not (although really close to been perfect), sometimes when you're using markdown and the translation markdown &#x21E8; html fails you'll get a nice mail such as this one:
+Github pages could be perfect, however they're not (although they're really close), sometimes when you're using markdown and the translation markdown &#x21E8; html fails you'll get a nice mail such as this one:
 
+<pre class="lyric">
+The page build failed with the following error:
 
-    The page build failed with the following error:
+page build failed
 
-    page build failed
+For information on troubleshooting Jekyll see:
+ https://help.github.com/articles/using-jekyll-with-pages#troubleshooting
 
-    For information on troubleshooting Jekyll see:
-     https://help.github.com/articles/using-jekyll-with-pages#troubleshooting
-
-    If you have any questions please contact GitHub Support.
+If you have any questions please contact GitHub Support.
+</pre>
 
 Isn't beautiful?, no signal of what went wrong =), ok, to be fair, github recently has started to [add more details](https://github.com/blog/1706-descriptive-error-messages-for-failed-github-pages-builds), however it's still not sufficient, I still require to mirror their jekyll setup in order to see what's really happening. Since I've done more than a couple of times, I thought it would be a good idea to automatize it.
 
