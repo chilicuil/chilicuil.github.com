@@ -2,7 +2,6 @@
 
 trap _cleanup INT QUIT #trap ctrl-c
 
-#TODO 05-01-2014 03:55 >> only download when no override file exist
 #TODO 05-01-2014 03:56 >> test on x86, 12.10, 13.10..., debian
 
 dotfiles="https://github.com/chilicuil/dotfiles"
@@ -56,13 +55,6 @@ _arch()
     esac
 
     printf "%s" "$_arch_var_arch"
-}
-
-_addcron()
-{   #adds cron job, returns 1 on error
-    #TODO 05-01-2014 03:54 >> ensure
-    [ -z "$1" ] && return 1
-    ( crontab -l 2>/dev/null; printf "%s\\n" "$1" ) | crontab -
 }
 
 _animcui()
@@ -181,6 +173,14 @@ _getroot()
     fi
 }
 
+_ensurecron()
+{   #adds cron job, returns 1 on error
+    [ -z "$1" ] && return 1
+    _ensurecron_var_exist=$(crontab -l 2>/dev/null | awk -v p="$1" '{ if ($0 == p) {print p}}')
+    [ -n "$_ensurecron_var_exist" ] && return 1
+    ( crontab -l 2>/dev/null; printf "%s\\n" "$1" ) | crontab -
+}
+
 _printfl()
 {   #print lines
     _printfl_var_max_len="80"
@@ -246,7 +246,7 @@ _distro()
         elif [ -r /etc/debian_version ]; then
             _distro_var_DISTRIB_ID="Debian"
         elif [ -r /etc/issue ]; then
-            _distro_var_DISTRIB_ID=$(cat /etc/issue.net | awk '{print $1}')
+            _distro_var_DISTRIB_ID=$(awk '{print $1}' /etc/issue.net)
             if [ X"$_distro_var_DISTRIB_ID" = X"Ubuntu" ]; then
                 _distro_var_DISTRIB_ID="Ubuntu"
             fi
@@ -272,7 +272,7 @@ _distro()
             _distro_var_DISTRIB_ID="$(grep -i suse /etc/SuSE-release)"
         elif [ -f /etc/yellowdog-release ]; then
             _distro_var_DISTRIB_ID="YellowDog Linux"
-        elif [ -f /etc/zenwalk-version  ]; then
+        elif [ -f /etc/zenwalk-version ]; then
             _distro_var_DISTRIB_ID="Zenwalk"
         fi
         printf "%s\\n" "$_distro_var_DISTRIB_ID" | \
@@ -364,13 +364,13 @@ _getvars()
 _getuuid()
 {   #get partition uuid, eg, _getuuid /dev/sda1
     [ -z "$1" ] && return 1
-    udevadm info -q all -n "$1" | grep -i uuid | egrep "^S:" | cut -f3 -d'/'
+    udevadm info -q all -n "$1" | awk -F"/" '/^S.*uuid.*/ {print $3}'
 }
 
 _getfs()
 {   #get partition fs, eg, _getfs /dev/sda1
     [ -z "$1" ] && return 1
-    udevadm info -q all -n "$1" | grep -i ID_FS_TYPE | cut -f2 -d'='
+    udevadm info -q all -n "$1" | awk -F"=" '/ID_FS_TYPE/ {print $2}'
 }
 
 _getlastversion()
@@ -407,9 +407,7 @@ _getrelease()
         _getrelease_var_release=$(lsb_release -s -c)
     else
         if [ -f /etc/apt/sources.list ]; then
-            _getrelease_var_release=$(cat /etc/apt/sources.list \
-				    | grep '^deb .*'            \
-                                    | head -1 | cut -d' ' -f 3)
+            _getrelease_var_release=$(awk -F" " '/^deb .*/ {print $3; exit}' /etc/apt/sources.list)
         fi
     fi
 
@@ -573,9 +571,9 @@ _sethome()
     #TODO 17-09-2013 02:54 >> only mount partitions with id=83 (linux)
     if mountpoint -q /home; then
         if [ -f /etc/mtab ]; then
-            _sethome_var_hd=$(cat /etc/mtab | grep '^/' | grep '/home' | sed 's/[ ].*//')
+            _sethome_var_hd=$(awk '$2 == "/home" {print $1; exit}' /etc/mtab)
         else
-            _sethome_var_hd=$(mount | grep '^/' | grep '/home' | sed 's/[ ].*//')
+            _sethome_var_hd=$(mount | awk '$3 == "/home" {print $1; exit}')
         fi
         _sethome_var_uuid=$(_getuuid "$_sethome_var_hd")
         _sethome_var_fs=$(_getfs "$_sethome_var_hd")
@@ -586,65 +584,56 @@ _sethome()
         fi
 
         if ! grep "^UUID=$_sethome_var_uuid" /etc/fstab >/dev/null; then
-            _printfs "/home is mounted but not listed in /etc/fstab, adding up ..."
+            _printfs "/home is mounted but not listed in /etc/fstab, adding it ..."
             _sethome_var_fstab="UUID=$_sethome_var_uuid /home"
             _sethome_var_fstab="$_sethome_var_fstab $_sethome_var_fs"
             _sethome_var_fstab="$_sethome_var_fstab errors=remount-ro 0 1"
             _cmdsudo sed -i -e \"\\$a${_sethome_var_fstab}\" /etc/fstab
         fi
     else
-        _sethome_var_total=$(awk '{print $4}' /proc/partitions |             \
-                            sed -e '/name/d' -e '/^$/d' -e '/[1-9]/!d' |     \
-                            tr '\n' ' ')
-
+        _sethome_var_total=$(awk '$4 ~ ".*[0-9]+" {if (part == "") {part=$4} else {part=part " " $4}} END {print part}' /proc/partitions)
         if [ -n "$_sethome_var_total" ]; then
-            _sethome_var_swap=$(cat /proc/swaps | grep partition |           \
-                              cut -f1 -d' ' | cut -f3 -d'/' | tr '\n' ' ')
+            _sethome_var_swap=$(awk '/partition/ {gsub(/\/dev\//,""); if (part == "") {part=$1} else {part=part " " $1}} END {print part}' /proc/swaps)
             if [ -f /etc/mtab ]; then
-                _sethome_var_mounted=$(cat /etc/mtab | grep '^/' |           \
-                                     sed 's/[ ].*//' | cut -f3 -d'/' |       \
-                                     tr '\n' ' ')
+                _sethome_var_mounted=$(awk '/^\// {gsub(/\/dev\//,""); if (part == "") {part=$1} else {part=part " " $1}} END {print part}' /etc/mtab)
             else
-                _sethome_var_mounted=$(mount | grep '^/' | sed 's/[ ].*//' | \
-                                     cut -f3 -d'/' | tr '\n' ' ')
+                _sethome_var_mounted=$(mount | awk '/^\// {gsub(/\/dev\//,""); if (part == "") {part=$1} else {part=part " " $1}} END {print part}')
             fi
 
             if [ -n "$_sethome_var_swap" ]; then
                 for _sethome_var_swapp in $_sethome_var_swap; do
-                    _sethome_var_total=$(printf "%s" "$_sethome_var_total" | \
-                                       sed "s/${_sethome_var_swapp}//g")
+                    _sethome_var_total=$(printf "%s" "$_sethome_var_total" | sed "s/${_sethome_var_swapp}//g")
                 done
             fi
 
             if [ -n "$_sethome_var_mounted" ]; then
                 for _sethome_var_mountedp in $_sethome_var_mounted; do
-                    _sethome_var_total=$(printf "%s" "$_sethome_var_total" | \
-                                      sed "s/${_sethome_var_mountedp}//g")
+                    _sethome_var_total=$(printf "%s" "$_sethome_var_total" | sed "s/${_sethome_var_mountedp}//g")
                 done
             fi
 
             if [ -n "$_sethome_var_total" ]; then
                 for _sethome_var_partition in $_sethome_var_total; do
                     mkdir /tmp/"$_sethome_var_partition"
-                    _cmdsudo mount /dev/"$_sethome_var_partition" \
-                             /tmp/"$_sethome_var_partition"
+                    _cmdsudo mount /dev/"$_sethome_var_partition" /tmp/"$_sethome_var_partition"
 
                     if _homedetected /tmp/"$_sethome_var_partition"; then
                         _printfs "/home partition found in: $_sethome_var_partition"
                         _printfs "replacing /home with partition ..."
 
-                        _cmdsudo umount /tmp/"$_sethome_var_partition" &&    \
-                                 rm -rf /tmp/"$_sethome_var_partition"
-                        _cmdsudo mv /home /home.old && _cmdsudo mkdir /home
+                        _cmdsudo umount /tmp/"$_sethome_var_partition"
+                        _cmdsudo rm -rf /tmp/"$_sethome_var_partition"
+                        _cmdsudo mv /home /home.old
+                        _cmdsudo mkdir /home
                         _cmdsudo mount /dev/"$_sethome_var_partition" /home
                         _cmdsudo chown -R $(whoami):$(whoami) /home/$(whoami)
 
                         _sethome
                     fi
 
-                    if [ -d /tmp/$_sethome_var_partition ]; then
-                        _cmdsudo umount /tmp/$_sethome_var_partition
-                        rm -rf /tmp/$_sethome_var_partition
+                    if [ -d /tmp/"$_sethome_var_partition" ]; then
+                        _cmdsudo umount /tmp/"$_sethome_var_partition"
+                        _cmdsudo rm -rf /tmp/"$_sethome_var_partition"
                     fi
                 done
             fi
@@ -669,7 +658,7 @@ _installaptproxy()
     _waitforsudo apt-get install --no-install-recommends -y avahi-utils
 
     if _existaptproxy; then
-        _remotesetup_var_apt_proxy_server=$(avahi-browse -a -t -r -p | grep apt-cacher-ng | grep = | cut -d";" -f8)
+        _remotesetup_var_apt_proxy_server=$(avahi-browse -a -t -r -p | awk -F";" '/^=.*apt-cacher-ng/ {print $8}')
         _printfs "exists an apt-get proxy in the network at $_remotesetup_var_apt_proxy_server, setting up the client ..."
         _waitforsudo apt-get install --no-install-recommends -y squid-deb-proxy-client
     else
@@ -763,7 +752,7 @@ _header()
 
 _diesendmail()
 {   #stupid apt-get purge doesn't kill sendmail instances
-    _diesendmail_var_pid=$(ps aux | grep [s]endmail | awk '{print $2}')
+    _diesendmail_var_pid=$(ps -aef | awk '$0 ~ "sendmail" {if ($0 !~ "awk") print $2}')
     if [ -n "$_diesendmail_var_pid" ]; then
         _printfs 'die sendmail, die!!'
         _cmdsudo kill "$_diesendmail_var_pid"
@@ -854,8 +843,7 @@ _ensurerepo()
     [ -z "$2" ] && _ensurerepo_var_key="" || _ensurerepo_var_key="$2"
 
     _ensurerepo_var_baseurl=$(printf "%s" "$1" | cut -d' ' -f2 | grep "//")
-    if [ -z "$(printf "%s" "$1" | cut -d' ' -f3)" ] || \
-       [ -z "$_ensurerepo_var_baseurl" ]; then
+    if [ -z "$(printf "%s" "$1" | cut -d' ' -f3)" ] || [ -z "$_ensurerepo_var_baseurl" ]; then
         _die "Bad formated repository: $1"
     fi
 
@@ -1037,7 +1025,7 @@ _remotesetup()
     _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get purge -y $apps_purge
     _diesendmail
 
-    if ! command -v "git" >/dev/null; then
+    if ! command -v "git" >/dev/null 2>&1; then
         _die "Dependency step failed"
     fi
 
@@ -1045,8 +1033,10 @@ _remotesetup()
 
     _printfl   "Downloading files"
     _printfs   "getting reps ..."
-    _fetchrepo "$dotfiles.git"
-    _fetchrepo "$utils.git"
+    [ ! -f "$HOME"/.not_override ]       && _fetchrepo "$dotfiles.git" \
+        || _printfs "$HOME/.not_override is present, skipping ..."
+    [ ! -f /usr/local/bin/not_override ] && _fetchrepo "$utils.git"    \
+        || _printfs "/usr/local/bin/not_override is present, skipping ..."
 
     ############################################################################
 
@@ -1058,7 +1048,7 @@ _remotesetup()
         _remotesetup_var_completions="/etc/bash_completion.d/"
     fi
 
-    if [ ! -f $HOME/.not_override ]; then
+    if [ ! -f "$HOME"/.not_override ]; then
         _printfs "installing dotfiles (old files will get an .old suffix) ..."
         for _remotesetup_var_file in dotfiles/.*; do
             [ ! -e "$_remotesetup_var_file" ] && continue
@@ -1071,6 +1061,8 @@ _remotesetup()
         [ ! X"$_remotesetup_var_ssh_old" = X"$HOME"/.ssh ]; then
             cp "$_remotesetup_var_ssh_old"/* "$HOME"/.ssh/
         fi
+    else
+        _printfs "$HOME/.not_override is present, skipping ..."
     fi
 
     if [ ! -f /usr/local/bin/not_override ]; then
@@ -1100,9 +1092,11 @@ _remotesetup()
             [ -f "$_remotesetup_var_file" ] && chmod +x "$_remotesetup_var_file"
             _smv "$_remotesetup_var_file" "$_remotesetup_var_target"
         done
+    else
+        _printfs "/usr/local/bin/not_override is present, skipping ..."
     fi
 
-    rm -rf dotfiles learn
+    _cmd rm -rf dotfiles learn
 
     ############################################################################
 
@@ -1126,18 +1120,14 @@ _remotesetup()
         printf "%s\\n" "    /etc/pam.d/sshd not found, continuing without libpam-captcha ..."
     fi
 
-    _printfs "configuring vim (3 min aprox) ..."
-    if [ ! -d "$HOME"/.vim/bundle/vundle/.git/ ]; then
-        #while shallow clone doesn't get accepted
-        #_fetchrepo https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+    _printfs "configuring vim (2 min aprox) ..."
+    [ ! -d "$HOME"/.vim/bundle/vundle/.git/ ] && \
         _fetchrepo "https://github.com/chilicuil/vundle.git" "$HOME/.vim/bundle/vundle"
-    fi
     _waitfor vim -es -u ~/.vimrc -c "BundleInstall" -c qa
 
     _printfs "configuring shell (1 min aprox) ..."
-    if [ ! -d "$HOME"/.shundle/bundle/shundle/.git/ ]; then
+    [ ! -d "$HOME"/.shundle/bundle/shundle/.git/ ] && \
         _fetchrepo "https://github.com/chilicuil/shundle.git" "$HOME/.shundle/bundle/shundle"
-    fi
     _cmd SHUNDLE_RC=~/.bashrc ~/.shundle/bundle/shundle/bin/shundle install
 
     _printfs "configuring cd ..."
