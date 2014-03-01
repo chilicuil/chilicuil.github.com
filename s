@@ -11,7 +11,7 @@ liner="$ sh <(wget -qO- javier.io/s)"
 
 #default apps
 apps_remote="git-core vim-nox byobu wcd htop rsync curl bzip2 gzip html2text
-ncurses-bin command-not-found libpam-captcha"
+ncurses-bin command-not-found exuberant-ctags libpam-captcha"
 apps_local="i3-wm alsa-utils alsa-base mpd ncmpcpp mpc slim libnotify-bin
 rxvt-unicode-256color xorg git-core autocutsel acpi suckless-tools feh sxiv
 notify-osd hibernate html2text htop irssi mplayer2 mutt-patched dzen2 pcmanfm
@@ -769,24 +769,6 @@ _cleanup()
 
     printf "\\n"
     _printfl "Cleanup"
-
-    _printfs "recovering old conf ..."
-    for _cleanup_var_file in $HOME/*.old; do
-        [ ! -e "$_cleanup_var_file" ] && continue
-        mv "$_cleanup_var_file" ${_cleanup_var_file%.old}
-    done
-
-    _printfs "recovering scripts ..."
-    for _cleanup_var_file in /etc/bash_completion.d/*.old; do
-        [ ! -e "$_cleanup_var_file" ] && continue
-        mv "$_cleanup_var_file" ${_cleanup_var_file%.old}
-    done
-
-    for _cleanup_var_file in /usr/local/bin/*.old; do
-        [ ! -e "$_cleanup_var_file" ] && continue
-        mv "$_cleanup_var_file" ${_cleanup_var_file%.old}
-    done
-
     _cmd rm -rf dotfiles learn
     _recoverreps
 
@@ -799,9 +781,7 @@ _backupreps()
         break
     done
 
-    if [ -f "$_backupreps_var_file" ]; then
-        _printfs "disabling temporaly non standard repos ..."
-    fi
+    [ -f "$_backupreps_var_file" ] && _printfs "disabling temporaly non standard repos ..."
 
     for _backupreps_var_file in /etc/apt/sources.list.d/*.list; do
         if [ -f "$_backupreps_var_file" ]; then
@@ -816,9 +796,7 @@ _recoverreps()
         break
     done
 
-    if [ -f "$_recoverreps_var_file" ]; then
-        _printfs "recovering non standard repos ..."
-    fi
+    [ -f "$_recoverreps_var_file" ] && _printfs "recovering non standard repos ..."
 
     for _recoverreps_var_file in /etc/apt/sources.list.d/*.list.backup_rep; do
         if [ -f "$_recoverreps_var_file" ]; then
