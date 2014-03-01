@@ -1106,7 +1106,7 @@ _remotesetup()
     _printfs "configuring shell (1 min aprox) ..."
     [ ! -d "$HOME"/.shundle/bundle/shundle/.git/ ] && \
         _fetchrepo "https://github.com/chilicuil/shundle.git" "$HOME/.shundle/bundle/shundle"
-    _cmd SHUNDLE_RC=~/.bashrc ~/.shundle/bundle/shundle/bin/shundle install
+    _cmd SHUNDLE_HOME=~/.shundle SHUNDLE_RC=~/.bashrc ~/.shundle/bundle/shundle/bin/shundle install
 
     _printfs "configuring cd ..."
     [ ! -d "$HOME"/.wcd ] && _cmd mkdir "$HOME"/.wcd
