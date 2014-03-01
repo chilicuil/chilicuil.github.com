@@ -177,7 +177,7 @@ _ensurecron()
 {   #adds cron job, returns 1 on error
     [ -z "$1" ] && return 1
     _ensurecron_var_exist=$(crontab -l 2>/dev/null | awk -v p="$1" '{ if ($0 == p) {print p}}')
-    [ -n "$_ensurecron_var_exist" ] && return 1
+    [ -n "$_ensurecron_var_exist" ] && return 0
     ( crontab -l 2>/dev/null; printf "%s\\n" "$1" ) | crontab -
 }
 
@@ -964,7 +964,7 @@ _enableremotevnc()
     _smv xorg.conf /etc/X11/
 
     #TODO 05-01-2014 03:48 >> create a service instead
-    _printfs "run $ sudo x11vnc -display :0 -auth /var/run/slim.auth -forever -safer -shared"
+    _printfs "$ sudo x11vnc -display :0 -auth /var/run/slim.auth -forever -safer -shared"
 }
 
 ################################################################################
@@ -1134,9 +1134,10 @@ _localsetup()
     _ensureonline "http://download.videolan.org"
     _printfs      "everything seems ok, continuing..."
 
-    _printfl      "Fixing dependencies"
     _remotesetup_var_release=$(_getrelease)
     _remotesetup_var_arch=$(_arch)
+
+    _printfl      "Fixing dependencies"
     if [ -n "$_remotesetup_var_release" ]; then
         _backupreps
         _printfs    "adding repos ..."
@@ -1168,17 +1169,19 @@ _localsetup()
     _printfs     "installing apps ..."
     _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y $apps_local
 
-    if ! command -v "i3" >/dev/null; then
+    if ! command -v "i3" >/dev/null 2>&1; then
         _die "Dependency step failed"
     fi
+
+    ############################################################################
 
     _printfs     "installing /usr/local/bin utilities and dotfiles ..."
     #call itself in remote (default) mode (see _remotesetup)
     _fetchfile   http://javier.io/s
-    _cmd mkdir   "$HOME"/.s
-    _cmd touch   "$HOME"/.s/config
+    _cmd         mkdir "$HOME"/.s
+    _cmd         touch "$HOME"/.s/config
     printf       "%s" "sudopwd=$sudopwd" > "$HOME"/.s/config
-    _cmd         sh ./s #_waitfor would be fancier, but there is no easy way to track sh processes
+    _cmd         sh ./s #_waitfor could be fancier, but there is no easy way to track sh processes
     _cmd         rm -rf s .s/
 
     if [ ! -d "$HOME"/.bin/firefox${_remotesetup_var_arch} ]; then
@@ -1186,24 +1189,29 @@ _localsetup()
         _installfirefoxnightly
     fi
 
-    if ! command -v "magnifier" >/dev/null; then
+    if ! command -v "magnifier" >/dev/null 2>&1; then
         _fetchfile http://files.javier.io/rep/s/magnifier${_remotesetup_var_arch}.bin magnifier
-        _cmd chmod +x magnifier
-        _cmdsudo mv magnifier /usr/local/bin/
+        _cmd       chmod +x magnifier
+        _cmdsudo   mv magnifier /usr/local/bin/
     fi
-
-    _printfs     "purging non essential apps ..."
-    _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get purge -y $apps_purge
 
     ############################################################################
 
-    _printfl     "Downloading theme files"
+    _printfl     "Downloading files"
     _printfs     "downloading confs, themes and so on ..."
-    _fetchfile   http://files.javier.io/rep/s/iconf.tar.bz2
-    _waitfor     tar jxf iconf.tar.bz2
-    _waitfor     rm iconf.tar.bz2
+    if [ ! -f "$HOME"/.not_override ]; then
+        _fetchfile   http://files.javier.io/rep/s/iconf.tar.bz2
+        _fetchfile   http://files.javier.io/rep/s/mconf.tar.bz2
+        _waitfor     tar jxf iconf.tar.bz2
+        _waitfor     tar jxf mconf.tar.bz2
+        _waitfor     rm iconf.tar.bz2 mconf.tar.bz2
 
-    [ ! -d "./iconf" ] && _die "Download step failed"
+        if [ ! -d "./iconf" ] && [ ! -d "./mconf" ]; then
+            _die "Download step failed"
+        fi
+    else
+        _printfs "$HOME/.not_override is present, skipping ..."
+    fi
 
     ############################################################################
 
@@ -1222,7 +1230,7 @@ _localsetup()
 
     _printfs       "configuring audio ..."
     _ensuresetting "snd-mixer-oss" /etc/modules
-    _cmdsudo       mv iconf/mpd/mpd.conf /etc
+    [ -f iconf/mpd/mpd.conf ] && _cmdsudo mv iconf/mpd/mpd.conf /etc
     _cmdsudo       sed -i -e \\\"/music_directory/ s:chilicuil:$(whoami):\\\" /etc/mpd.conf
 
     _printfs       "configuring groups ..."
@@ -1233,17 +1241,17 @@ _localsetup()
     _printfs "configuring cron ..."
     if [ -f /usr/local/bin/watch-battery ]; then
         printf "%s\\n" "    $ echo \"*/1 * * * * /usr/local/bin/watch-battery\" | crontab -"
-        _addcron "*/1 * * * * /usr/local/bin/watch-battery";
+        _ensurecron "*/1 * * * * /usr/local/bin/watch-battery";
     fi
 
     if [ -f /usr/local/bin/wcd ] && [ -f /usr/bin/wcd.exec ] && [ -f /usr/local/bin/update-cd ]; then
         printf "%s\\n" "    $ echo \"* 23 * * *  /usr/local/bin/update-cd\" | crontab -"
-        _addcron "* 23 * * *  /usr/local/bin/update-cd";
+        _ensurecron "* 23 * * *  /usr/local/bin/update-cd";
     fi
 
     if [ -f /usr/local/bin/backup-mozilla ]; then
         printf "%s\\n" "    $ echo \"15 */4 * * * /usr/local/bin/backup-mozilla\" | crontab -"
-        _addcron "15 */4 * * * /usr/local/bin/backup-mozilla";
+        _ensurecron "15 */4 * * * /usr/local/bin/backup-mozilla";
     fi
 
     if [ -f "$HOME"/misc/conf/ubuntu/etc/lenovo-edge-netbook/crontabs.tar.gz ]; then
@@ -1251,8 +1259,8 @@ _localsetup()
     fi
 
     _printfs "configuring login manager ..."
-    _smv     iconf/slim/slim.conf /etc/
-    _smv     iconf/slim/custom /usr/share/slim/themes/
+    [ -f iconf/slim/slim.conf ] && _smv iconf/slim/slim.conf /etc/
+    [ -f iconf/slim/custom ]    && _smv iconf/slim/custom /usr/share/slim/themes/
     _cmdsudo sed -i -e \\\"/default_user/ s:chilicuil:$(whoami):\\\" /etc/slim.conf
 
     _printfs "configuring gpg/ssh agents ..."
@@ -1269,8 +1277,8 @@ _localsetup()
             /etc/X11/Xsession.options
     fi
 
-    [ -d "$HOME"/.gnupg ]          || _cmd mkdir "$HOME"/.gnupg
-    [ -f "$HOME"/.gnupg/gpg.conf ] || _ensuresetting "use-agent" "$HOME"/.gnupg/gpg.conf
+    [ ! -d "$HOME"/.gnupg ]          && _cmd mkdir "$HOME"/.gnupg
+    [ ! -f "$HOME"/.gnupg/gpg.conf ] && _ensuresetting "use-agent" "$HOME"/.gnupg/gpg.conf
 
     _printfs "configuring dbus ..."
     #allow use of shutdown/reboot through dbus-send
@@ -1289,19 +1297,19 @@ _localsetup()
 
     _printfs "configuring browser ..."
     if [ ! -f "$HOME"/.not_override ]; then
-        _waitfor tar jxf iconf/firefox/mozilla.tar.bz2 -C iconf/firefox
-        for mozilla_old_profile in iconf/firefox/.mozilla/firefox/*.default; do break; done
+        _waitfor tar jxf mconf/firefox/mozilla.tar.bz2 -C mconf/firefox
+        for mozilla_old_profile in mconf/firefox/.mozilla/firefox/*.default; do break; done
         mozilla_old_profile=$(basename "$mozilla_old_profile" .default)
         mozilla_new_profile=$(strings /dev/urandom | grep -o '[[:alnum:]]' | \
                               head -n 8 | tr -d '\n'; printf "\\n")
 
-        _smv iconf/firefox/libflashplayer${_remotesetup_var_arch}.so /usr/lib/mozilla/plugins/
-        _cmd mv iconf/firefox/.mozilla/firefox/$mozilla_old_profile.default \
-                iconf/firefox/.mozilla/firefox/$mozilla_new_profile.default
-        find iconf/firefox/.mozilla -type f | xargs sed -i -e "s/$mozilla_old_profile/$mozilla_new_profile/g"
-        find iconf/firefox/.mozilla -type f | xargs sed -i -e "s/admin/$(whoami)/g"
-        find iconf/firefox/.mozilla -type f | xargs sed -i -e "s/chilicuil/$(whoami)/g"
-        _smv iconf/firefox/.mozilla "$HOME"
+        _smv mconf/firefox/libflashplayer${_remotesetup_var_arch}.so /usr/lib/mozilla/plugins/
+        _cmd mv mconf/firefox/.mozilla/firefox/$mozilla_old_profile.default \
+                mconf/firefox/.mozilla/firefox/$mozilla_new_profile.default
+        find mconf/firefox/.mozilla -type f | xargs sed -i -e "s/$mozilla_old_profile/$mozilla_new_profile/g"
+        find mconf/firefox/.mozilla -type f | xargs sed -i -e "s/admin/$(whoami)/g"
+        find mconf/firefox/.mozilla -type f | xargs sed -i -e "s/chilicuil/$(whoami)/g"
+        _smv mconf/firefox/.mozilla "$HOME"
 
         _cmd rm -rf ~/.macromedia ~/.adobe
         _cmd ln -s      /dev/null ~/.adobe
@@ -1320,7 +1328,7 @@ _localsetup()
         _smv iconf/.data       "$HOME"
     fi
 
-    _waitforsudo fc-cache -f -v #required for update font information
+    _waitforsudo fc-cache -f -v  #update font information
     _cmdsudo update-alternatives --set x-terminal-emulator /usr/bin/urxvt
 
     [ -d "$HOME"/.gvfs ] && fusermount -u "$HOME"/.gvfs
@@ -1337,7 +1345,7 @@ _localsetup()
         _cmd sed -i \\\"s:BAT1:BAT0:g\\\" "$HOME"/.conkyrc
     fi
 
-    #some virtualization technologies used in vps's don't have displays
+    #virtualization technologies used in vps's don't have displays
     localsetup_var_virt=$(_whatvirt)
     case $localsetup_var_virt in
         openvz|uml|xen) 
@@ -1350,7 +1358,7 @@ _localsetup()
     _printfs "cleaning up ..."
     _cmd     touch "$HOME"/.not_override
     _cmdsudo touch /usr/local/bin/not_override
-    _cmd     rm -rf iconf*
+    _cmd     rm -rf iconf* mconf*
 
     ############################################################################
 
