@@ -1055,19 +1055,19 @@ _remotesetup()
         _printfs "installing utils ..."
         for _remotesetup_var_file in learn/python/*; do
             [ ! -e "$_remotesetup_var_file" ] && continue
-            [ -f "$_remotesetup_var_file" ] && chmod +x "$_remotesetup_var_file"
+            [ -f "$_remotesetup_var_file" ]   && chmod +x "$_remotesetup_var_file"
             _smv "$_remotesetup_var_file" "$_remotesetup_var_target"
         done
 
         for _remotesetup_var_file in learn/sh/is/*; do
             [ ! -e "$_remotesetup_var_file" ] && continue
-            [ -f "$_remotesetup_var_file" ] && chmod +x "$_remotesetup_var_file"
+            [ -f "$_remotesetup_var_file" ]   && chmod +x "$_remotesetup_var_file"
             _smv "$_remotesetup_var_file" "$_remotesetup_var_target"
         done
 
         for _remotesetup_var_file in learn/sh/tools/*; do
             [ ! -e "$_remotesetup_var_file" ] && continue
-            [ -f "$_remotesetup_var_file" ] && chmod +x "$_remotesetup_var_file"
+            [ -f "$_remotesetup_var_file" ]   && chmod +x "$_remotesetup_var_file"
             _smv "$_remotesetup_var_file" "$_remotesetup_var_target"
         done
     else
@@ -1260,7 +1260,7 @@ _localsetup()
 
     _printfs "configuring login manager ..."
     [ -f iconf/slim/slim.conf ] && _smv iconf/slim/slim.conf /etc/
-    [ -f iconf/slim/custom ]    && _smv iconf/slim/custom /usr/share/slim/themes/
+    [ -d iconf/slim/custom ]    && _smv iconf/slim/custom /usr/share/slim/themes/
     _cmdsudo sed -i -e \\\"/default_user/ s:chilicuil:$(whoami):\\\" /etc/slim.conf
 
     _printfs "configuring gpg/ssh agents ..."
