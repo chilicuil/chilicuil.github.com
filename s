@@ -962,6 +962,7 @@ _enableremotevnc()
     printf "%s\\n" 'EndSection' >> xorg.conf
 
     _smv xorg.conf /etc/X11/
+    _cmd rm -rf xorg.conf
 
     #TODO 05-01-2014 03:48 >> create a service instead
     _printfs "$ sudo x11vnc -display :0 -auth /var/run/slim.auth -forever -safer -shared"
