@@ -1191,7 +1191,7 @@ _localsetup()
     fi
 
     if ! command -v "magnifier" >/dev/null 2>&1; then
-        _fetchfile http://files.javier.io/rep/s/magnifier${_remotesetup_var_arch}.bin magnifier
+        _fetchfile http://files.javier.io/rep/bin/magnifier${_remotesetup_var_arch}.bin magnifier
         _cmd       chmod +x magnifier
         _cmdsudo   mv magnifier /usr/local/bin/
     fi
