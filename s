@@ -511,6 +511,7 @@ _cmd()
 
     if [ X"$_cmd_var_status" != X"0" ]; then
         printf "> %s:%s" "$*" "$_cmd_var_output"
+        printf "\\n"
         exit "$_cmd_var_status"
     else
         return "$_cmd_var_status"
@@ -527,6 +528,7 @@ _cmdsudo()
 
     if [ X"$_cmdsudo_var_status" != X"0" ]; then
         printf "> %s:%s\\n" "$*" "$_cmdsudo_var_output"
+        printf "\\n"
         exit "$_cmdsudo_var_status"
     else
         return "$_cmdsudo_var_status";
