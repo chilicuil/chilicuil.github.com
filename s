@@ -1186,7 +1186,7 @@ _localsetup()
     _cmd         rm -rf s .s/
 
     if [ ! -d "$HOME"/.bin/firefox${_remotesetup_var_arch} ]; then
-        _cmd mkdir "$HOME"/.bin
+        [ ! -d "$HOME"/.bin ] && _cmd mkdir "$HOME"/.bin
         _installfirefoxnightly
     fi
 
