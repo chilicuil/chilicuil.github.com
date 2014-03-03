@@ -1232,7 +1232,6 @@ _localsetup()
     _cmdsudo       usermod -a -G netdev $(whoami)
 
     _printfs       "configuring audio ..."
-    _ensuresetting "snd-mixer-oss" /etc/modules
     [ -f iconf/mpd/mpd.conf ] && _cmdsudo mv iconf/mpd/mpd.conf /etc
     _cmdsudo       sed -i -e \\\"/music_directory/ s:chilicuil:$(whoami):\\\" /etc/mpd.conf
 
@@ -1344,8 +1343,10 @@ _localsetup()
          -o -type f -iname "*bazaar.conf*"    \
          -o -type f -iname "*conkyrc*" \) -exec sed -i "s/chilicuil/$(whoami)/g" '{}' \;
 
-    if [ -d /proc/acpi/battery/BAT0 ] && [ -f "$HOME"/.conkyrc ]; then
-        _cmd sed -i \\\"s:BAT1:BAT0:g\\\" "$HOME"/.conkyrc
+    if [ -f "$HOME"/.conkyrc ]; then
+        if [ -d /proc/acpi/battery/BAT0 ] || [ -d /sys/class/power_supply/BAT0 ]; then
+            _cmd sed -i \\\"s:BAT1:BAT0:g\\\" "$HOME"/.conkyrc
+        fi
     fi
 
     #virtualization technologies used in vps's don't have displays
