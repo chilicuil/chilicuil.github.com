@@ -98,6 +98,7 @@ Las distribuciones más populares (debian,ubuntu,redhat,centos,etc) soportan ins
 - **proxy=http://url**, para configurar un proxy
 - **user=juan**, para especificar un usuario administrador diferente al de por defecto (chilicuil)
 
-<br>
+Referencias:
+
 - [https://github.com/psychomario/PyPXE](https://github.com/psychomario/PyPXE)
 - [http://javier.io/blog/es/2010/12/14/compartir-conexion-pc-a-pc.html](http://javier.io/blog/es/2010/12/14/compartir-conexion-pc-a-pc.html)
