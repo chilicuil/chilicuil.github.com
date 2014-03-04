@@ -40,7 +40,7 @@ Para este ejemplo Ubuntu 12.04 LTS de 64 bits.
 $ bash &lt;(wget -qO- https://raw.github.com/chilicuil/learn/master/sh/is/pxe)
 $ cd pxe_setup #es importante cambiar a este directorio
 $ wget http://archive.ubuntu.com/.../amd64/initrd.gz -O ubuntu/1204/amd64/initrd.gz
-$ wget http://archive.ubuntu.com/.../amd64/linux     -O ubuntu/1204/amd64/initrd.gz
+$ wget http://archive.ubuntu.com/.../amd64/linux     -O ubuntu/1204/amd64/linux
 </pre>
 
 No es obligatorio descargar los archivos *linux* e *initrd.gz* en *ubuntu/1204/amd64/* pero si no se hace, se tendrá que modificar *ubuntu/ubuntu.menu* con la nueva ruta. Una vez finalizadas las descargas, el sistema esta casi listo para arrancar otros equipos. ¡Simple!
