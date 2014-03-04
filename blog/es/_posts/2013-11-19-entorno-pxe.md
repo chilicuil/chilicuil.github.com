@@ -8,9 +8,9 @@ title: "configurar entorno pxe"
 
 **[![](/assets/img/87.jpg)](/assets/img/87.jpg)**
 
-Existen varias guías en internet para configurar entornos <a href="http://es.wikipedia.org/wiki/Preboot_Execution_Environment" target="_blank">pxe</a> (muy util en la instalacion masiva de equipos), la mayoría de ellas son largas y complicadas. O si son faciles, requieren que descargues medio internet. Me gustan los sistemas minimalistas y sencillos, como no vi nada que me satisfaciera, tome algunos dias para estudiar el tema, y este es el resultado.
+Existen varias guías en internet para configurar entornos [pxe](http://es.wikipedia.org/wiki/Preboot_Execution_Environment) (útiles en la instalación masiva de equipos), la mayoría de ellas son largas y complicadas (cuando instalan versiones clásicas de dhcpd, tftp, etc). O si son fáciles, requieren que descargues medio internet ([clobber](https://fedorahosted.org/cobbler/) y [maas](https://maas.ubuntu.com/)). Cuando pienso en pxe, generalmente pienso en un entorno que pueda instalar y desechar rápidamente, como no encontré nada que me permitiera hacerlo de esa forma decidí ir por mi cuenta y este es el resultado. 
 
-Un entorno pxe en 68KB con baterias incluidas, pxelinux, dhcpd, tftp y manos libres.
+Un entorno pxe en 68KB con baterías incluidas, pxelinux, dhcpd, tftp y manos libres.
 
 <iframe class="showterm" src="http://showterm.io/ccd5bb10d887b3e6bbd87" width="640" height="300">&nbsp;</iframe> 
 
@@ -29,28 +29,29 @@ Un entorno pxe en 68KB con baterias incluidas, pxelinux, dhcpd, tftp y manos lib
    -</pre>
    -->
 
-El comando anterior es el corazon del sistema, un script que genera una estructura de directorios con las herramientas y menus preconfiguradoras para arrancar por lo menos ubuntu y fedora (puede personalizarse facilmente si se leen los archivos con terminacion .menu). El script anterior, solo crea la estructura, aun hay que descargar los sistemas que se desean arrancar, es decir por lo menos 2 archivos de su distribucion favorita.
+El comando anterior es el corazón del sistema, un script que genera una estructura de directorios con las herramientas y menus preconfigurados para arrancar por lo menos ubuntu y fedora (puede personalizarse fácilmente si se leen los archivos con terminación .menu). El script anterior, solo crea la estructura, aun hay que descargar los sistemas que se desean arrancar, es decir por lo menos 2 archivos de su distribución favorita.
 
 - [linux](http://archive.ubuntu.com/ubuntu/dists/precise-updates/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/linux) (kernel)
 - [initrd.gz](http://archive.ubuntu.com/ubuntu/dists/precise-updates/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/initrd.gz) (sistema base)
 
-Tomando como ejemplo Ubuntu 12.04 de 64 bits:
+Para este ejemplo Ubuntu 12.04 LTS de 64 bits.
 
 <pre class="sh_sh">
-$ cd pxe_setup
+$ bash &lt;(wget -qO- https://raw.github.com/chilicuil/learn/master/sh/is/pxe)
+$ cd pxe_setup #es importante cambiar a este directorio
 $ wget http://archive.ubuntu.com/.../amd64/initrd.gz -O ubuntu/1204/amd64/initrd.gz
 $ wget http://archive.ubuntu.com/.../amd64/linux     -O ubuntu/1204/amd64/initrd.gz
 </pre>
 
-Se descargan los archivos *linux* e *initrd.gz* y se colocan en *ubuntu/1204/amd64/*. No es obligatorio descargarlos ahi, pero si no se hace se tendra que modificar *ubuntu/ubuntu.menu* con la nueva ruta. Una vez finalizadas las descargas, se tendran todos los archivos que se necesitan para arrancar otros equipos en red.
+No es obligatorio descargar los archivos *linux* e *initrd.gz* en *ubuntu/1204/amd64/* pero si no se hace, se tendrá que modificar *ubuntu/ubuntu.menu* con la nueva ruta. Una vez finalizadas las descargas, el sistema esta casi listo para arrancar otros equipos. ¡Simple!
 
-Lamentablemente, aun queda otro paso, que parece ser el mas complicado, configurar la red local. Este paso es complicado porque es dificil de automatizar, existen muchas configuraciones de redes y de equipos.
+Lamentablemente aun queda otro paso, configurar la red local. Este paso es complicado porque es difícil de automatizar, existen muchas configuraciones de redes.
 
-Por lo general, el equipo donde se instala el entorno pxe tiene 2 interfaces de red (una conectada a internet, y otra conectada al equipo que se desea arrancar). Puede estar conectada directa o indirectamente (que se conecten entre si con switches u otros routers). Si el equipo solo tiene 1 interfaz de red, entonces se require un router con soporte pxe.
+Por lo general, el equipo donde se instala el entorno pxe tiene 2 interfaces de red (una conectada a internet, y otra conectada al equipo que se desea arrancar). Puede estar conectada directa o indirectamente (que se conecten entre si con switches u otros routers). Si el equipo solo tiene 1 interfaz de red, entonces se requiere un router con soporte pxe.
 
-## Caso 1, router con soporte pxe (facil)
+## Caso 1, router con soporte pxe (fácil)
 
-Existen routers comerciales (cisco) y firmwares libres (pfsense) que pueden redireccionar peticiones de arranque (dhcp) hacia otros equipos. En este caso se configura el router para que envie la peticion a la ip del equipo donde se ejecuto el script con la direccion **pxelinux.0** y se inicia el servidor tftp:
+Existen routers comerciales (cisco) y firmwares libres (pfsense) que pueden redireccionar peticiones de arranque (dhcp) hacia otros equipos. Si este es el caso, se puede configurar el router para que envié la petición a la ip del equipo con el entorno pxe (en la ruta **pxelinux.0**) y ejecutar el servicio tftp en la computadora local:
 
 <pre class="sh_sh">
 $ sudo python ./simple-tftpd
@@ -58,9 +59,9 @@ $ sudo python ./simple-tftpd
 
 ## Caso 2, router sin soporte pxe, servidor pxe con al menos 2 interfaces de red
 
-El segundo caso, es mucho mas frecuente, ya sea porque el router no soporte redirecciones de peticiones pxe o porque no se tenga acceso. Ejemplo, una laptop en una cafeteria.
+El segundo caso, es mucho más frecuente, ya sea porque el router no soporte redirecciones (telmex, iusacell, otro isp) o porque no se tenga acceso. Ejemplo, una laptop en una cafetería.
 
-Suponiendo que wlan0 es una interfaz inalambrica de una laptop conectada a internet, y que eth0 es la interfaz conectada al equipo que se desea arrancar. Se configura la primera para actuar de puente entre internet y el equipo objetivo.
+Suponiendo que wlan0 es una interfaz inalámbrica de una laptop conectada a internet, y que eth0 es una interfaz alámbrica conectada al equipo que se desea arrancar. Se configura la primera para actuar de puente entre internet y el equipo objetivo.
 
 <pre class="sh_sh">
 $ sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
@@ -73,22 +74,29 @@ La segunda interfaz (eth0) se configura con una ip local fuera del rango de cual
 $ while :; do sudo ifconfig eth0 10.99.88.1; sleep 3; done
 </pre>
 
-NOTA: En sistemas con NetworkManager, es mejor configurar la ip desde su interfaz, o desactivarlo completamente y luego configurar la ip con el comando anterior
+NOTA: En sistemas con [NetworkManager](https://wiki.gnome.org/Projects/NetworkManager), es mejor configurar la ip desde su interfaz, o desactivarlo completamente y luego configurar la ip con el comando anterior
 
-Configuradas ambas interfaces se ejecuta dhcp en la interfaz conectada a la maquina objetivo y tftp:
+Configuradas ambas interfaces se ejecuta dhcp y tftp en la interfaz conectada a la máquina objetivo:
 
 <pre class="sh_sh">
 $ sudo python ./simple-dhcpd -i eth0 -a 10.99.88.1
 $ sudo python ./simple-tftpd
 </pre>
 
-Si los equipos conectados al otro lado de eth0 ya estan configurados (desde la bios) para arrancar en red, se pueden encender. En sus pantallas se dibujara un menu, con opciones para instalar ubuntu o fedora. Dependiendo de los archivos que hayan descargado se podran instalar cualquiera de esos sistemas. Cuando se termine, se puede eliminar el entorno con:
+Si los equipos conectados al otro lado de eth0 ya están configurados (desde la bios) para arrancar en red, se pueden encender. En sus pantallas se dibujara un menú, con opciones para instalar ubuntu o fedora. Dependiendo de los archivos que se hayan descargado se podrá instalar cualquiera de esos sistemas. Cuando se termine, se puede eliminar el entorno con:
 
 <pre class="sh_sh">
 $ rm -rf pxe_setup
 </pre>
 
 Idea: Crear una máquina virtual con 2 interfaces, una en modo *bridge* para wlan0, o donde se encuentre la fuente de internet y otra en modo *bridge* | *internal network* a eth0 o donde se puedan conectar otros equipos para tener un instalador de distribuciones portable.
+
+## extra, manos libres
+
+Las distribuciones más populares (debian,ubuntu,redhat,centos,etc) soportan instalaciones automatizadas (preseed, kickstart). El entorno descrito en esta nota configura una opción para instalar Ubuntu en modo manos libres. El archivo [preseed](http://people.ubuntu.com/~chilicuil/conf/preseed/minimal.preseed) puede usarse por si solo desde cualquier instalador de Ubuntu, **url=http://url** y soporta las siguientes opciones de personalización a través de la línea APPEND:
+
+- **proxy=http://url**, para configurar un proxy
+- **user=juan**, para especificar un usuario administrador diferente al de por defecto (chilicuil)
 
 <br>
 - [https://github.com/psychomario/PyPXE](https://github.com/psychomario/PyPXE)
