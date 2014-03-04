@@ -237,43 +237,13 @@ _distro()
 
     if [ -z "$DISTRIB_ID" ]; then
         _distro_var_DISTRIB_ID="Unknown";
-        if [ -f /etc/arch-release ]; then
-            _distro_var_DISTRIB_ID="Arch"
-        elif [ -r /etc/knoppix-version ]; then
-            _distro_var_DISTRIB_ID="Knoppix"
-        elif [ -r /etc/sidux-version ]; then
-            _distro_var_DISTRIB_ID="Sidux"
-        elif [ -r /etc/debian_version ]; then
+        if [ -r /etc/debian_version ]; then
             _distro_var_DISTRIB_ID="Debian"
         elif [ -r /etc/issue ]; then
             _distro_var_DISTRIB_ID=$(awk '{print $1}' /etc/issue.net)
             if [ X"$_distro_var_DISTRIB_ID" = X"Ubuntu" ]; then
                 _distro_var_DISTRIB_ID="Ubuntu"
             fi
-        elif [ -r /etc/gentoo-release ]; then
-            _distro_var_DISTRIB_ID="Gentoo"
-        elif [ -f /etc/lfs-version ]; then
-            _distro_var_DISTRIB_ID="LFS"
-        elif [ -r /etc/pclinuxos-release ]; then
-            _distro_var_DISTRIB_ID="PCLinuxOS"
-        elif [ -f /etc/mandriva-release ] || [ -f /etc/mandrake-release ]; then
-            _distro_var_DISTRIB_ID="Mandriva"
-        elif [ -f /etc/redhat-release ]; then
-            _distro_var_DISTRIB_ID="RedHat"
-        elif [ -f /etc/fedora-release ]; then
-            _distro_var_DISTRIB_ID="Fedora"
-        elif [ -r /etc/vector-version ]; then
-            _distro_var_DISTRIB_ID="VectorLinux"
-        elif [ -r /etc/slackware-version ]; then
-            _distro_var_DISTRIB_ID="$(cat /etc/slackware-version)"
-        elif [ -f /etc/release ]; then
-            _distro_var_DISTRIB_ID="Solaris"
-        elif [ -r /etc/SuSE-release ]; then
-            _distro_var_DISTRIB_ID="$(grep -i suse /etc/SuSE-release)"
-        elif [ -f /etc/yellowdog-release ]; then
-            _distro_var_DISTRIB_ID="YellowDog Linux"
-        elif [ -f /etc/zenwalk-version ]; then
-            _distro_var_DISTRIB_ID="Zenwalk"
         fi
         printf "%s\\n" "$_distro_var_DISTRIB_ID" | \
             tr 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' 'abcdefghijklmnopqrstuvwxyz'
@@ -1345,7 +1315,7 @@ _localsetup()
 
     if [ -f "$HOME"/.conkyrc ]; then
         if [ -d /proc/acpi/battery/BAT0 ] || [ -d /sys/class/power_supply/BAT0 ]; then
-            _cmd sed -i \\\"s:BAT1:BAT0:g\\\" "$HOME"/.conkyrc
+            _cmd sed -i "s:BAT1:BAT0:g" "$HOME"/.conkyrc
         fi
     fi
 
