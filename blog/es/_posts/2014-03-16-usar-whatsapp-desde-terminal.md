@@ -24,7 +24,7 @@ $ sudo apt-get update
 $ sudo apt-get install yowsup
 </pre>
 
-También se puede descargar el repositorio y usar desde el directorio principal, si se hace esto, se tendra que agregar "-c ~/.yowsup" después de la invocacion a yowsup.
+También se puede descargar el repositorio y usar desde el directorio principal, si se hace esto, se tendra que reemplazar yowsup por yowsup-cli y agregar "-c ~/.yowsup" como primer parámetro:
 
 <pre class="sh_sh">
 $ git clone https://github.com/tgalal/yowsup
@@ -44,7 +44,7 @@ password=
 Y luego se ejecuta:
 
 <pre class="sh_sh">
-$ yowsup-cli --requestcode sms
+$ yowsup --requestcode sms
 </pre>
 
 Un mensaje sms se enviará al número configurado, si es real, llegará en 1-5 min. Si es virtual (y alojado en twilio.com), habrá que revisar la carpeta de entrada. Logs &#x25B7; Messages.
@@ -58,15 +58,15 @@ Y luego **Incomming**:
 Con el código de verificación en mano, se puede registrar la cuenta:
 
 <pre class="sh_sh">
-$ yowsup-cli --register codigo-de-registro #(de 3 a 6 digitos)
+$ yowsup --register codigo-de-registro #(de 3 a 6 digitos)
 </pre>
 
 A partir de entonces se podrán enviar/recibir mensajes:
 
 <pre class="sh_sh">
-$ yowsup-cli -l                     #queda a escucha de nuevos mensajes
-$ yowsup-cli -s XXXXXXXX "mensaje"  #envia mensaje al número XXXXXXXX
-$ yowsup-cli -i XXXXXXXX            #inicia una charla con el número XXXXXXXX
+$ yowsup -l                     #queda a escucha de nuevos mensajes
+$ yowsup -s XXXXXXXX "mensaje"  #envia mensaje al número XXXXXXXX
+$ yowsup -i XXXXXXXX            #inicia una charla con el número XXXXXXXX
 </pre>
 
 Referencias
