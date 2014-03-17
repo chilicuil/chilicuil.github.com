@@ -61,7 +61,7 @@ Con el código de verificación en mano, se puede registrar la cuenta:
 $ yowsup --register codigo-de-registro #(de 3 a 6 digitos)
 </pre>
 
-A partir de entonces se podrán enviar/recibir mensajes:
+Lo que devolvera una contraseña, esa contraseña debe agregarse al archivo **~/.yowsup**, después de lo cual se podrán enviar/recibir mensajes:
 
 <pre class="sh_sh">
 $ yowsup -l                     #queda a escucha de nuevos mensajes
