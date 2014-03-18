@@ -29,6 +29,7 @@ A partir de ese momento **$ foo &lt;Tab&gt;&lt;Tab&gt;** devolvería una lista d
 <pre class="sh_sh">
 $ complete -A user bar #autocompletará bar con los usuarios del sistema
 $ complete -W "-v --verbose -h" wop #autocompletará con "-v", "--verbose" y "-h"
+$ complete -f -X '!*.[pP][dD][fF]' evince foo #autocompletará con archivos pdf, evince y foo
 </pre>
 
 La sintaxis completa esta definida en **$ man bash**
