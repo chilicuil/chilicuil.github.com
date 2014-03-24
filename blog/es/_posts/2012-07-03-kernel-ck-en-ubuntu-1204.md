@@ -47,25 +47,35 @@ Si no desean compilarlo, he preparado paquetes para amd64 y para x86
 
 *3.4.5*
 
-- [amd64](http://ubuntuone.com/0tFgExMBfl0ajtOAJkuZhM)
-- [x86](http://ubuntuone.com/7gnOVHx5CaS1tH2aV8LTGb)
+- [amd64](http://f.javier.io/rep/deb/3.4.5-ck-amd64.tar.bz2)
+- [x86](http://f.javier.io/rep/deb/3.4.5-ck-i386.tar.bz2)
 
 *3.7.1*
 
-- [amd64](http://ubuntuone.com/0rslvlUGVTieUrCSfjM5GC)
-- [x86](http://ubuntuone.com/0ZRJ1mvi4vPu8NvVblM96j)
+- [amd64](http://f.javier.io/rep/deb/3.7.1-ck-i386.tar.bz2)
+- [x86](http://f.javier.io/rep/deb/3.7.1-ck-amd64.tar.bz2)
 
 *3.8.2*
 
-- [amd64](http://ubuntuone.com/6fYQQlVPzQuaRRoogpJ3Dd)
-- [x86](http://ubuntuone.com/66JgpjRzUronOX1UXz2rh7)
+- [amd64](http://f.javier.io/rep/deb/3.8.2-ck-amd64.tar.bz2)
+- [x86](http://f.javier.io/rep/deb/3.8.2-ck-i386.tar.bz2)
 
 *3.9.2*
 
-- [amd64](https://files.one.ubuntu.com/EIay6Vw4QA2d1cQ8IHtsRA)
-- [x86](https://files.one.ubuntu.com/sZp9nOJZTuGuc2sfVL55fw)
+- [amd64](http://f.javier.io/rep/deb/3.9.2-ck-amd64.tar.bz2)
+- [x86](http://f.javier.io/rep/deb/3.9.2-ck-i386.tar.bz2)
 
 *3.11.7*
 
-- [amd64](http://ubuntuone.com/465xcKyV9u3VAS8JiJsVi2)
-- [x86](http://ubuntuone.com/0fL4S4zGTbKQu8CZZJvBXm)
+- [amd64](http://f.javier.io/rep/deb/3.11.7-ck-amd64.tar.bz2)
+- [x86](http://f.javier.io/rep/deb/3.11.7-ck-i386.tar.bz2)
+
+*3.12.1*
+
+- [amd64](http://f.javier.io/rep/deb/3.12.1-ck-amd64.tar.bz2)
+- [x86](http://f.javier.io/rep/deb/3.12.1-ck-i386.tar.bz2)
+
+*3.13.7*
+
+- [amd64](http://f.javier.io/rep/deb/3.13.7-ck-i386.tar.bz2)
+- [x86](http://f.javier.io/rep/deb/3.13.7-ck-amd64.tar.bz2)
