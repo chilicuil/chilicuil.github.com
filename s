@@ -15,7 +15,7 @@ ncurses-bin command-not-found exuberant-ctags libpam-captcha"
 apps_local="i3-wm alsa-utils alsa-base mpd ncmpcpp mpc slim libnotify-bin
 rxvt-unicode-256color xorg git-core autocutsel acpi suckless-tools feh sxiv
 notify-osd hibernate html2text htop irssi mplayer2 mutt-patched dzen2 pcmanfm
-pm-utils rlpr unetbootin wodim xclip zsync gnupg-agent lxappearance
+pm-utils rlpr unetbootin wodim xclip zsync gnupg-agent lxappearance bc
 exuberant-ctags i3lock conky-cli zathura gtk2-engines-pixbuf openssh-server
 wicd-curses geoclue-ubuntu-geoip redshift zram-config lame unzip udisks gvfs
 gvfs-common gvfs-daemons gvfs-fuse gvfs-libs policykit-1 google-talkplugin
@@ -1250,7 +1250,7 @@ _localsetup()
     fi
 
     [ ! -d "$HOME"/.gnupg ]          && _cmd mkdir "$HOME"/.gnupg
-    [ ! -f "$HOME"/.gnupg/gpg.conf ] && _ensuresetting "use-agent" "$HOME"/.gnupg/gpg.conf
+    [ -f "$HOME"/.gnupg/gpg.conf ]   && _ensuresetting "use-agent" "$HOME"/.gnupg/gpg.conf
 
     _printfs "configuring dbus ..."
     #allow use of shutdown/reboot through dbus-send
