@@ -10,3 +10,4 @@ auto:        false
 future:      true
 lsi:         true
 pygments:    false
+markdown:    kramdown
