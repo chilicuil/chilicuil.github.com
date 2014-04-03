@@ -8,7 +8,7 @@ title: "usar whatsapp desde terminal en Linux"
 
 **[![](http://openwhatsapp.org/static/img/logo.jpg)](http://openwhatsapp.org/static/img/logo.jpg)**
 
-Ultimamente he tenido que comunicarme a través de whatsapp (una aplicación muy popular en teléfonos moviles) y como no tengo teléfono inteligente, me ha tocado averiguar como usar el servicio desde una pc.
+Ultimamente he tenido que comunicarme a través de [whatsapp](http://www.whatsapp.com/) y como no tengo teléfono inteligente me ha tocado averiguar como usar el servicio desde una pc.
 
 Los posts más populares al respecto hablan de instalar un emulador de android y luego usar whatsapp desde ahí. Sin embargo, y con mucha menos publicidad también se encuentran librerias no oficiales. Esta pues, es la forma en la que he logrado comunicarme con whatsapp desde Linux.
 
