@@ -4,6 +4,7 @@ title: "soporte técnico de steren"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Nada, hace tiempo que leo el blog de Manuel Micheline \([La morsa](http://la-morsa.blogspot.com/)\) un catedrático de la facultad de ciencias de la UNAM / maestro FIDE en ajedrez y entusiasta programador, y me ha dado por crear una entrada imitando un poco su estilo, esto es, escribir sobre los servicios técnicos de algunas empresas.

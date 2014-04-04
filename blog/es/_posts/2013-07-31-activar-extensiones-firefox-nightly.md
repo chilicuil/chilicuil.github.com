@@ -4,6 +4,7 @@ title: "activar extensiones en firefox nightly"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 **[![](/assets/img/78.jpg)](/assets/img/78.jpg)**

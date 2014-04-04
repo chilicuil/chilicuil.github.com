@@ -4,6 +4,7 @@ title: "cambiar el anillo de claves para pbuilder"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Nada, en el viaje semi eterno que sigo recorriendo para convertirme en desarrollador de Ubuntu me encuentro con problemas particulares del sistema dpkg. Esta vez mientras trabajaba con pbuilder he encontrado el siguiente error:

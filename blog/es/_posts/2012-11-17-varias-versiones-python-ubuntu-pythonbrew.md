@@ -4,6 +4,7 @@ title: "instalar varias versiones de python en ubuntu - pythonbrew"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Para instalar varias versiones de python, se requiere pythonbrew y curl:

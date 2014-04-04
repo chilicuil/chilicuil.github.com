@@ -4,6 +4,7 @@ title: "caché de paquetes .deb"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 **Nota:** He creado un [script](https://raw.github.com/chilicuil/learn/master/sh/is/apt-proxy) que hace lo descrito en este post.

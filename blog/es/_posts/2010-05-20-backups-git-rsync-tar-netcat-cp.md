@@ -4,6 +4,7 @@ title: "backups: git, rsync, tar, netcat y cp"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Mi sistema de backups es realmente malo, cada vez que me acuerdo de propagarlo (si es que lo hago), me pongo a buscar los comandos para hacerlo y al finalizar siempre olvido las opciones, por lo que tengo que volver a buscarlas. Así que un primer paso será dejarlos por aquí para tenerlos a la vista rápidamente, en lo que me decido a echar todo esto a la basura y configurar algo que no sea tan pesado. Las propuestas son bienvenidas.

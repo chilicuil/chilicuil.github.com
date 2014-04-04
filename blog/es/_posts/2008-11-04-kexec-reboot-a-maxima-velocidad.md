@@ -4,6 +4,7 @@ title: "kexec, rebooteando a máxima velocidad"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Desde la version 2.6 de Linux existe una manera de reiniciar realmente rápido. Se trata de Kexec un conjunto de llamadas al sistema, que reemplazan al kernel actual con uno nuevo, evitando la bios y con ello la inicialización del hardware. Lo que en pocas palabras reducen el tiempo de reinicio en 20, 30 y hasta en 60! segundos.

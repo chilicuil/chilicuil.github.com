@@ -4,6 +4,7 @@ title: "vim + vundle"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 <!--**[![](/assets/img/58.png)](/assets/img/58.png)**-->

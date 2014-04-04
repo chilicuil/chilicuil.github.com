@@ -4,6 +4,7 @@ title: "multicursor en ubuntu"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 **[![](/assets/img/88.png)](/assets/img/88.png)**

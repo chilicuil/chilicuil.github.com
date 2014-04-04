@@ -4,6 +4,7 @@ title: "correr aplicaciones X desde un chroot"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Ya había escrito [anteriormente](http://javier.io/blog/es/2011/11/09/compilar-software-sin-ensuciar-el-sistema.html) sobre como compilar programas sin 'ensuciar' el sistema con dependencias, hoy lo haŕe sobre como hacerlo utilizando herramientas gráficas.

@@ -4,6 +4,7 @@ title: "virtualbox y kvm en la misma máquina"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 **[![](/assets/img/55.png)](/assets/img/55.png)**

@@ -4,6 +4,7 @@ title: "a lenda da cuca"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 **![](/assets/img/74.jpg)**

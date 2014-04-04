@@ -4,6 +4,7 @@ title: "wcd, un script alrededor de cd"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 <iframe  class="showterm" src="http://showterm.io/ae29f68bee555cd89c65d" width="640" height="350">&nbsp;</iframe> 

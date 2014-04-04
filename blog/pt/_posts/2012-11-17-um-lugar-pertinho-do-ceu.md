@@ -4,6 +4,7 @@ title: "um lugar pertinho do céu"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 A época de ouro do cinema mexicano consagrou uma das figuras mais importantes do México, o imortal Pedro Infante. 

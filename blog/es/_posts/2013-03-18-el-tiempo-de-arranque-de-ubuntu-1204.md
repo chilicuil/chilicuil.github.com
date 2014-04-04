@@ -4,6 +4,7 @@ title: "mejorar el tiempo de arranque en ubuntu precise"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Antes de empezar quiero aclarar que las siguientes instrucciones funcionan para Ubuntu desde la versión 11.04, hago énfasis en Ubuntu Precise porque es la versión LTS. Comparto los pasos porque en mi máquina se nota la diferencia incluso cuando mi configuración ya estaba [optimizada](http://javier.io/blog/es/2012/05/03/actualizacion-ubuntu-1204.html) (kernel -ck, slim/i3wm), eso no quiere decir que funcione en la suya.

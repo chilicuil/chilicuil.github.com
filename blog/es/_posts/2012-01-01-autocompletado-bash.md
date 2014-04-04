@@ -4,6 +4,7 @@ title: "autocompletado en bash"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 **[![](/assets/img/54.jpg)](/assets/img/54.jpg)**

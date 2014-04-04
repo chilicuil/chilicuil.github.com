@@ -4,6 +4,7 @@ title: "logstash + redis + elasticsearch + kibana3"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 **[![](/assets/img/76.jpg)](/assets/img/76.jpg)**

@@ -4,6 +4,7 @@ title: "configurar entorno pxe"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 **[![](/assets/img/87.jpg)](/assets/img/87.jpg)**

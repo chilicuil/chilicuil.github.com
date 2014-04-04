@@ -4,6 +4,7 @@ title: "usar whatsapp desde terminal en Linux"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 **[![](http://openwhatsapp.org/static/img/logo.jpg)](http://openwhatsapp.org/static/img/logo.jpg)**

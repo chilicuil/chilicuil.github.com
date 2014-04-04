@@ -4,6 +4,7 @@ title: "xperia mini pro - custom roms"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Nada, hace poco me he hecho de un xperia mini pro (por $2800), después de haber perdido un xperia mini =(, y este fin de semana he experimentado hasta dejarlo con una configuración aceptable (a mi gusto), así que dejo un breve resumen de los pasos que seguí para ayudarme en el futuro.

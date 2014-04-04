@@ -4,6 +4,7 @@ title: "kernel -ck en ubuntu precise"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 ###UPDATE: 05/Nov/2013, el script se ha actualizado para compilar la version 3.11.7 del kernel

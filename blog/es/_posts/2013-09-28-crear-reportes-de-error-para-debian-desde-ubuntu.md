@@ -4,6 +4,7 @@ title: "reportar errores en debian desde ubuntu"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 **[![](/assets/img/79.png)](/assets/img/79.png)**

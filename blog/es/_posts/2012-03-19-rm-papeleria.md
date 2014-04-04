@@ -4,6 +4,7 @@ title: "rm + papelería"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Nada, a veces me pasa que hago:

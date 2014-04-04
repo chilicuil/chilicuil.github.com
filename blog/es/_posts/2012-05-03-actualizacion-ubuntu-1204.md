@@ -4,6 +4,7 @@ title: "actualización ubuntu 12.04"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 **[![](/assets/img/49.png)](/assets/img/49.png)**

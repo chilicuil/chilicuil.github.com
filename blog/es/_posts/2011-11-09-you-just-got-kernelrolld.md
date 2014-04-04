@@ -4,6 +4,7 @@ title: "you just got kernelroll'd ;)"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 **[![](/assets/img/56.png)](/assets/img/56.png)**

@@ -4,6 +4,7 @@ title: "causa e efeito"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Gosto muito das cancoes de luta social

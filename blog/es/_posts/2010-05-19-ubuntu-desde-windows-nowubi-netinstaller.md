@@ -4,6 +4,7 @@ title: "instalar ubuntu desde windows sin wubi + netinstaller"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Hace relativamente poco me pude hacer de una netbook, la estuve probando el primer mes con windows para verificar que funcionara bien y con la salida de ubuntu 10.04 decidí instalar la nueva versión.

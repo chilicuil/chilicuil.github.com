@@ -4,6 +4,7 @@ title: "agregar papelera a samba en openfiler"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 En algunos casos puede ser util habilitar una papelera para archivos compartidos en un entorno samba/cifs. Lamentablemente en [openfiler](http://www.openfiler.com/) (solución nas/san para almacenamiento de archivos) no es fácil hacerlo.

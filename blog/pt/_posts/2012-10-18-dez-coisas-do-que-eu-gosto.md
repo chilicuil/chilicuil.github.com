@@ -4,6 +4,7 @@ title: "dez coisas do que eu gosto"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Uma lista nao extensiva:

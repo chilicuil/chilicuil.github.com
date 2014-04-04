@@ -4,6 +4,7 @@ title: "tropa de elite"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 A alguns meses assisti a um filme chamado tropa de elite. É a historia de um homem que lidera um grupo fortemente armado e que sobe aos morros para matar os narcotraficantes. Gostei do filme, porque acredito que as pessoas podem olhar o outro lado da polícia, os homens honestos e com vontade de melhorar as coisas. 

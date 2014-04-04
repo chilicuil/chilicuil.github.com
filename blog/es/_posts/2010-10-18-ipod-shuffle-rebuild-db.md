@@ -4,6 +4,7 @@ title: "ipod shuffle - rebuild_db"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Hace tiempo compré un ipod shuffle, y como todos los dispositivos de apple, es un poco complicado de usar en linux, rythmobox y gtkpod de repente hacen cosas raras, sin embargo hace poco encontré un proyecto llamado [rebuild_db](http://shuffle-db.sourceforge.net/) que resuelve el problema de manera elegante, al menos en mi opinión.

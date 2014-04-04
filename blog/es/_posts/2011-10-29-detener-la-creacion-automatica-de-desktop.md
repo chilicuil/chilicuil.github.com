@@ -4,6 +4,7 @@ title: "detener la creación automática de Desktop por firefox"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 La creación de la carpeta 'Desktop/Escritorio' por firefox es una característica un tanto molesta para algunos (incluyendome). Nadie debería obligarte a usar una estructura de directorios para tus datos.

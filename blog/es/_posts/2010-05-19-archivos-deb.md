@@ -4,6 +4,7 @@ title: "archivos .deb"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Los archivos .deb son en realidad [contenedores ar](http://en.wikipedia.org/wiki/Ar_%28Unix%29) lo que los diferencia a parte de la extensión, es que se componen de 3 binarios:

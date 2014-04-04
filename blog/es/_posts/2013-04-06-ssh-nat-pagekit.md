@@ -4,6 +4,7 @@ title: "conexión a ssh transpasando nats en dominio personalizado"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Muy bien, admito que el título pudo ser mejor, pero piensen en esto, una forma de conectarse a una computadora sin tener que modificar las reglas de nateo de un router y utilizando siempre el mismo dominio (su dominio), incluso cuando la maquina a la que deseen conectarse este cambiando entre redes. Todo esto con solo 1 comando, si esto no los emociona, pueden dejar de leer ahora.

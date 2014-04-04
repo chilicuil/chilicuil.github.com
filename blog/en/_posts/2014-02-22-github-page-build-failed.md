@@ -4,6 +4,7 @@ title: "setting up jekyll locally"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 <iframe class="showterm" src="http://showterm.io/dd994deaf00a01fcb9c65" width="640" height="350">&nbsp;</iframe> 

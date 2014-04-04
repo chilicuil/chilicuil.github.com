@@ -4,6 +4,7 @@ title: "howdoi, a code search tool and a sh implementation"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 <iframe class="showterm" src="http://showterm.io/ab7339312c9d960f09f77" width="640" height="350">&nbsp;</iframe> 

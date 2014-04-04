@@ -4,6 +4,7 @@ title: "conexión alámbrica e inalámbrica al mismo tiempo con wicd"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Cuando se esta usando [wicd](http://wicd.sourceforge.net), se pueden configurar 2 conexiones al mismo tiempo editando **/etc/network/interfaces**:

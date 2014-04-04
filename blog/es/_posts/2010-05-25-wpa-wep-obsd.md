@@ -4,6 +4,7 @@ title: "configuración de WPA - WEP en openbsd"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 ### WPA - ip estática

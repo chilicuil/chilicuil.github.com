@@ -4,6 +4,7 @@ title: "use flags (gentoo) para portatil"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Flags para un portatil basado en un pentium-m, con soporte para gnome, multimedia, red, programacion y algunas otras cosas.

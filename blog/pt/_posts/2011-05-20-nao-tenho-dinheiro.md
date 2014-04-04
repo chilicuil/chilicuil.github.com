@@ -4,6 +4,7 @@ title: "não tenho dinheiro"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Eu tambem não! =)

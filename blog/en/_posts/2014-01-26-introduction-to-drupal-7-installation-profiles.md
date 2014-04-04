@@ -4,6 +4,7 @@ title: "introduction to drupal 7 installation profiles"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 **[![](/assets/img/91.gif)](/assets/img/91.gif)**

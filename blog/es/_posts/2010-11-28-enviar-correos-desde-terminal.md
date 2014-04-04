@@ -4,6 +4,7 @@ title: "enviar correo desde terminal"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 En algunos sistemas, el comando *mail* se encuentra instalado por defecto, y se usa para enviar correos entre los usuarios del sistema. Por otra parte, desde que tengo memoria, nunca he usado sistemas basados en unix que tenga que compartir, siempre es mi propia maquina con un unico usuario (el mio). Sin embargo, la idea de tener un comando *mail* es atractiva. Esto no significa que este dispuesto a configurar un servidor de correos en mi computadora, solo quiero un cliente facil de configurar que use mi cuenta de gmail u otro servicio para enviar mensajes.

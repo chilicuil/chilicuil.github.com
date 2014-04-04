@@ -4,6 +4,7 @@ title: "less is more, and even more with color"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 **![](/assets/img/1.png)**

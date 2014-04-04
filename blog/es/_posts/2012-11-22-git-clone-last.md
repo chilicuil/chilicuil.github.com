@@ -4,6 +4,7 @@ title: "descargar solo la última versión de un proyecto git"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Mantengo algunos archivos de configuración y scripts en un repositorio git, cuando quiero copiarlos a otra computadora utilizo:

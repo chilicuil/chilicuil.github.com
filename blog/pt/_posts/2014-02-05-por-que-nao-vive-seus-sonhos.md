@@ -4,6 +4,7 @@ title: "por que não está vivendo seus sonhos?"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 É uma pergunta interessante, pois poucas pessoas os tornam realidade.

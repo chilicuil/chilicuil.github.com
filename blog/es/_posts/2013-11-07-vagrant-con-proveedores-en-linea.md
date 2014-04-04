@@ -4,6 +4,7 @@ title: "vagrant con proveedores en línea: aws, digitalocean"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 <!--**[![](/assets/img/86.png)](/assets/img/86.png)**-->

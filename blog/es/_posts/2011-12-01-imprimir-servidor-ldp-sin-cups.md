@@ -4,6 +4,7 @@ title: "imprimir a un servidor ldp sin cups"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Nada, he descubierto que se puede imprimir a una impresora en red que soporte [LDP](http://en.wikipedia.org/wiki/Line_Printer_Daemon_protocol) (supongo que también a una que soporte [IPP](http://es.wikipedia.org/wiki/Internet_Printing_Protocol)) sin [CUPS](http://www.cups.org/) (específicamente cups-ldp para Ubuntu).

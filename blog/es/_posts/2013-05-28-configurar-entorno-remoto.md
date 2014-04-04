@@ -4,6 +4,7 @@ title: "configuración de un entorno remoto"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 Tener una configuracion personalizada es una arma de doble filo, por una lado, puedes ser más eficiente con ella (o tener la sensación), y por otro, te vuelves torpe en otros sistemas.

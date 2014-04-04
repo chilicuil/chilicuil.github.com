@@ -4,6 +4,7 @@ title: "compartir conexión pc a pc"
 ---
 
 ## {{ page.title }}
+
 ###### {{ page.date | date_to_string }}
 
 ### Inalámbrica a alámbrica
