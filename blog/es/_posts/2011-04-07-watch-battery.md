@@ -9,19 +9,19 @@ title: "watch_battery"
 
 **[![](/assets/img/40.png)](/assets/img/40.png)**
 
-Hice un pequeño [script](https://gist.github.com/913004) para vigilar que no se me apague la computadora cuando ya no tenga pila (mejor que hiberne), requiere de **notify-send**, **hibernate** y **acpi,** en ubuntu:
+Hice un pequeño [script](https://github.com/chilicuil/learn/blob/master/sh/tools/watch-battery) para vigilar que no se me apague la computadora cuando ya no tenga pila (mejor que hiberne), requiere **notify-send**, **hibernate** y **acpi,** en ubuntu:
 
 <pre class="sh_sh">
 $ sudo apt-get install acpi libnotify-bin hibernate
 </pre>
 
-NOTA: Para que pueda hibernar el equipo debe contar con suficiente espacio SWAP (más de 3 GB). Sugiero que se coloque en /usr/local/bin y que se agregue a crontab -e (aquí para que corra cada 3 minutos)
+NOTA: Para que pueda hibernar el equipo debe contar con suficiente espacio SWAP (más de 3 GB). Sugiero que se coloque en /usr/local/bin y que se agregue a crontab -e (aquí para que corra cada minuto)
 
 <pre class="sh_log">
-*/3 * * * * /usr/local/bin/watch_battery
+*/1 * * * * /usr/local/bin/watch_battery
 </pre>
 
-Para apagar el equipo en lugar de hibernarlo, se modifica la variable **$ACTION**
+Para apagar el equipo en lugar de hibernarlo, se puede modificar la variable **$ACTION**
 
 <pre class="sh_sh">
 #=====VARS=====

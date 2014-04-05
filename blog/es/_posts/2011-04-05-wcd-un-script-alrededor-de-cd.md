@@ -55,30 +55,11 @@ $ head ~/.alias.common
 alias cd='. wcd'
 </pre>
 
-Donde **wcd** no es el binario (ver $ sudo dpkg -L wcd para saber a lo que me refiero), sino un script en **/usr/local/bin/wcd** con el siguiente contenido:
+Donde **wcd** no es el binario (ver $ sudo dpkg -L wcd para saber a lo que me refiero), sino un script que puede descargarse de:
 
-<pre class="sh_sh">
-#due to cd and subshells nature this script only works if it's sourced
-#alias cd=". this_script"
+- [https://github.com/chilicuil/learn/blob/master/sh/tools/wcd](https://github.com/chilicuil/learn/blob/master/sh/tools/wcd)
 
-WICD_BIN="/usr/bin/wcd.exec"
-WICD_OPTIONS="-j -GN -c -i -f $HOME/.wcd/.treedata.wcd"
-#-j     just go mode
-#-GN    do not creat go script ($HOME/bin/wicd.go)
-#-c     direct cd mode
-#-i     case insensitve
-
-#not sure why $@ looks like this if no param is given
-if [[ $@ == "completion-ignore-case on" ]]; then
-    \cd "`$WICD_BIN $WICD_OPTIONS $HOME`"
-else
-    #remove backslash before passing it to cd
-    CD_PATH=$(echo "`$WICD_BIN $WICD_OPTIONS "$@"`" | sed -e 's:\\::g')                                                                                                                                                          
-    \cd "$CD_PATH"
-fi
-</pre>
-
-De esta manera **$ cd s*/*/pl** me lleva a **super/master/plan**.
+Instalado, **$ cd s*/*/pl** me llevará a **super/master/plan**.
 
 ¿Cómo funciona?, wcd crea un índice de los directorios y los guarda en **$HOME/.treedata.wcd**, después compara las cadenas con este indice y devuelve el más cercano. Una cosa que se me ocurrio al ver esto es hacerlo con 'locate' como en un [hack](http://www.vim.org/scripts/script.php?script_id=2871) anterior, ummm pero no he podido obtener el resultado que esperaba (todavía), así que usaré esto por un rato...
 

@@ -7,7 +7,7 @@ title: "kernel -ck en ubuntu precise"
 
 ###### {{ page.date | date_to_string }}
 
-###UPDATE: 05/Nov/2013, el script se ha actualizado para compilar la version 3.11.7 del kernel
+###UPDATE: 05/Nov/2013, el script se ha actualizado para compilar la version 3.13.7 del kernel
 
 **[ck](http://ck-hack.blogspot.mx/)** es la extensión de los parches de [Con Kolivas](http://en.wikipedia.org/wiki/Con_Kolivas) para incrementar el rendimiento de Linux en PC's y laptops "normales". Tradicionalmente el kernel viene optimizado para servidores, clusters, y mainframes, de ahí que estos parches sean populares entre las personas que desean mejorar su entorno para juegos, multimedia y trabajo ordinario (navegación en internet, edición de textos, mensajería instantanea, etc).
 

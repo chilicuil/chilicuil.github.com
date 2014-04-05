@@ -19,6 +19,6 @@ $ cat /etc/network/interfaces
           broadcast 10.0.0.255
 </pre>
 
-Y luego eliminando la conexión alámbrica desde |propiedades| en wicd, la máquina se conectará a la red inalámbrica usando wicd y usará ifup/ifdown para configurar la interfaz ethernet.  
+Y luego eliminando la conexión alámbrica desde **propiedades** en wicd, la máquina se conectará a la red inalámbrica usando wicd y usará ifup/ifdown para configurar la interfaz ethernet.  
 
 - [https://bugs.launchpad.net/wicd/+bug/228578](https://bugs.launchpad.net/wicd/+bug/228578)

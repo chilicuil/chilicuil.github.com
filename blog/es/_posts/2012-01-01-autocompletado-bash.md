@@ -17,7 +17,7 @@ Viendo este problema y habiendo generado archivos de autocompletado para mis pro
 
 ### Introducción
 
-Bash es capaz de completar comandos con **&lt;Tab&gt;&lt;Tab&gt;**, sin embargo cuando se crean scripts caseros o se encuentran en Internet casi siempre vienen sin esa característica, escribir las opciones una y otra vez no es del todo práctico, además de eso, muchas veces esos comandos tienen tantas opciones que se olvidan||confunden.
+Bash es capaz de completar comandos con **&lt;Tab&gt;&lt;Tab&gt;**, sin embargo cuando se crean scripts caseros o se encuentran en Internet casi siempre vienen sin esa característica, escribir las opciones una y otra vez no es del todo práctico, además de eso, muchas veces esos comandos tienen tantas opciones que se olvidan/confunden.
 
 El comando que está detrás de tal magia es **complete**, este comando define la forma en la que se completará una palabra (no necesariamente un comando), por ejemplo si se quisiera que '**foo**' se autocompletara con nombres de directorios se podría ejecutar:
 

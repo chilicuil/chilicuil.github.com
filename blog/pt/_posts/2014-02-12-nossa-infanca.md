@@ -7,7 +7,6 @@ title: "nossa infância"
 
 ###### {{ page.date | date_to_string }}
 
-<br />
 <pre class="lyric">
 Nossa infância é só uma lembrança
 demasiado vaga
@@ -35,4 +34,3 @@ não temos tempo de madurar, não temos
 
 Juan Gregorio Regino / Nuestra infancia (Nga kamá xixií)
 </pre>
-<br />

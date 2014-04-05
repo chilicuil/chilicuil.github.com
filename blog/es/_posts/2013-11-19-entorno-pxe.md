@@ -90,7 +90,7 @@ Si los equipos conectados al otro lado de eth0 ya están configurados (desde la 
 $ rm -rf pxe_setup
 </pre>
 
-Idea: Crear una máquina virtual con 2 interfaces, una en modo *bridge* para wlan0, o donde se encuentre la fuente de internet y otra en modo *bridge* | *internal network* a eth0 o donde se puedan conectar otros equipos para tener un instalador de distribuciones portable.
+Idea: Crear una máquina virtual con 2 interfaces, una en modo *bridge* para wlan0, o donde se encuentre la fuente de internet y otra en modo *bridge* / *internal network* a eth0 o donde se puedan conectar otros equipos para tener un instalador de distribuciones portable.
 
 ## extra, manos libres
 
