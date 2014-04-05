@@ -11,7 +11,7 @@ En algunos sistemas, el comando *mail* se encuentra instalado por defecto, y se 
 
 Hace años que uso [Sendemail](http://caspian.dotconf.net/menu/Software/SendEmail/), un script en perl que envia correos conectandose a un servidor smtp externo.
 
-<pre class="sh_sh">
+<pre class="lyric">
 $ sendemail -f from@foo.org        \
             -u titulo              \
             -m mensaje             \
@@ -23,7 +23,7 @@ $ sendemail -f from@foo.org        \
 
 Para gmail, se requieren las librerias *libio-socket-ssl-perl* y *libnet-ssleay-perl* y habilitar tls:
 
-<pre class="sh_sh">
+<pre class="lyric">
 $ sendemail -f from@foo.org        \
             -u titulo              \
             -m mensaje             \
@@ -44,3 +44,5 @@ $ bash mail "hacia@gmail.com" "mensaje"
 </pre>
 
 <iframe class="showterm" src="http://showterm.io/6d595bb4e5424b943e54f" width="640" height="300">&nbsp;</iframe> 
+
+- [http://mailgun.com/](http://mailgun.com/)
