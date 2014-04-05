@@ -37,4 +37,4 @@ isto te dará vida
 Juan Gregorio Regino / Madre terra (Nijma en nima, IX)
 </pre>
 
-<br>
+<p></p>
