@@ -9,7 +9,7 @@ title: "backups: git, rsync, rdiff-backup"
 
 **[![](/assets/img/96.png)](/assets/img/96.png)**
 
-I took the weekend to review my personal backup strategy and this is the result. A [script](https://github.com/chilicuil/learn/blob/master/sh/is/backup-remote-rsync) to be allocated in the machines backing up, eg:
+I took the weekend to review my personal backup strategy and this is the result. Besides using git to track current projects (which also provides very good integrated backup) I created a [script](https://github.com/chilicuil/learn/blob/master/sh/is/backup-remote-rsync) to be allocated in the machines backing up, eg:
 
     $ backup-remote-rsync #will backup $HOME by default
     $ backup-remote-rsync -u admin -i /home/admin/.ssh/id_rsa /var/www /etc
@@ -28,7 +28,7 @@ The idea is to run backup-remote-rsync (which uses a popular synchronization pro
     0 1 1 * * rdiff-backup /home/admin/backup/ /home/admin/recovery/monthly
     0 2 1 * * rdiff-backup --remove-older-than 12M /home/admin/recovery/monthly
 
-And finally run **share-backup** from any computer with access to b.javier.io to see the files, eg:
+And finally run **share-backup** from any computer with access to b.javier.io to see files, eg:
 
     $ ssh admin@b.javier.io share-backup
     Starting server ...
