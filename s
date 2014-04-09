@@ -91,11 +91,31 @@ _animcui()
 
 _basename()
 {
-    [ -z "${1}" ] && return 1
-    case "${1}" in
-        /*|*/*) expr "${1}" : '.*/\([^/]*\)' ;;
-        *) printf "%s\\n" "${1}";;
+    [ -z "${1}" ] && return 1 || _basename_var_1="${1}"
+    [ -z "${2}" ] || _basename_var_suffix="${2}"
+    case "${_basename_var_1}" in
+        /*|*/*) _basename_var_1="$(expr "${_basename_var_1}" : '.*/\([^/]*\)')" ;;
     esac
+
+    if [ -n "${_basename_var_suffix}" ] && [ "${#_basename_var_1}" -gt "${#2}" ]; then
+        if [ X"$(printf "%s" "${_basename_var_1}" | cut -c"$(expr "${#_basename_var_1}" - "${#_basename_var_suffix}" + 1)")" \
+           = X"$(printf "%s" "${_basename_var_suffix}" | cut -c1)" ]; then
+            while [ "${#_basename_var_suffix}" -gt "0" ]; do
+                if [ X"$(printf "%s" "${_basename_var_1}" | cut -c"${#_basename_var_1}")" \
+                   = X"$(printf "%s" "${_basename_var_suffix}" | cut -c"${#_basename_var_suffix}")" ]; then
+                    _basename_var_1="$(printf "%s" "${_basename_var_1}" | cut -c1-"$(expr "${#_basename_var_1}" - 1)")"
+                    _basename_var_suffix_len="$(expr "${#_basename_var_suffix}" - 1)"
+                    if [ "${_basename_var_suffix_len}" -gt "0" ]; then
+                        _basename_var_suffix="$(printf "%s" "${_basename_var_suffix}" | cut -c1-"${_basename_var_suffix_len}")"
+                    else
+                        _basename_var_suffix=""
+                    fi
+                fi
+            done
+        fi
+    fi
+
+    printf "%s\\n" "${_basename_var_1}"
 }
 
 _getroot()
@@ -508,7 +528,7 @@ _waitfor()
     eval "${@}" >/dev/null 2>&1 &
     sleep 1s
 
-    _animcui ${1}
+    _animcui "${1}"
 }
 
 _waitforsudo()
