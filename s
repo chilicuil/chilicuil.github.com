@@ -11,7 +11,7 @@ liner="$ sh <(wget -qO- javier.io/s)"
 
 #default apps
 apps_remote="git-core vim-nox byobu wcd htop rsync curl bzip2 gzip html2text
-ncurses-bin command-not-found exuberant-ctags libpam-captcha"
+ncurses-bin command-not-found bash-completion libpam-captcha exuberant-ctags"
 apps_local="i3-wm alsa-utils alsa-base mpd ncmpcpp mpc slim libnotify-bin
 rxvt-unicode-256color xorg git-core autocutsel acpi suckless-tools feh sxiv
 notify-osd hibernate html2text htop irssi mplayer2 mutt-patched dzen2 pcmanfm
