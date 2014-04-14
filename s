@@ -976,8 +976,8 @@ _remotesetup()
     _waitforsudo dpkg-reconfigure -f noninteractive locales
     #https://bugs.launchpad.net/ubuntu/+source/pam/+bug/155794
     if [ ! -f /etc/default/locale ]; then
-        printf "%s\\n%s\\n" 'LANG="en_US.UTF-8"' 'LANGUAGE="en_US:en"' > locale
-        _smv locale /etc/default/
+        printf "%s\\n%s\\n" 'LANG="en_US.UTF-8"' 'LANGUAGE="en_US:en"' > /tmp/locale
+        _smv /tmp/locale /etc/default/
         #_cmdsudo update-locale LANG=en_US.UTF-8 LC_MESSAGES=POSIX
     fi
 
@@ -1094,12 +1094,12 @@ _remotesetup()
     _printfs "configuring vim (2 min aprox) ..."
     [ ! -d "${HOME}"/.vim/bundle/vundle/.git/ ] && \
         _fetchrepo "https://github.com/chilicuil/vundle.git" "${HOME}/.vim/bundle/vundle"
-    _waitfor vim -es -u ~/.vimrc -c "BundleInstall" -c qa
+    _waitfor vim -es -u "${HOME}"/.vimrc -c "BundleInstall" -c qa
 
     _printfs "configuring shell (1 min aprox) ..."
     [ ! -d "${HOME}"/.shundle/bundle/shundle/.git/ ] && \
         _fetchrepo "https://github.com/chilicuil/shundle.git" "${HOME}/.shundle/bundle/shundle"
-    _cmd SHUNDLE_HOME=~/.shundle SHUNDLE_RC=~/.bashrc ~/.shundle/bundle/shundle/bin/shundle install
+    _cmd SHUNDLE_HOME="${HOME}"/.shundle SHUNDLE_RC="${HOME}"/.bashrc "${HOME}"/.shundle/bundle/shundle/bin/shundle install
 
     _printfs "configuring cd ..."
     [ ! -d "${HOME}"/.wcd ] && _cmd mkdir "${HOME}"/.wcd
