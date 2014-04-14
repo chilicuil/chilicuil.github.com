@@ -915,39 +915,39 @@ _enableremotevnc()
     _waitforsudo apt-get install --no-install-recommends -y x11vnc xserver-xorg-video-dummy
     _printfs "forcing xorg to use dummy driver ..."
 
-    printf "%s\\n" 'Section "Monitor"' > xorg.conf
-    printf "%s\\n" '    Identifier "Monitor0"' >> xorg.conf
-    printf "%s\\n" '    HorizSync 28.0-80.0' >> xorg.conf
-    printf "%s\\n" '    VertRefresh 48.0-75.0' >> xorg.conf
-    printf "%s\\n" '    #Modeline "1280x800"  83.46  1280 1344 1480 1680  800 801 804 828 -HSync +Vsync' >> xorg.conf
-    printf "%s\\n" '    # 1224x685 @ 60.00 Hz (GTF) hsync: 42.54 kHz; pclk: 67.72 MHz' >> xorg.conf
-    printf "%s\\n" '    Modeline "1224x685" 67.72 1224 1280 1408 1592 685 686 689 709 -HSync +Vsync' >> xorg.conf
-    printf "%s\\n" 'EndSection' >> xorg.conf
+    printf "%s\\n" 'Section "Monitor"' > /tmp/xorg.conf
+    printf "%s\\n" '    Identifier "Monitor0"' >> /tmp/xorg.conf
+    printf "%s\\n" '    HorizSync 28.0-80.0' >> /tmp/xorg.conf
+    printf "%s\\n" '    VertRefresh 48.0-75.0' >> /tmp/xorg.conf
+    printf "%s\\n" '    #Modeline "1280x800"  83.46  1280 1344 1480 1680  800 801 804 828 -HSync +Vsync' >> /tmp/xorg.conf
+    printf "%s\\n" '    # 1224x685 @ 60.00 Hz (GTF) hsync: 42.54 kHz; pclk: 67.72 MHz' >> /tmp/xorg.conf
+    printf "%s\\n" '    Modeline "1224x685" 67.72 1224 1280 1408 1592 685 686 689 709 -HSync +Vsync' >> /tmp/xorg.conf
+    printf "%s\\n" 'EndSection' >> /tmp/xorg.conf
 
-    printf "%s\\n" 'Section "Device"' >> xorg.conf
-    printf "%s\\n" '    Identifier "Card0"' >> xorg.conf
-    printf "%s\\n" '    Option "NoDDC" "true"' >> xorg.conf
-    printf "%s\\n" '    Option "IgnoreEDID" "true"' >> xorg.conf
-    printf "%s\\n" '    Option "ShadowFB" "true"' >> xorg.conf
-    printf "%s\\n" '    Driver "dummy"' >> xorg.conf
-    printf "%s\\n" 'EndSection' >> xorg.conf
+    printf "%s\\n" 'Section "Device"' >> /tmp/xorg.conf
+    printf "%s\\n" '    Identifier "Card0"' >> /tmp/xorg.conf
+    printf "%s\\n" '    Option "NoDDC" "true"' >> /tmp/xorg.conf
+    printf "%s\\n" '    Option "IgnoreEDID" "true"' >> /tmp/xorg.conf
+    printf "%s\\n" '    Option "ShadowFB" "true"' >> /tmp/xorg.conf
+    printf "%s\\n" '    Driver "dummy"' >> /tmp/xorg.conf
+    printf "%s\\n" 'EndSection' >> /tmp/xorg.conf
 
-    printf "%s\\n" 'Section "Screen"' >> xorg.conf
-    printf "%s\\n" '    #DefaultDepth 24' >> xorg.conf
-    printf "%s\\n" '    DefaultDepth 16' >> xorg.conf
-    printf "%s\\n" '    Identifier "Screen0"' >> xorg.conf
-    printf "%s\\n" '    Device "Card0"' >> xorg.conf
-    printf "%s\\n" '    Monitor "Monitor0"' >> xorg.conf
-    printf "%s\\n" '    SubSection "Display"' >> xorg.conf
-    printf "%s\\n" '        #Depth 24' >> xorg.conf
-    printf "%s\\n" '        Depth 16' >> xorg.conf
-    printf "%s\\n" '        #    Virtual 1280 800' >> xorg.conf
-    printf "%s\\n" '        Modes "1224x685"' >> xorg.conf
-    printf "%s\\n" '    EndSubSection' >> xorg.conf
-    printf "%s\\n" 'EndSection' >> xorg.conf
+    printf "%s\\n" 'Section "Screen"' >> /tmp/xorg.conf
+    printf "%s\\n" '    #DefaultDepth 24' >> /tmp/xorg.conf
+    printf "%s\\n" '    DefaultDepth 16' >> /tmp/xorg.conf
+    printf "%s\\n" '    Identifier "Screen0"' >> /tmp/xorg.conf
+    printf "%s\\n" '    Device "Card0"' >> /tmp/xorg.conf
+    printf "%s\\n" '    Monitor "Monitor0"' >> /tmp/xorg.conf
+    printf "%s\\n" '    SubSection "Display"' >> /tmp/xorg.conf
+    printf "%s\\n" '        #Depth 24' >> /tmp/xorg.conf
+    printf "%s\\n" '        Depth 16' >> /tmp/xorg.conf
+    printf "%s\\n" '        #    Virtual 1280 800' >> /tmp/xorg.conf
+    printf "%s\\n" '        Modes "1224x685"' >> /tmp/xorg.conf
+    printf "%s\\n" '    EndSubSection' >> /tmp/xorg.conf
+    printf "%s\\n" 'EndSection' >> /tmp/xorg.conf
 
-    _smv xorg.conf /etc/X11/
-    _cmd rm -rf xorg.conf
+    _smv /tmp/xorg.conf /etc/X11/
+    _cmd rm -rf /tmp/xorg.conf
 
     #TODO 05-01-2014 03:48 >> create a service instead
     _printfs "$ sudo x11vnc -display :0 -auth /var/run/slim.auth -forever -safer -shared"
@@ -1308,10 +1308,10 @@ _localsetup()
 
     _printfs "configuring gtk, icon, cursor themes ..."
     if [ ! -f "${HOME}"/.not_override ]; then
-        mv   /tmp/iconf/icons iconf/.icons
-        mv   /tmp/iconf/gtk/themes iconf/gtk/.themes
-        mv   /tmp/iconf/fonts iconf/.fonts
-        mv   /tmp/iconf/data iconf/.data
+        mv   /tmp/iconf/icons       /tmp/iconf/.icons
+        mv   /tmp/iconf/gtk/themes  /tmp/iconf/gtk/.themes
+        mv   /tmp/iconf/fonts       /tmp/iconf/.fonts
+        mv   /tmp/iconf/data        /tmp/iconf/.data
         _smv /tmp/iconf/.icons      "${HOME}"
         _smv /tmp/iconf/gtk/.themes "${HOME}"
         _smv /tmp/iconf/.fonts      "${HOME}"
