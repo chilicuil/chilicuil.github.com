@@ -10,16 +10,15 @@ updates="http://javier.io/s"
 liner="$ sh <(wget -qO- javier.io/s)"
 
 #default apps
-apps_remote="git-core vim-nox byobu wcd htop rsync curl bzip2 gzip html2text
+apps_remote="git-core vim-nox byobu wcd htop curl bzip2 gzip html2text bc
 ncurses-bin command-not-found bash-completion libpam-captcha exuberant-ctags"
-apps_local="i3-wm alsa-utils alsa-base mpd ncmpcpp mpc slim libnotify-bin
-rxvt-unicode-256color xorg git-core autocutsel acpi suckless-tools feh sxiv
-notify-osd hibernate html2text htop irssi mplayer2 mutt-patched dzen2 pcmanfm
-pm-utils rlpr unetbootin wodim xclip zsync gnupg-agent lxappearance bc
-exuberant-ctags i3lock conky-cli zathura gtk2-engines-pixbuf openssh-server
-wicd-curses geoclue-ubuntu-geoip redshift zram-config lame unzip udisks gvfs
-gvfs-common gvfs-daemons gvfs-fuse gvfs-libs policykit-1 google-talkplugin
-libmad0 libdvdcss2 libdvdread4 curl dkms xdotool dbus-x11 gxmessage wcd"
+apps_local="i3-wm i3lock alsa-utils alsa-base mpd mpc ncmpcpp slim git-core
+xorg rxvt-unicode-256color autocutsel acpi suckless-tools feh sxiv notify-osd
+libnotify-bin hibernate pm-utils irssi mplayer2 mutt-patched pcmanfm rlpr
+unetbootin wodim xclip gnupg-agent lxappearance conky-cli dzen2 zathura
+gtk2-engines-pixbuf openssh-server wicd-curses geoclue-ubuntu-geoip redshift
+zram-config lame unzip udisks gvfs gvfs-fuse policykit-1 libmad0 libdvdcss2
+libdvdread4 dkms xdotool dbus-x11 gxmessage"
 apps_purge="xinetd sasl2-bin sendmail sendmail-base sendmail-bin sensible-mda
 rmail bsd-mailx apache2.2-common apache2 nano bind9 whoopsie"
 
