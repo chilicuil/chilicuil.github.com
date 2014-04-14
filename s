@@ -427,7 +427,7 @@ _fetchfile()
                 printf "%s" "Impossible to retrive files"
                 exit 1
             else
-                _printfs "${_fetchfile_var_url} seems down, retrying in ${_fetchfile_var_i} minute(s) ..."
+                printf "[-] %s" "${_fetchfile_var_url} seems down, retrying in ${_fetchfile_var_i} minute(s) ..."
                 sleep "$(expr "${_fetchfile_var_i}" \* 60)"
                 printf "\\n"
             fi
@@ -443,7 +443,7 @@ _fetchrepo()
 
     _fetchrepo_var_i="0"
     while [ "${_fetchrepo_var_i}" -lt "${_fetchrepo_var_max_retries}" ]; do
-        _fetch_var_i="$(expr "${_fetchrepo_var_i}" + 1)"
+        _fetchrepo_var_i="$(expr "${_fetchrepo_var_i}" + 1)"
 
         if [ -z "${_fetchrepo_var_output}" ]; then
             _waitfor git clone --dept=1 "${_fetchrepo_var_url}"
@@ -459,7 +459,7 @@ _fetchrepo()
                 printf "%s" "Impossible to retrive files"
                 exit 1
             else
-                _printfs "${_fetchrepo_var_url} seems down, retrying in ${_fetchrepo_var_i} minute(s) ..."
+                printf "[-] %s" "${_fetchrepo_var_url} seems down, retrying in ${_fetchrepo_var_i} minute(s) ..."
                 sleep "$(expr "${_fetchrepo_var_i}" \* 60)"
                 printf "\\n"
             fi
@@ -652,8 +652,8 @@ _installaptproxy()
         _printfs "no apt-get proxy found, installing one locally ..."
         _waitforsudo apt-get install --no-install-recommends -y squid-deb-proxy-client apt-cacher-ng
         if [ ! -f /etc/avahi/services/apt-cacher-ng.service ]; then
-            _fetchfile http://javier.io/mirror/apt-cacher-ng.service
-            _cmdsudo mv apt-cacher-ng.service /etc/avahi/services/apt-cacher-ng.service
+            _fetchfile http://javier.io/mirror/apt-cacher-ng.service /tmp/apt-cacher-ng.service
+            _cmdsudo mv /tmp/apt-cacher-ng.service /etc/avahi/services/apt-cacher-ng.service
         fi
         if [ -d "${HOME}"/misc/ubuntu/proxy/apt-cacher-ng/ ]; then
             _printfs "exporting files ..."
@@ -686,14 +686,14 @@ _installfirefoxnightly()
     fi
 
     _fetchfile "${_installfirefoxnightly_var_url}"/"${_installfirefox_var_version}" \
-               firefox"${_installfirefoxnightly_var_arch}".tar.bz2
+               /tmp/firefox"${_installfirefoxnightly_var_arch}".tar.bz2
 
-    _waitfor tar jxf firefox"${_installfirefoxnightly_var_arch}".tar.bz2
-    _cmd rm -rf firefox"${_installfirefoxnightly_var_arch}".tar.bz2 index.html
-    _cmd mv firefox"${_installfirefoxnightly_var_arch}" "${HOME}"/.bin/
+    _waitfor tar jxf /tmp/firefox"${_installfirefoxnightly_var_arch}".tar.bz2 -C /tmp
+    _cmd rm -rf /tmp/firefox"${_installfirefoxnightly_var_arch}".tar.bz2 /tmp/index.html
+    _cmd mv /tmp/firefox"${_installfirefoxnightly_var_arch}" "${HOME}"/.bin/
 
     if [ ! -f /usr/local/bin/firefox ] && \
-       [ -f "${HOME}"/.bin/firefox${_installfirefoxnightly_var_arch}/firefox ]; then
+       [ -f "${HOME}/.bin/firefox${_installfirefoxnightly_var_arch}/firefox" ]; then
         _cmdsudo ln -s "${HOME}/.bin/firefox${_installfirefoxnightly_var_arch}/firefox" /usr/local/bin/
     fi
 }
@@ -706,22 +706,21 @@ _siteup()
     _siteup_var_i="0"
     while [ "${_siteup_var_i}" -lt "${_siteup_var_max_retries}" ]; do
         _siteup_var_i="$(expr "${_siteup_var_i}" + 1)"
-        wget "${_siteup_var_url}" -O _siteup.out >/dev/null 2>&1
+        if wget "${_siteup_var_url}" -qO- >/dev/null 2>&1; then
+            break
+        fi
         if [ "${_siteup_var_i}" -eq "$(expr "${_siteup_var_max_retries}" - 1)" ]; then
             return 1
         else
-            sleep "$(expr "${i}" \* 3)"
+            sleep "${_siteup_var_i}"
         fi
-        [ -f _siteup.out ] && break
     done
 
-    rm -rf _siteup.out
     return 0
 }
 
 _header()
 {
-    clear
     _printfl "The Setup"
     printf "%b\\n" "\033[1m Dotfiles:\033[0m ${dotfiles}"
     printf "%b\\n" "\033[1m Utils:\033[0m    ${utils}"
@@ -756,7 +755,7 @@ _cleanup()
 
     printf "\\n"
     _printfl "Cleanup"
-    _cmd rm -rf dotfiles learn
+    _cmd rm -rf /tmp/"$(_basename "${utils}")" /tmp/"$(_basename "${dotfiles}")"
     _recoverreps
 
     [ -z "${1}" ] && exit
@@ -849,13 +848,13 @@ _ensurerepo()
     esac
 
     if ! printf "%s" "${_ensurerepo_var_list}" | grep "${_ensurerepo_var_regex}" >/dev/null; then
-        printf "%s\\n" "${1}" > "${_ensurerepo_var_name}".list
-        _cmdsudo mv "${_ensurerepo_var_name}".list /etc/apt/sources.list.d/
+        printf "%s\\n" "${1}" > /tmp/"${_ensurerepo_var_name}".list
+        _cmdsudo mv /tmp/"${_ensurerepo_var_name}".list /etc/apt/sources.list.d/
         if [ -n "${_ensurerepo_var_key}" ]; then
             if printf "%s" "${_ensurerepo_var_key}" | grep "http" >/dev/null; then
-                _fetchfile ${_ensurerepo_var_key} keyfile.asc
-                _waitforsudo apt-key add keyfile.asc
-                _cmd rm -rf keyfile.asc
+                _fetchfile ${_ensurerepo_var_key} /tmp/keyfile.asc
+                _waitforsudo apt-key add /tmp/keyfile.asc
+                _cmd rm -rf /tmp/keyfile.asc
             else
                 _waitforsudo apt-key adv --keyserver keyserver.ubuntu.com \
                 --recv-keys "${_ensurerepo_var_key}"
@@ -998,10 +997,17 @@ _remotesetup()
 
     _printfl   "Downloading files"
     _printfs   "getting reps ..."
-    [ ! -f "${HOME}"/.not_override ]       && _fetchrepo "${dotfiles}.git" \
-        || _printfs "${HOME}/.not_override is present, skipping ..."
-    [ ! -f /usr/local/bin/not_override ] && _fetchrepo "${utils}.git"    \
-        || _printfs "/usr/local/bin/not_override is present, skipping ..."
+    if [ -f "${HOME}"/.not_override ]; then
+        _printfs "${HOME}/.not_override is present, skipping ..."
+    else
+        _fetchrepo "${dotfiles}.git" "/tmp/$(_basename "${dotfiles}")"
+    fi
+
+    if [ -f /usr/local/bin/not_override ]; then
+        _printfs "/usr/local/bin/not_override is present, skipping ..."
+    else
+        _fetchrepo "${utils}.git" "/tmp/$(_basename "${utils}")"
+    fi
 
     ############################################################################
 
@@ -1015,7 +1021,7 @@ _remotesetup()
 
     if [ ! -f "${HOME}"/.not_override ]; then
         _printfs "installing dotfiles (old files will get an .old suffix) ..."
-        for _remotesetup_var_file in dotfiles/.*; do
+        for _remotesetup_var_file in /tmp/$(_basename "${dotfiles}")/.*; do
             [ ! -e "${_remotesetup_var_file}" ] && continue
             _smv "${_remotesetup_var_file}" "${HOME}"
         done
@@ -1033,26 +1039,26 @@ _remotesetup()
     if [ ! -f /usr/local/bin/not_override ]; then
         if [ -n "${_remotesetup_var_completions}" ]; then
             _printfs "installing completions ..."
-            for _remotesetup_var_file in learn/autocp/completions/*; do
+            for _remotesetup_var_file in /tmp/"$(_basename "${utils}")"/autocp/completions/*; do
                 [ ! -e "${_remotesetup_var_file}" ] && continue
                 _smv "${_remotesetup_var_file}" "${_remotesetup_var_completions}"
             done
         fi
 
         _printfs "installing utils ..."
-        for _remotesetup_var_file in learn/python/*; do
+        for _remotesetup_var_file in /tmp/"$(_basename "${utils}")"/python/*; do
             [ ! -e "${_remotesetup_var_file}" ] && continue
             [ -f "${_remotesetup_var_file}" ]   && chmod +x "${_remotesetup_var_file}"
             _smv "${_remotesetup_var_file}" "${_remotesetup_var_target}"
         done
 
-        for _remotesetup_var_file in learn/sh/is/*; do
+        for _remotesetup_var_file in /tmp/"$(_basename "${utils}")"/sh/is/*; do
             [ ! -e "${_remotesetup_var_file}" ] && continue
             [ -f "${_remotesetup_var_file}" ]   && chmod +x "${_remotesetup_var_file}"
             _smv "${_remotesetup_var_file}" "${_remotesetup_var_target}"
         done
 
-        for _remotesetup_var_file in learn/sh/tools/*; do
+        for _remotesetup_var_file in /tmp/"$(_basename "${utils}")"/sh/tools/*; do
             [ ! -e "${_remotesetup_var_file}" ] && continue
             [ -f "${_remotesetup_var_file}" ]   && chmod +x "${_remotesetup_var_file}"
             _smv "${_remotesetup_var_file}" "${_remotesetup_var_target}"
@@ -1061,7 +1067,7 @@ _remotesetup()
         _printfs "/usr/local/bin/not_override is present, skipping ..."
     fi
 
-    _cmd rm -rf dotfiles learn
+    _cmd rm -rf /tmp/"$(_basename "${utils}")" /tmp/"$(_basename "${dotfiles}")"
 
     ############################################################################
 
@@ -1145,8 +1151,8 @@ _localsetup()
     _waitforsudo dpkg-reconfigure -f noninteractive locales
     #https://bugs.launchpad.net/ubuntu/+source/pam/+bug/155794
     if [ ! -f /etc/default/locale ]; then
-        printf "%s\\n%s\\n" 'LANG="en_US.UTF-8"' 'LANGUAGE="en_US:en"' > locale
-        _smv locale /etc/default/
+        printf "%s\\n%s\\n" 'LANG="en_US.UTF-8"' 'LANGUAGE="en_US:en"' > /tmp/locale
+        _smv /tmp/locale /etc/default/
         #_cmdsudo update-locale LANG=en_US.UTF-8 LC_MESSAGES=POSIX
     fi
 
@@ -1164,40 +1170,39 @@ _localsetup()
 
     _printfs     "installing /usr/local/bin utilities and dotfiles ..."
     #call itself in remote (default) mode (see _remotesetup)
-    _fetchfile   http://javier.io/s
-    _cmd         mkdir "${HOME}"/.s
-    _cmd         touch "${HOME}"/.s/config
+    _fetchfile   http://javier.io/s "${HOME}"/s
+    [ ! -d "${HOME}"/.s ]        && _cmd mkdir "${HOME}"/.s
+    [ ! -f "${HOME}"/.s/config ] && _cmd touch "${HOME}"/.s/config
     printf       "%s" "sudopwd=${sudopwd}" > "${HOME}"/.s/config
-    _cmd         sh ./s #_waitfor could be fancier, but there is no easy way to track sh processes
-    _cmd         rm -rf s .s/
+    _cmd         sh "${HOME}"/s #_waitfor could be fancier, but there is no easy way to track sh processes
+    _cmd         rm -rf "${HOME}"/s "${HOME}"/.s/
 
-    if [ ! -d "${HOME}"/.bin/firefox${_remotesetup_var_arch} ]; then
+    if [ ! -d "${HOME}/.bin/firefox${_remotesetup_var_arch}" ]; then
         [ ! -d "${HOME}"/.bin ] && _cmd mkdir "${HOME}"/.bin
         _installfirefoxnightly
     fi
 
     if ! command -v "magnifier" >/dev/null 2>&1; then
-        _fetchfile http://files.javier.io/rep/bin/magnifier${_remotesetup_var_arch}.bin magnifier
-        _cmd       chmod +x magnifier
-        _cmdsudo   mv magnifier /usr/local/bin/
+        _fetchfile http://files.javier.io/rep/bin/magnifier${_remotesetup_var_arch}.bin /tmp/magnifier
+        _cmd       chmod +x /tmp/magnifier
+        _cmdsudo   mv /tmp/magnifier /usr/local/bin/
     fi
 
     ############################################################################
 
     _printfl     "Downloading files"
     _printfs     "downloading confs, themes and so on ..."
-    if [ ! -f "${HOME}"/.not_override ]; then
-        _fetchfile   http://files.javier.io/rep/s/iconf.tar.bz2
-        _fetchfile   http://files.javier.io/rep/s/mconf.tar.bz2
-        _waitfor     tar jxf iconf.tar.bz2
-        _waitfor     tar jxf mconf.tar.bz2
-        _waitfor     rm iconf.tar.bz2 mconf.tar.bz2
-
-        if [ ! -d "./iconf" ] && [ ! -d "./mconf" ]; then
+    if [ -f "${HOME}"/.not_override ]; then
+        _printfs "${HOME}/.not_override is present, skipping ..."
+    else
+        _fetchfile   http://files.javier.io/rep/s/iconf.tar.bz2 /tmp/iconf.tar.bz2
+        _fetchfile   http://files.javier.io/rep/s/mconf.tar.bz2 /tmp/mconf.tar.bz2
+        _waitfor     tar jxf /tmp/iconf.tar.bz2 -C /tmp
+        _waitfor     tar jxf /tmp/mconf.tar.bz2 -C /tmp
+        _waitfor     rm /tmp/iconf.tar.bz2 /tmp/mconf.tar.bz2
+        if [ ! -d "/tmp/iconf" ] && [ ! -d "/tmp/mconf" ]; then
             _die "Download step failed"
         fi
-    else
-        _printfs "${HOME}/.not_override is present, skipping ..."
     fi
 
     ############################################################################
@@ -1210,13 +1215,13 @@ _localsetup()
     _ensuresetting "kernel.printk = 4 4 1 7" /etc/sysctl.conf
 
     _printfs       "configuring network ..."
-    printf         "%s\\n" "auto lo"                > interfaces
-    printf         "%s\\n" "iface lo inet loopback" >> interfaces
-    _cmdsudo       mv interfaces /etc/network/
+    printf         "%s\\n" "auto lo"                >  /tmp/interfaces
+    printf         "%s\\n" "iface lo inet loopback" >> /tmp/interfaces
+    _cmdsudo       mv /tmp/interfaces /etc/network/
     _cmdsudo       usermod -a -G netdev "$(whoami)"
 
     _printfs       "configuring audio ..."
-    [ -f iconf/mpd/mpd.conf ] && _cmdsudo mv iconf/mpd/mpd.conf /etc
+    [ -f /tmp/iconf/mpd/mpd.conf ] && _cmdsudo mv /tmp/iconf/mpd/mpd.conf /etc
     _cmdsudo       sed -i -e \\\"/music_directory/ s:chilicuil:$(whoami):\\\" /etc/mpd.conf
 
     _printfs       "configuring groups ..."
@@ -1245,8 +1250,8 @@ _localsetup()
     fi
 
     _printfs "configuring login manager ..."
-    [ -f iconf/slim/slim.conf ] && _smv iconf/slim/slim.conf /etc/
-    [ -d iconf/slim/custom ]    && _smv iconf/slim/custom /usr/share/slim/themes/
+    [ -f /tmp/iconf/slim/slim.conf ] && _smv /tmp/iconf/slim/slim.conf /etc/
+    [ -d /tmp/iconf/slim/custom ]    && _smv /tmp/iconf/slim/custom /usr/share/slim/themes/
     _cmdsudo sed -i -e \\\"/default_user/ s:chilicuil:$(whoami):\\\" /etc/slim.conf
 
     _printfs "configuring gpg/ssh agents ..."
@@ -1269,33 +1274,32 @@ _localsetup()
     _printfs "configuring dbus ..."
     #allow use of shutdown/reboot through dbus-send
     if [ ! -f /etc/polkit-1/localauthority/50-local.d/org.freedesktop.consolekit.pkla ]; then
-        _fetchfile http://javier.io/mirror/org.freedesktop.consolekit.pkla
-        _cmdsudo   mv org.freedesktop.consolekit.pkla \
-                   /etc/polkit-1/localauthority/50-local.d/org.freedesktop.consolekit.pkla
+        _fetchfile http://javier.io/mirror/org.freedesktop.consolekit.pkla /tmp/org.freedesktop.consolekit.pkla
+        _cmdsudo   mv /tmp/org.freedesktop.consolekit.pkla /etc/polkit-1/localauthority/50-local.d/org.freedesktop.consolekit.pkla
     fi
 
     _printfs "configuring file manager ..."
     #https://bugs.launchpad.net/ubuntu/+source/policykit-1/+bug/600575
     if [ ! -f /etc/polkit-1/localauthority/50-local.d/55-storage.pkla ]; then
-        _fetchfile http://javier.io/mirror/55-storage.pkla
-        _cmdsudo   mv 55-storage.pkla /etc/polkit-1/localauthority/50-local.d/55-storage.pkla
+        _fetchfile http://javier.io/mirror/55-storage.pkla /tmp/55-storage.pkla
+        _cmdsudo   mv /tmp/55-storage.pkla /etc/polkit-1/localauthority/50-local.d/55-storage.pkla
     fi
 
     _printfs "configuring browser ..."
     if [ ! -f "${HOME}"/.not_override ]; then
-        _waitfor tar jxf mconf/firefox/mozilla.tar.bz2 -C mconf/firefox
-        for mozilla_old_profile in mconf/firefox/.mozilla/firefox/*.default; do break; done
+        _waitfor tar jxf /tmp/mconf/firefox/mozilla.tar.bz2 -C /tmp/mconf/firefox
+        for mozilla_old_profile in /tmp/mconf/firefox/.mozilla/firefox/*.default; do break; done
         mozilla_old_profile="$(_basename "${mozilla_old_profile}" .default)"
         mozilla_new_profile="$(strings /dev/urandom | grep -o '[[:alnum:]]' | \
                               head -n 8 | tr -d '\n'; printf "\\n")"
 
-        _smv mconf/firefox/libflashplayer${_remotesetup_var_arch}.so /usr/lib/mozilla/plugins/
-        _cmd mv mconf/firefox/.mozilla/firefox/${mozilla_old_profile}.default \
-                mconf/firefox/.mozilla/firefox/${mozilla_new_profile}.default
-        find mconf/firefox/.mozilla -type f | xargs sed -i -e "s/${mozilla_old_profile}/${mozilla_new_profile}/g"
-        find mconf/firefox/.mozilla -type f | xargs sed -i -e "s/admin/$(whoami)/g"
-        find mconf/firefox/.mozilla -type f | xargs sed -i -e "s/chilicuil/$(whoami)/g"
-        _smv mconf/firefox/.mozilla "${HOME}"
+        _smv /tmp/mconf/firefox/libflashplayer"${_remotesetup_var_arch}".so /usr/lib/mozilla/plugins/
+        _cmd mv /tmp/mconf/firefox/.mozilla/firefox/${mozilla_old_profile}.default \
+                /tmp/mconf/firefox/.mozilla/firefox/${mozilla_new_profile}.default
+        find /tmp/mconf/firefox/.mozilla -type f | xargs sed -i -e "s/${mozilla_old_profile}/${mozilla_new_profile}/g"
+        find /tmp/mconf/firefox/.mozilla -type f | xargs sed -i -e "s/admin/$(whoami)/g"
+        find /tmp/mconf/firefox/.mozilla -type f | xargs sed -i -e "s/chilicuil/$(whoami)/g"
+        _smv /tmp/mconf/firefox/.mozilla "${HOME}"
 
         _cmd rm -rf ~/.macromedia ~/.adobe
         _cmd ln -s      /dev/null ~/.adobe
@@ -1304,14 +1308,14 @@ _localsetup()
 
     _printfs "configuring gtk, icon, cursor themes ..."
     if [ ! -f "${HOME}"/.not_override ]; then
-        mv   iconf/icons iconf/.icons
-        mv   iconf/gtk/themes iconf/gtk/.themes
-        mv   iconf/fonts iconf/.fonts
-        mv   iconf/data iconf/.data
-        _smv iconf/.icons      "${HOME}"
-        _smv iconf/gtk/.themes "${HOME}"
-        _smv iconf/.fonts      "${HOME}"
-        _smv iconf/.data       "${HOME}"
+        mv   /tmp/iconf/icons iconf/.icons
+        mv   /tmp/iconf/gtk/themes iconf/gtk/.themes
+        mv   /tmp/iconf/fonts iconf/.fonts
+        mv   /tmp/iconf/data iconf/.data
+        _smv /tmp/iconf/.icons      "${HOME}"
+        _smv /tmp/iconf/gtk/.themes "${HOME}"
+        _smv /tmp/iconf/.fonts      "${HOME}"
+        _smv /tmp/iconf/.data       "${HOME}"
     fi
 
     _waitforsudo fc-cache -f -v  #update font information
@@ -1346,7 +1350,7 @@ _localsetup()
     _printfs "cleaning up ..."
     _cmd     touch "${HOME}"/.not_override
     _cmdsudo touch /usr/local/bin/not_override
-    _cmd     rm -rf iconf* mconf*
+    _cmd     rm -rf /tmp/iconf* /tmp/mconf*
 
     ############################################################################
 
