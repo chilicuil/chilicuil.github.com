@@ -15,7 +15,7 @@ ncurses-bin command-not-found bash-completion libpam-captcha exuberant-ctags"
 apps_local="i3-wm i3lock alsa-utils alsa-base mpd mpc ncmpcpp slim git-core
 xorg rxvt-unicode-256color autocutsel acpi suckless-tools feh sxiv notify-osd
 libnotify-bin hibernate pm-utils irssi mplayer2 mutt-patched pcmanfm rlpr
-unetbootin wodim xclip gnupg-agent lxappearance conky-cli dzen2 zathura
+unetbootin wodim xclip gnupg-agent lxappearance conky-cli dzen2 zathura scrot
 gtk2-engines-pixbuf openssh-server wicd-curses geoclue-ubuntu-geoip redshift
 zram-config lame unzip udisks gvfs gvfs-fuse policykit-1 libmad0 libdvdcss2
 libdvdread4 dkms xdotool dbus-x11 gxmessage"
