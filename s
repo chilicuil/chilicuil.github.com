@@ -577,7 +577,7 @@ _sethome()
             _cmdsudo sed -i -e \"\\$a${_sethome_var_fstab}\" /etc/fstab
         fi
     else
-        _sethome_var_total="$(awk '$4 ~ ".*[0-9]+" {if (part == "") {part=$4} else {part=part " " $4}} END {print part}' /proc/partitions)"
+        _sethome_var_total="$(awk '$4 ~ ".*[0-9]+" {if ($4 !~ "sr") {if (part == "") {part=$4} else {part=part " " $4}}} END {print part}' /proc/partitions)"
         if [ -n "${_sethome_var_total}" ]; then
             _sethome_var_swap="$(awk '/partition/ {gsub(/\/dev\//,""); if (part == "") {part=$1} else {part=part " " $1}} END {print part}' /proc/swaps)"
             if [ -f /etc/mtab ]; then
