@@ -600,6 +600,7 @@ _sethome()
 
             if [ -n "${_sethome_var_total}" ]; then
                 for _sethome_var_partition in ${_sethome_var_total}; do
+                    [ X"$(awk -v part="$_sethome_var_partition" '{if ($0 ~ part) print $3}' /proc/partitions)" = X"1" ] && continue
                     mkdir /tmp/"${_sethome_var_partition}"
                     _cmdsudo mount /dev/"${_sethome_var_partition}" /tmp/"${_sethome_var_partition}"
 
