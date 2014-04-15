@@ -1292,7 +1292,7 @@ _localsetup()
         mozilla_old_profile="$(_basename "${mozilla_old_profile}" .default)"
         mozilla_new_profile="$(strings /dev/urandom | grep -o '[[:alnum:]]' | \
                               head -n 8 | tr -d '\n'; printf "\\n")"
-
+        [ ! -d /usr/lib/mozilla/plugins/ ] && _cmdsudo mkdir -p /usr/lib/mozilla/plugins/
         _smv /tmp/mconf/firefox/libflashplayer"${_remotesetup_var_arch}".so /usr/lib/mozilla/plugins/
         _cmd mv /tmp/mconf/firefox/.mozilla/firefox/${mozilla_old_profile}.default \
                 /tmp/mconf/firefox/.mozilla/firefox/${mozilla_new_profile}.default
