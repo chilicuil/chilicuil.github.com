@@ -12,9 +12,9 @@ liner="$ sh <(wget -qO- javier.io/s)"
 #default apps
 apps_remote="git-core vim-nox byobu wcd htop curl bzip2 gzip html2text bc
 ncurses-bin command-not-found bash-completion libpam-captcha exuberant-ctags"
-apps_local="i3-wm i3lock alsa-utils alsa-base mpd mpc ncmpcpp slim git-core
-xorg rxvt-unicode-256color autocutsel acpi suckless-tools feh sxiv notify-osd
-libnotify-bin hibernate pm-utils irssi mplayer2 mutt-patched pcmanfm rlpr
+apps_local="i3-wm i3lock alsa-utils alsa-base mpd mpc ncmpcpp mplayer2 slim
+git-core xorg rxvt-unicode-256color autocutsel acpi suckless-tools feh sxiv
+notify-osd libnotify-bin hibernate pm-utils irssi mutt-patched pcmanfm rlpr
 unetbootin wodim xclip gnupg-agent lxappearance conky-cli dzen2 zathura scrot
 gtk2-engines-pixbuf openssh-server wicd-curses geoclue-ubuntu-geoip redshift
 zram-config lame unzip udisks gvfs gvfs-fuse policykit-1 libmad0 libdvdcss2
@@ -1228,6 +1228,7 @@ _localsetup()
     _cmdsudo       usermod -a -G dialout "$(whoami)"
     _cmdsudo       usermod -a -G sudo    "$(whoami)"
     _cmdsudo       usermod -a -G plugdev "$(whoami)"
+    _cmdsudo       usermod -a -G audio   "$(whoami)"
 
     _printfs "configuring cron ..."
     if [ -f /usr/local/bin/watch-battery ]; then
