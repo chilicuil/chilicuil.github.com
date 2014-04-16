@@ -1250,26 +1250,28 @@ _localsetup()
     fi
 
     _printfs "configuring login manager ..."
-    [ -f /tmp/iconf/slim/slim.conf ] && _smv /tmp/iconf/slim/slim.conf /etc/
-    [ -d /tmp/iconf/slim/custom ]    && _smv /tmp/iconf/slim/custom /usr/share/slim/themes/
+    if [ -f /tmp/iconf/slim/slim.conf ]; then
+        _smv /tmp/iconf/slim/slim.conf /etc/
+        if [ -d /tmp/iconf/slim/"$(awk '/^current_theme/ {print $2}'  /tmp/iconf/slim/slim.conf)" ]; then
+            _smv /tmp/iconf/slim/"$(awk '/^current_theme/ {print $2}' /tmp/iconf/slim/slim.conf)" /usr/share/slim/themes/
+        fi
+    fi
     _cmdsudo sed -i -e \\\"/default_user/ s:chilicuil:$(whoami):\\\" /etc/slim.conf
 
     _printfs "configuring gpg/ssh agents ..."
     if [ -f /etc/X11/Xsession.d/90gpg-agent ]; then
         if ! grep -- "--enable-ssh-support" /etc/X11/Xsession.d/90gpg-agent >/dev/null; then
-            _cmdsudo sed -i -e \
-                \\\"/STARTUP/ s:--daemon:--enable-ssh-support --daemon:\\\" \
+            _cmdsudo sed -i -e \\\"/STARTUP/ s:--daemon:--enable-ssh-support --daemon:\\\" \
                 /etc/X11/Xsession.d/90gpg-agent
         fi
     fi
 
     if [ -f /etc/X11/Xsession.options ]; then
-        _cmdsudo sed -i -e \\\"s:^use-ssh-agent:#use-ssh-agent:g\\\" \
-            /etc/X11/Xsession.options
+        _cmdsudo sed -i -e \\\"s:^use-ssh-agent:#use-ssh-agent:g\\\" /etc/X11/Xsession.options
     fi
 
-    [ ! -d "${HOME}"/.gnupg ]          && _cmd mkdir "${HOME}"/.gnupg
-    [ -f "${HOME}"/.gnupg/gpg.conf ]   && _ensuresetting "use-agent" "${HOME}"/.gnupg/gpg.conf
+    [ ! -d "${HOME}"/.gnupg ]        && _cmd mkdir "${HOME}"/.gnupg
+    [ -f "${HOME}"/.gnupg/gpg.conf ] && _ensuresetting "use-agent" "${HOME}"/.gnupg/gpg.conf
 
     _printfs "configuring dbus ..."
     #allow use of shutdown/reboot through dbus-send
