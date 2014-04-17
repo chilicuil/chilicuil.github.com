@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "lint"
+title: "installing debian build dependencies the smart way"
 ---
 
 ## {{ page.title }}
