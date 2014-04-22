@@ -2,7 +2,7 @@
 
 trap _cleanup INT QUIT #trap ctrl-c
 
-#TODO 05-01-2014 03:56 >> test on x86, 12.10, 13.10..., debian
+#TODO 05-01-2014 03:56 >> test on x86,amd64 in LTS ubuntu versions
 
 dotfiles="https://github.com/chilicuil/dotfiles"
 utils="https://github.com/chilicuil/learn"
@@ -18,7 +18,7 @@ notify-osd libnotify-bin hibernate pm-utils irssi mutt-patched pcmanfm rlpr
 unetbootin wodim xclip gnupg-agent lxappearance conky-cli dzen2 zathura scrot
 gtk2-engines-pixbuf openssh-server wicd-curses geoclue-ubuntu-geoip redshift
 zram-config lame unzip udisks gvfs gvfs-fuse policykit-1 libmad0 libdvdcss2
-libdvdread4 dkms xdotool dbus-x11 gxmessage"
+libdvdread4 dkms xdotool dbus-x11 gxmessage vim-gtk"
 apps_purge="xinetd sasl2-bin sendmail sendmail-base sendmail-bin sensible-mda
 rmail bsd-mailx apache2.2-common apache2 nano bind9 whoopsie"
 
@@ -1311,14 +1311,16 @@ _localsetup()
 
     _printfs "configuring gtk, icon, cursor themes ..."
     if [ ! -f "${HOME}"/.not_override ]; then
-        mv   /tmp/iconf/icons       /tmp/iconf/.icons
-        mv   /tmp/iconf/gtk/themes  /tmp/iconf/gtk/.themes
-        mv   /tmp/iconf/fonts       /tmp/iconf/.fonts
-        mv   /tmp/iconf/data        /tmp/iconf/.data
-        _smv /tmp/iconf/.icons      "${HOME}"
-        _smv /tmp/iconf/gtk/.themes "${HOME}"
-        _smv /tmp/iconf/.fonts      "${HOME}"
-        _smv /tmp/iconf/.data       "${HOME}"
+        [ ! -d "${HOME}"/.local/share ] && mkdir -p "${HOME}"/.local/share
+        mv   /tmp/iconf/icons        /tmp/iconf/.icons
+        mv   /tmp/iconf/gtk/themes   /tmp/iconf/gtk/.themes
+        mv   /tmp/iconf/fonts        /tmp/iconf/.fonts
+        mv   /tmp/iconf/data         /tmp/iconf/.data
+        _smv /tmp/iconf/.icons       "${HOME}"
+        _smv /tmp/iconf/gtk/.themes  "${HOME}"
+        _smv /tmp/iconf/.fonts       "${HOME}"
+        _smv /tmp/iconf/.data        "${HOME}"
+        _smv /tmp/iconf/applications "${HOME}"/.local/share
     fi
 
     _waitforsudo fc-cache -f -v  #update font information
