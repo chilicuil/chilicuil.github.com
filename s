@@ -646,7 +646,7 @@ _installaptproxy()
 
     if _existaptproxy; then
         _remotesetup_var_apt_proxy_server="$(avahi-browse -a -t -r -p | awk -F";" '/^=.*apt-cacher-ng/ {print $8}')"
-        _printfs "exists an apt-get proxy in the network at ${_remotesetup_var_apt_proxy_server}, setting up the client ..."
+        _printfs "exists an apt-get proxy at ${_remotesetup_var_apt_proxy_server}, setting up the client ..."
         _waitforsudo apt-get install --no-install-recommends -y squid-deb-proxy-client
     else
         _printfs "no apt-get proxy found, installing one locally ..."
