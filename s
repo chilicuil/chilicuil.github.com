@@ -1252,10 +1252,10 @@ _localsetup()
 
     _printfs "configuring login manager ..."
     if [ -f /tmp/iconf/slim/slim.conf ]; then
-        _smv /tmp/iconf/slim/slim.conf /etc/
         if [ -d /tmp/iconf/slim/"$(awk '/^current_theme/ {print $2}'  /tmp/iconf/slim/slim.conf)" ]; then
             _smv /tmp/iconf/slim/"$(awk '/^current_theme/ {print $2}' /tmp/iconf/slim/slim.conf)" /usr/share/slim/themes/
         fi
+        _smv /tmp/iconf/slim/slim.conf /etc/
     fi
     _cmdsudo sed -i -e \\\"/default_user/ s:chilicuil:$(whoami):\\\" /etc/slim.conf
 
