@@ -16,9 +16,10 @@ apps_local="i3-wm i3lock alsa-utils alsa-base mpd mpc ncmpcpp mplayer2 slim
 git-core xorg rxvt-unicode-256color autocutsel acpi suckless-tools feh sxiv
 notify-osd libnotify-bin hibernate pm-utils irssi mutt-patched pcmanfm rlpr
 unetbootin wodim xclip gnupg-agent lxappearance conky-cli dzen2 zathura scrot
-gtk2-engines-pixbuf openssh-server wicd-curses geoclue-ubuntu-geoip redshift
-zram-config lame unzip udisks gvfs gvfs-fuse policykit-1 libmad0 libdvdcss2
-libdvdread4 dkms xdotool dbus-x11 gxmessage vim-gtk plymouth-theme-minos-comet"
+ffcast gtk2-engines-pixbuf openssh-server wicd-curses geoclue-ubuntu-geoip
+redshift zram-config lame unzip udisks gvfs gvfs-fuse policykit-1 libmad0
+libdvdcss2 libdvdread4 dkms xdotool dbus-x11 gxmessage vim-gtk
+plymouth-theme-minos-comet"
 apps_purge="xinetd sasl2-bin sendmail sendmail-base sendmail-bin sensible-mda
 rmail bsd-mailx apache2.2-common apache2 nano bind9 whoopsie"
 
