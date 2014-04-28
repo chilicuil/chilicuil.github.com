@@ -77,5 +77,5 @@ $ xhost +
 You'll need to add **/proc** and **/dev** to your **BINDMOUNTS** variable:
 
 <pre>
-$ printf "%s\\n" "BINDMOUNTS="${BINDMOUNTS} /dev /proc" &gt;&gt; ~/.pbuilderrc
+$ printf "%s\\n" 'BINDMOUNTS="${BINDMOUNTS} /dev /proc' &gt;&gt; ~/.pbuilderrc
 </pre>
