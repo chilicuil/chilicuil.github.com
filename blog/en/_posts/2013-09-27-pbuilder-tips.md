@@ -7,7 +7,7 @@ title: "pbuilder tips"
 
 ###### {{ page.date | date_to_string }}
 
-I'll write down some tips useful when dealting with pbuilder on Ubuntu, pbuilder is a builder for testing the creation of .deb packages from .dsc sources, however I often use as a light replace to a full virtual machine.
+I'll write down some tips useful when dealting with pbuilder on Ubuntu, pbuilder is a builder for testing the creation of .deb packages from .dsc sources, however I often use as a light replacement for a full virtual machine.
 
 ## E: Release signed by unknown key (key id 8B48AD6246925553)
 
@@ -33,7 +33,7 @@ $ sudo gpg --no-default-keyring --keyring /usr/share/keyrings/ubuntu-archive-key
 $ sudo DIST=sid ARCH=amd64 pbuilder create
 </pre>
 
-Or adding it to another ring and use it temporally:
+Or adding it to other ring and use it temporally:
 
 <pre>
 $ gpg --no-default-keyring --keyring /etc/apt/trusted.gpg --recv-keys 8B48AD6246925553
@@ -45,7 +45,7 @@ DEBOOTSTRAPOPTS=(
 $ sudo DIST=sid ARCH=amd64 pbuilder create
 </pre>
 
-If you don't want to mess with **~/.pbuilderrc** the parameter can also be set from within the prompt command:
+If you don't want to mess with **~/.pbuilderrc** the parameter can also be set from in the prompt command:
 
 <pre>
 $ sudo DIST=sid ARCH=amd64 pbuilder create --debootstrapopts --keyring=/etc/apt/trusted.gpg
@@ -56,20 +56,20 @@ $ sudo DIST=sid ARCH=amd64 pbuilder create --debootstrapopts --keyring=/etc/apt/
 Pbuilder is a nothing but a chroot + debian enchantments, you can run virtually anything, from audio/video, to cli/gui applications, etc. It's however required to know how to enable them. Running a X app is a two step process:
 
 <pre>
-$ xhost + #executed in the host system
+$ xhost +
 </pre>
 
 <pre>
-$ export DISPLAY=:0.0
-$ app
+[chroot] $ export DISPLAY=:0.0
+[chroot] $ app
 </pre>
 
 ## Run i18n apps
 
 <pre>
-$ apt-get install language-pack-es #interchange -es for the \
+[chroot] $ apt-get install language-pack-es #interchange -es for the \
                                    2 letters of your own lang
-$ LC_ALL=es_ES.utf-8 app
+[chroot] $ LC_ALL=es_ES.utf-8 app
 </pre>
 
 ## Run multimedia apps
@@ -77,5 +77,5 @@ $ LC_ALL=es_ES.utf-8 app
 You'll need to add **/proc** and **/dev** to your **BINDMOUNTS** variable:
 
 <pre>
-$ printf "%s\\n" "BINDMOUNTS="${BINDMOUNTS} /dev /proc" &lt;&lt; ~/.pbuilderrc
+$ printf "%s\\n" "BINDMOUNTS="${BINDMOUNTS} /dev /proc" &gt;&gt; ~/.pbuilderrc
 </pre>
