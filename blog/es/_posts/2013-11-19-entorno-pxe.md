@@ -17,7 +17,7 @@ Un entorno pxe en 68KB con baterías incluidas, pxelinux, dhcpd, tftp y manos li
 
 <!--
    -<pre>
-   -$ bash &lt;(wget -qO- https://raw.github.com/chilicuil/learn/master/sh/is/pxe)
+   -$ sh &lt;(wget -qO- https://raw.githubusercontent.com/chilicuil/learn/master/sh/tools/pxe)
    -[+] setting pxe environment in ./pxe_setup ...
    -  - creating ./pxe_setup/menu.c32 ...
    -  - creating ./pxe_setup/pxelinux.0 ...
@@ -38,7 +38,7 @@ El comando anterior es el corazón del sistema, un script que genera una estruct
 Para este ejemplo Ubuntu 12.04 LTS de 64 bits.
 
 <pre class="sh_sh">
-$ bash &lt;(wget -qO- https://raw.github.com/chilicuil/learn/master/sh/is/pxe)
+$ sh &lt;(wget -qO- https://raw.githubusercontent.com/chilicuil/learn/master/sh/tools/pxe)
 $ cd pxe_setup #es importante cambiar a este directorio
 $ wget http://archive.ubuntu.com/.../amd64/initrd.gz -O ubuntu/1204/amd64/initrd.gz
 $ wget http://archive.ubuntu.com/.../amd64/linux     -O ubuntu/1204/amd64/linux

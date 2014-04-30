@@ -1031,7 +1031,7 @@ _remotesetup()
         _remotesetup_var_ssh_old="$(_getlastversion "${HOME}"/.ssh)"
         if [ -n "${_remotesetup_var_ssh_old}" ] && \
         [ ! X"${_remotesetup_var_ssh_old}" = X"${HOME}"/.ssh ]; then
-            cp "${_remotesetup_var_ssh_old}"/* "${HOME}"/.ssh/
+            cp -- "${_remotesetup_var_ssh_old}"/* "${HOME}"/.ssh/
         fi
     else
         _printfs "${HOME}/.not_override is present, skipping ..."
