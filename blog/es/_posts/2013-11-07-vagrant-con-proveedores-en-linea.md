@@ -26,7 +26,7 @@ $ juju ssh/0
 
 El comando anterior creara una máquina remota y hara login, una vez ahí, se puede correr manualmente el [provisionamiento](http://javier.io/s) y empezar a trabajar, no más de 5 min, pero tampoco menos de 3. Ya desde que usaba juju me dí cuenta que tendría que usar otra cosa, juju nunca fue diseñado para lo que hacía, y la forma correcta de usarlo no me parecía que fuera a tener éxito (hice [un](https://jujucharms.com/fullscreen/search/precise/wesnoth-1/?text=wesnoth) [par](https://jujucharms.com/fullscreen/search/~chilicuil/precise/assaultcube-2/?text=assaultcube) de juju charms).
 
-Poco después empecé a buscar alternativas y encontré [http://instantserver.io/](http://instantserver.io/) . Durante el poco tiempo que estuvo en servicio ha sido lo más cercano a una interfaz sobria que haya usado. Un click y se tenía una máquina accesible en un tiempo de 1-2 segundos (supongo que siempre se tenian máquinas precargadas). No solo eso, la máquina se autodestruía pasados 40 minutos, suficiente para instalar/compilar lo que fuera necesario. Lamentablemente debido al uso indebido de algunos individuos el servicio fue suspendido. No pierdo la esperanza de que en el futuro cercano regrese en una versión de pago, estaré feliz de aventarles dinero a las manos.
+Poco después empecé a buscar alternativas y encontré [http://instantserver.io/](http://instantserver.io/). Durante el poco tiempo que estuvo en servicio ha sido lo más cercano a una interfaz sobria que haya usado. Un click y se tenía una máquina accesible en un tiempo de 1-2 segundos (supongo que siempre se tenian máquinas precargadas). No solo eso, la máquina se autodestruía pasados 40 minutos, suficiente para instalar/compilar lo que fuera necesario. Lamentablemente debido al uso indebido de algunos individuos el servicio fue suspendido. No pierdo la esperanza de que en el futuro cercano regrese en una versión de pago, estaré feliz de aventarles dinero a las manos.
 
 Finalmente, en una tercera búsqueda, me esforce por encontrar una solución que soportara diversas nubes y soluciones de virtualización y di con vagrant. No había sido la primera vez que escuchaba del proyecto, pero sí la primera que sabía que soportaba proveedores adicionales. La primera vez solo era una interfaz cli de VirtualBox (y dado que por ese entonces había escrito algunos scripts, no me daba la gana usar otra cosa).
 
@@ -74,7 +74,7 @@ $ vagrant plugin install vagrant-aws
 El plugin de digitalocean a diferencia del de aws, no tiene dependencias, puede instalarse así:
 
 <pre class="sh_sh">
-$ vagrant plugin install digital-ocean
+$ vagrant plugin install vagrant-digitalocean
 </pre>
 
 Sin embargo, tambien deberá subirse la parte pública de la llave ssh, **.ssh/id_rsa.pub** (la misma llave mencionada arriba), y hacerse de los datos de cliente (client_id) y de la api (api key), estos datos estan disponibles desde el panel de control del [sitio](http://digitalocean.com/).
@@ -103,7 +103,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
 
     provider.client_id = 'CLIENT_ID_SECRET'
     provider.api_key = 'API_SECRET'
-    provider.image = 'Ubuntu 12.04 x64'
+    provider.image = 'Ubuntu 12.04.4 x64'
     provider.region = 'New York 2'
     provider.size = '512MB'
     provider.private_networking = 'false'
