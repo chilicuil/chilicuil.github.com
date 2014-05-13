@@ -74,7 +74,7 @@ $ vagrant plugin install vagrant-aws
 El plugin de digitalocean a diferencia del de aws, no tiene dependencias, puede instalarse así:
 
 <pre class="sh_sh">
-$ vagrant plugin install vagrant-aws
+$ vagrant plugin install digital-ocean
 </pre>
 
 Sin embargo, tambien deberá subirse la parte pública de la llave ssh, **.ssh/id_rsa.pub** (la misma llave mencionada arriba), y hacerse de los datos de cliente (client_id) y de la api (api key), estos datos estan disponibles desde el panel de control del [sitio](http://digitalocean.com/).
