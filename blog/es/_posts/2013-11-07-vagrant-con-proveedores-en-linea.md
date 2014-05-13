@@ -99,7 +99,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
     override.ssh.username = 'admin'
     override.vm.box = 'digital_ocean'
     override.vm.box_url = "https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box"
-    override.vm.provision :shell, :inline =&gt; "su - #{override.ssh.username} -c \"bash &lt;(wget -qO- javier.io/s)\""
+    override.vm.provision :shell, :inline =&gt; "su - #{override.ssh.username} -c \"sh &lt;(wget -qO- javier.io/s)\""
 
     provider.client_id = 'CLIENT_ID_SECRET'
     provider.api_key = 'API_SECRET'
@@ -122,7 +122,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
     override.ssh.username = "ubuntu"
     override.vm.box = 'dummy'
     override.vm.box_url = "https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box"
-    override.vm.provision :shell, :inline =&gt; "su - #{override.ssh.username} -c \"bash &lt;(wget -qO- javier.io/s)\""
+    override.vm.provision :shell, :inline =&gt; "su - #{override.ssh.username} -c \"sh &lt;(wget -qO- javier.io/s)\""
 
     provider.access_key_id = "ACCESS_KEY_SECRET"
     provider.secret_access_key = "ACCESS_KEY_SECRET"
