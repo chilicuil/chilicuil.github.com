@@ -40,7 +40,7 @@ Afortunadamente, existe [http://mailgun.com](http://mailgun.com) un servicio que
 
 <pre class="sh_sh">
 $ wget https://raw.github.com/chilicuil/learn/master/sh/tools/mail
-$ bash mail "hacia@gmail.com" "mensaje"
+$ sh mail "hacia@gmail.com" "mensaje"
 </pre>
 
 <iframe class="showterm" src="http://showterm.io/6d595bb4e5424b943e54f" width="640" height="300">&nbsp;</iframe> 

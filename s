@@ -1121,8 +1121,8 @@ _remotesetup()
 _localsetup()
 {
     _printfl      "Verifying mirrors"
-    _ensureonline "http://files.javier.io"
     _ensureonline "http://javier.io"
+    _ensureonline "http://files.javier.io"
     _ensureonline "http://launchpad.net"
     _ensureonline "http://dl.google.com"
     _ensureonline "http://download.videolan.org"
