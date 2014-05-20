@@ -80,3 +80,8 @@ Si no desean compilarlo, he preparado paquetes para amd64 y para x86
 
 - [amd64](http://f.javier.io/rep/deb/3.13.7-ck-i386.tar.bz2)
 - [x86](http://f.javier.io/rep/deb/3.13.7-ck-amd64.tar.bz2)
+
+*3.14.4*
+
+- [amd64](http://f.javier.io/rep/deb/3.14.4-ck-amd64.tar.bz2)
+- [x86](http://f.javier.io/rep/deb/3.14.4-ck-i386.tar.bz2)
