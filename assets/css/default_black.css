@@ -4,13 +4,14 @@
 
 /****************************** fonts ***********************************/
 /* header */
-@import url('http://fonts.googleapis.com/css?family=Roboto+Condensed');
+/* use link instead since @import is not recognized by several browsers
+/*@import url('http://fonts.googleapis.com/css?family=Roboto+Condensed');*/
 /* minor headers, lists, footer and related section */
-@import url('http://fonts.googleapis.com/css?family=PT+Sans');
+/*@import url('http://fonts.googleapis.com/css?family=PT+Sans');*/
 /* categories */
-@import url('http://fonts.googleapis.com/css?family=Strait');
+/*@import url('http://fonts.googleapis.com/css?family=Strait');*/
 /* p and other text */
-@import url('http://fonts.googleapis.com/css?family=Vollkorn');
+/*@import url('http://fonts.googleapis.com/css?family=Vollkorn');*/
 
 body {
   /* background: none repeat scroll 0% 0% #010101; */
