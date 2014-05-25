@@ -31,8 +31,6 @@ Some of my favorite changes are:
 
 By default the script will backup(.old) any file before override it. Now all my new pristine environments are equal &#128522;
 
-- [https://github.com/chilicuil/chilicuil.github.com/blob/master/s](https://github.com/chilicuil/chilicuil.github.com/blob/master/s)
-
 - [dotfiles](https://github.com/chilicuil/dotfiles/)
 - [shundle](https://github.com/chilicuil/shundle)
 - [utils](https://github.com/chilicuil/learn/)
