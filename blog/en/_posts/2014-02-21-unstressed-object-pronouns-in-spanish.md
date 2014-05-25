@@ -48,7 +48,7 @@ io(indirect object) = for Sandra = para Sandra
 
 > The told the workers to arrive earlier / El jefé dijó a los trabajadores que llegaran más temprano
 
-Once you're able to identify the existence of an direct/indirect object in a phrase you'll be able to use the appropiate pronoun. Take a look at the table in the header of this posts.
+Once you're able to identify the existence of an direct/indirect object in a phrase you'll be able to use the appropriate pronoun. Take a look at the table in the header of this posts.
 
 ## Example:
 

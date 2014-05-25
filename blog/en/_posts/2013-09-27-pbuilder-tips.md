@@ -24,7 +24,7 @@ I: Checking Release signature
 E: Release signed by unknown key (key id 8B48AD6246925553)
 </pre>
 
-This messages indicates debootstrap has not been able to verify than **8B48AD6246925553** is a valid key, by default pbuilder in Ubuntu reads **/usr/share/keyrings/ubuntu-archive-keyring.gpg**. And this key is defined at: **/usr/share/pbuilder/pbuilderrc**. It sounds logic than a Debian key is not valid in an Ubuntu setup, however sometimes it's useful to test a package agains Debian without installing a full Debian environment.
+This messages indicates debootstrap has not been able to verify than **8B48AD6246925553** is a valid key, by default pbuilder in Ubuntu reads **/usr/share/keyrings/ubuntu-archive-keyring.gpg**. And this key is defined at: **/usr/share/pbuilder/pbuilderrc**. It sounds logic than a Debian key is not valid in an Ubuntu setup, however sometimes it's useful to test a package against Debian without installing a full Debian environment.
 
 This problem can be solved by adding the Debian key to the Ubuntu keys:
 

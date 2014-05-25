@@ -7,4 +7,4 @@ title: "out of office"
 
 ###### {{ page.date | date_to_string }}
 
-I've just finished some [videos](http://www.youtube.com/user/ugjmexico) for the UGJ, and later on I spend the day walking in Mexico city downtown and taking a cup of coffe with [Akemi](http://xakemix.wordpress.com/), I shaved my beard before going to bed =(
+I've just finished some [videos](http://www.youtube.com/user/ugjmexico) for the UGJ, I spend almost all my day walking in Mexico city downtown looking at buildings and buying stuff, I took a cup of coffe with [Akemi](http://xakemix.wordpress.com/) and shaved my beard before going to bed &#128546;

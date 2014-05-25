@@ -7,7 +7,7 @@ title: "installing debian build dependencies the smart way"
 
 ###### {{ page.date | date_to_string }}
 
-### The problem
+### The Problem
 
 So you're trying to build a Debian package from an upstream source tree, but you're not sure what build dependencies you should install? I have this problem all the time. For example, if I wanted to build the unity source tree into a debian package, I'd branch it:
 

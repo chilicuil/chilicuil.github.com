@@ -22,7 +22,7 @@ Github pages could be perfect, however they're not (although they're really clos
 
     If you have any questions please contact GitHub Support.
 
-Isn't beautiful?, no signal of what went wrong =), ok, to be fair, github recently has started to [add more details](https://github.com/blog/1706-descriptive-error-messages-for-failed-github-pages-builds), however it's still not sufficient, I still require to mirror their jekyll setup in order to see what's really happening. Since I've done more than a couple of times, I thought it would be a good idea to automatize it.
+Beautiful!, no signal of what went wrong =), ok, to be fair, github has recently started to [add more details](https://github.com/blog/1706-descriptive-error-messages-for-failed-github-pages-builds), however they're still not sufficient, I still require to mirror their jekyll setup in order to see what's really happening. Since I've done more than a couple of times, I thought it would be a good idea to automatize it.
 
 <pre class="sh_sh">
 $ sh &lt;(wget -qO- https://raw2.github.com/chilicuil/learn/master/sh/is/gitpages)
@@ -36,4 +36,4 @@ It requires an Ubuntu =&gt; 12.04 system and sudo credentials. Additional gotcha
 
 - [http://dwdii.github.io/2013/08/28/GitHub-Pages-Jekyll-Ampersands.html](http://dwdii.github.io/2013/08/28/GitHub-Pages-Jekyll-Ampersands.html)
 
-Happy blogging =)!
+Happy blogging &#128516;!
