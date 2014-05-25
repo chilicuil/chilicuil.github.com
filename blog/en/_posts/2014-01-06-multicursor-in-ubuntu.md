@@ -11,7 +11,7 @@ title: "multicursor in ubuntu"
 
 During my last holidays I found myself into a position where I had to share my laptop with other persons. I knew it was possible to use different keyboards/mice with Linux but never had tried.., till now &#128527;
 
-On this scenario, I had an extra monitor and an extra mouse, so the first thing I did was to enable the monitor, since I use [i3](http://i3wm.org/) for my windows management needs I use raw xrandr to extend my visual setup.
+On this scenario, I had an extra monitor and an extra mouse, so the first thing I did was to enable the monitor, since I use [i3](http://i3wm.org/) as my window manager I use raw xrandr to extend my visual setup.
 
 <pre>
 $ xrandr --output VGA1 --mode 1680x1050 --right-of LVDS1
@@ -25,7 +25,7 @@ $ xinput list #get the mouse id
 $ xinput reattach 10 "Auxiliary pointer" #use the id to set it as auxiliar pointer
 </pre>
 
-After applying such changes, the xinput configuration looks like this: 
+After applying these changes, the xinput configuration looked like this: 
 
 <pre>
 xinput list
@@ -50,6 +50,6 @@ xinput list
     ↳ Auxiliary XTEST keyboard                	id=20	[slave  keyboard (18)]
 </pre>
 
-That's it, the experience wasn't really bad, i3 reacted correctly most of the time and although there was confusion at times it's manageable &#128522;
+That's it, the experience wasn't really bad, i3 reacts correctly most of the time and although there were confusion, it is manageable &#128522;
 
 - [https://wiki.archlinux.org/index.php/Multi-pointer_X](https://wiki.archlinux.org/index.php/Multi-pointer_X)

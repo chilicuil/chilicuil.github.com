@@ -7,7 +7,7 @@ title: "kexec reboot"
 
 ###### {{ page.date | date_to_string }}
 
-Since the 2.6 Linux kernel version came out, there is a new way to reboot quite fast. [Kexec](http://en.wikipedia.org/wiki/Kexec) is a new call system who replaces the running kernel with a new one without the need to go through the bios initialization process. It means than now you're able to reboot faster, taking away 20, 30 or even 60 seconds from the boot process.
+Since the 2.6 Linux kernel version came out there is a new way to reboot quite fast. [Kexec](http://en.wikipedia.org/wiki/Kexec) is a new call system who replaces the running kernel with a new one without the need to go through the bios initialization process. It means than now you're able to reboot faster, taking away 20, 30 or even 60 seconds from the boot process.
 
 To use it, the "kexec-tools" package must be installed and the option "CONFIG_KEXEC" enabled, after setting up the system, kexec can be used this way:
 

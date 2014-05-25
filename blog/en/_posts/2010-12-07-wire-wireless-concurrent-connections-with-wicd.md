@@ -19,6 +19,6 @@ $ cat /etc/network/interfaces
           broadcast 10.0.0.255
 </pre>
 
-Afterwards, the wired interface will need to be removed from wicd **properties**. And it will be done, now the wireless interface can be controled from wicd and the wired one through **ifup**/**ifdown** &#128519;
+Afterwards, the wired interface will need to be removed from wicd **properties**. That's it!, now the wireless interface can be controled from wicd and the wired one through **ifup**/**ifdown** &#128519;
 
 - [https://bugs.launchpad.net/wicd/+bug/228578](https://bugs.launchpad.net/wicd/+bug/228578)

@@ -9,7 +9,7 @@ title: "virtualbox and kvm sideways"
 
 **[![](/assets/img/55.png)](/assets/img/55.png)**
 
-The above image contain a common error persons have whenever they try to use VirtualBox and KVM at the same time. Some forum posts suggest to uninstall kvm, however it's quite simple to keep both solutions installed sideways.
+The above image contain a common error persons have whenever they try to use VirtualBox and KVM at the same time. Some forum posts suggest uninstalling kvm, however it's quite simple to keep both solutions installed sideways.
 
 In Ubuntu, everytime VirtualBox is going to be used, KVM kernel modules should be disabled:
 

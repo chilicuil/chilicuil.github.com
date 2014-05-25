@@ -34,3 +34,5 @@ It may be a good idea to delete oldest files every now and then:
 <pre>
 0 6 * * * root find /path/.trash -type f -mtime +14 -delete &gt; /dev/null
 </pre>
+
+Happy trashing &#128521;

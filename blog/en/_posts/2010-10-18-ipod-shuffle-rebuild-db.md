@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "ipod shuffle and rebuild_db"
---
+---
 
 ## {{ page.title }}
 

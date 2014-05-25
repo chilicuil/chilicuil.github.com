@@ -15,7 +15,7 @@ I made a little [script](https://github.com/chilicuil/learn/blob/master/sh/tools
 $ sudo apt-get install acpi libnotify-bin hibernate
 </pre>
 
-WARNING: For the hibernation to work the computer have to have enough SWAP space (more than the RAM capacity).
+**WARNING:** For the hibernation to work the computer requires to have enough SWAP space (more than the amount of RAM)
 
 The scripts analyze the battery status and send notifications if the charge is less than 15%,10% or 7%, if the equipment reaches 5% it sends a final warning and hibernate the machine.
 

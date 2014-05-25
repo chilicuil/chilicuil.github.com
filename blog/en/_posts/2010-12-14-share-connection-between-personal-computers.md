@@ -9,8 +9,8 @@ title: "share connection between personal computers"
 
 ### Wireless to wired
 
-**eth0:** wired link to other machine
-**eth1:** wireless link to internet
+- **eth0:** wired link to other machine
+- **eth1:** wireless link to internet
 
 <pre class="sh_sh">
 $ sudo ifconfig eth0 10.0.0.1

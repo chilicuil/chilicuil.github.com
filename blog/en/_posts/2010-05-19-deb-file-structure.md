@@ -35,7 +35,7 @@ $ ar r firefox-launchpad-plugin_0.4_all.deb debian-binary control.tar.gz data.ta
   ar: creating firefox-launchpad-plugin_0.4_all.deb
 </pre>
 
-On this example however I'll only copy some files to my file system:
+On this example however I'll only copy some files to the file system:
 
 <pre class="sh_sh">
 $ tar zxvf data.tar.gz
@@ -59,5 +59,3 @@ $ mv ./usr/lib/firefox-addons/searchplugins/* ~/.mozilla/firefox/h5xyzl6e.defaul
 Done!, I don't need to mess with a dependency hell for a bunch of files &#128527; 
 
 **[![](/assets/img/34.png)](/assets/img/34.png)**
-
-- [https://synthesize.us/HOWTO_make_a_deb_archive_without_dpkg](https://synthesize.us/HOWTO_make_a_deb_archive_without_dpkg)

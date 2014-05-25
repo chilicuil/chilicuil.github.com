@@ -39,7 +39,7 @@ Finally I added the entry to the Windows loader and rebooted the system:
 **[![](/assets/img/32.png)](/assets/img/32.png)**
 **[![](/assets/img/33.png)](/assets/img/33.png)**
 
-At startup a new entry called **Start GRUB** showed up, I selected it and then reselected **Install ubuntu**. That's it, the installer will begin.
+At startup a new entry called **Start GRUB** will showed up. That's it, it will bring up the rest of the process.
 
 WARNING: This method requires an Internet connection through a wired interface, it may work with some wifi cards but the installer won't recognize most of them so it's better not to rely on it.
 
