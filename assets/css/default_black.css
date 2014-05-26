@@ -192,6 +192,7 @@ h2 {
   color: #EEEEEE;
   font: 180%/2em 'PT Sans',sans-serif;
   margin-bottom: 0px;
+  padding-left: 0.3%;
   text-shadow: 1px 0px 2px #966E6E;
 }
 
@@ -206,7 +207,7 @@ h4 {
 }
 
 h6 {
-  margin-top: 1%;
+  margin-top: -1.5%;
   margin-bottom: 1%;
   color: #aaa;
   text-align: right;
@@ -342,7 +343,7 @@ h2 + img + p:first-letter {
 
 .posts, h2 + .related-posts {
   margin-bottom: 0px;
-  margin-top: 5%;
+  margin-top: 3%;
   padding-left: 0px;
   padding-right: 0px;
 }
