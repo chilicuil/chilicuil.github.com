@@ -124,7 +124,7 @@ To connect to your laptop you can use any web browser or complete an extra step 
         CheckHostIP no
         ProxyCommand /bin/nc -X connect -x %h:443 %h %p
 
-WARNING: the nc command must be the openbsd version, in Ubuntu it's called **netcat-openbsd**
+**WARNING:** the nc command must be the openbsd version, in Ubuntu it's called **netcat-openbsd**
 
 If everything is correct, you should now be able to login:
 

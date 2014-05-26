@@ -55,7 +55,7 @@ output {
   }
 </pre>
 
-WARNING: shipper.conf doesn't look exactly like this, these snippets must be integrated with your own files, copy and paste won't work. If you're not sure about the syntax, take a look at logstash [documentation](http://logstash.net/docs/1.1.13/).
+**WARNING:** shipper.conf doesn't look exactly like this, these snippets must be integrated with your own files, copy and paste won't work. If you're not sure about the syntax, take a look at logstash [documentation](http://logstash.net/docs/1.1.13/).
 
 So, after rebooting the service logstash will add an "Alert_flood" tag to all messages where the pattern is found and will copy these messages (besides sending them to redis) to **/tmp/logstash_alert**.
 
