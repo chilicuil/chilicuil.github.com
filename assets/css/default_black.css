@@ -26,7 +26,7 @@ body {
 
 /******************* main header(title), anchor override ****************/
 #header h1 {
-  font: 450%/0.1em 'Roboto Slab', sans-serif;
+  font: 450%/0.1em 'Lato', sans-serif;
   padding-top: 3%;
   font-weight: lighter;
   text-shadow: 4px 4px 4px rgba(90,90,120,1);
