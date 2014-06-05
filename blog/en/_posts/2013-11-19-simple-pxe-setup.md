@@ -7,7 +7,7 @@ title: "simple pxe setup"
 
 ###### {{ page.date | date_to_string }}
 
-**[![](/assets/img/87.jpg)](/assets/img/87.jpg)**
+<!--**[![](/assets/img/87.jpg)](/assets/img/87.jpg)**-->
 
 There are several ways to setup a [pxe](http://es.wikipedia.org/wiki/Preboot_Execution_Environment) (which are useful mostly for massive installations), this is my personal method. A preboot execution environment in 68KB with batteries included, pxelinux, dhcpd, tftp, and hands-free installation.
 
