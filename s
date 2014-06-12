@@ -656,10 +656,10 @@ _installaptproxy()
             _fetchfile http://javier.io/mirror/apt-cacher-ng.service /tmp/apt-cacher-ng.service
             _cmdsudo mv /tmp/apt-cacher-ng.service /etc/avahi/services/apt-cacher-ng.service
         fi
-        if [ -d "${HOME}"/misc/ubuntu/proxy/apt-cacher-ng/ ]; then
+        if [ -d "${HOME}"/misc/deb-proxy/apt-cacher-ng/ ]; then
             _printfs "exporting files ..."
             _cmdsudo rm -rf /var/cache/apt-cacher-ng
-            _cmdsudo ln -s "${HOME}"/misc/ubuntu/proxy/apt-cacher-ng/ /var/cache/apt-cacher-ng
+            _cmdsudo ln -s "${HOME}"/misc/deb-proxy/apt-cacher-ng/ /var/cache/apt-cacher-ng
         fi
     fi
 }
