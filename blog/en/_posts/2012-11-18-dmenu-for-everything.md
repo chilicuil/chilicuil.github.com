@@ -36,7 +36,7 @@ Everything In 7 LOC!, this script can now be saved at **/usr/local/bin/** and us
 
 <pre>
 # vbox:
-bindsym $Altgr+v exec /usr/local/bin/dmenu_vbox
+bindsym $Altgr+v exec dmenu_vbox
 </pre>
 
 I can now launch the available vbox machines by pressing Altrg + v, if you liked dmenu as much as I did, I've made a handful of such scripts to control music, user sessions, applications, etc. Feel free to grab them at:

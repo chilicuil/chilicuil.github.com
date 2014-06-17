@@ -29,7 +29,7 @@ Lastly some other popular solutions have come up but for one or other reason I c
 ### Installation
 
 <pre>
-$ sudo add-apt-repository ppa:chilicuil/sucklesstools
+$ sudo add-apt-repository ppa:minos-archive/main
 $ sudo apt-get update
 $ sudo apt-get install libpam-captcha
 </pre>

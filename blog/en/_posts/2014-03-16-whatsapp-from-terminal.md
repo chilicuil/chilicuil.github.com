@@ -22,7 +22,7 @@ To use whatsapp, besides the client, you'll need a number who can receive sms. [
 ## Installation
 
 <pre class="sh_sh">
-$ sudo apt-add-repository ppa:chilicuil/sucklesstools
+$ sudo apt-add-repository ppa:chilicuil/proposed-fixes
 $ sudo apt-get update
 $ sudo apt-get install yowsup
 </pre>
