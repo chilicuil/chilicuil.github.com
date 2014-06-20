@@ -336,6 +336,11 @@ h2 + img + p:first-letter {
   margin-right: auto;
 }
 
+#youtube {
+  text-align: center;
+  margin-bottom: 2%;
+}
+
 #related {
   border-top: 2px groove white;
   font-family: 'PT Sans', sans-serif;

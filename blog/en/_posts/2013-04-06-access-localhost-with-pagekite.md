@@ -135,4 +135,4 @@ chilicuil@home.javier.io's password:
 
 Pagekite is free software, both the client and the backend and it's awesome &#128525;
 
-- https://github.com/pagekite/PyPagekite
+- [https://github.com/pagekite/PyPagekite](https://github.com/pagekite/PyPagekite)

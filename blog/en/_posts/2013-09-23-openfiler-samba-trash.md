@@ -9,7 +9,7 @@ title: "openfile and samba trash support"
 
 Sometimes it can useful to have trash support in samba/cifs. Sadly it's not straighforward to do in [openfiler](http://www.openfiler.com/).
 
-### /opt/openfiler/var/www/includes/generate.inc
+**/opt/openfiler/var/www/includes/generate.inc**
 
 In an average samba installation preferences are saved in **/etc/samba/smb.conf**, in openfiler however this and many other files are constantely rebuild, so this changes won't last if you apply them there. Modify **/opt/openfiler/var/www/includes/generate.inc** instead:
 

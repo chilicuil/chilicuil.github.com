@@ -19,7 +19,7 @@ Wazapp is a whatsapp client for Blackberry, it was started by [Tarek Galal](http
 
 To use whatsapp, besides the client, you'll need a number who can receive sms. [Twilio](https://www.twilio.com) is a great option if you don't have a cellphone or if yours is already taken for the official whatsapp client.
 
-## Installation
+### Installation
 
 <pre class="sh_sh">
 $ sudo apt-add-repository ppa:chilicuil/proposed-fixes
@@ -27,7 +27,7 @@ $ sudo apt-get update
 $ sudo apt-get install yowsup
 </pre>
 
-## Configuration
+### Configuration
 
 Upon installation, yowsup will need to be initialized, to do it, you'll need to create a **~/.yowsup** file:
 

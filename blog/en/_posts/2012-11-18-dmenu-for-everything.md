@@ -7,13 +7,12 @@ title: "dmenu for everything"
 
 ###### {{ page.date | date_to_string }}
 
-I love minimalism systems and programs who can do a single task well done, **dmenu** as many of the suckless tools shine at this, so it didn't took me a long time before I discovered it and started to use it for all my launch needs.
+I love minimalism systems and programs who focus in doing a single task very well, **dmenu** is one of those programs so it didn't took me a long time to discover it and use it for all my launch needs.
 
-dmenu is a program who read a list of options and present them to the user, once the user select an option it prints it and exit, simple! &#128522; 
+[dmenu](http://tools.suckless.org/dmenu/) is a program who read a list of options and present them to the user, when the user select an option it prints the result and exits, simple! &#128522; 
+You can easily create scripts for launch anything, really!, let's review how to create a virtualbox launcher:
 
-You can easily create scripts for launch anything, e,g., let's review how to launch virtualbox machines:
-
-The first step (and the hardest) is to figure out how to create a list of current vbox machines:
+The first step (and the hardest) is to figure out how to create a list of the options you wanna present in screen, on thix example vbox machines:
 
 <pre class="sh_sh">
 $ vboxmanage list vms | cut -d\" -f2
@@ -32,14 +31,14 @@ else
 fi
 </pre>
 
-Everything In 7 LOC!, this script can now be saved at **/usr/local/bin/** and used as a shortcut, in my user case, I added it to **~/.i3/config**:
+Everything In 7 LOC!, this script can now be saved at **/usr/local/bin/** and used as a shortcut, in my use case, I added it to **~/.i3/config**:
 
 <pre>
 # vbox:
 bindsym $Altgr+v exec dmenu_vbox
 </pre>
 
-I can now launch the available vbox machines by pressing Altrg + v, if you liked dmenu as much as I did, I've made a handful of such scripts to control music, user sessions, applications, etc. Feel free to grab them at:
+So now I can launch vbox machines by pressing **Altrg + v** and select the appropiated machine, if you liked dmenu as much as I did, I've made a handful of such scripts to control music, user sessions, apps, etc. Feel free to grab them at:
 
 - [https://github.com/chilicuil/learn/tree/master/sh/tools](https://github.com/chilicuil/learn/tree/master/sh/tools)
 

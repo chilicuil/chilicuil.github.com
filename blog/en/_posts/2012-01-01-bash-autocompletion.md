@@ -297,7 +297,7 @@ There exist plenty of available functions who can be used to autocomplete common
 
 Other pre-defined functions can be found at: <http://anonscm.debian.org/gitweb/?p=bash-completion/bash-completion.git;a=blob;f=bash_completion>
 
-#### Debug
+### Debug
 
 Bash autocompletion scripts are easy to create, however eventually (specially with larger cli commands) there are chances things doesn't work as expected, in those cases enabling bash verbose mode is the easiest and faster method to debug such scripts:
 

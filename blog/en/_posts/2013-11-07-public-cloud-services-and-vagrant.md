@@ -81,7 +81,7 @@ $ vagrant plugin install vagrant-digitalocean
 
 It'll need to get a valid public ssh key configured and the api/client ids set though.
 
-## Vagrantfile
+### Vagrantfile
 
 Vagrant main concert is to help developers to clone different environments in different projects, that's why only one Vagrantfile can be specified per directory. It's a [powerful idea](http://mitchellh.com/the-tao-of-vagrant) but it doesn't apply to my use case. In my working flow all I want is to gain access to remote resources as fast as possible. To do it with vagrant I created a directory in **$HOME/misc/vagrant** and edited a vagrant file with the following content:
 

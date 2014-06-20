@@ -9,9 +9,9 @@ title: "não tenho dinheiro"
 
 Eu tambem não! =)
 
-<center>
+<div id="youtube">
 <object width="560" height="315"><param name="movie" value="http://www.youtube.com/v/zdCF5Uknu-8?hl=en_US&amp;version=3"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/zdCF5Uknu-8?hl=en_US&amp;version=3" type="application/x-shockwave-flash" width="560" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
-</center>
+</div>
 
 <p></p>
 
@@ -47,5 +47,3 @@ Não tenho dinheiro nem nada que dar eu tenho solamente
 amor para amar, si ela me ama vai compreender
 si não para sempre pote diz-que ser 
 </pre>
-
-<p></p>
