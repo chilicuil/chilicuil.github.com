@@ -44,7 +44,8 @@ body {
 /************************ hello world in home ***************************/
 #hello h1 {
   text-align: center;
-  color: #777;
+  /*color: #777;*/
+  color: #aaa;
   padding-top: 5%;
   font-family: 'Vollkorn','serif';
   font-size: 220%;
@@ -148,7 +149,8 @@ form input.st-search-input {
 
 /* Change background color of selected search result */
 .swiftype-widget .autocomplete ul li.active {
-  background: black;
+  /*background: black;*/
+  background: #fff;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   box-shadow: 0px 0px 0px rgb(0, 0, 0) inset;
@@ -156,7 +158,8 @@ form input.st-search-input {
 }
 
 .swiftype-widget .autocomplete ul li {
-  background: black;
+  /*background: black;*/
+  background: #fff;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   -webkit-box-shadow: 0 1px 0 #C0242D inset;
@@ -164,7 +167,8 @@ form input.st-search-input {
 
 /* change the color of the section text (displayed below the title) */
 .swiftype-widget .autocomplete ul li.active .sections em {
-  color: white;
+  /*color: white;*/
+  color: #fff;
 }
 
 .swiftype-widget .autocomplete li.active .sections {
@@ -226,7 +230,7 @@ a:hover {
 li {
   padding-left: 12px;
   padding-bottom: 1em;
-  color: #666;
+  color: #aaa;
 }
 
 ul > li {
@@ -247,7 +251,8 @@ ul > li:before {
 ul > li > p { margin: 0; }
 
 p {
-  color: #777;
+  /*color: #777; http://contrastrebellion.com */
+  color: #bbb;
   font: 1.2em 'Vollkorn','serif';*/
 text-align: justify;
 }
@@ -378,7 +383,8 @@ h2 + img + p:first-letter {
 }
 
 .posts li span, h2 + .related-posts li span {
-  color: #888888;
+  /*color: #888888;*/
+  color: #bbb;
   font-size: 1.2em;
   position: absolute;
   right: 1%;
