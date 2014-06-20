@@ -201,12 +201,26 @@ h2 {
 }
 
 h3 {
-  font-size: 180%/2em;
-  color: #777;
+  /*color: #777;*/
+  color: #ccc;
+  font: 100%/2em 'PT Sans',sans-serif;
+
+  /*square around*/
+  border: 1px solid;
+  margin-bottom: 2%;
+  margin-top: 2%;
+  text-align: center;
+  width: 10%;
 }
 
 h4 {
   font-size: .9em;
+  color: #999;
+}
+
+h5 {
+  font-size: .9em;
+  font: 100%/2em 'PT Sans',sans-serif;
   color: #999;
 }
 
