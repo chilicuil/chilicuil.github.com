@@ -34,27 +34,8 @@ $ sudo apt-get update
 $ sudo apt-get install libpam-captcha
 </pre>
 
-### Configuration
-
-**/etc/pam.d/sshd**
-
-<pre>
-    auth requisite  pam_captcha.so math randomstring
-</pre>
-
-**/etc/ssh/sshd_config**
-
-<pre>
-    PasswordAuthentication no
-    ChallengeResponseAuthentication yes
-    UsePAM yes
-</pre>
-
-<pre>
-$ sudo service ssh restart
-</pre>
-
-It may seems difficult to setup, but I've integrated in my provision scripts so I don't really feel the extra steps and I get an extra layer of security for free every time I login. It also gets out of the way if you use ssh key based login, thanks Jordan! &#128522; 
+Thanks Jordan! &#128522; 
 
 - [http://www.semicomplete.com/projects/pam_captcha/](http://www.semicomplete.com/projects/pam_captcha/)
-- [https://github.com/chilicuil/pam_captcha](https://github.com/chilicuil/pam_captcha)
+- [https://github.com/minos-org/libpam-captcha](https://github.com/minos-org/libpam-captcha)
+- [https://github.com/minos-org/libpam-captcha-deb](https://github.com/minos-org/libpam-captcha-deb)
