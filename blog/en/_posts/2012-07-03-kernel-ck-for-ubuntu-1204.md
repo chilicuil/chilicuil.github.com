@@ -29,7 +29,7 @@ The idea is that from time to time I check the script to see that it compiles th
 
 <pre class="sh_sh">
 $ wget https://raw.github.com/chilicuil/learn/master/sh/is/kernel-ck-ubuntu
-$ time bash kernel-ck-ubuntu
+$ time sh kernel-ck-ubuntu
 $ sudo dpkg -i ./linux-*.deb
 </pre>
 
