@@ -7,7 +7,7 @@ title: "kernel -ck for ubuntu precise"
 
 ###### {{ page.date | date_to_string }}
 
-**UPDATE: 19/May/2014, the script was updated to compile the 3.14.4 kernel version**
+**UPDATE: 16/Jul/2014, the script was updated to compile the 3.15.5 kernel version**
 
 **[ck](http://ck-hack.blogspot.mx/)** is the name for the Con Kolivas patchet which main purpose is to increment the performance for Linux in PC’s and laptops. Traditionally the kernel comes with a lot of things for enterprise environments, that’s why this patchset have some relative popularity with people who wants to improve their machine for games, multimedia and tradicional work (browsing the web, editing texts, im, etc).
 
@@ -76,3 +76,8 @@ And reboot your system, if you don’t want to compile it yourself, I’ve build
 
 - [amd64](http://f.javier.io/rep/deb/3.14.4-ck-amd64.tar.bz2)
 - [x86](http://f.javier.io/rep/deb/3.14.4-ck-i386.tar.bz2)
+
+*3.15.5*
+
+- [amd64](http://f.javier.io/rep/deb/3.15.5-ck-amd64.tar.bz2)
+- [x86](http://f.javier.io/rep/deb/3.15.5-ck-i386.tar.bz2)
