@@ -19,7 +19,7 @@ In the client side, there exist mainly two ways of taking advantage of such serv
 
 ### Installation
 
-&#91;+&#93; In the server side (which can be the same machine as the client):
+&#91;+&#93; In the server side (which can be client at the same time):
 
 <pre class="sh_sh">
 $ sudo apt-get install apt-cacher-ng squid-deb-proxy-client
