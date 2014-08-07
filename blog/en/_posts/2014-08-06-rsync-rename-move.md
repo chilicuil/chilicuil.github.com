@@ -17,7 +17,7 @@ I use rsync to backup my *$HOME* directory once a month with something like this
 $ sudo rsync -az --one-file-system --delete $HOME/ admin@backup.javier.io:~/backup/$(hostname)
 </pre>
 
-Most of the times it takes me **4-5** hours at 10MB/s to re-sync everything, however last weekend it took me almost **20 hours!** so while I was waiting I decided to take a look to see what was happening. It turned out rsync was re-uploading some pretty heavy files because I had renamed them locally. I couldn't believe rsync was so dumb, I was shocked &#128552;
+Most of the times it takes me **4-5** hours at 10MB/s to re-sync everything, however last weekend it took me almost **20 hours!** so while I was waiting I decided to take a look to see what was happening. It turned out rsync was re-uploading some pretty heavy files because I had renamed them locally. I couldn't believe rsync was so dumb, I was shocked O_O
 
 So I went to Internet and looked for solutions, it didn't took me a while to find a couple of patches:
 
