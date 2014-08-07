@@ -9,17 +9,17 @@ title: "detect file moves and renames with rsync"
 
 **[![](/assets/img/102.png)](/assets/img/102.png)**
 
-I use rsync to backup my $HOME directory once a month with something like this:
+<br>
+
+I use rsync to backup my *$HOME* directory once a month with something like this:
 
 <pre class="sh_sh">
 $ sudo rsync -az --one-file-system --delete $HOME/ admin@backup.javier.io:~/backup/$(hostname)
 </pre>
 
-Most of the times it takes me **4-5** hours at 10MB/s to re-sync everything, however last weekend it took me almost **20 hours!** so while I was waiting I decided to take a look more closely to see what was happening.
+Most of the times it takes me **4-5** hours at 10MB/s to re-sync everything, however last weekend it took me almost **20 hours!** so while I was waiting I decided to take a look to see what was happening. It turned out rsync was re-uploading some pretty heavy files because I had renamed them locally. I couldn't believe rsync was so dumb, I was shocked &#128552;
 
-It turned out rsync was re-uploading some pretty heavy files because I had renamed them locally. I couldn't believe rsync was so dumb, I was shocked &#128552;
-
-So I went to Internet and looked for a solution, and I found a couple of patches:
+So I went to Internet and looked for solutions, it didn't took me a while to find a couple of patches:
 
 - [detect-renamed](https://attachments.samba.org/attachment.cgi?id=7435)
 - [detect-renamed-lax](https://git.samba.org/?p=rsync-patches.git;a=blob;f=detect-renamed-lax.diff;h=4cd23bd4524662f1d0db0bcc90336a77d0bb61c9;hb=HEAD)
@@ -36,9 +36,11 @@ $ sudo apt-add-repository ppa:minos-archive/main
 $ sudo apt-get updata &amp;&amp; sudo apt-get install rsync
 </pre>
 
-In my personal tests the modified rsync shows an amazing speed up for uploads who involve renamed/moved files. I hope this helps others as well.
+In my personal tests the modified rsync shows an amazing speed up for uploads who involve renamed/moved files, so I'm installing this in all my computers.
 
 **Note: For this to work, both, server and client must have installed the modified rsync version**
+
+Happy uploading &#128523;
 
 References:
 
