@@ -44,8 +44,7 @@ Happy uploading &#128523;
 
 References:
 
-- https://bugzilla.samba.org/show_bug.cgi?id=2294
-- https://bugzilla.samba.org/attachment.cgi?id=7435
-- http://gitweb.samba.org/?p=rsync-patches.git;a=blob;f=detect-renamed-lax.diff;h=4cd23bd4524662f1d0db0bcc90336a77d0bb61c9;hb=HEAD
-- https://github.com/chilicuil/learn/blob/master/patches/rsync-3.1.1-trusty-detect-renamed.diff
-- https://github.com/chilicuil/learn/blob/master/patches/rsync-3.1.1-trusty-detect-renamed-lax.diff
+- (https://bugzilla.samba.org/show_bug.cgi?id=2294)[https://bugzilla.samba.org/show_bug.cgi?id=2294]
+- (https://bugs.launchpad.net/ubuntu/+source/rsync/+bug/1353792)[https://bugs.launchpad.net/ubuntu/+source/rsync/+bug/1353792]
+- (https://github.com/chilicuil/learn/blob/master/patches/rsync-3.1.1-trusty-detect-renamed.diff)[https://github.com/chilicuil/learn/blob/master/patches/rsync-3.1.1-trusty-detect-renamed.diff]
+- (https://github.com/chilicuil/learn/blob/master/patches/rsync-3.1.1-trusty-detect-renamed-lax.diff)[https://github.com/chilicuil/learn/blob/master/patches/rsync-3.1.1-trusty-detect-renamed-lax.diff]
