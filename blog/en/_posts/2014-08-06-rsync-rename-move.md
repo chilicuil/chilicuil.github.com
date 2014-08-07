@@ -33,7 +33,7 @@ Since I'm not the kind of person who enjoys spending their time compiling softwa
 
 <pre class="sh_sh">
 $ sudo apt-add-repository ppa:minos-archive/main
-$ sudo apt-get updata &amp;&amp; sudo apt-get install rsync
+$ sudo apt-get update &amp;&amp; sudo apt-get install rsync
 </pre>
 
 In my personal tests the modified rsync shows an amazing speed up for uploads who involve renamed/moved files, so I'm installing this in all my computers.
