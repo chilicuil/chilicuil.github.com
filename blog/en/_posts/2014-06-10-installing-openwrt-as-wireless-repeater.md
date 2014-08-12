@@ -23,7 +23,7 @@ After completing the download, it can be installed by going to the "Firmware Upg
 
 **[![](/assets/img/99.png)](/assets/img/99.png)**
 
-The trunk build is quite raw it doesn't install the [classic web interface](luci.subsignal.org), so it's up to every person to decide if they want it or not, in my case I decided to install it because it's not a device I'll manage but my sister (who lives with my parents) and I don't think she'll be happy with the idea of using a cli interface =)
+The trunk build is quite raw, it doesn't install the [classic web interface](luci.subsignal.org), so it's up to every person to decide if they want it or not, in my case I decided to install it because it's not a device I'll manage but my sister (who lives with my parents) and I don't think she'll be happy with the idea of using a cli interface =)
 
 So, I got connected to the device, changed temporally the network (to provide internet to the device) and installed luci (web interface) and relayd (repeater).
 
