@@ -52,7 +52,7 @@ For **e4rat** to work it needs to recognize which files are been used at the boo
 <pre class="config">
 title   Ubuntu 12.04.2 LTS, kernel 3.8.2-ck1
 uuid    793e9a6d-d545-46f0-ac9c-49071c450b62
-kernel  /boot/vmlinuz-3.8.2-ck1 root=UUID=793e9a6d-d545-46f0-ac9c-49071c450b62 ro init=/sbin/e4rat-collect
+kernel  ... ro init=/sbin/e4rat-collect
 initrd  /boot/initrd.img-3.8.2-ck1
 quiet
 </pre>
@@ -90,14 +90,14 @@ No further improvements...
 <pre class="config">
 title   Ubuntu 12.04.2 LTS, kernel 3.8.2-ck1
 uuid    793e9a6d-d545-46f0-ac9c-49071c450b62
-kernel  /boot/vmlinuz-3.8.2-ck1 root=UUID=793e9a6d-d545-46f0-ac9c-49071c450b62 ro init=/sbin/e4rat-preload
+kernel  ... ro plymouth:force-splash init=/sbin/e4rat-preload
 initrd  /boot/initrd.img-3.8.2-ck1
 quiet
 </pre>
 
 > Reboot
 
-Done, now the boot process time should be faster and smoother &#128526; 
+Done, now the boot process time should be faster and smoother &#128526;
 
 ### Uninstallation
 
