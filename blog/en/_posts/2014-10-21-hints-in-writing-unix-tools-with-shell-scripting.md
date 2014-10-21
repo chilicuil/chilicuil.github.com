@@ -44,7 +44,7 @@ The above will allow to use [translate](https://github.com/chilicuil/learn/blob/
 
 ## Output should be free from header or other decoration
 
-Adding options in shell scripts are easy, if you like adding extra sugar to your output, consider doing it within extra options; -v, --verbose, -a, --all, etc, but by default try to output the simplest response as possible, consider [howdoi](https://github.com/chilicuil/learn/blob/master/sh/tools/howdoi)
+Adding options in shell scripts are easy, if you like adding extra sugar to your output, consider doing it within extra options; -v, --verbose, -a, --all, etc, but by default try to output the simplest response, consider [howdoi](https://github.com/chilicuil/learn/blob/master/sh/tools/howdoi)
 
     $ howdoi extract a tar.bz2 package in unix
     tar -xjf /path/to/archive.tar.bz
@@ -77,17 +77,14 @@ case "${arg}" in
 
 You can create tests to ensure your output format doesn't change and actually works. There are [several](http://shunit.sourceforge.net/) [test suites](http://bmizerany.github.io/roundup/) capable of managing [shell](https://github.com/lehmannro/assert.sh) [scripts](http://joyful.com/shelltestrunner/), but one of the simplest is [shtool test suite](http://fossies.org/linux/shtool/test.sh) by Ralf S. Engelschall.
 
-Let retake the previous script and add some tests:
+Let's retake the previous script and add some tests:
 
 <pre class="sh_sh">
 @begin{howdoi}
-howdoi; test X"${?}"                                  = X"1"
-howdoi -h ; test X"${?}"                              = X"1"
-printf "%s" '-h' | howdoi; test X"${?}"               = X"1"
-howdoi --help ; test X"${?}"                          = X"1"
-printf "%s" '--help' | howdoi; test X"${?}"           = X"1"
-howdoi --cui; test X"${?}"                            = X"1"
-printf "%s" '--cui' | howdoi; test X"${?}"            = X"1"
+howdoi; test X"${?}"                                      = X"1"
+printf "%s" '-h' | howdoi; test X"${?}"                   = X"1"
+howdoi --help ; test X"${?}"                              = X"1"
+howdoi --cui; test X"${?}"                                = X"1"
 test X"$(howdoi 2>&amp;1|head -1)"                        = X"Usage: howdoi [options] query ..."
 test X"$(howdoi -h 2>&amp;1|head -1)"                     = X"Usage: howdoi [options] query ..."
 test X"$(printf "%s" '--help' | howdoi 2>&amp;1|head -1)" = X"Usage: howdoi [options] query ..."
