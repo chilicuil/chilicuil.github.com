@@ -7,7 +7,7 @@ title: "hints for writing unix tools with shell scripting"
 
 ###### {{ page.date | date_to_string }}
 
-Yesterday I started my day reading [Hints for writing Unix tools](http://monkey.org/~marius/unix-tools-hints.html). And since I agree to a great extend with it I though in giving more details about how to build such tools with my favorite language. I'd really enjoy reading similar entries aimed to other langs.
+Yesterday I started my day reading [Hints for writing Unix tools](http://monkey.org/~marius/unix-tools-hints.html). And since I agree to a great extend I though in giving more details about how to build such tools with my favorite language. I'd really enjoy reading similar entries aimed to other langs.
 
 ## Consume input from stdin, produce output to stdout
 
@@ -183,3 +183,4 @@ Happy tooling &#128523;
 - [http://monkey.org/~marius/unix-tools-hints.html](http://monkey.org/~marius/unix-tools-hints.html)
 - [Personal guidelines](https://github.com/chilicuil/learn/blob/master/sh/guideline.md)
 - [Beginning shell scripting](http://f.javier.io/rep/books/Beginning_shell_scripting.pdf)
+- [Shell scripts following exposed advices](https://github.com/chilicuil/learn/tree/master/sh)
