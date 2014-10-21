@@ -9,7 +9,7 @@ title: "hints for writing unix tools with shell scripting"
 
 Yesterday I started my day reading [Hints for writing Unix tools](http://monkey.org/~marius/unix-tools-hints.html). And since I agree to a great extend with it I though in giving more details about how to build such tools with my favorite language. I'd really enjoy reading similar entries aimed to other langs.
 
-#### Consume input from stdin, produce output to stdout
+## Consume input from stdin, produce output to stdout
 
 In Unix you can usually refer to stdin and stdout using file descriptors 1 and 2, we do it all the time, for example to send all errors in the `find` command to /dev/null you can type:
 
@@ -42,7 +42,7 @@ The above will allow to use [translate](https://github.com/chilicuil/learn/blob/
     $ echo hola | translate
     $ echo hola | translate | sed "s:$: world:"
 
-#### Output should be free from header or other decoration
+## Output should be free from header or other decoration
 
 Adding options in shell scripts are easy, if you like adding extra sugar to your output, consider doing it within extra options; -v, --verbose, -a, --all, etc, but by default try to output the simplest response as possible, consider [howdoi](https://github.com/chilicuil/learn/blob/master/sh/tools/howdoi)
 
@@ -73,7 +73,7 @@ case "${arg}" in
 -c) CFLAG="set"; shift;;
 </pre>
 
-#### Treat a tool's output as an API
+## Treat a tool's output as an API
 
 You can create tests to ensure your output format doesn't change and actually works. There are [several](http://shunit.sourceforge.net/) [test suites](http://bmizerany.github.io/roundup/) capable of managing [shell](https://github.com/lehmannro/assert.sh) [scripts](http://joyful.com/shelltestrunner/), but one of the simplest is [shtool test suite](http://fossies.org/linux/shtool/test.sh) by Ralf S. Engelschall.
 
@@ -104,7 +104,7 @@ test -d ~/.cache/howdoi
 
 If you include the output format in your tests it would be harder to change it continuously.
 
-#### Place diagnostics output on stderr.
+## Place diagnostics output on stderr.
 
 This one is really easy, adding `>&2` to all diagnostic, help and verbose messages will do it.
 
@@ -116,7 +116,7 @@ printf "%s\\n" "$(expr "${0}" : '.*/\([^/]*\)'): unrecognized option '${arg}'"
 printf "%s\\n" "$(expr "${0}" : '.*/\([^/]*\)'): unrecognized option '${arg}'" >&amp;2
 </pre>
 
-#### Signal failure with an exit status.
+## Signal failure with an exit status.
 
 The current status can be set in bash/zsh/sh with either `true`, `: (true)`, `false`, `return` or `exit`
 
@@ -151,7 +151,7 @@ if ! command -v "curl" >/dev/null 2>&amp;1; then
 fi
 </pre>
 
-#### Omit needless diagnostics.
+## Omit needless diagnostics.
 
 As stated in *Omit needless diagnostics.* output should be as clear and simple as possible, a verbose function can be defined and used as follows:
 
@@ -174,7 +174,7 @@ _verbose "detailed message"
 
 And for debugging, `set -x` will help to see most of the issues most of the times.
 
-#### Avoid making interactive programs
+## Avoid making interactive programs
 
 Doing interactive programs in shell scripting is actually harder than parsing cli arguments and outputting simple strings. So it shouldn't be difficult to follow this principle, but if you still want breaking it, ensure interactive is only an additional mode and you still have a batch one.
 
