@@ -17,7 +17,7 @@ In Unix you can usually refer to stdin and stdout using file descriptors 1 and 2
 
 And it so happens than bash/zsh/sh/ and probably many other shells can test if a fd is open and associated to a terminal with the `-t` test.
 
-With this knowledge consuming input and modifying the behavior of your programs to act different depending to where it goes (pipe, file, stdout) is as easy as testing if the appropriate fd is active. For instance to consuming input the following will work if placed properly (before parsing options?):
+With this knowledge consuming input and modifying the behavior of your programs to act different depending to where it goes (pipe, file, stdout) is as easy as testing if the appropriate fd is active. For instance, to consume the standard input in your programs the following will work if placed properly (before parsing options?):
 
 <pre class="sh_sh">
 if [ ! -t 0 ]; then
@@ -26,7 +26,7 @@ if [ ! -t 0 ]; then
 fi
 </pre>
 
-In the other hand, to print or copy the output to the clipboard depending whether the tool is part of one-liner or not you can test for fd 1:
+To control the output, you can test for fd 1 as in this example,
 
 <pre class="sh_sh">
 if command -v "xclip" >/dev/null 2>&amp;1 || [ -t 1 ];  then
@@ -44,7 +44,7 @@ The above will allow to use [translate](https://github.com/chilicuil/learn/blob/
 
 ## Output should be free from header or other decoration
 
-Adding options in shell scripts are easy, if you like adding extra sugar to your output, consider doing it within extra options; -v, --verbose, -a, --all, etc, but by default try to output the simplest response, consider [howdoi](https://github.com/chilicuil/learn/blob/master/sh/tools/howdoi)
+Adding options in shell scripts are easy, if you like adding extra sugar to your output, consider doing it within them, some examples are; -v, --verbose, -a, --all, etc, but by default try to output the simplest response, consider [howdoi](https://github.com/chilicuil/learn/blob/master/sh/tools/howdoi)
 
     $ howdoi extract a tar.bz2 package in unix
     tar -xjf /path/to/archive.tar.bz
@@ -75,16 +75,16 @@ case "${arg}" in
 
 ## Treat a tool's output as an API
 
-You can create tests to ensure your output format doesn't change and actually works. There are [several](http://shunit.sourceforge.net/) [test suites](http://bmizerany.github.io/roundup/) capable of managing [shell](https://github.com/lehmannro/assert.sh) [scripts](http://joyful.com/shelltestrunner/), but one of the simplest is [shtool test suite](http://fossies.org/linux/shtool/test.sh) by Ralf S. Engelschall.
+You can create tests to ensure that your output format doesn't change and actually works. There are [several](http://shunit.sourceforge.net/) [test suites](http://bmizerany.github.io/roundup/) capable of managing [shell](https://github.com/lehmannro/assert.sh) [scripts](http://joyful.com/shelltestrunner/), but one of the simplest is [shtool test suite](http://fossies.org/linux/shtool/test.sh) by Ralf S. Engelschall.
 
 Let's retake the previous script and add some tests:
 
 <pre class="sh_sh">
 @begin{howdoi}
-howdoi; test X"${?}"                                      = X"1"
-printf "%s" '-h' | howdoi; test X"${?}"                   = X"1"
-howdoi --help ; test X"${?}"                              = X"1"
-howdoi --cui; test X"${?}"                                = X"1"
+howdoi; test X"${?}"                                  = X"1"
+printf "%s" '-h' | howdoi; test X"${?}"               = X"1"
+howdoi --help ; test X"${?}"                          = X"1"
+howdoi --cui; test X"${?}"                            = X"1"
 test X"$(howdoi 2>&amp;1|head -1)"                        = X"Usage: howdoi [options] query ..."
 test X"$(howdoi -h 2>&amp;1|head -1)"                     = X"Usage: howdoi [options] query ..."
 test X"$(printf "%s" '--help' | howdoi 2>&amp;1|head -1)" = X"Usage: howdoi [options] query ..."
