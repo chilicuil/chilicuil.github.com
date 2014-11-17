@@ -19,7 +19,7 @@ This week decided to go further and see how to do it, and it turned out to be po
 
 If you're not interested in installing the whole enchilada, minos-bash-settings will also make bash read /etc/profile.d/ by default, you can get the inputrc file at:
 
- - [https://github.com/chilicuil/dotfiles/blob/master/.inputrc](https://github.com/chilicuil/dotfiles/blob/master/.inputrc)
+ - [https://github.com/minos-org/minos-bash-settings/blob/master/etc.inputrc](https://github.com/minos-org/minos-bash-settings/blob/master/etc.inputrc)
 
 Happy editing &#128523;
 
