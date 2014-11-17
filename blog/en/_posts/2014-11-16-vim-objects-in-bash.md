@@ -22,3 +22,5 @@ If you're not interested in installing the whole enchilada, minos-bash-settings 
  - [https://github.com/chilicuil/dotfiles/blob/master/.inputrc](https://github.com/chilicuil/dotfiles/blob/master/.inputrc)
 
 Happy editing &#128523;
+
+- [https://github.com/minos-org/minos-bash-settings](https://github.com/minos-org/minos-bash-settings)
