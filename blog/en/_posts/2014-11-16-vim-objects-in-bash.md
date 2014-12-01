@@ -11,7 +11,7 @@ I've been using [vi-mode](http://www.catonmat.net/blog/bash-vi-editing-mode-chea
 
 This week decided to go further and see how to do it, and it turned out to be possible =), so if you've missed this feature too you can now enjoy it by following this procedure:
 
-## Setup
+### Setup
 
     $ sudo add-apt-repository ppa:minos-archive/main
     $ sudo apt-get update && sudo apt-get install minos-bash-settings
