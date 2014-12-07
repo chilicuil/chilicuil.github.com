@@ -7,17 +7,13 @@ title: "detect file moves and renames with rsync"
 
 ###### {{ page.date | date_to_string }}
 
-**[![](/assets/img/102.png)](/assets/img/102.png)**
-
-<br>
-
 I use rsync to backup my *$HOME* directory everyday with something like this:
 
 <pre class="sh_sh">
 $ sudo rsync -az --one-file-system --delete $HOME/ admin@backup.javier.io:~/backup/$(hostname)
 </pre>
 
-Most of the times it takes me less than **10** minutes at 2MB/s to re-sync everything, however last weekend it took me almost **20 hours!** so while I was waiting I decided to take a look to see what was happening. It turned out rsync was re-uploading some pretty heavy files because I had renamed them locally. I couldn't believe rsync was so dumb, I was shocked O_O
+Most of the times it takes me less than **10** minutes at 2MB/s to re-sync everything, however last weekend it took almost **20 hours!** so while I was waiting I decided to take a look to see what was happening. It turned out rsync was re-uploading some pretty heavy files because I had renamed them locally. I couldn't believe rsync was so dumb, I was shocked O_O
 
 So I went to Internet and looked for solutions, fortunatelly some other guys had found this problem before and created a couple of patches:
 
@@ -29,7 +25,7 @@ These patches add the following options:
 - --detect-renamed, --detect-renamed-lax
 - --detect-moved
 
-Since I'm not the kind of person who enjoys spending their time compiling software I packaged a modified rsync version for Debian/Ubuntu and upload it somewhere, while doing it I updated the patches to make them compile with the latest rsync version (at the moment of writing this version 3.1.1):
+Since I'm not the kind of person who enjoys spending their time compiling software I packaged a modified rsync version for supported Ubuntu LTS versions and upload it somewhere, while doing it I updated the patches to make them compile with the latest rsync version (at the moment of writing this version 3.1.1).
 
 <pre class="sh_sh">
 $ sudo apt-add-repository ppa:minos-archive/main
