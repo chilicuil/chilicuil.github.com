@@ -7,8 +7,8 @@ title: "ssh captcha"
 
 ###### {{ page.date | date_to_string }}
 
-<!--**[![](/assets/img/pam_captcha.png)](https://github.com/chilicuil/pam_captcha)**-->
-<iframe class="showterm" src="http://showterm.io/53a85bc1b41c096c83130" width="640" height="350">&nbsp;</iframe>
+**[![](/assets/img/pam_captcha.png)](https://github.com/chilicuil/pam_captcha)**
+<!--<iframe class="showterm" src="http://showterm.io/53a85bc1b41c096c83130" width="640" height="350">&nbsp;</iframe>-->
 
 Some days ago while I was reviewing some data I noticed a spammer in one of my remote machines. Since I was mostly using the box for running experiments I decided to rebuild it. Upon completion, I decided to improve my default ssh settings. I just liked too much to use a single password for all my ssh needs &#128542;
 
