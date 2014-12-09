@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "strip mp3 tags"
+title: "strip mp3 tags with ffmpeg"
 ---
 
 ## {{ page.title }}

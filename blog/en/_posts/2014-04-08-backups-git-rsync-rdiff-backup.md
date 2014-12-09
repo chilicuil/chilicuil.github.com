@@ -9,13 +9,13 @@ title: "backups: git, rsync, rdiff-backup"
 
 **[![](/assets/img/96.png)](/assets/img/96.png)**
 
-I took the weekend to review my personal backup strategy and this is the result. Besides using git to track current projects (which also provides very good integrated backup) I created a [script](https://github.com/chilicuil/learn/blob/master/sh/is/backup-remote-rsync) to be allocated in the machines backing up, eg:
+I took the weekend to review my personal backup strategy and this is the result. Besides using git to track current projects (which also provides very good integrated backup) I created a [script](https://github.com/chilicuil/learn/blob/master/sh/tools/backup-remote-rsync) to be allocated in the machines backing up, eg:
 
     $ backup-remote-rsync -r b.javier.io #will backup $HOME to b.javier.io:~/hostname
     $ backup-remote-rsync -r b.javier.io -u admin -i /home/admin/.ssh/id_rsa /var/www /etc
     #will back up /var/www and /etc using admin ssh keys to login to b.javier.io
 
-A program ([rdiff-backup](http://www.nongnu.org/rdiff-backup/examples.html)) to create dailys/weeklys/montlys on the backup server. And another [script](https://github.com/chilicuil/learn/blob/master/sh/is/share-backup) to get easy access to the files if needed (isn't the whole point?).  
+A program ([rdiff-backup](http://www.nongnu.org/rdiff-backup/examples.html)) to create dailys/weeklys/montlys on the backup server. And another [script](https://github.com/chilicuil/learn/blob/master/sh/tools/share-backup) to get easy access to the files if needed (isn't the whole point?).
 
 The idea is to run backup-remote-rsync (which uses a popular synchronization program internally) daily and generate **~/backup/$(hostname)** folders in the backup server (it has hardcoded b.javier.io by default but it accepts other parameters). Then generate dailys(7), weeklys(4) and monthlys(12).
 
@@ -36,7 +36,7 @@ And finally run **share-backup** from any computer with access to b.javier.io to
 
       username: guest
       password: M2U4ZDRj
-      ssl     : 
+      ssl     :
 
       serving:  /home/admin/recovery
 
