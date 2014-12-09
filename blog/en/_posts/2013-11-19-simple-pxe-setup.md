@@ -7,11 +7,10 @@ title: "simple pxe setup"
 
 ###### {{ page.date | date_to_string }}
 
-<!--**[![](/assets/img/87.jpg)](/assets/img/87.jpg)**-->
-
 There are several ways to setup a [pxe](http://es.wikipedia.org/wiki/Preboot_Execution_Environment) (which are useful mostly for massive installations), this is my personal method. A preboot execution environment in 68KB with batteries included, pxelinux, dhcpd, tftp, and hands-free installation.
 
-<iframe class="showterm" src="http://showterm.io/f2ac25e4df1e7ad5e989a" width="640" height="300">&nbsp;</iframe> 
+<!--<iframe class="showterm" src="http://showterm.io/f2ac25e4df1e7ad5e989a" width="640" height="300">&nbsp;</iframe>-->
+**[![](/assets/img/87.jpg)](/assets/img/87.jpg)**
 
 <!--
    -<pre>
@@ -98,7 +97,7 @@ When the installation process ends, the pxe environmente can be easily removed w
 $ rm -rf pxe_setup
 </pre>
 
-Simple! &#128527; 
+Simple! &#128527;
 
 **Idea**: Create a vm with 2 network interfaces, the first one in *bridge* mode assigned to wlan0, and the second one in *bridge* / *internal network* assigned to eth0, configure this setup and take an snapshot for an instant pxe installer experience.
 
