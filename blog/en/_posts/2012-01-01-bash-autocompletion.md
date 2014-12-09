@@ -7,7 +7,7 @@ title: "bash autocompletion"
 
 ###### {{ page.date | date_to_string }}
 
-**[![](/assets/img/54.jpg)](/assets/img/54.jpg)**
+<!--**[![](/assets/img/54.jpg)](/assets/img/54.jpg)**-->
 
 **Update:** It's highly recommended to upgrade [bash-completion](https://viajemotu.wordpress.com/2013/10/16/upgrade-to-bash-completion-2-0/) to version &gt;= 2.0 for an improved performance.
 
@@ -137,21 +137,21 @@ $ android -h
       -h --help     Help on a specific command.
       -s --silent   Silent mode: only errors are printed out.
   Valid actions are composed of a verb and an optional direct object:
-      -   list          
-      -   list avd         
-      -   list target     
-      - create avd        
-      -   move avd       
-      - delete avd       
-      - update avd       
-      - create project    
-      - update project    
-      - create test-project 
-      - update test-project 
-      - create lib-project  
-      - update lib-project 
-      - update adb 
-      - update sdk     
+      -   list
+      -   list avd
+      -   list target
+      - create avd
+      -   move avd
+      - delete avd
+      - update avd
+      - create project
+      - update project
+      - create test-project
+      - update test-project
+      - create lib-project
+      - update lib-project
+      - update adb
+      - update sdk
 </pre>
 
 As it can be noted most options depend of a previous command, "avd" should only be returned when list is used as an action:
@@ -316,6 +316,6 @@ There are many bash completion scripts in [Internet](http://anonscm.debian.org/g
 
 ### Final thoughts
 
-Bash autocompletion may seems scary at the beginning but once several examples are read a clear pattern can be dazzled, depending on your system usage they can save you a lot of time/typing, so next time you find yourself writing to much give them a shot and let the computer do the job for you &#128522; 
+Bash autocompletion may seems scary at the beginning but once several examples are read a clear pattern can be dazzled, depending on your system usage they can save you a lot of time/typing, so next time you find yourself writing to much give them a shot and let the computer do the job for you &#128522;
 
 - [http://bash-completion.alioth.debian.org/](http://bash-completion.alioth.debian.org/)

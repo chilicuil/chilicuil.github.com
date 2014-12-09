@@ -7,7 +7,7 @@ title: "cd wrapper, wcd"
 
 ###### {{ page.date | date_to_string }}
 
-<iframe  class="showterm" src="http://showterm.io/ae29f68bee555cd89c65d" width="640" height="350">&nbsp;</iframe> 
+<!--<iframe  class="showterm" src="http://showterm.io/ae29f68bee555cd89c65d" width="640" height="350">&nbsp;</iframe>-->
 
 Using a console interface to manage a computer has some disadvantages, some of them are visible when handling files, moving within the file system, or typing hundred of different commands with thousands of options.  These problems are annoying yet IMO acceptable in exchange for the features you win, automation, standardization, power and control.
 
@@ -19,7 +19,7 @@ Configuring correctly bash can also bring some improvements, eg, bash 4 does sup
 $ head ~/.bashrc
 # http://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html
 if [ "${BASH_VERSINFO}" -ge "4" ]; then
-    shopt -s autocd cdspell dirspell                  
+    shopt -s autocd cdspell dirspell
 fi
 </pre>
 
@@ -56,7 +56,7 @@ alias cd='. wcd'
 
 - [https://github.com/chilicuil/learn/blob/master/sh/tools/wcd](https://github.com/chilicuil/learn/blob/master/sh/tools/wcd)
 
-Once installed and configured **$ cd s*/*/pl** will take us to **super/master/plan** &#128516; 
+Once installed and configured **$ cd s*/*/pl** will take us to **super/master/plan** &#128516;
 
 How does it work?, wcd creates an index containing all current directories and save it to **$HOME/.treedata.wcd**, when it's sourced it compares the parameter with the database and select the closest option.
 

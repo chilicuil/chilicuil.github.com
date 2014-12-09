@@ -9,7 +9,7 @@ title: "watch_battery"
 
 **[![](/assets/img/40.png)](/assets/img/40.png)**
 
-I made a little [script](https://github.com/chilicuil/learn/blob/master/sh/tools/watch-battery) to look after my laptop battery so it doesn't shutdown at the middle of me working. It requieres **notify-send**, **hibernate** and **acpi,** and targets Ubuntu:
+I made a little [script](https://github.com/minos-org/minos-tools/blob/master/tools/watch-battery) to look after my laptop battery so it doesn't shutdown at the middle of me working. It requieres **notify-send**, **hibernate** and **acpi,** and targets Ubuntu:
 
 <pre class="sh_sh">
 $ sudo apt-get install acpi libnotify-bin hibernate

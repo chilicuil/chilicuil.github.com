@@ -7,7 +7,7 @@ title: "report bugs to debian from ubuntu"
 
 ###### {{ page.date | date_to_string }}
 
-**[![](/assets/img/79.png)](/assets/img/79.png)**
+<!--**[![](/assets/img/79.png)](/assets/img/79.png)**-->
 
 I'm a normal computer user, I don't run local mail servers and I don't have the intention to do so, I have my email account with gmail and I review it using a web browser or [mutt](http://www.mutt.org/) when I'm in my own computer. This can be troublesome if you pretend to report bugs to [debian](https://www.debian.org/) using its [bug tracker system](https://www.debian.org/Bugs/) an antique system based in emails.
 

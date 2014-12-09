@@ -46,4 +46,4 @@ $ sudo stap -e 'probe kernel.function("do_filp_open")\
 
 If you're curious about other stap user cases, take a look at the documentation:
 
-- http://sources.redhat.com/systemtap/
+- [http://sources.redhat.com/systemtap/](http://sources.redhat.com/systemtap/)

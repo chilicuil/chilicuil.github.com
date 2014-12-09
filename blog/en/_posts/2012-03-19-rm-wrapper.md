@@ -25,6 +25,6 @@ If you want use the script, download and move it to **/usr/local/bin**, then you
 $ alias rm='rm_'
 </pre>
 
-<iframe class="showterm" src="http://showterm.io/0a5b334fd24f82bd5ede1" width="640" height="350">&nbsp;</iframe> 
+<!--<iframe class="showterm" src="http://showterm.io/0a5b334fd24f82bd5ede1" width="640" height="350">&nbsp;</iframe> -->
 
 &#128520;

@@ -7,8 +7,8 @@ title: "public cloud services (aws, digitalocean) and vagrant"
 
 ###### {{ page.date | date_to_string }}
 
-<!--**[![](/assets/img/86.png)](/assets/img/86.png)**-->
-<iframe class="showterm" src="http://showterm.io/ce9681926ec6875d743f1" width="640" height="350">&nbsp;</iframe> 
+**[![](/assets/img/86.png)](/assets/img/86.png)**
+<!--<iframe class="showterm" src="http://showterm.io/ce9681926ec6875d743f1" width="640" height="350">&nbsp;</iframe>-->
 
 I like to keep a fast, ordered and stable computer, that's why I use virtual machines, containers, public cloud services and vps to experiment and deploy services, all my ram belongs to firefox &#128517;
 

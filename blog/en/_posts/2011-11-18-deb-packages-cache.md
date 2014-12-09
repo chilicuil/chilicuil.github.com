@@ -7,9 +7,9 @@ title: "deb package cache"
 
 ###### {{ page.date | date_to_string }}
 
-**Update:** I created a [script](https://raw.github.com/chilicuil/learn/master/sh/is/apt-proxy) automizing the process described in this post.
+**Update:** I created a [script](https://raw.github.com/chilicuil/learn/master/sh/is/apt-proxy) who automate the process described in this post.
 
-<iframe class="showterm" src="http://showterm.io/cfdfdda6da61dad9d9d5e" width="640" height="350">&nbsp;</iframe> 
+<!--<iframe class="showterm" src="http://showterm.io/cfdfdda6da61dad9d9d5e" width="640" height="350">&nbsp;</iframe>-->
 
 ### Introduction
 
@@ -33,7 +33,7 @@ $ sudo service apt-cacher-ng restart
 $ sudo apt-get install squid-deb-proxy-client
 </pre>
 
-After executing these commands the apt-cacher-ng server will anounce itself to all computers in the local network, and clients machines will be able to autoconfigure their apt preferences depending of whether they see an apt-cacher-ng server or not. Pretty cool &#128522;
+After executing these commands the apt-cacher-ng server will announce itself to all computers in the local network, and clients machines will be able to autoconfigure their apt preferences depending of whether they see an apt-cacher-ng server or not. Pretty cool &#128522;
 
 ### Extra
 

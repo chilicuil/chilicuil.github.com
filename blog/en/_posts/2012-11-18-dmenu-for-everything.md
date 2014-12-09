@@ -7,9 +7,9 @@ title: "dmenu for everything"
 
 ###### {{ page.date | date_to_string }}
 
-I love minimalism systems and programs who focus in doing a single task very well, **dmenu** is one of those programs so it didn't took me a long time to discover it and use it for all my launch needs.
+I love minimalism systems and programs who focus in doing a single task very well, **dmenu** is one of those programs I use it for all my launch needs.
 
-[dmenu](http://tools.suckless.org/dmenu/) is a program who read a list of options and present them to the user, when the user select an option it prints the result and exits, simple! &#128522; 
+[dmenu](http://tools.suckless.org/dmenu/) is a program who read a list of options and present them to the user, when the user select an option it prints the result and exits, simple! &#128522;
 You can easily create scripts for launch anything, really!, let's review how to create a virtualbox launcher:
 
 The first step (and the hardest) is to figure out how to create a list of the options you wanna present in screen, on thix example vbox machines:

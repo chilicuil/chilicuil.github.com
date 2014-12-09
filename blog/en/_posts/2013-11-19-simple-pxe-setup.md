@@ -31,7 +31,6 @@ As an example I'll download the Ubuntu 12.04 amd64 corresponding files:
 - [initrd.gz](http://archive.ubuntu.com/ubuntu/dists/precise-updates/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/initrd.gz)
 
 <pre class="sh_sh">
-$ cd pxe_setup
 $ wget http://archive.ubuntu.com/.../amd64/initrd.gz -O pxe_setup/ubuntu/1204/amd64/initrd.gz
 $ wget http://archive.ubuntu.com/.../amd64/linux     -O pxe_setup/ubuntu/1204/amd64/linux
 </pre>
