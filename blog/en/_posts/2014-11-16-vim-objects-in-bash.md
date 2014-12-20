@@ -17,8 +17,10 @@ This week decided to go further and see how to do it, and it turned out to be po
     $ sudo apt-get update && sudo apt-get install minos-bash-settings
     $ echo 'set -o vi' >> ~/.bashrc
 
-If you're not interested in installing the whole enchilada, minos-bash-settings will also make bash read /etc/profile.d/, you can get the raw inputrc file at:
+If you're not interested in installing the whole enchilada or aren't running an apt-get powered OS, you can get the raw inputrc file at:
 
  - [https://github.com/minos-org/minos-bash-settings/blob/master/etc.inputrc](https://github.com/minos-org/minos-bash-settings/blob/master/etc.inputrc)
+
+In the later case, the inputrc file should be placed at **~/.inputr** or **/etc/inputrc**
 
 Happy editing &#128523;
