@@ -22,7 +22,7 @@ With this knowledge consuming input and modifying the behavior of your programs 
 <pre class="sh_sh">
 if [ ! -t 0 ]; then
     #there is input comming from pipe or file, add to the end of $@
-    set -- $(for arg in "${@}"; do printf "%s\\n" "${arg}"; done) $(cat)
+    set -- "${@}" $(cat)
 fi
 </pre>
 
