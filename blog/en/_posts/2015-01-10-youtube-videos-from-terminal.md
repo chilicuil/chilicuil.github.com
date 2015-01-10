@@ -7,11 +7,11 @@ title: "youtube videos from terminal"
 
 ###### {{ page.date | date_to_string }}
 
-There are multiple ways to see youtube videos from a linux terminal, one of the simplest (and more unix ways) is with mplayer+youtube-dl+wget(or curl). Mplayer for playing, youtube-dl for unwraping the youtube url logic and wget (curl) for fetching the content.
+There are multiple ways to see youtube videos from a linux terminal, one of the simplest (and more unix ways) is with mplayer+youtube-dl. Mplayer for playing and youtube-dl for fetching the content.
 
 To do so, go to a shell terminal and define the following alias:
 
-    $ alias youtube-slice='sh -c '\''wget -q -O- $(youtube-dl -g "${1}") | mplayer -cache 8192 -'\'' -'
+    $ alias youtube-slice='sh -c '\''youtube-dl -q -o- "${1}" | mplayer -cache 8192 -'\'' -'
 
 After that:
 
