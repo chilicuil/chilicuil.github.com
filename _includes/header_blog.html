@@ -11,7 +11,7 @@
   <a href="/atom.xml" class="rss">RSS</a> |
 
   {% if page.url == '/blog/results/index.html' %}
-  
+
   <!-- Begin Results Swifttype -->
   <script type="text/javascript">
     var Swiftype = window.Swiftype || {};
@@ -21,7 +21,7 @@
       Swiftype.resultContainingElement = '#st-results-container';
       Swiftype.attachElement = '#st-search-input';
       Swiftype.renderStyle = "inline";
-  
+
       var script = document.createElement('script');
       script.type = 'text/javascript';
       script.async = true;
@@ -31,9 +31,9 @@
     }());
   </script>
   <!-- End Results Swifttype -->
-  
+
   {% else %}
-  
+
   <!-- Begin Swifttype -->
   <script type="text/javascript">
     var Swiftype = window.Swiftype || {};
@@ -44,7 +44,7 @@
       Swiftype.attachElement = '#st-search-input';
       Swiftype.renderStyle = "new_page";
       Swiftype.resultPageURL = "/blog/results/";
-  
+
       var script = document.createElement('script');
       script.type = 'text/javascript';
       script.async = true;
