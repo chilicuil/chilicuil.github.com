@@ -35,4 +35,4 @@ After completing any of the previous steps (and if no dhcp daemon has been set u
 
 - **ip:** 10.0.0.2
 - **gatewat:** 10.0.0.1
-- **dns:** 10.0.0.1
+- **dns:** 8.8.8.8
