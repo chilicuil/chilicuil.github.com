@@ -95,13 +95,17 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
     override.ssh.username = 'admin'
     override.vm.box = 'digital_ocean'
     override.vm.box_url = "https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box"
-    override.vm.provision "shell", inline: "su - #{override.ssh.username} -c \"sh &lt;(wget -qO- javier.io/s)\""
+    override.vm.provision "shell", inline: "su - #{override.ssh.username} -c \"sh <(wget -qO- javier.io/s)\""
 
-    provider.client_id = 'CLIENT_ID_SECRET'
-    provider.api_key = 'API_SECRET'
-    provider.image = 'Ubuntu 12.04.4 x64'
-    provider.region = 'New York 2'
-    provider.size = '512MB'
+    provider.token = 'token'
+    provider.image = 'ubuntu-12-04-x64'
+    provider.region = 'nyc2'
+    #provider.size = '16gb'
+    #provider.size = '8gb'
+    #provider.size = '4gb'
+    #provider.size = '2gb'
+    #provider.size = '1gb'
+    provider.size = '512mb'
     provider.private_networking = 'false'
     provider.setup = 'true'
     provider.ca_path = '/etc/ssl/certs/ca-certificates.crt'

@@ -35,7 +35,7 @@ title: "proxy ssh + socks"
 
 ### Extra
 
-To get extra security connections can go through N nodes: 
+To get extra security connections can go through N nodes:
 <pre>
 Firefox (local) &#10143;  host-1 &#10143;  host-2 &#10143;  host-n -> Internet
 </pre>

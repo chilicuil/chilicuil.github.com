@@ -14,7 +14,7 @@ When creating such packages (using any method) you'll still need to download (at
 Let's suppose a new ffmpeg version has just been released and you want to try it on your stable Ubuntu system, these would be the steps necessary to compile, package and install it in your host system.
 
 <pre class="sh_sh">
-$ sudo apt-get -y remove ffmpeg x264 libx264-dev libmp3lame-dev 
+$ sudo apt-get -y remove ffmpeg x264 libx264-dev libmp3lame-dev
 $ sudo pbuilder.natty --login
 [natty-chroot] # apt-get install wget
 [natty-chroot] # apt-get -y install nasm build-essential git-core \

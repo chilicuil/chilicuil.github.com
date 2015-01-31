@@ -56,6 +56,6 @@ $ find ~/.mozilla/ -type d  -iname searchplugins
 $ mv ./usr/lib/firefox-addons/searchplugins/* ~/.mozilla/firefox/h5xyzl6e.default/searchplugins/
 </pre>
 
-Done!, I don't need to mess with a dependency hell for a bunch of files &#128527; 
+Done!, I don't need to mess with a dependency hell for a bunch of files &#128527;
 
 **[![](/assets/img/34.png)](/assets/img/34.png)**
