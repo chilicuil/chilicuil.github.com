@@ -14,12 +14,12 @@ This week decided to go further and see how to do it, and it turned out to be po
 ### Setup
 
     $ sudo add-apt-repository ppa:minos-archive/main
-    $ sudo apt-get update && sudo apt-get install minos-bash-settings
+    $ sudo apt-get update && sudo apt-get install bash-minos-settings
     $ echo 'set -o vi' >> ~/.bashrc
 
 If you're not interested in installing the whole enchilada or aren't running an apt-get powered OS, you can get the raw inputrc file at:
 
- - [https://github.com/minos-org/minos-bash-settings/blob/master/etc.inputrc](https://github.com/minos-org/minos-bash-settings/blob/master/etc.inputrc)
+ - [https://github.com/minos-org/bash-minos-settings/blob/master/etc.inputrc](https://github.com/minos-org/bash-minos-settings/blob/master/etc.inputrc)
 
 In the later case, the inputrc file should be placed at **~/.inputr** or **/etc/inputrc**
 
