@@ -16,7 +16,7 @@ My parents house isn't really big, but even so the wifi signal doesn't cover som
 Later on, when I actually read the manual and realized it wasn't going to be as easy as I though I promptly replaced the original firmware with openwrt (why not dd-wrt?), I prefer minimalism systems because with them you have at least a remote chance of understanding what's happening.., the process wasn't really dificult, it starts by downloading the latest openwrt [trunk build](http://downloads.openwrt.org/snapshots/trunk/ar71xx/) (I read [somewhere](https://forum.openwrt.org/viewtopic.php?pid=228641#p228641) there are [problems](https://forum.openwrt.org/viewtopic.php?id=48226) with the stable version):
 
 <pre class="sh_sh">
-$ wget downloads.openwrt.org/snapshots/trunk/ar71xx/openwrt-ar71xx-generic-tl-wdr4300-v1-squashfs-factory.bin
+$ wget downloads.openwrt.org/snapshots/trunk/ar71xx/generic/openwrt-ar71xx-generic-tl-wdr4300-v1-squashfs-factory.bin
 </pre>
 
 After completing the download, it can be installed by going to the "Firmware Upgrade" menu of the Link web interface and selecting the openwrt firmware.
@@ -29,11 +29,11 @@ So, I got connected to the device, changed temporally the network (to provide in
 
 <pre class="sh_sh">
 $ sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE #share temporally wireless internet
-$ echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward 
-$ telnet 192.168.1.1 #and type "passwd"
-$ ssh root@192.168.1.1
+$ echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
+$ telnet 192.168.1.1   #type "passwd" to set the root passwd
+$ ssh root@192.168.1.1 #from other terminal window
 openwrt # ifconfig br-lan 10.9.8.7
-$ sudo ifconfig eth0 10.9.8.10
+$ while true; do sudo ifconfig eth0 10.9.8.10; sleep 1; done #press Ctrl-C several times at the end of the setup to stop it
 $ ssh root@10.9.8.7
 openwrt # route add default gw 10.9.8.10
 openwrt # echo "nameserver 8.8.8.8" &gt; /etc/resolv.conf
@@ -45,28 +45,31 @@ openwrt # /etc/init.d/relayd enable
 openwrt # /etc/init.d/relayd start
 </pre>
 
-After completing the installation phase, I went to the web interface, [http://10.9.8.7](http://10.9.8.7), created a root password (equals to the wifi's one) and reconfigured the LAN interface to make permanent the ip changes:
+After completing the installation phase, I went to the web interface, [http://10.9.8.7](http://10.9.8.7), created a root password (equals to the wifi's one) and reconfigured the LAN interface to make permanent the lan ip changes:
 
 - Network &#x25B7; Interfaces &#x25B7; LAN
 
 **[![](/assets/img/100.png)](/assets/img/100.png)**
 
-Afterwards, I joined our local network, and created a repeater
-
-- Network &#x25B7; Wifi &#x25B7; Scan
-- Network &#x25B7; Wifi &#x25B7; Add
+Afterwards, I created a bridge interface (to bond the **lan and wwan** interfaces)
 
 **[![](/assets/img/101.png)](/assets/img/101.png)**
 
-Finally I created a bridge to connect both networks through the relay protocol:
+**[![](/assets/img/openwrt-bridge.png)](/assets/img/openwrt-bridge.png)**
 
-<pre class="sh_sh">
-openwrt # echo "config interface 'stabridge'"      &gt;&gt; /etc/config/network
-openwrt # echo "      option 'proto' 'relay'"      &gt;&gt; /etc/config/network
-openwrt # echo "      option 'network' 'lan wwan'" &gt;&gt; /etc/config/network
-</pre>
+And finally I joined our local network (linked to then **wwan** interface)
 
-And that's it!, a simple and robust wifi extender, happy repeating &#9996;
+- Network &#x25B7; Wifi &#x25B7; Scan
+
+**[![](/assets/img/openwrt-client.png)](/assets/img/openwrt-client.png)**
+
+And created an AP (linked to the **lan** interface)
+
+- Network &#x25B7; Wifi &#x25B7; Add
+
+**[![](/assets/img/openwrt-ap.png)](/assets/img/openwrt-ap.png)**
+
+That's it!, a simple and robust wifi extender, happy repeating &#9996;
 
 - [http://wiki.openwrt.org/toh/tp-link/tl-wdr4300](http://wiki.openwrt.org/toh/tp-link/tl-wdr4300)
 - [http://tombatossals.github.io/openwrt-repetidor-wireless/](http://tombatossals.github.io/openwrt-repetidor-wireless/)
