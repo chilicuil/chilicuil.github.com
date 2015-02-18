@@ -51,13 +51,13 @@ After completing the installation phase, I went to the web interface, [http://10
 
 **[![](/assets/img/100.png)](/assets/img/100.png)**
 
-Afterwards, I created a bridge interface (to bond the **lan and wwan** interfaces)
+Afterwards, I created a bridge interface (to bond the **lan** and **wwan** interfaces)
 
 **[![](/assets/img/101.png)](/assets/img/101.png)**
 
 **[![](/assets/img/openwrt-bridge.png)](/assets/img/openwrt-bridge.png)**
 
-And finally I joined our local network (linked to then **wwan** interface)
+And finally I joined our local network (linked to the **bridge/wwan** interface)
 
 - Network &#x25B7; Wifi &#x25B7; Scan
 
