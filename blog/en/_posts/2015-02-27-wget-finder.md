@@ -7,7 +7,7 @@ title: "wget-finder for packagers"
 
 ###### {{ page.date | date_to_string }}
 
-Since some days ago I've been playing with [bifrost-build](https://github.com/jelaas/bifrost-build), a github repository with plenty of recipes for building static linux binaries.
+Since some days ago I've been playing with [bifrost-build](https://github.com/jelaas/bifrost-build), a github repository with recipes for building static linux binaries.
 
 The recipes are no different from other linux distributions where an archive hardcoded (containing the original source code) needs to be downloaded and match an specific hash (in this case a md5sum) to continue the build.
 
