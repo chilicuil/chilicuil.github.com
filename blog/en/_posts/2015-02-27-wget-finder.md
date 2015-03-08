@@ -11,9 +11,9 @@ Since some days ago I've been playing with [bifrost-build](https://github.com/je
 
 The recipes are no different from other linux distributions where an archive hardcoded (containing the original source code) needs to be downloaded and match an specific hash (in this case a md5sum) to continue the build.
 
-While I was reviewing the recipes I noticed than some origins wheren't available anymore. Fortunately there are plenty of mirrors for the most common utils installed with any linux system, so it wasn't difficult to find alternative urls from where to fetch the content required to build the static binaries I was interested in (thanks mirrors and bifrost-build!).
+While I was reviewing the recipes I noticed than some origins wheren't available anymore. Fortunately there are plenty of mirrors for the most common utils installed with any linux system, so it wasn't difficult to find alternative urls from where to fetch the missing bits (thanks mirrors and bifrost-build!).
 
-After completing the builds I though that it shouldn't be too difficult to automate this task, to create a program who could search and download an specif archive matching a md5sum. That's how [wget-finder](https://github.com/chilicuil/learn/blob/master/sh/tools/wget-finder) was born.
+After completing the builds I though that it shouldn't be too difficult to automate this task, to create a program who could search and download an specific archive matching a md5sum. That's how [wget-finder](https://github.com/chilicuil/learn/blob/master/sh/tools/wget-finder) was born.
 
 <pre class="sh_sh">
 $ wget-finder
