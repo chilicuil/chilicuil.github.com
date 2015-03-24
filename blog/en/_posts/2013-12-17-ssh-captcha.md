@@ -35,6 +35,13 @@ $ sudo apt-get update &amp;&amp; sudo apt-get install libpam-captcha
 
 Be aware than the previous steps will only work in supported Ubuntu LTS versions.
 
+### Extra
+
+If additional security is desired, the next fail2ban regex will match the ssh captcha generated messages
+
+    #/etc/fail2ban/filter.d/sshd.conf
+    ^%(__prefix_line)s(?:error: PAM: )?Permission denied for .* from <HOST>$
+
 Thanks Jordan! &#128522;
 
 - [http://www.semicomplete.com/projects/pam_captcha/](http://www.semicomplete.com/projects/pam_captcha/)
