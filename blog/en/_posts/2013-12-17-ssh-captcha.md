@@ -37,10 +37,24 @@ Be aware than the previous steps will only work in supported Ubuntu LTS versions
 
 ### Extra
 
-If additional security is desired, the next fail2ban regex will match the ssh captcha generated messages
+## Sentry
+
+If additional security is desired consider using [sentry](https://www.tnpi.net/wiki/Sentry) above fail2ban, denyhosts, sshblacklist, etc, really.
+
+    $ wget http://www.tnpi.net/internet/sentry.pl
+    $ sudo perl sentry.pl
+    $ echo "sshd : /var/db/sentry/hosts.deny : deny" > hosts
+    $ echo "sshd : ALL : spawn /var/db/sentry/sentry.pl -c --ip=%a : allowsendmail: all" >> hosts
+    $ cat hosts /etc/hosts.allow > hosts.allow
+    $ sudo mv hosts.allow /etc/ && rm hosts
+
+## Fail2ban
+
+The next fail2ban regex will match the ssh captcha generated messages
 
     #/etc/fail2ban/filter.d/sshd.conf
     ^%(__prefix_line)s(?:error: PAM: )?Permission denied for .* from <HOST>$
+
 
 Thanks Jordan! &#128522;
 
