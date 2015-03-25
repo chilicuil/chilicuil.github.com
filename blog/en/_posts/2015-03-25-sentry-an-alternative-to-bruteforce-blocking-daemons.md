@@ -38,7 +38,7 @@ Upon installation it doesn't require anything else, it'll just works, to see som
        1 IPs are whitelisted
       38 IPs are blacklisted
 
-Or to see the IP's blocked
+To see blocked IPs
 
     $ sudo head -3 /var/db/sentry/hosts.deny
     ALL: 103.41.124.119 : deny
@@ -52,4 +52,6 @@ The list can be edited either manually or through the --whitelist, --blacklist a
     $ sudo /var/db/sentry/sentry.pl --ip=103.41.124.119 --delist
     $ sudo /var/db/sentry/sentry.pl --ip=103.41.124.119 --blacklist
 
--[https://www.tnpi.net/wiki/Sentry](https://www.tnpi.net/wiki/Sentry)
+That's it, happy blocking &#128527;
+
+- [https://www.tnpi.net/wiki/Sentry](https://www.tnpi.net/wiki/Sentry)
