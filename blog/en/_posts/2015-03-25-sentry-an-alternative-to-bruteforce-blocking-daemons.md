@@ -52,6 +52,6 @@ The list can be edited either manually or through the --whitelist, --blacklist a
     $ sudo /var/db/sentry/sentry.pl --ip=103.41.124.119 --delist
     $ sudo /var/db/sentry/sentry.pl --ip=103.41.124.119 --blacklist
 
-That's it, happy blocking &#128527;
+That's it, happy blocking &#128523;
 
 - [https://www.tnpi.net/wiki/Sentry](https://www.tnpi.net/wiki/Sentry)
