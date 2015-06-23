@@ -7,7 +7,7 @@ title: "static-get: linux static binaries for lazy persons"
 
 ###### {{ page.date | date_to_string }}
 
-[Lastly](http://javier.io/blog/en/2015/02/27/wget-finder.html) I've required static versions of common linux utilities, it's been fun to compile them a couple of times but not anymore, so I've created a repository with all the static recipes I've found on Internet ([bifrost](https://github.com/jelaas/bifrost-build), [morpheus](http://morpheus.2f30.org/), [etc](https://github.com/minos-org/minos-static/tree/master/misc-autosync-resources)).
+[Lastly](http://javier.io/blog/en/2015/02/27/wget-finder.html) I've required static versions of common linux utilities, it's been fun to compile them a couple of times but it gets boring pretty quickly, so I've decided to create a repository with all the static recipes I've found on Internet ([bifrost](https://github.com/jelaas/bifrost-build), [morpheus](http://morpheus.2f30.org/), [etc](https://github.com/minos-org/minos-static/tree/master/misc-autosync-resources)).
 
 Now I can get `git static` with:
 
@@ -20,11 +20,13 @@ git-1.9.2/
 $ sh <(wget -qO- s.minos.io/s) -x git #to retrieve the installer, download the target and extract it in one go
 </pre>
 
-To get the complete list of the available packages you can run:
+To get a list of all available packages, you can run:
 
 <pre class="sh_sh">
 $ static-get --search
 </pre>
+
+Be aware than using static binaries have its [drawbacks](http://www.akkadia.org/drepper/no_static_linking.html), I take no responsability for any damage caused by any binary downloaded with static-get.
 
 That's it, happy fetching &#128523;
 
