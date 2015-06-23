@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "static-get: linux static binaries for lazy persons"
+title: "static-get: linux static binaries for lazy people"
 ---
 
 ## {{ page.title }}
