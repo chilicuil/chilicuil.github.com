@@ -36,3 +36,4 @@ That's it, happy fetching &#128523;
 - [portablelinuxapps, not real static recipes](http://portablelinuxapps.org)
 
 - [https://github.com/minos-org/minos-static](https://github.com/minos-org/minos-static)
+- [https://www.janhouse.lv/blog/linux/building-static-binaries-on-linux/](https://www.janhouse.lv/blog/linux/building-static-binaries-on-linux/)
