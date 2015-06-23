@@ -9,7 +9,7 @@ title: "static-get: linux static binaries for lazy persons"
 
 [Lastly](http://javier.io/blog/en/2015/02/27/wget-finder.html) I've required static versions of common linux utilities, it's been fun to compile them a couple of times but it gets boring pretty quickly, so I've decided to create a repository with all the static recipes I've found on Internet ([bifrost](https://github.com/jelaas/bifrost-build), [morpheus](http://morpheus.2f30.org/), [etc](https://github.com/minos-org/minos-static/tree/master/misc-autosync-resources)).
 
-Now I can get `git static` with:
+Now I can get *git static* with:
 
 <pre class="sh_sh">
 $ static-get git
