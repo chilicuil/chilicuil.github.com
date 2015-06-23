@@ -12,12 +12,12 @@ title: "static-get: linux static binaries for lazy persons"
 Now I can get `git static` with:
 
 <pre class="sh_sh">
-$ [static-get](https://raw.githubusercontent.com/minos-org/minos-static/master/static-get) git
+$ static-get git
 git-1.9.2.tar.xz
-$ static-get -x git #to download and extract in one go
+$ static-get -x git #download and extract in one go
 git-1.9.2.tar.xz
 git-1.9.2/
-$ sh <(wget -qO- s.minos.io/s) -x git #to retrieve the installer, download the target and extract it in one go
+$ sh <(wget -qO- s.minos.io/s) -x git #retrieve the installer, download the target and extract in one go
 </pre>
 
 To get a list of all available packages, you can run:
@@ -26,7 +26,7 @@ To get a list of all available packages, you can run:
 $ static-get --search
 </pre>
 
-Be aware than using static binaries have its [drawbacks](http://www.akkadia.org/drepper/no_static_linking.html), I take no responsability for any damage caused by any binary downloaded with static-get.
+Be aware than using static binaries have its [drawbacks](http://www.akkadia.org/drepper/no_static_linking.html), I take no responsability for any damage caused by any binary downloaded with [static-get](https://raw.githubusercontent.com/minos-org/minos-static/master/static-get).
 
 That's it, happy fetching &#128523;
 
