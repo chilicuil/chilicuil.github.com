@@ -7,7 +7,9 @@ title: "tundle, a tmux plugin manager"
 
 ###### {{ page.date | date_to_string }}
 
-In the past I've been a regular [byobu](http://byobu.co/) user, a distribution for common terminal multiplexers ([tmux](http://tmux.github.io/)/[screen](https://www.gnu.org/software/screen/)), mostly to take advantage of continual remote ssh connections. In normal ssh sessions if you lose the connection you lose your work, with terminal multiplexers you can 'detach|attach' an eternal living connection which is quite great to keep movility.
+In the past I've been a regular [byobu](http://byobu.co/) user, a distribution for common terminal multiplexers ([tmux](http://tmux.github.io/), [screen](https://www.gnu.org/software/screen/)), mostly to take advantage of continual remote ssh connections. In normal ssh sessions if you lose the connection you lose your work, with terminal multiplexers you can 'detach|attach' an eternal living connection which is quite great to keep movility.
+
+**![](/assets/img/tundle.gif)**
 
 Unfortunately, like vi/emacs, the default screen/tmux settings are quite bad, so many people either personalize heavily its own settings or use a ready to use distribution/plugin system.
 
