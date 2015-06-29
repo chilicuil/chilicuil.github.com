@@ -12,11 +12,11 @@ In the past I've been a regular [byobu](http://byobu.co/) user, a distribution f
 <br>
 **![](/assets/img/tundle.gif)**
 
-Unfortunately, like vi/emacs, the default screen/tmux settings are quite bad, so many people either personalize heavily its own settings or use a ready to use distribution/plugin system.
+Unfortunately, like vi/emacs, the default screen/tmux settings are quite bad, so many people either personalize heavily its own settings or use a distribution/plugin system.
 
-I used to use byobu because of its ease of installation (integrated on Ubuntu) and default status bar. However for my needs it looked overwhealming, I prefer systems with a plugin centric approach (like [vim + vundle](https://github.com/chilicuil/vundle), or [sh+shundle](http://javier.io/blog/en/2013/11/15/shundle.html)), at the end I decided to migrate.
+I used to use byobu because of its ease of installation (integrated on Ubuntu) and default status bar. However for my needs it looked overwhealming, I prefer systems with a plugin centric approach (like [vim + vundle](https://github.com/chilicuil/vundle), or [sh + shundle](http://javier.io/blog/en/2013/11/15/shundle.html)), so at the end I decided to migrate.
 
-Since tmux is way better than screen, I focused on it, I found a recent attempt to create a general tmux plugin environment:
+Since tmux is way better than screen, I focused on it. I found a recent attempt to create a general tmux plugin environment:
 
  - [tpm](https://github.com/tmux-plugins/tpm)
  - [tmux-plugins](https://github.com/tmux-plugins)
