@@ -23,7 +23,7 @@ Since tmux is way better than screen, I focused on it. There is a recent attempt
 
 Tpm and plugins is a great effort to cover the missing tmux features through an organized plugin system, however it targets bash, recent tmux versions (>=1.9) and only allows to grab the latest versions of every plugin. Those are kind of blockers for me, first, even when bash is a great interactive shell I don't consider it to be the best option for scripting, it's easy to start using bash unique features (losing portability) and its performance is not that great when compared with other shells. Second, even though tmux 1.9 isn't really that new, only older releases are available in popular stable Linux distributions (tmux 1.6 on Ubuntu 12.04), in addition, after looking at the tpm plugins source code the decision seems some kind arbitrary, older tmux versions have in place virtually all the required features for most plugins. And finally, unfortunately, in the current computer world updates aren't guaranted to be improved versions of the solicited software. So I find important to be able to chooice which version I really want to use, even if that means I'm not all the time in the bleeding edge.
 
-With this in mind tundle was born, an alternative tmux plugin environment with compatibility (tmux 1.6, posix shell) and control version in mind.
+With this in mind [tundle](https://github.com/chilicuil/tundle) was born, an alternative tmux plugin environment with compatibility (tmux 1.6, posix shell) and control version in mind.
 
 ### Quick start
 
