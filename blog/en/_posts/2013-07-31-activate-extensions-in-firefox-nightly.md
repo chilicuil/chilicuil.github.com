@@ -20,5 +20,9 @@ Firefox nightly is the firefox version who is compiled every night. By default i
 
 From now on **'about:plugins'** will be available as usual &#128522;
 
+This procedure is also available as a plugin in the [Disable Compatibility Checks Add-on](https://addons.mozilla.org/en-US/firefox/addon/checkcompatibility/) it works in all Firefox releases, nightly and stable ones.
+
+Happy browsing &#128523;
+
 - [Firefox nightly](http://nightly.mozilla.org/)
 - [Extensions.checkCompatibility](http://kb.mozillazine.org/Extensions.checkCompatibility)
