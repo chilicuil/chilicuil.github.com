@@ -18,9 +18,7 @@ Firefox nightly is the firefox version who is compiled every night. By default i
 5. Select 'false' as the predefined state
 6. Reboot firefox
 
-From now on **'about:plugins'** will be available as usual &#128522;
-
-This procedure is also available as a plugin in the [Disable Compatibility Checks Add-on](https://addons.mozilla.org/en-US/firefox/addon/checkcompatibility/) it works in all Firefox releases, nightly and stable ones.
+From now on **'about:plugins'** will be available as usual. This procedure is also available as a plugin in the [Disable Compatibility Checks Add-on](https://addons.mozilla.org/en-US/firefox/addon/checkcompatibility/) it works in all Firefox releases, nightly and stable ones.
 
 Happy browsing &#128523;
 
