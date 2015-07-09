@@ -6,18 +6,18 @@ updates="http://minos.io/s"
 liner="$ sh <(wget -qO- minos.io/s)"
 
 #default apps
-minos_core="git-core vim-nox tmux wcd htop curl html2text bc rsync ncurses-bin
-ncurses-term command-not-found bash-completion libpam-captcha minos-tools-extra
-bash-minos-settings minos-core-settings exuberant-ctags silversearcher-ag mosh"
+minos_core="git-core vim-nox tmux tmate wcd htop curl bc rsync ncurses-bin
+ncurses-term command-not-found bash-completion libpam-captcha exuberant-ctags
+silversearcher-ag mosh minos-tools-extra bash-minos-settings minos-core-settings"
 minos_desktop="i3-wm i3lock alsa-utils alsa-base mpd mpc ncmpcpp mplayer2 slim
 xorg rxvt-unicode-256color autocutsel acpi dmenu feh sxiv notify-osd pm-utils
 libnotify-bin irssi mutt-patched pcmanfm rlpr gnupg-agent lxappearance conky-cli
 zathura scrot ffcast unrar unzip xarchiver zram-config udisks xclip gvfs dkms
 gtk2-engines-pixbuf openssh-server wicd-curses redshift vim-gtk lame gvfs-fuse
-policykit-1 libmad0 geoclue-ubuntu-geoip libdvdread4 xdotool dbus-x11
+policykit-1 libmad0 geoclue-ubuntu-geoip libdvdread4 xdotool dbus-x11 umplayer
 gxmessage magnifier compton plymouth-theme-minos-comet xbacklight minos-core
-slim-theme-minos-login minos-tools minos-artwork minos-desktop-settings
-umplayer" #mozilla-firefox mozilla-flashplayer
+slim-theme-minos-login minos-tools minos-artwork minos-desktop-settings"
+#firefox27 firefox28 firefox27-minos-settings firefox28-minos-settings firefox-flashplugin
 apps_purge="xinetd sasl2-bin sendmail sendmail-base sendmail-bin sensible-mda
 rmail bsd-mailx apache2.2-common apache2 nano bind9 whoopsie"
 
@@ -922,6 +922,10 @@ _remotesetup()
         _smv /tmp/locale /etc/default/
         #_cmdsudo update-locale LANG=en_US.UTF-8 LC_MESSAGES=POSIX
     fi
+
+    _printfl    "Fixing apt-get bugs"
+    printf "%s" "Dir::Ignore-Files-Silently:: \"(.save|.distUpgrade)$\";" > /tmp/minos-apt-99ignoresave
+    _cmdsudo    mv /tmp/minos-apt-99ignoresave /etc/apt/apt.conf.d/99ignoresave
 
     _printfs     "installing deps ..."
     _waitforsudo apt-get update
