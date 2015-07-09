@@ -923,8 +923,8 @@ _remotesetup()
         #_cmdsudo update-locale LANG=en_US.UTF-8 LC_MESSAGES=POSIX
     fi
 
-    _printfl    "Fixing apt-get bugs"
-    printf "%s" "Dir::Ignore-Files-Silently:: \"(.save|.distUpgrade)$\";" > /tmp/minos-apt-99ignoresave
+    _printfs    "Fixing apt-get bugs"
+    printf "%s" "Dir::Ignore-Files-Silently:: \"(.save|.distUpgrade|.backup_rep)$\";" > /tmp/minos-apt-99ignoresave
     _cmdsudo    mv /tmp/minos-apt-99ignoresave /etc/apt/apt.conf.d/99ignoresave
 
     _printfs     "installing deps ..."
