@@ -283,7 +283,7 @@ pre.lyric {
   text-align: center;
 }
 
-a.gpg {
+a.pgp {
   margin: auto;
   background: #000;
   display: inline-block;
@@ -291,7 +291,7 @@ a.gpg {
   color: #fff;
 }
 
-pre.gpg {
+pre.pgp {
   margin: auto;
   max-width: 50%;
   display: inline-block;
