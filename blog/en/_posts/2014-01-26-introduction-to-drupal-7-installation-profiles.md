@@ -298,4 +298,10 @@ I had to adjust mostly the **weight** parameter and add missing links. Not diffi
 
 - [Introduction to drupal module features](http://www.youtube.com/watch?v=DxRBEaD9JCA)
 
+## Extra
+
+A probably better a more up-to-date approach to profile Drupal installation is described at:
+
+- [http://salsadigital.com.au/news/drupal-installation-profile-and-distributions](http://salsadigital.com.au/news/drupal-installation-profile-and-distributions)
+
 That's it, I hope this information can save some time to someone, have fun!
