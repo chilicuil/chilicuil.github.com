@@ -25,20 +25,20 @@ Compilation of current security trends and its shortfalls, eg: selective executi
 
 ## Computer Virtualization
 
-- [Performance Evaluation of Container-based Virtualization for High Performance Computing Environments](http://marceloneves.org/papers/pdp2013-containers.pdf) - 2014. [pdf](http://f.javier.io/rep/papers/pdp2013-containers.pdf) 8 Pag.
+- [Performance Evaluation of Container-based Virtualization for High Performance Computing Environments](http://marceloneves.org/papers/pdp2013-containers.pdf) - 2014. [[pdf]](http://f.javier.io/rep/papers/pdp2013-containers.pdf) 8 Pag.
 
 Xen, Openvz, Linux Vserver, LXC performance evaluation.
 
 ## Computer Operation Systems
 
-- [Flexible Operating System Internals: The Design and Implementation of the Anykernel and Rump Kernels](http://lib.tkk.fi/Diss/2012/isbn9789526049175/isbn9789526049175.pdf)[[pdf]](http://f.javier.io/rep/papers/anykernel-rump-kernel-isbn9789526049175.pdf) - 2012. 362 Pag.
+- [Flexible Operating System Internals: The Design and Implementation of the Anykernel and Rump Kernels](http://lib.tkk.fi/Diss/2012/isbn9789526049175/isbn9789526049175.pdf) - 2012. [[pdf]](http://f.javier.io/rep/papers/anykernel-rump-kernel-isbn9789526049175.pdf) 362 Pag.
 
 Portable drivers across minimal kernels (anykernels) and system applications (rump kernels). Drivers as system libraries.
 
 ## Community driven papers repositories
 
-- https://github.com/papers-we-love/papers-we-love
-- http://www.reddit.com/r/paperswelove
+- [https://github.com/papers-we-love/papers-we-love](https://github.com/papers-we-love/papers-we-love)
+- [http://www.reddit.com/r/paperswelove](http://www.reddit.com/r/paperswelove)
 
 By the way, if you're new (as I'm) to read scientific papers, don't forget to checkout the guidelines to read efficiently academic articles.
 
