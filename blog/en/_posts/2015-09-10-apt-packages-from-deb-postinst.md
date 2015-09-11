@@ -9,7 +9,7 @@ title: "install apt packages from deb postinst"
 
 During the last couple of years I've been building [yet another Linux distribution](https://github.com/minos-org), mostly to have my favorite software nicely packaged, but also to experiment and have fun =)
 
-One important part of it is its configuration file, `/etc/minos/config`/`~/.minos/config` e.g.
+One important part of it is its configuration file, **/etc/minos/config** or **~/.minos/config**, e.g.
 
 <pre class="sh_sh">
 wallpaper       ~/data/images/wallpapers/sunlight.png
