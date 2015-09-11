@@ -78,23 +78,23 @@ So now, you've to configure pagekite locally to use the available kites:
     # ~/.pagekite.rc
     ## NOTE: This file may be rewritten/reordered by pagekite.py.
     #
-     
+
     ##[ Default kite and account details ]##
     kitename = javier.pagekite.me
     kitesecret = KITESECRET_KEY
-     
+
     ##[ Front-end settings: use pagekite.net defaults ]##
     defaults
-     
+
     ##[ Back-ends and local services ]##
     service_on = http:@kitename : localhost:80 : @kitesecret
     service_on = raw-22:@kitename : localhost:1003 : @kitesecret
     service_on = raw-22:home.javier.pagekite.me : localhost:1003 : @kitesecret
     service_on = raw-22:home.javier.io : localhost:1003 : @kitesecret
-     
+
     ##[ Miscellaneous settings ]##
     savefile = /home/chilicuil/.pagekite.rc
-     
+
     ###[ End of pagekite.py configuration ]#########
     END
 
@@ -102,18 +102,18 @@ And launch the service:
 
     $ ./pagekite.py
     >>> Hello! This is pagekite v0.5.6a.                            [CTRL+C = Stop]
-        Connecting to front-end 69.164.211.158:443 ...                             
-         - Protocols: http http2 http3 https websocket irc finger httpfinger raw   
-         - Protocols: minecraft                                                    
-         - Ports: 79 80 443 843 2222 3000 4545 5222 5223 5269 5670 6667 8000 8080  
-         - Ports: 8081 9292 25565                                                  
-         - Raw ports: 22 virtual                                                   
-        Quota: You have 2559.74 MB, 29 days and 4 connections left.                
-        Connecting to front-end 173.230.155.164:443 ...                            
-    ~<> Flying localhost:1003 as ssh://home.javier.io:22/ (HTTP proxied)           
-    ~<> Flying localhost:1003 as ssh://home.javier.pagekite.me:22/ (HTTP proxied)  
-    ~<> Flying localhost:1003 as ssh://javier.pagekite.me:22/ (HTTP proxied)       
-    ~<> Flying localhost:80 as https://javier.pagekite.me/                         
+        Connecting to front-end 69.164.211.158:443 ...
+         - Protocols: http http2 http3 https websocket irc finger httpfinger raw
+         - Protocols: minecraft
+         - Ports: 79 80 443 843 2222 3000 4545 5222 5223 5269 5670 6667 8000 8080
+         - Ports: 8081 9292 25565
+         - Raw ports: 22 virtual
+        Quota: You have 2559.74 MB, 29 days and 4 connections left.
+        Connecting to front-end 173.230.155.164:443 ...
+    ~<> Flying localhost:1003 as ssh://home.javier.io:22/ (HTTP proxied)
+    ~<> Flying localhost:1003 as ssh://home.javier.pagekite.me:22/ (HTTP proxied)
+    ~<> Flying localhost:1003 as ssh://javier.pagekite.me:22/ (HTTP proxied)
+    ~<> Flying localhost:80 as https://javier.pagekite.me/
      << pagekite.py [flying]   Kites are flying and all is well.
 
 ### Client
@@ -130,7 +130,7 @@ If everything is correct, you should now be able to login:
 
 <pre class="sh_sh">
 $ ssh home.javier.io
-chilicuil@home.javier.io's password: 
+chilicuil@home.javier.io's password:
 </pre>
 
 Pagekite is free software, both the client and the backend and it's awesome &#128525;
