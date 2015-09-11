@@ -7,9 +7,9 @@ title: "install apt packages from deb postinst"
 
 ###### {{ page.date | date_to_string }}
 
-During the last couple of years I've been building [yet another Linux distribution](https://github.com/minos-org), mostly to have my favorite software nicely packaged, but also to experiment and have fun.
+During the last couple of years I've been building [yet another Linux distribution](https://github.com/minos-org), mostly to have my favorite software nicely packaged, but also to experiment and have fun =)
 
-One important part of it is its configuration file, /etc/minos/config | ~/.minos/config, e.g.
+One important part of it is its configuration file, `/etc/minos/config`/`~/.minos/config` e.g.
 
 <pre class="sh_sh">
 wallpaper       ~/data/images/wallpapers/sunlight.png
@@ -35,11 +35,11 @@ These files can be moved temporally to launch additional apt/dpkg instances, aft
     /var/cache/apt/archives/lock
     /var/lib/dpkg/updates/
 
-Dpkg/apt-get uses a database in text plain located at **/var/lib/dpkg/status** but keep it in memory while installing/removing packages, upon completion it overrides the old database removing changes made by any internal invocations. So it's important to keep track of it too (multiple backups are available at /var/backups/dpkg.status).
+Dpkg/apt-get uses a database in text plain located at **/var/lib/dpkg/status**, it's kind of important to keep track of it too since the result of every apt/dpkg invocation is dumped to it upon completion (multiple backups are available at /var/backups/dpkg.status).
 
 ## Post execution
 
-There seem to exist several options to abuse apt-get, cron jobs, daemons queues (aptdaemon?), custom waits, but all them require a considerable amount of time after the main apt-get/dpkg invocation, what if the system go down short after?. I finally decided to install everything within the main apt-get process and merge changes short after (that way it takes approximately 1 second to process the missing text operations instead of probably several minutes for further apt instances).
+There seem to exist several options to abuse apt-get, cron jobs, daemons queues (aptdaemon?), custom waits, but all them require a considerable amount of time after the main apt-get/dpkg is done, what if the system go down short after?. I finally decided to install everything within the main apt-get process and merge changes at the end (that way it takes a couple of seconds processing the missing text operations instead of probably several minutes for further apt instances).
 
 It was funny that even more locks were needed to provide some reliability.
 
