@@ -45,7 +45,6 @@ It was funny that even more locks were needed to provide some reliability.
 
 <pre class="sh_sh">
 #!/bin/sh
-#postinst
 
 _suspend_dpkg_process()
 {
@@ -55,57 +54,106 @@ _suspend_dpkg_process()
     mkdir /var/lib/dpkg/updates/
     mv /var/cache/apt/archives/lock /var/cache/apt/archives/lock.suspended
     cp /var/lib/dpkg/status /var/lib/dpkg/status.suspended
-    cp /var/lib/dpkg/status-old /var/lib/dpkg/status
+    cp /var/lib/dpkg/status-old  /var/lib/dpkg/status-orig
+    cp /var/lib/dpkg/status-orig /var/lib/dpkg/status
 }
 
 _continue_dpkg_process()
 {
     rm -rf /var/lib/dpkg/updates
-    mv /var/lib/dpkg/lock.suspended /var/lib/dpkg/lock
+    mv /var/lib/dpkg/lock.suspended    /var/lib/dpkg/lock
     mv /var/lib/dpkg/updates.suspended /var/lib/dpkg/updates
     mv /var/cache/apt/archives/lock.suspended /var/cache/apt/archives/lock
-    cp /var/lib/dpkg/status /var/lib/dpkg/status.internal
-    mv /var/lib/dpkg/status.suspended /var/lib/dpkg/status
+    mv /var/lib/dpkg/status.suspended  /var/lib/dpkg/status
+    mv /var/lib/dpkg/status-orig /var/lib/dpkg/status-old
+}
+
+_add_status_apt_queue()
+{
+    cp /var/lib/dpkg/status /var/lib/dpkg/status-append
+    diff="$(busybox diff -u /var/lib/dpkg/status-orig /var/lib/dpkg/status-append | \
+        busybox awk '/^\+/ {if($1 == "+++") {next}; sub(/^\+/,""); print}')"
+
+    #it's important to add an additional \\n at the end to ensure the
+    #format doesn't get weird after several invocations
+    [ -z "${diff}" ] || printf "%s\\n\\n" "${diff}" >> /var/lib/dpkg/status-append-queue
+
+    for pkg; do
+        [ -f /var/lib/dpkg/status-remove-queue ] || continue
+        busybox sed -i '/^'"${pkg}"'$/d' /var/lib/dpkg/status-remove-queue
+    done; unset pkg
+}
+
+_rm_status_apt_queue()
+{
+    for pkg; do
+        printf "%s\\n" "${pkg}" >> /var/lib/dpkg/status-remove-queue
+    done; unset pkg
 }
 
 _append_status_db()
 {
-    while [ -f "/var/lib/dpkg/lock-custom" ]; do sleep 0.1; done
-    touch "/var/lib/dpkg/lock-custom"
+    [ -f /var/lib/dpkg/status-append-queue ] || return
+
+    while [ -f /var/lib/dpkg/lock-custom ]; do sleep 0.1; done
+    touch /var/lib/dpkg/lock-custom
 
     while busybox ps -o comm,pid | busybox grep apt-get >/dev/null 2>&1; do
         sleep 0.1
     done
 
-    busybox diff -u /var/lib/dpkg/status /var/lib/dpkg/status.internal |   \
-        busybox awk '/^\+/ {if($1 == "+++") {next}; sub(/^\+/,""); print}' \
-        >> /var/lib/dpkg/status
+    cat    /var/lib/dpkg/status-append-queue >> /var/lib/dpkg/status
+    rm -rf /var/lib/dpkg/status-append-queue /var/lib/dpkg/status-append
 
-    rm -rf "/var/lib/dpkg/lock-custom"
+    rm -rf /var/lib/dpkg/lock-custom
 }
 
 _remove_status_db()
 {
-    while [ -f "/var/lib/dpkg/lock-custom" ]; do sleep 0.1; done
-    touch "/var/lib/dpkg/lock-custom"
+    [ -f /var/lib/dpkg/status-remove-queue ] && sleep 0.1 || return
+
+    while [ -f /var/lib/dpkg/lock-custom ]; do sleep 0.1; done
+    touch /var/lib/dpkg/lock-custom
 
     while busybox ps -o comm,pid | busybox grep apt-get >/dev/null 2>&1; do
         sleep 0.1
     done
 
-    for pkg; do
+    for pkg in $(cat /var/lib/dpkg/status-remove-queue); do
         busybox sed -i '/Package: '"${pkg}"'$/,/^$/d' /var/lib/dpkg/status
-    done
+    done; rm -rf /var/lib/dpkg/status-remove-queue
 
-    rm -rf "/var/lib/dpkg/lock-custom"
+    rm -rf /var/lib/dpkg/lock-custom
 }
 
-_suspend_dpkg_process
-apt-get install --no-install-recommends -y additional packages
-_append_status_db &
-apt-get purge -y  ugly packages
-_remove_status_db ugly packages &
-_continue_dpkg_process
+_apt_install()
+{
+    [ -z "${1}" ] && return
+    _suspend_dpkg_process
+    apt-get install --no-install-recommends -y --force-yes ${@}
+    _add_status_apt_queue ${@}
+    _continue_dpkg_process
+}
+
+_apt_purge()
+{
+    [ -z "${1}" ] && return
+    _suspend_dpkg_process
+    cat /var/lib/dpkg/status-append-queue >> /var/lib/dpkg/status
+    apt-get purge -y     ${@}
+    _rm_status_apt_queue ${@}
+    _continue_dpkg_process
+}
+
+_apt_sync_db()
+{
+    _append_status_db &
+    _remove_status_db &
+}
+
+_apt_install additional packages
+_apt_purge   ugly packages
+_apt_sync_db
 </pre>
 
 Not the most elegant solution but it's works, I'll leave it like that until I find a better alternative or change base distros.
