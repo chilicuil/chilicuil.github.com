@@ -5,10 +5,12 @@ trap _cleanup INT QUIT #trap ctrl-c
 updates="http://minos.io/s"
 liner="$ sh <(wget -qO- minos.io/s)"
 
-#default apps
-minos_core="git-core vim-nox tmux tmate wcd htop curl bc rsync ncurses-bin
+#minos_core="minos-core" #same as meta-package
+minos_core="git-core vim-nox tmux tmate mosh wcd htop curl bc rsync ncurses-bin
 ncurses-term command-not-found bash-completion libpam-captcha exuberant-ctags
-silversearcher-ag mosh minos-tools-extra bash-minos-settings minos-core-settings"
+silversearcher-ag bash-minos-settings minos-tools-extra minos-core-settings"
+
+#minos_desktop="minos-desktop" #same as meta-package
 minos_desktop="i3-wm i3lock alsa-utils alsa-base mpd mpc ncmpcpp mplayer2 slim
 xorg rxvt-unicode-256color autocutsel acpi dmenu feh sxiv notify-osd pm-utils
 libnotify-bin irssi mutt-patched pcmanfm rlpr gnupg-agent lxappearance conky-cli
@@ -16,18 +18,16 @@ zathura scrot ffcast unrar unzip xarchiver zram-config udisks xclip gvfs dkms
 gtk2-engines-pixbuf openssh-server wicd-curses redshift vim-gtk lame gvfs-fuse
 policykit-1 libmad0 geoclue-ubuntu-geoip libdvdread4 xdotool dbus-x11 umplayer
 gxmessage magnifier compton plymouth-theme-minos-comet xbacklight minos-core
-slim-theme-minos-login minos-tools minos-artwork minos-desktop-settings"
-#firefox27 firefox28 firefox27-minos-settings firefox28-minos-settings firefox-flashplugin
-apps_purge="xinetd sasl2-bin sendmail sendmail-base sendmail-bin sensible-mda
-rmail bsd-mailx apache2.2-common apache2 nano bind9 whoopsie"
+slim-theme-minos-login minos-tools minos-artwork minos-desktop-settings
+util-linux xdg-utils firefox28 firefox28-minos-settings firefox-flashplugin"
 
 if [ -z "${1}" ]; then
-    mode="remote"; rx="\b>"
+    mode="core"; cx="\b>"
 else
     case "${1}" in
-        l|local) mode="local";  lx="\b>";;
-        b|boot)  mode="boot";   bx="\b>";;
-        *)       mode="remote"; rx="\b>";;
+        d|desktop) mode="desktop"; dx="\b>";;
+           b|boot) mode="boot";    bx="\b>";;
+                *) mode="core";    cx="\b>";;
     esac
 fi
 
@@ -36,20 +36,19 @@ fi
 ################################################################################
 
 _arch()
-{   #check for system arch, returns [64|32]
+{   #check system arch, return 64|32 (32 by default)
     if [ -z "${MACHTYPE}" ]; then
-        _arch_var_arch="$(uname -m)"
+        _arch__arch="$(uname -m)"
     else
-        _arch_var_arch="$(printf "%s" "${MACHTYPE}" | cut -d- -f1)"
+        _arch__arch="$(printf "%s" "${MACHTYPE}" | cut -d- -f1)"
     fi
 
-    case "${_arch_var_arch}" in
-        x86_64) _arch_var_arch="64" ;;
-        i686)   _arch_var_arch="32" ;;
-        *)      return 1 ;;
+    case "${_arch__arch}" in
+        x86_64) _arch__arch="64" ;;
+             *) _arch__arch="32" ;;
     esac
 
-    printf "%s" "${_arch_var_arch}"
+    printf "%s" "${_arch__arch}"
 }
 
 _animcui()
@@ -210,13 +209,13 @@ _printfl()
 }
 
 _printfs()
-{   #print step
+{   #print steps
     [ -z "${1}" ] && return 1
     printf "%s\\n" "[+] ${*}"
 }
 
 _printfc()
-{   #print command
+{   #print commands
     [ -z "${1}" ] && return 1
     printf "%s\\n" "    $ ${*}"
 }
@@ -283,16 +282,16 @@ _smv()
         #if target has a file with the same name as origin
         if [ -e "${2}"/"${_smv_var_origin_basename}" ]; then
             printf "%s\\n" "${sudopwd}" | \ ${sudocmd} mv "${2}"/"${_smv_var_origin_basename}" \
-                "$2"/"${_smv_var_origin_basename}".old."${_smv_var_version}" >/dev/null 2>&1
+                "$2"/"${_smv_var_origin_basename}".minos-backup."${_smv_var_version}" >/dev/null 2>&1
             printf "%s\\n" "${sudopwd}" | \
                 ${sudocmd} chown -R "${_smv_var_owner}" \
-                "${2}"/"${_smv_var_origin_basename}".old."${_smv_var_version}" >/dev/null 2>&1
+                "${2}"/"${_smv_var_origin_basename}".minos-backup."${_smv_var_version}" >/dev/null 2>&1
         fi
         printf "%s\\n" "${sudopwd}" | ${sudocmd} mv "${1}" "${2}" >/dev/null 2>&1
     else
         if [ -e "${2}"/"${_smv_var_origin_basename}" ]; then
             mv "${2}"/"${_smv_var_origin_basename}" \
-               "${2}"/"${_smv_var_origin_basename}".old."${_smv_var_version}"
+               "${2}"/"${_smv_var_origin_basename}".minos-backup."${_smv_var_version}"
         fi
         mv "${1}" "${2}"
     fi
@@ -303,7 +302,7 @@ _hooks()
     [ -z "${1}" ] && return 1
     case "${1}" in
         A|B|C)
-            for _hooks_var_script in "${HOME}"/.s/"${1}"*; do
+            for _hooks_var_script in "${HOME}"/.minos/hooks/"${1}"*; do
                 break
             done
 
@@ -313,7 +312,7 @@ _hooks()
                 return 1
             fi
 
-            for _hooks_var_script in "${HOME}"/.s/"${1}"*; do
+            for _hooks_var_script in "${HOME}"/.minos/hooks/"${1}"*; do
                 if [ -f "${_hooks_var_script}" ]; then
                     _printfs "${_hooks_var_script} ..."
                     . "${_hooks_var_script}"
@@ -321,13 +320,6 @@ _hooks()
             done
             ;;
     esac
-}
-
-_getvars()
-{   #source $HOME/.s/config
-    if [ -f "${HOME}"/.s/config ]; then
-        . "${HOME}"/.s/config
-    fi
 }
 
 _getuuid()
@@ -343,10 +335,10 @@ _getfs()
 }
 
 _getlastversion()
-{   #get last version of a bunch of .old files
+{   #get last version of a bunch of files
     [ -z "${1}" ] && return 1
 
-    _getlastversion_var_files="${1}".old.*
+    _getlastversion_var_files="${1}".minos-backup.*
     _getlastversion_var_counter="0"
 
     for _getlastversion_var_file in ${_getlastversion_var_files}; do
@@ -594,7 +586,7 @@ _sethome()
 
                         _cmdsudo umount /tmp/"${_sethome_var_partition}"
                         _cmdsudo rm -rf /tmp/"${_sethome_var_partition}"
-                        _cmdsudo mv /home /home.old
+                        _cmdsudo mv /home /home.minos-backup
                         _cmdsudo mkdir /home
                         _cmdsudo mount /dev/"${_sethome_var_partition}" /home
                         _cmdsudo chown -R "$(whoami)":"$(whoami)" /home/"$(whoami)"
@@ -616,8 +608,7 @@ _sethome()
 _supported()
 {   #retun 0 on a supported system, 1 otherwise
     supported="[Debian|Ubuntu]"
-    _supported_var_distro="$(_distro)"
-    case "${_supported_var_distro}" in
+    case "$(_distro)" in
         ubuntu|debian) return 0 ;;
     esac
     return 1
@@ -670,23 +661,19 @@ _siteup()
 
 _header()
 {
-    _printfl "The Setup"
-    printf "%b\\n" "\033[1m Dotfiles:\033[0m ${dotfiles}"
-    printf "%b\\n" "\033[1m Utils:\033[0m    ${utils}"
+    _printfl "Minos Setup"
     printf "%b\\n" "\033[1m Updates:\033[0m  ${updates}"
     printf "\\n"
 
-    printf "%b\\n" "\033[1m  ${rx} Remote:                  \033[0m${liner}"
-    printf "%b\\n" "\033[1m  ${lx} Local (includes Remote): \033[0m${liner} l"
-    printf "%b\\n" "\033[1m  ${bx} Boot:                    \033[0m${liner} b"
+    printf "%b\\n" "\033[1m  ${cx} Core:                  \033[0m${liner}"
+    printf "%b\\n" "\033[1m  ${dx} Desktop (includes Core): \033[0m${liner} d"
+    #printf "%b\\n" "\033[1m  ${bx} Boot:                    \033[0m${liner} b"
 
-    if [ "$(id -u)" != "0" ]; then
-        _printfl
-    fi
+    [ "$(id -u)" != "0" ] && _printfl
 }
 
 _diesendmail()
-{   #stupid apt-get purge doesn't kill sendmail instances
+{   #apt-get purge doesn't kill sendmail instances
     _diesendmail_var_pid="$(ps -aef | awk '$0 ~ "sendmail" {if ($0 !~ "awk") print $2}')"
     if [ -n "${_diesendmail_var_pid}" ]; then
         _printfs 'die sendmail, die!!'
@@ -704,7 +691,7 @@ _cleanup()
 
     printf "\\n"
     _printfl "Cleanup"
-    _cmd rm -rf /tmp/"$(_basename "${utils}")" /tmp/"$(_basename "${dotfiles}")"
+    _cmd rm -rf /tmp/"$(_basename "${dotfiles}")"
     _recoverreps
 
     [ -z "${1}" ] && exit
@@ -899,7 +886,7 @@ _enableremotevnc()
 # Deployment functions #########################################################
 ################################################################################
 
-_remotesetup()
+_core()
 {
     _printfl "Fixing dependencies"
     _remotesetup_var_release="$(_getrelease)"
@@ -913,15 +900,17 @@ _remotesetup()
         _die "Impossible to find release"
     fi
 
-    _printfs     "fixing locales ..."
-    _waitforsudo locale-gen en_US en_US.UTF-8
-    _waitforsudo locale-gen
-    #https://bugs.launchpad.net/ubuntu/+source/pam/+bug/155794
-    if [ ! -f /etc/default/locale ]; then
-        printf "%s\\n%s\\n" 'LANG="en_US.UTF-8"' 'LANGUAGE="en_US:en"' > /tmp/locale
-        _smv /tmp/locale /etc/default/
-        #_cmdsudo update-locale LANG=en_US.UTF-8 LC_MESSAGES=POSIX
-    fi
+    #this logic was incorporated to minos-core-settings
+
+    #_printfs     "fixing locales ..."
+    #_waitforsudo locale-gen en_US en_US.UTF-8
+    #_waitforsudo locale-gen
+    ##https://bugs.launchpad.net/ubuntu/+source/pam/+bug/155794
+    #if [ ! -f /etc/default/locale ]; then
+        #printf "%s\\n%s\\n" 'LANG="en_US.UTF-8"' 'LANGUAGE="en_US:en"' > /tmp/locale
+        #_smv /tmp/locale /etc/default/
+        ##_cmdsudo update-locale LANG=en_US.UTF-8 LC_MESSAGES=POSIX
+    #fi
 
     _printfs    "Fixing apt-get bugs"
     printf "%s" "Dir::Ignore-Files-Silently:: \"(.save|.distUpgrade|.backup_rep)$\";" > /tmp/minos-apt-99ignoresave
@@ -931,118 +920,73 @@ _remotesetup()
     _waitforsudo apt-get update
     _waitforsudo apt-get install --no-install-recommends -y ${minos_core}
 
-    _printfs     "purging non essential apps ..."
-    _waitforsudo DEBIAN_FRONTEND=noninteractive apt-get purge -y ${apps_purge}
-    _diesendmail
-
     if ! command -v "git" >/dev/null 2>&1; then
         _die "Dependency step failed"
     fi
 
     ############################################################################
 
-    _printfl   "Downloading files"
-    _printfs   "getting reps ..."
-    if [ -f "${HOME}"/.minos/not_override ]; then
-        _printfs "${HOME}/.minos/not_override is present, skipping ..."
-    else
-        _fetchrepo "${dotfiles}.git" "/tmp/$(_basename "${dotfiles}")"
-    fi
+    #this logic was incorporated to minos-core-settings
 
-    if [ -f /etc/minos/not_override ]; then
-        _printfs "/etc/minos/not_override is present, skipping ..."
-    else
-        _fetchrepo "${utils}.git" "/tmp/$(_basename "${utils}")"
-    fi
+    #_printfl   "Downloading files"
+    #_printfs   "getting reps ..."
+    #if [ -f "${HOME}"/.minos/not_override ]; then
+        #_printfs "${HOME}/.minos/not_override is present, skipping ..."
+    #else
+        #_fetchrepo "${dotfiles}.git" "/tmp/$(_basename "${dotfiles}")"
+    #fi
 
     ############################################################################
 
-    _printfl "Installing files"
-    _remotesetup_var_target="/usr/local/bin/"
-    if [ -d /usr/share/bash-completion/completions/ ]; then
-        _remotesetup_var_completions="/usr/share/bash-completion/completions/"
-    elif [ -d /etc/bash_completion.d/ ]; then
-        _remotesetup_var_completions="/etc/bash_completion.d/"
-    fi
+    #_printfl "Installing files"
 
-    if [ ! -f "${HOME}"/.minos/not_override ]; then
-        _printfs "installing dotfiles (old files will get an .old suffix) ..."
-        for _remotesetup_var_file in /tmp/$(_basename "${dotfiles}")/.*; do
-            [ ! -e "${_remotesetup_var_file}" ] && continue
-            _smv "${_remotesetup_var_file}" "${HOME}"
-        done
+    #if [ ! -f "${HOME}"/.minos/not_override ]; then
+        #_printfs "installing dotfiles (old files will get an .minos-backup suffix) ..."
+        #for _remotesetup_var_file in /tmp/$(_basename "${dotfiles}")/.*; do
+            #[ ! -e "${_remotesetup_var_file}" ] && continue
+            #_smv "${_remotesetup_var_file}" "${HOME}"
+        #done
 
-        #special case, avoid removing my own certificates
-        _remotesetup_var_ssh_old="$(_getlastversion "${HOME}"/.ssh)"
-        if [ -n "${_remotesetup_var_ssh_old}" ] && \
-        [ ! X"${_remotesetup_var_ssh_old}" = X"${HOME}"/.ssh ]; then
-            cp -- "${_remotesetup_var_ssh_old}"/* "${HOME}"/.ssh/
-        fi
-    else
-        _printfs "${HOME}/.minos/not_override is present, skipping ..."
-    fi
+        ##special case, avoid removing my own certificates
+        #_remotesetup_var_ssh_old="$(_getlastversion "${HOME}"/.ssh)"
+        #if [ -n "${_remotesetup_var_ssh_old}" ] && \
+        #[ ! X"${_remotesetup_var_ssh_old}" = X"${HOME}"/.ssh ]; then
+            #cp -- "${_remotesetup_var_ssh_old}"/* "${HOME}"/.ssh/
+        #fi
+    #else
+        #_printfs "${HOME}/.minos/not_override is present, skipping ..."
+    #fi
 
-    if [ ! -f /etc/minos/not_override ]; then
-        if [ -n "${_remotesetup_var_completions}" ]; then
-            _printfs "installing completions ..."
-            for _remotesetup_var_file in /tmp/"$(_basename "${utils}")"/autocp/completions/*; do
-                [ ! -e "${_remotesetup_var_file}" ] && continue
-                _smv "${_remotesetup_var_file}" "${_remotesetup_var_completions}"
-            done
-        fi
-
-        _printfs "installing utils ..."
-        for _remotesetup_var_file in /tmp/"$(_basename "${utils}")"/python/*; do
-            [ ! -e "${_remotesetup_var_file}" ] && continue
-            [ -f "${_remotesetup_var_file}" ]   && chmod +x "${_remotesetup_var_file}"
-            _smv "${_remotesetup_var_file}" "${_remotesetup_var_target}"
-        done
-
-        for _remotesetup_var_file in /tmp/"$(_basename "${utils}")"/sh/is/*; do
-            [ ! -e "${_remotesetup_var_file}" ] && continue
-            [ -f "${_remotesetup_var_file}" ]   && chmod +x "${_remotesetup_var_file}"
-            _smv "${_remotesetup_var_file}" "${_remotesetup_var_target}"
-        done
-
-        for _remotesetup_var_file in /tmp/"$(_basename "${utils}")"/sh/tools/*; do
-            [ ! -e "${_remotesetup_var_file}" ] && continue
-            [ -f "${_remotesetup_var_file}" ]   && chmod +x "${_remotesetup_var_file}"
-            _smv "${_remotesetup_var_file}" "${_remotesetup_var_target}"
-        done
-    else
-        _printfs "/etc/minos/not_override is present, skipping ..."
-    fi
-
-    _cmd rm -rf /tmp/"$(_basename "${utils}")" /tmp/"$(_basename "${dotfiles}")"
+    #_cmd rm -rf /tmp/"$(_basename "${dotfiles}")"
 
     ############################################################################
 
-    _printfl "Configuring main apps"
+    #_printfl "Configuring main apps"
 
-    _printfs "configuring vim (2 min aprox) ..."
-    [ ! -d "${HOME}"/.vim/bundle/vundle/.git/ ] && \
-        _fetchrepo "https://github.com/chilicuil/vundle.git" "${HOME}/.vim/bundle/vundle"
-    #_waitfor vim -es -u "${HOME}"/.vimrc -c "BundleInstall" -c qa
-    vim -es -u "${HOME}"/.vimrc -c "BundleInstall" -c qa
+    #_printfs "configuring vim (2 min aprox) ..."
+    #[ ! -d "${HOME}"/.vim/bundle/vundle/.git/ ] && \
+        #_fetchrepo "https://github.com/chilicuil/vundle.git" "${HOME}/.vim/bundle/vundle"
+    ##_waitfor vim -es -u "${HOME}"/.vimrc -c "BundleInstall" -c qa
+    #vim +BundleInstall +qall >/dev/null 2>&1
 
-    _printfs "configuring shell (1 min aprox) ..."
-    [ ! -d "${HOME}"/.shundle/bundle/shundle/.git/ ] && \
-        _fetchrepo "https://github.com/chilicuil/shundle.git" "${HOME}/.shundle/bundle/shundle"
-    _cmd SHUNDLE_HOME="${HOME}"/.shundle SHUNDLE_RC="${HOME}"/.bashrc "${HOME}"/.shundle/bundle/shundle/bin/shundle install
+    #_printfs "configuring shell (1 min aprox) ..."
+    #[ ! -d "${HOME}"/.shundle/bundle/shundle/.git/ ] && \
+        #_fetchrepo "https://github.com/chilicuil/shundle.git" "${HOME}/.shundle/bundle/shundle"
+    #_cmd SHUNDLE_HOME="${HOME}"/.shundle SHUNDLE_RC="${HOME}"/.bashrc "${HOME}"/.shundle/bundle/shundle/bin/shundle install
 
-    _printfs "configuring cd ..."
-    _waitfor update-cd
+    #_printfs "configuring cd ..."
+    #_waitfor update-cd
 
     _recoverreps
 
     ############################################################################
 
     _printfl "DONE"
-    printf "\\n%s\\n" "Reload the configuration to start having fun, n@n/"
+    printf "\\n%s\\n" "Reload the configuration or relogin to start having fun, n@n/"
     printf "%s\\n"    "    $ source ~/.bashrc"
 }
 
-_localsetup()
+_desktop()
 {
     _printfl      "Verifying mirrors"
     _ensureonline "http://javier.io"
@@ -1089,17 +1033,6 @@ _localsetup()
 
     ############################################################################
 
-    _printfs     "installing /usr/local/bin utilities and dotfiles ..."
-    #call itself in remote (default) mode (see _remotesetup)
-    _fetchfile   http://javier.io/s "${HOME}"/s
-    [ ! -d "${HOME}"/.s ]        && _cmd mkdir "${HOME}"/.s
-    [ ! -f "${HOME}"/.s/config ] && _cmd touch "${HOME}"/.s/config
-    printf       "%s" "sudopwd=${sudopwd}" > "${HOME}"/.s/config
-    _cmd         sh "${HOME}"/s #_waitfor could be fancier, but there is no easy way to track sh processes
-    _cmd         rm -rf "${HOME}"/s "${HOME}"/.s/
-
-    ############################################################################
-
     _printfl     "Downloading files"
     _printfs     "downloading confs, themes and so on ..."
     if [ -f "${HOME}"/.minos/not_override ]; then
@@ -1119,10 +1052,10 @@ _localsetup()
 
     _printfl       "Configuring system"
 
-    _printfs       "configuring swappiness ..."
-    _ensuresetting "vm.swappiness=10" /etc/sysctl.conf
-    _printfs       "configuring kernel messages ..."
-    _ensuresetting "kernel.printk = 4 4 1 7" /etc/sysctl.conf
+    #_printfs       "configuring swappiness ..."
+    #_ensuresetting "vm.swappiness=10" /etc/sysctl.conf
+    #_printfs       "configuring kernel messages ..."
+    #_ensuresetting "kernel.printk = 4 4 1 7" /etc/sysctl.conf
 
     _printfs       "configuring network ..."
     printf         "%s\\n" "auto lo"                >  /tmp/interfaces
@@ -1140,21 +1073,21 @@ _localsetup()
     _cmdsudo       usermod -a -G plugdev "$(whoami)"
     _cmdsudo       usermod -a -G audio   "$(whoami)"
 
-    _printfs "configuring cron ..."
-    if [ -f /usr/local/bin/watch-battery ]; then
-        printf "%s\\n" "    $ echo \"*/1 * * * * /usr/local/bin/watch-battery\" | crontab -"
-        _ensurecron "*/1 * * * * /usr/local/bin/watch-battery";
-    fi
+    #_printfs "configuring cron ..."
+    #if [ -f /usr/local/bin/watch-battery ]; then
+        #printf "%s\\n" "    $ echo \"*/1 * * * * /usr/local/bin/watch-battery\" | crontab -"
+        #_ensurecron "*/1 * * * * /usr/local/bin/watch-battery";
+    #fi
 
-    if [ -f /usr/local/bin/wcd ] && [ -f /usr/bin/wcd.exec ] && [ -f /usr/local/bin/update-cd ]; then
-        printf "%s\\n" "    $ echo \"* 23 * * *  /usr/local/bin/update-cd\" | crontab -"
-        _ensurecron "* 23 * * *  /usr/local/bin/update-cd";
-    fi
+    #if [ -f /usr/local/bin/wcd ] && [ -f /usr/bin/wcd.exec ] && [ -f /usr/local/bin/update-cd ]; then
+        #printf "%s\\n" "    $ echo \"* 23 * * *  /usr/local/bin/update-cd\" | crontab -"
+        #_ensurecron "* 23 * * *  /usr/local/bin/update-cd";
+    #fi
 
-    if [ -f /usr/local/bin/backup-mozilla ]; then
-        printf "%s\\n" "    $ echo \"15 */4 * * * /usr/local/bin/backup-mozilla\" | crontab -"
-        _ensurecron "15 */4 * * * /usr/local/bin/backup-mozilla";
-    fi
+    #if [ -f /usr/local/bin/backup-mozilla ]; then
+        #printf "%s\\n" "    $ echo \"15 */4 * * * /usr/local/bin/backup-mozilla\" | crontab -"
+        #_ensurecron "15 */4 * * * /usr/local/bin/backup-mozilla";
+    #fi
 
     if [ -f "${HOME}"/misc/conf/ubuntu/etc/lenovo-edge-netbook/crontabs.tar.gz ]; then
         _waitforsudo tar zxf "${HOME}"/misc/conf/ubuntu/etc/lenovo-edge-netbook/crontabs.tar.gz -C /
@@ -1200,25 +1133,25 @@ _localsetup()
     fi
 
     _printfs "configuring browser ..."
-    if [ ! -f "${HOME}"/.minos/not_override ]; then
-        _waitfor tar jxf /tmp/mconf/firefox/mozilla.tar.bz2 -C /tmp/mconf/firefox
-        for mozilla_old_profile in /tmp/mconf/firefox/.mozilla/firefox/*.default; do break; done
-        mozilla_old_profile="$(_basename "${mozilla_old_profile}" .default)"
-        mozilla_new_profile="$(strings /dev/urandom | grep -o '[[:alnum:]]' | \
-                              head -n 8 | tr -d '\n'; printf "\\n")"
-        [ ! -d /usr/lib/mozilla/plugins/ ] && _cmdsudo mkdir -p /usr/lib/mozilla/plugins/
-        _smv /tmp/mconf/firefox/libflashplayer"${_remotesetup_var_arch}".so /usr/lib/mozilla/plugins/
-        _cmd mv /tmp/mconf/firefox/.mozilla/firefox/${mozilla_old_profile}.default \
-                /tmp/mconf/firefox/.mozilla/firefox/${mozilla_new_profile}.default
-        find /tmp/mconf/firefox/.mozilla -type f | xargs sed -i -e "s/${mozilla_old_profile}/${mozilla_new_profile}/g"
-        find /tmp/mconf/firefox/.mozilla -type f | xargs sed -i -e "s/admin/$(whoami)/g"
-        find /tmp/mconf/firefox/.mozilla -type f | xargs sed -i -e "s/chilicuil/$(whoami)/g"
-        _smv /tmp/mconf/firefox/.mozilla "${HOME}"
+    #if [ ! -f "${HOME}"/.minos/not_override ]; then
+        #_waitfor tar jxf /tmp/mconf/firefox/mozilla.tar.bz2 -C /tmp/mconf/firefox
+        #for mozilla_old_profile in /tmp/mconf/firefox/.mozilla/firefox/*.default; do break; done
+        #mozilla_old_profile="$(_basename "${mozilla_old_profile}" .default)"
+        #mozilla_new_profile="$(strings /dev/urandom | grep -o '[[:alnum:]]' | \
+                              #head -n 8 | tr -d '\n'; printf "\\n")"
+        #[ ! -d /usr/lib/mozilla/plugins/ ] && _cmdsudo mkdir -p /usr/lib/mozilla/plugins/
+        #_smv /tmp/mconf/firefox/libflashplayer"${_remotesetup_var_arch}".so /usr/lib/mozilla/plugins/
+        #_cmd mv /tmp/mconf/firefox/.mozilla/firefox/${mozilla_old_profile}.default \
+                #/tmp/mconf/firefox/.mozilla/firefox/${mozilla_new_profile}.default
+        #find /tmp/mconf/firefox/.mozilla -type f | xargs sed -i -e "s/${mozilla_old_profile}/${mozilla_new_profile}/g"
+        #find /tmp/mconf/firefox/.mozilla -type f | xargs sed -i -e "s/admin/$(whoami)/g"
+        #find /tmp/mconf/firefox/.mozilla -type f | xargs sed -i -e "s/chilicuil/$(whoami)/g"
+        #_smv /tmp/mconf/firefox/.mozilla "${HOME}"
 
         _cmd rm -rf ~/.macromedia ~/.adobe
         _cmd ln -s      /dev/null ~/.adobe
         _cmd ln -s      /dev/null ~/.macromedia
-    fi
+    #fi
 
     _printfs "configuring gtk, icon, cursor themes ..."
     if [ ! -f "${HOME}"/.minos/not_override ]; then
@@ -1279,13 +1212,12 @@ if _supported; then
     #the _hook function execute $HOME/s/[LETTER][NUMBER] scripts
     #eg: $HOME/s/A01action, $HOME/s/B01installextra, $HOME/s/Z01finish
     _hooks A #these hooks wont have super powers
-    _getvars
     _getroot
     _hooks B #super powers are available through the "_cmdsudo" function
              #e.g, _cmdsudo mkdir /root/forbidden_directory
     case "${mode}" in
-        remote) _remotesetup;;
-        local)  _localsetup ;;
+           core)  _core    ;;
+        desktop)  _desktop ;;
     esac
     _hooks C; : #finish script with 0, independly of latest hooks result
 else
