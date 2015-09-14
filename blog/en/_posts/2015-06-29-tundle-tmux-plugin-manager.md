@@ -14,16 +14,16 @@ In the past I've been a regular [byobu](http://byobu.co/) user, a distribution f
 
 Unfortunately, like vi/emacs, the default screen/tmux settings are quite bad, so many people either personalize heavily its own settings or use a distribution/plugin system.
 
-I used to use byobu because of its ease of installation (at least on Ubuntu) and default status bar. However for my needs it looked overwhealming and was difficult to modify, I prefer systems with a plugin centric approach (like [vim + vundle](https://github.com/chilicuil/vundle), or [sh + shundle](http://javier.io/blog/en/2013/11/15/shundle.html)), so at the end I decided to migrate.
+I used to use byobu because of its ease of installation (at least on Ubuntu) and default status bar. However, for my needs, it looked overwhealming and was difficult to modify, I prefer systems with a plugin centric approach (like [vim + vundle](https://github.com/chilicuil/vundle), or [sh + shundle](http://javier.io/blog/en/2013/11/15/shundle.html)), so at the end I decided to migrate. Since tmux is way better than screen, I focused on it.
 
-Since tmux is way better than screen, I focused on it. There is a recent attempt to create a general tmux plugin environment:
+There is a recent attempt to create a general tmux plugin environment:
 
  - [tpm](https://github.com/tmux-plugins/tpm)
  - [tmux-plugins](https://github.com/tmux-plugins)
 
-Tpm and plugins is a great effort to cover the missing tmux features through an organized plugin system, however it targets bash, recent tmux versions (>=1.9) and only allows to grab the latest versions of every plugin. Those are kind of blockers for me, first, even when bash is a great interactive shell I don't consider it to be the best option for scripting, it's easy to start using bash unique features (losing portability) and its performance is not that great when compared with other shells. Second, even though tmux 1.9 isn't really that new, only older releases are available in popular stable Linux distributions (tmux 1.6 on Ubuntu 12.04), in addition, after looking at the tpm plugins source code the decision seems some kind arbitrary, older tmux versions have in place virtually all the required features for most plugins. And finally, unfortunately, in the current computer world updates aren't guaranted to be improved versions of the solicited software. So I find important to be able to chooice which version I really want to use, even if that means I'm not all the time in the bleeding edge.
+Tpm and plugins is a great effort to cover the missing tmux features through an organized plugin system, it covers a fair amount of functionality and allows good granulity between plugins, however it also has its drawbacks, the most important ones for me are its dependency on bash and recent tmux releases (>=1.9), and its inability to install other but the latest version of any plugin (what if I want and older version with less features but more stability?). The tpm maintainer is a great guy however these issues are not at its top list and considering the amount of refactoring required to unmarry tpm from bash/specific tmux features, I finally decided to go my own, that's how [tundle](https://github.com/chilicuil/tundle) was born, an alternative tmux plugin environment with compatibility and control version in mind.
 
-With this in mind [tundle](https://github.com/chilicuil/tundle) was born, an alternative tmux plugin environment with compatibility (tmux 1.6, posix shell) and control version in mind.
+I've gone to a great lenght to ensure tundle runs in as many platforms as possible (at least where tmux is available) degrading slowly depending in the tmux features available (right now running in tmux >= 1.6 , older versions can be discussed), in addition to improved portability/performance it's now possible to install plugins by git hash ensuring you only run code you trust. All other features are similiar, with the tipical fix here and there result of a complete code review.
 
 ### Quick start
 
@@ -37,14 +37,14 @@ After installing tundle additional bundle/plugin modules can be defined at `~/.t
     setenv -g @bundle "chilicuil/tundle"
 
     #from GitHub
-    #you can specify a branch or commit
+    #you can specify a branch or commit sha checksum
     setenv -g @bundle "chilicuil/tundle-plugins/tmux-sensible:c7b09"
-    setenv -g @bundle "chilicuil/tundle-plugins/tmux-pain-control"
-    setenv -g @bundle "chilicuil/tundle-plugins/tmux-resurrect"
+    setenv -g @bundle "gh:chilicuil/tundle-plugins/tmux-pain-control"
+    setenv -g @bundle "github:chilicuil/tundle-plugins/tmux-resurrect"
 
-And installed by starting `tmux` and pressing `Ctrl-b + I`
+And installed by starting `tmux` and pressing `Ctrl-b + I` or running `~/.tmux/plugins/tundle/scripts/install_plugins.sh`
 
-Tundle is able to install and run tpm plugins as well, but if you do so, portability is lost since tpm plugins will only work in tmux >= 1.9 and bash, if that's not a problem for you go ahead you still will get extra syntax sugar and version control over your tmux environment.
+Tundle is able to install and run tpm plugins as well, but if you do so, portability is lost since tpm plugins will only work in tmux >= 1.9 and bash, if that's not a problem go ahead you still will get extra syntax sugar and version control over your tmux environment.
 
 Additional tundle plugins are available at:
 
