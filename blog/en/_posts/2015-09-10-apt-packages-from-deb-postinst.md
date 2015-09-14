@@ -12,10 +12,10 @@ During the last couple of years I've been building [yet another Linux distributi
 One important part of it is its configuration file, **/etc/minos/config** or **~/.minos/config**, e.g.
 
 <pre class="sh_sh">
-wallpaper       ~/data/images/wallpapers/sunlight.png
-lock-wallpaper  ~/data/images/wallpapers/lock.png
-setup-app-core  mozilla-firefox mozilla-flashplayer
-setup-app-purge xinetd sasl2-bin sendmail sendmail-base sendmail-bin sensible-mda
+wallpaper      ~/data/images/wallpapers/sunlight.png
+lock-wallpaper ~/data/images/wallpapers/lock.png
+app-core       mozilla-firefox mozilla-flashplayer
+app-purge      xinetd sasl2-bin sendmail sendmail-base sendmail-bin sensible-mda
 </pre>
 
 I've chosen Debian/Ubuntu infrastructure for the initial implementation but probably will change it in the future (bedrock linux?). Anyway, since some of the parameters accept additional packages I've been having fun abusing the maintainer scripts to do so, this is the description.
