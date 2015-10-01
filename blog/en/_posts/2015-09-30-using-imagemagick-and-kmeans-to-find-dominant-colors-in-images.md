@@ -11,7 +11,7 @@ Some days ago I was reading ["Using python to generate awesome linux desktop the
 
 Besides resizing, **convert** can output the rgb values of any image, so I reimplemented the kmean algorithm on awk and that's how [dcolors](https://raw.githubusercontent.com/chilicuil/learn/master/sh/tools/dcolors) was born. By default dcolor will resize (on RAM) the input image to 25x25 using a 1px deviation and 3 clusters for an average time of 1s per image, further customization are possible to increase quality, quantity or performance.
 
-<pre class="sh_sh">
+<pre class="lyric">
 $ time dcolors akira
 163,80,50
 65,77,93
@@ -26,7 +26,7 @@ real    0m1.176s
 <span style="background-color: #281a22">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 </center>
 
-<pre class="sh_sh">
+<pre class="lyric">
 time ./dcolors --resize 100x100 --deviation 10 akira-cycle-2.png
 49,85,118
 19,42,69
@@ -41,7 +41,7 @@ real    0m3.188s
 <span style="background-color: #7dada5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 </center>
 
-<pre class="sh_sh">
+<pre class="lyric">
 time ./dcolors --format hex --kmeans 8 akira-neo-tokyo-7_800x800.png
 #495D66
 #223634
