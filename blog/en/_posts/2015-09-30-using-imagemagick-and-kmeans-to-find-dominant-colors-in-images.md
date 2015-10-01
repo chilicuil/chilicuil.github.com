@@ -25,9 +25,10 @@ real    0m1.176s
 <span style="background-color: #414d5d">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span style="background-color: #281a22">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 </center>
+<br/>
 
 <pre class="lyric">
-time ./dcolors --resize 100x100 --deviation 10 akira-cycle-2.png
+time ./dcolors --resize 100x100 -d 10 akira-cycle-2.png
 49,85,118
 19,42,69
 125,173,165
@@ -40,6 +41,7 @@ real    0m3.188s
 <span style="background-color: #132a45">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span style="background-color: #7dada5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 </center>
+<br/>
 
 <pre class="lyric">
 time ./dcolors --format hex --kmeans 8 akira-neo-tokyo-7_800x800.png
