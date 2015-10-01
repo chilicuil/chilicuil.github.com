@@ -28,7 +28,7 @@ real    0m1.176s
 <p></p>
 
 <pre class="lyric">
-time ./dcolors --resize 100x100 -d 10 akira-cycle-2.png
+$ time ./dcolors --resize 100x100 -d 10 akira-cycle-2.png
 49,85,118
 19,42,69
 125,173,165
@@ -44,7 +44,7 @@ real    0m3.188s
 <p></p>
 
 <pre class="lyric">
-time ./dcolors -f hex -k 8 akira-neo-tokyo-7_800x800.png
+$ time ./dcolors -f hex -k 8 akira-neo-tokyo-7_800x800.png
 #495D66
 #223634
 #1C293A
