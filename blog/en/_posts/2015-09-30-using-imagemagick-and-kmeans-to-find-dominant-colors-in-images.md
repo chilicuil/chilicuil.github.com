@@ -44,7 +44,7 @@ real    0m3.188s
 <br/>
 
 <pre class="lyric">
-time ./dcolors --format hex --kmeans 8 akira-neo-tokyo-7_800x800.png
+time ./dcolors -f hex -k 8 akira-neo-tokyo-7_800x800.png
 #495D66
 #223634
 #1C293A
