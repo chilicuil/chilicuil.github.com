@@ -23,6 +23,10 @@ Commit + policy driven temporal sandboxing environments.
 
 Compilation of current security trends and its shortfalls, eg: selective execution (by white/black lists, heuristic -antivirus software, statistic based -symantec quorum, spynet, mcafee artemis, etc); rule based (DAC, Linux standard, Rainbow, polaris); application oriented access control (mapbox, android, bitfrost, dte, apparmor, selinux, tomoyo, systrace, alcatraz, some web apps); isolation based {permanent (virtual machines - kvm,xen,uml,virtualbox, containers - chroot, lxe, openvz, linux vserver, jails), ephemeral (privexec), both (alcatraz, sandboxie, pastures, returnil), isolated two ways (virtual machines, containers), isolated one way (privexec,alcatraz)}; monitoring system calls (systrace, plash, callgraph, pulse); combinations (app oriented access control + isolation: qubes, windowbox, apiary, peadpod).
 
+- [Password Multiplier: A convenient method for securely managing passwords](http://www.cs.utexas.edu/~bwaters/publications/papers/www2005.pdf) - 2005. [[pdf]](http://f.javier.io/rep/papers/Password%20Multiplier:%20A%20convenient%20method%20for%20securely%20managing%20passwords.pdf) 9 Pag.
+
+Hash based passwords.
+
 ## Computer Virtualization
 
 - [Performance Evaluation of Container-based Virtualization for High Performance Computing Environments](http://marceloneves.org/papers/pdp2013-containers.pdf) - 2014. [[pdf]](http://f.javier.io/rep/papers/pdp2013-containers.pdf) 8 Pag.
