@@ -21,7 +21,7 @@ Started httpserver on port 8080
 
 **[![](/assets/img/simple-mpc-remote.png)](/assets/img/simple-mpc-remote.png)**
 
-`simple-mpc-remote` has no dependencies, other than python +2.7, mpc and mpd and it's really simple to install/use. Since it doesn't do any effort to sanitize input It could be dangerous, however since I trust my local network I'll leave like that for now.
+`simple-mpc-remote` has no dependencies, other than python +2.7, mpc and mpd and it's really simple to install/use. Since it does little effort to sanitize input it could be dangerous, however since I trust my local network I'll leave like that for now.
 
 Happy skipping &#128523;
 
