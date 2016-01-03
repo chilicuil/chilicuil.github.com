@@ -15,7 +15,7 @@ $ python simple-mplayer-remote -p 8080
 Started httpserver on port 8080
 </pre>
 
-**[![](/assets/img/simple-mpc-remote)](/assets/img/simple-mpc-remote)**
+**[![](/assets/img/simple-mpc-remote.png)](/assets/img/simple-mpc-remote.png)**
 
 The result has no dependencies, other than python +2.7, mpc and mpd and it's pretty simple. It could be even dangerous, however since I trust my local network I'll leave like that for now.
 
