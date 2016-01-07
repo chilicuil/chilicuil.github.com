@@ -63,7 +63,7 @@ That's it, happy password generation &#128523;
 
 References
 
-- [genpass](https://github.com/chilicuil/genpass).
+- [genpass](https://github.com/chilicuil/genpass)
 - [bcrypt](https://en.wikipedia.org/wiki/Bcrypt), slow key derivation function
 - [scrypt](https://en.wikipedia.org/wiki/Scrypt), slow key derivation function
 - [pwdhash](https://www.pwdhash.com/), md5 based password generator, js
