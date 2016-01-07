@@ -32,7 +32,7 @@ It's still convenient to use your own parameters, as the default settings will c
 
 ### Usage
 
-<a href="https://raw.githubusercontent.com/chilicuil/genpass/master/genpass.gif"><img src="https://raw.githubusercontent.com/chilicuil/genpass/master/genpass.gif" alt="" style="border: 1px solid white;"></a>
+<a href="https://raw.githubusercontent.com/chilicuil/genpass/master/genpass.gif"><img src="https://raw.githubusercontent.com/chilicuil/genpass/master/genpass.gif" alt="" style="border: 1px solid white;margin-bottom: 3%;"></a>
 <!--$ genpass-->
 <!--Name: Guy Mann-->
 <!--Site: github.com-->
@@ -46,20 +46,22 @@ I've also added a `getpass` wrapper which paste the resulting password to the sy
 
 ### Installation
 
-## Ubuntu based systems (LTS)
+##### Ubuntu based systems (LTS)
 
     $ sudo add-apt-repository ppa:minos-archive/main
     $ sudo apt-get update && sudo apt-get install genpass
 
-## Other Linux distributions, static binaries
+##### Other Linux distributions, static binaries
 
     $ sh <(wget -qO- s.minos.io/s) -x genpass
 
-## From source
+##### From source
 
     $ make
 
 That's it, happy password generation &#128523;
+
+References
 
 - [genpass](https://github.com/chilicuil/genpass).
 - [bcrypt](https://en.wikipedia.org/wiki/Bcrypt), slow key derivation function
