@@ -6,7 +6,7 @@ updates="http://minos.io/s"
 liner="$ sh <(wget -qO- minos.io/s)"
 
 #minos_core="minos-core" #same as meta-package
-minos_core="git-core vim-nox tmux tmate mosh wcd htop curl bc rsync ncurses-bin
+minos_core="git vim-nox tmux mosh wcd htop curl bc rsync ncurses-bin genpass
 ncurses-term command-not-found bash-completion libpam-captcha exuberant-ctags
 silversearcher-ag bash-minos-settings minos-tools-extra minos-core-settings"
 
@@ -19,7 +19,8 @@ gtk2-engines-pixbuf openssh-server wicd-curses redshift vim-gtk lame gvfs-fuse
 policykit-1 libmad0 geoclue-ubuntu-geoip libdvdread4 xdotool dbus-x11 umplayer
 gxmessage magnifier compton plymouth-theme-minos-comet xbacklight minos-core
 slim-theme-minos-login minos-tools minos-artwork minos-desktop-settings
-util-linux xdg-utils firefox28 firefox28-minos-settings firefox-flashplugin"
+util-linux xdg-utils realvncviewer507 firefox28 firefox28-minos-settings
+firefox-flashplugin"
 
 if [ -z "${1}" ]; then
     mode="core"; cx="\b>"
