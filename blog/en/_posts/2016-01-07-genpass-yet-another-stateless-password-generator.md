@@ -61,12 +61,12 @@ I've also added a `getpass` wrapper which paste the resulting password to the sy
 
 That's it, happy password generation &#128523;
 
-- genpass (https://github.com/chilicuil/genpass).
-- bcrypt (https://en.wikipedia.org/wiki/Bcrypt), slow key derivation function
-- scrypt (https://en.wikipedia.org/wiki/Scrypt), slow key derivation function
-- pwdhash (https://www.pwdhash.com/), md5 based password generator, js
-- supergenpass (http://www.supergenpass.com/), md5 iteration based password generator, js
-- passwordmaker (http://passwordmaker.org), md5, sha1, sha256, [etc](http://passwordmaker.org/FAQ#Which_hash_algorithms_are_supported.3F) based password generator, several implementations
+- [genpass](https://github.com/chilicuil/genpass).
+- [bcrypt](https://en.wikipedia.org/wiki/Bcrypt), slow key derivation function
+- [scrypt](https://en.wikipedia.org/wiki/Scrypt), slow key derivation function
+- [pwdhash](https://www.pwdhash.com/), md5 based password generator, js
+- [supergenpass](http://www.supergenpass.com/), md5 iteration based password generator, js
+- [passwordmaker](http://passwordmaker.org), md5, sha1, sha256, [etc](http://passwordmaker.org/FAQ#Which_hash_algorithms_are_supported.3F) based password generator, several implementations
 - [masterpassword](http://masterpasswordapp.com/), hard-coded scrypt based password generator, several implementations
 - [npwd](https://github.com/kaepora/npwd), hard-coded scrypt based password generator, Nodejs
 - [cpwd](https://github.com/postboy/cpwd), hard-coded scrypt based password generator, C
