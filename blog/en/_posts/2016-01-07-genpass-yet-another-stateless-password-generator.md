@@ -32,11 +32,12 @@ It's still convenient to use your own parameters, as the default settings will c
 
 ### Usage
 
-    $ genpass
-    Name: Guy Mann
-    Site: github.com
-    Master password: passwd #it won't be shown
-    4c%7hZ5w]MZUB6RRPCJ&?wKTFtd[6Oj.P.02d+kIs
+**[![](https://raw.githubusercontent.com/chilicuil/genpass/master/genpass.gif)](https://raw.githubusercontent.com/chilicuil/genpass/master/genpass.gif)**
+<!--$ genpass-->
+<!--Name: Guy Mann-->
+<!--Site: github.com-->
+<!--Master password: passwd #it won't be shown-->
+<!--4c%7hZ5w]MZUB6RRPCJ&?wKTFtd[6Oj.P.02d+kIs-->
 
 The first time it's executed it will take a relative long time (a couple of minutes) to get back. It'll create a cache key and will save it to `~/.genpass-cache` (this path can be customized), then it will combine it with the master password and the site string to generate the final password, which can be in z85(default), base64, skey, etc, encodings. The cache key file should be guarded with moderate caution, if it gets leaked possible attackers may have an easier time guessing the master password (although it still will be considerably harder than average brute force attacks). Later invocations will be instantly (taking on average 0.1secs). This way the scheme strives for the best balance between security and usability.
 
