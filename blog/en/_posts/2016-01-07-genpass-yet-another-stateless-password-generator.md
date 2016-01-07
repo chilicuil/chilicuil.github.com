@@ -32,7 +32,7 @@ It's still convenient to use your own parameters, as the default settings will c
 
 ### Usage
 
-**[![](https://raw.githubusercontent.com/chilicuil/genpass/master/genpass.gif)](https://raw.githubusercontent.com/chilicuil/genpass/master/genpass.gif)**
+<a href="https://raw.githubusercontent.com/chilicuil/genpass/master/genpass.gif"><img src="https://raw.githubusercontent.com/chilicuil/genpass/master/genpass.gif" alt="" style="border: 1px solid white;"></a>
 <!--$ genpass-->
 <!--Name: Guy Mann-->
 <!--Site: github.com-->
