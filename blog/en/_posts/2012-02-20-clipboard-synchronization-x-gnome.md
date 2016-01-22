@@ -12,7 +12,8 @@ By default X11 powered systems have at least [two different clipboards](http://e
 There is no way to disable/delete them, so the next best solution is to synchronizate them. [Autocutsel](http://www.nongnu.org/autocutsel/) is a free cli utility who can do this. It works by adding it to the **~/.xsession** file or any other initialization file your windows system execute:
 
 <pre class="sh_sh">
-autocutsel &amp; #sync between X and Gnome apps
+$ autocutsel -fork #sync between X and Gnome apps
+$ autocutsel -selection PRIMARY -fork #sync between Gnome apps and X
 </pre>
 
 Happy copy/pasting &#9787;
