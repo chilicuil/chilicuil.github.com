@@ -29,9 +29,6 @@ $ simple-dlna-browser -s 192.168.1.254:8200 contacto
 http://10.9.8.7:8200/MediaItems/23.avi
 
 $ simple-dlna-browser -s 192.168.1.254 contacto | xargs mplayer
-
-$ simple-dlna-browser -L
-http://192.168.1.254:8200/rootDesc.xml (MiniDLNA)
 </pre>
 
 I used minidlna 1.1.4-2 as a reference, so it may not work with other media servers.
