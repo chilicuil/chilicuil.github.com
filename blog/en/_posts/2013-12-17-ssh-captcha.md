@@ -39,7 +39,7 @@ Be aware than the previous steps will only work in supported Ubuntu LTS versions
 
 ## Sentry
 
-If additional security is desired consider using [sentry](https://www.tnpi.net/wiki/Sentry) above fail2ban, denyhosts, sshblacklist, etc, really.
+If additional security is desired consider using [sentry](https://www.tnpi.net/wiki/Sentry) over fail2ban, denyhosts, sshblacklist, etc, really.
 
     $ wget http://www.tnpi.net/internet/sentry.pl
     $ sudo perl sentry.pl
