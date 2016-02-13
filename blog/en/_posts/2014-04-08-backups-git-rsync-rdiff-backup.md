@@ -9,9 +9,9 @@ title: "backups: rsync, rdiff-backup"
 
 I don't remember the last time I lost information, that's been mostly because of luck instead of preparation, but with internet services providing more bandwidth, efficient/modern compression algorithms and more affordable virtual and cloud services I finally decided to give up my luck and automate my backup plan.
 
-I'm fortunate to work in an heterogeneous environment, linux + x32/x64 boxes, so I cling to the lowest denominator, ssh/rsync. Both programs are installed in virtually all linux distributions or are included in default repositories, so it's easy to backup new machines, besides, both are secure, efficient and well supported. A minor annoyance is that they may be difficult to use, specially rsync which has plenty of options.
+I'm fortunate to work in an heterogeneous environment, linux + x32/x64 boxes, so I cling to the lowest denominator, ssh/rsync. Both programs are installed in virtually all linux distributions or are included in default repositories, so it's easy to backup new machines, besides, both are secure, efficient and well supported. A minor annoyance is that they are difficult to use, specially rsync which has plenty of options.
 
-After playing for a while, I grouped my favorite options in a [wrapper script](https://github.com/chilicuil/learn/blob/master/sh/tools/backup-remote-rsync), and deployed the result to the target boxes, eg:
+After playing for a while, I grouped my favorite options in a [wrapper script](https://github.com/chilicuil/learn/blob/master/sh/tools/backup-remote-rsync), and copy it to the target boxes, eg:
 
     $ backup-remote-rsync -r b.javier.io #backup $HOME to b.javier.io:~/hostname
     $ backup-remote-rsync -r b.javier.io -u admin -k /home/admin/.ssh/id_rsa /var/www /etc
@@ -24,7 +24,7 @@ The above lines are run once per day, per box.
 
 Since rsync only transfers deltas, once the backup is online further runs complete faster.
 
-On the server side, besides setting up ssh, I used ([rdiff-backup](http://www.nongnu.org/rdiff-backup/examples.html)), a program designed to create dailies/weeklies/monthlies efficiently and another script, [share-backup](https://github.com/chilicuil/learn/blob/master/sh/tools/share-backup), to get easy, fast and secure access to specific files when a ssh/rsync client is not available, or when I want to share files with friends.
+On the server side, besides setting up ssh, I used [rdiff-backup](http://www.nongnu.org/rdiff-backup/examples.html), a program designed to create dailies/weeklies/monthlies efficiently and another script, [share-backup](https://github.com/chilicuil/learn/blob/master/sh/tools/share-backup), to get easy, fast and secure access to specific files when a ssh/rsync client is not available, or when I want to share files with friends.
 
 `share-backup` can be run from within any client machine, eg:
 
@@ -59,7 +59,7 @@ I configured cronjob entries for rdiff-backup, generating dailies(7), weeklies(4
 
 When dealing with backups you'll deal often with decisions, is it more important saving hard disk space or keep several copies around?, does your backup plan require detailed third party integration or will be generic?, how many resources in time and money are you willing to invest?, how fast your recovery process should be?, how private your data is?. It's important to ask yourself these questions and test as many alternatives as possible, then use the option(s) you feel comfortable with, those who make sense and you trust.
 
-I've shared my personal backup plan, because even when there are plenty of options, I found most of them were over complicated or I didn't trust, it works for me (right now) but don't take for granted it'll do it for you.
+I've shared my personal backup plan, because even when there are plenty of options, I found most of them over complicated or untrusty, this method works for me (right now) but don't take for granted it'll do it for you.
 
 If you're out of ideas take a look at:
 
