@@ -1,34 +1,32 @@
 ---
 layout: post
-title: "backups: git, rsync, rdiff-backup"
+title: "backups: rsync, rdiff-backup"
 ---
 
 ## {{ page.title }}
 
 ###### {{ page.date | date_to_string }}
 
-**[![](/assets/img/96.png)](/assets/img/96.png)**
+I don't remember the last time I lost information, that's been mostly because of luck instead of preparation, but with internet services providing more bandwith, efficient/modern compression algorithms and more affortable virtual and cloud services I finally decided to give up my luck and automate my backup plan.
 
-I took the weekend to review my personal backup strategy and this is the result. Besides using git to track current projects (which also provides very good integrated backup) I created a [script](https://github.com/chilicuil/learn/blob/master/sh/tools/backup-remote-rsync) to be allocated in the machines backing up, eg:
+I'm fortunate to work in an heteregonean environment, linux + x32/x64 boxes, so I cling to the lowest denominator, ssh/rsync. Both programs are installed in virtually all linux distributions or are included in default repositories, so it's easy to backup new machines, besides, both are secure, efficient and well supported. A minor annoyance is that they may be difficult to use, specially rsync which has plenty of options.
 
-    $ backup-remote-rsync -r b.javier.io #will backup $HOME to b.javier.io:~/hostname
-    $ backup-remote-rsync -r b.javier.io -u admin -i /home/admin/.ssh/id_rsa /var/www /etc
-    #will back up /var/www and /etc using admin ssh keys to login to b.javier.io
+After playing for a while, I grouped my favorite options in a [wrapper script](https://github.com/chilicuil/learn/blob/master/sh/tools/backup-remote-rsync), and deployed the result to the target boxes, eg:
 
-A program ([rdiff-backup](http://www.nongnu.org/rdiff-backup/examples.html)) to create dailys/weeklys/montlys on the backup server. And another [script](https://github.com/chilicuil/learn/blob/master/sh/tools/share-backup) to get easy access to the files if needed (isn't the whole point?).
+    $ backup-remote-rsync -r b.javier.io #backup $HOME to b.javier.io:~/hostname
+    $ backup-remote-rsync -r b.javier.io -u admin -k /home/admin/.ssh/id_rsa /var/www /etc
+    #back up /var/www and /etc to b.javier.io:~/hostname, uses admin public key
 
-The idea is to run backup-remote-rsync (which uses a popular synchronization program internally) daily and generate **~/backup/$(hostname)** folders in the backup server (it has hardcoded b.javier.io by default but it accepts other parameters). Then generate dailys(7), weeklys(4) and monthlys(12).
+The above lines are run once per day, per box.
 
-    0 1 * * * rdiff-backup /home/admin/backup/ /home/admin/recovery/daily
-    0 2 * * * rdiff-backup --remove-older-than 6D /home/admin/recovery/daily
+    $ sudo cronjob -l
+    0 22 * * * backup-remote-rsync -u admin -i /home/admin/.ssh/id_rsa -r backup.javier.io /home/admin
 
-    0 1 * * 0 rdiff-backup /home/admin/backup/ /home/admin/recovery/weekly
-    0 2 * * 0 rdiff-backup --remove-older-than 3W /home/admin/recovery/weekly
+Since rsync only transfers deltas, once the backup is online further runs complete faster.
 
-    0 1 1 * * rdiff-backup /home/admin/backup/ /home/admin/recovery/monthly
-    0 2 1 * * rdiff-backup --remove-older-than 12M /home/admin/recovery/monthly
+On the server side, besides setting up ssh, I used ([rdiff-backup](http://www.nongnu.org/rdiff-backup/examples.html)), a program designed to create dailys/weeklys/montlys efficiently and another script, [share-backup](https://github.com/chilicuil/learn/blob/master/sh/tools/share-backup), to get easy, fast and secure access to specific files when a ssh/rsync client is not available, or when I want to share files with friends.
 
-And finally run **share-backup** from any computer with access to b.javier.io to see files, eg:
+`share-backup` can be run from within any client machine, eg:
 
     $ ssh admin@b.javier.io share-backup
     Starting server ...
@@ -44,20 +42,27 @@ And finally run **share-backup** from any computer with access to b.javier.io to
     $ ssh admin@b.javier.io share-backup stop
     Stopped
 
-The last step will run a temporal [http server](https://github.com/chilicuil/learn/blob/master/python/simple-httpd) with basic auth and optional ssl.
+Internally it runs a temporal [http server](https://github.com/chilicuil/learn/blob/master/python/simple-httpd) with basic auth and optional ssl.
+
+I configured cronjob entries for rdiff-backup, generating dailys(7), weeklys(4) and monthlys(12).
+
+    0 1 * * * rdiff-backup /home/admin/backup/ /home/admin/recover/daily
+    0 2 * * * rdiff-backup --remove-older-than 6D /home/admin/recover/daily
+
+    0 1 * * 0 rdiff-backup /home/admin/backup/ /home/admin/recover/weekly
+    0 2 * * 0 rdiff-backup --remove-older-than 3W /home/admin/recover/weekly
+
+    0 1 1 * * rdiff-backup /home/admin/backup/ /home/admin/recover/monthly
+    0 2 1 * * rdiff-backup --remove-older-than 12M /home/admin/recover/monthly
 
 ## Decisions
 
-Dealing with backups will often make you wonder if you prefer clients contact the backup server or the other way around. Both have advantages and disadvantages so it's mostly up to you and what may be more important in your current setup. On this scenario most computers are behind a firewall so I decided to make them contact the backup server.
+When dealing with backups you'll deal often with decisions, is it more important saving hard disk space or keep several copies around?, does your backup plan require detailed third party integration or will be generic?, how many resources in time and money are you willing to invest?, how fast your recovery process should be?, how private your data is?. It's important to ask yourself these questions and test as many alternatives as possible, then use the option(s) you feel comfortable with, those who make sense and you trust.
 
-I added key ssh based auth and captcha to the server to improve security. Even when I don't think someone would like to login on purpose to this machine, there exist a fair amount of scripts, spammers and script kiddies looking for free computer resources, so I try to keep them behind the line.
+I've shared my personal backup plan, because even when there are plenty of options, I found most of them were over complicated or I didn't trust, it works for me (right now) but don't take for granted it'll do it for you.
 
-In complex deployments there may be different OS, architectures or auth rules, fortunately in my personal environment I don't have to deal with those problems because I only use Linux on amd64/x86 machines and use solely ssh to get access. So it simplified a lot the tool selection phase. I chose rsync because it's installed by default in most modern distributions and made a wrapper around it because I don't like to type too much. The fact that it works with me doesn't mean it would work for you, I just chose the tool which seems right for the job.  Bacula or other enterprise solutions will make wonder for small to big enterprises and I would probably use them in a sophisticated environment but with my personal stuff I prefer to keep it simple.  The features you want will also make you think deep about the tools and policy of your backup setup. In my case I wanted **independency**, **simplicity**, history, de-duplication and encryption. And although I couldn't get the last one, I think it would work until the next time I review it. Still in 2014 it is a pain to deploy a backup solution, so don't feel bad if your current setup is a peace of crap, most other solutions are equally bad or even worst =).
+If you're out of ideas take a look at:
 
-I took a look at prospects such as:
+- [ddumbfs](http://www.magiksys.net/ddumbfs/), [btrfs](https://btrfs.wiki.kernel.org/index.php/Main_Page), [s3fs](https://github.com/s3fs-fuse/s3fs-fuse), [opendedup](http://opendedup.org/), [bup](https://github.com/bup/bup), [obnam](http://obnam.org/), [bacula](http://bacula.org/), [etc](https://en.wikipedia.org/wiki/List_of_backup_software).
 
-- zfs, ddumbfs, btrfs, s3fs, opendedup, fuse fs
-- [bup](https://github.com/bup/bup), [obnam](http://code.liw.fi/obnam/manual/manual.html), bacula
-- etc
-
-But discard them because they laked the features I wanted, or were just to complex to deploy. Probably I'll add some kind of basic monitoring and pgp encryption next time, who knows...
+That's it, happy and safe hacking &#128523;
