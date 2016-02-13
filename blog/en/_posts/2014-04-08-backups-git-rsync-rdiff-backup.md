@@ -7,9 +7,9 @@ title: "backups: rsync, rdiff-backup"
 
 ###### {{ page.date | date_to_string }}
 
-I don't remember the last time I lost information, that's been mostly because of luck instead of preparation, but with internet services providing more bandwith, efficient/modern compression algorithms and more affortable virtual and cloud services I finally decided to give up my luck and automate my backup plan.
+I don't remember the last time I lost information, that's been mostly because of luck instead of preparation, but with internet services providing more bandwidth, efficient/modern compression algorithms and more affordable virtual and cloud services I finally decided to give up my luck and automate my backup plan.
 
-I'm fortunate to work in an heteregonean environment, linux + x32/x64 boxes, so I cling to the lowest denominator, ssh/rsync. Both programs are installed in virtually all linux distributions or are included in default repositories, so it's easy to backup new machines, besides, both are secure, efficient and well supported. A minor annoyance is that they may be difficult to use, specially rsync which has plenty of options.
+I'm fortunate to work in an heterogeneous environment, linux + x32/x64 boxes, so I cling to the lowest denominator, ssh/rsync. Both programs are installed in virtually all linux distributions or are included in default repositories, so it's easy to backup new machines, besides, both are secure, efficient and well supported. A minor annoyance is that they may be difficult to use, specially rsync which has plenty of options.
 
 After playing for a while, I grouped my favorite options in a [wrapper script](https://github.com/chilicuil/learn/blob/master/sh/tools/backup-remote-rsync), and deployed the result to the target boxes, eg:
 
@@ -24,7 +24,7 @@ The above lines are run once per day, per box.
 
 Since rsync only transfers deltas, once the backup is online further runs complete faster.
 
-On the server side, besides setting up ssh, I used ([rdiff-backup](http://www.nongnu.org/rdiff-backup/examples.html)), a program designed to create dailys/weeklys/montlys efficiently and another script, [share-backup](https://github.com/chilicuil/learn/blob/master/sh/tools/share-backup), to get easy, fast and secure access to specific files when a ssh/rsync client is not available, or when I want to share files with friends.
+On the server side, besides setting up ssh, I used ([rdiff-backup](http://www.nongnu.org/rdiff-backup/examples.html)), a program designed to create dailies/weeklies/monthlies efficiently and another script, [share-backup](https://github.com/chilicuil/learn/blob/master/sh/tools/share-backup), to get easy, fast and secure access to specific files when a ssh/rsync client is not available, or when I want to share files with friends.
 
 `share-backup` can be run from within any client machine, eg:
 
@@ -42,9 +42,9 @@ On the server side, besides setting up ssh, I used ([rdiff-backup](http://www.no
     $ ssh admin@b.javier.io share-backup stop
     Stopped
 
-Internally it runs a temporal [http server](https://github.com/chilicuil/learn/blob/master/python/simple-httpd) with basic auth and optional ssl.
+Internally it runs a temporal [http server](https://github.com/chilicuil/learn/blob/master/python/simple-httpd) with basic authentication and optional ssl.
 
-I configured cronjob entries for rdiff-backup, generating dailys(7), weeklys(4) and monthlys(12).
+I configured cronjob entries for rdiff-backup, generating dailies(7), weeklies(4) and monthlies(12).
 
     0 1 * * * rdiff-backup /home/admin/backup/ /home/admin/recover/daily
     0 2 * * * rdiff-backup --remove-older-than 6D /home/admin/recover/daily
