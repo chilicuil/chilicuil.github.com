@@ -17,10 +17,10 @@ libnotify-bin irssi mutt-patched pcmanfm rlpr gnupg-agent lxappearance conky-cli
 zathura scrot ffcast unrar unzip xarchiver zram-config udisks xclip gvfs dkms
 gtk2-engines-pixbuf openssh-server wicd-curses redshift vim-gtk lame gvfs-fuse
 policykit-1 libmad0 geoclue-ubuntu-geoip libdvdread4 xdotool dbus-x11 umplayer
-gxmessage magnifier compton plymouth-theme-minos-comet xbacklight minos-core
-slim-theme-minos-login minos-tools minos-artwork minos-desktop-settings
-util-linux xdg-utils realvncviewer507 firefox28 firefox28-minos-settings
-firefox-flashplugin"
+gxmessage magnifier compton plymouth-theme-minos-comet xbacklight
+slim-theme-minos-login minos-tools minos-artwork util-linux xdg-utils
+realvncviewer507 firefox28 firefox28-minos-settings firefox-flashplugin"
+#minos-core minos-desktop-settings
 
 if [ -z "${1}" ]; then
     mode="core"; cx="\b>"
@@ -36,8 +36,7 @@ fi
 # General functions ############################################################
 ################################################################################
 
-_arch()
-{   #check system arch, return 64|32 (32 by default)
+_arch() { #check system arch, return 64|32 (32 by default)
     if [ -z "${MACHTYPE}" ]; then
         _arch__arch="$(uname -m)"
     else
@@ -52,8 +51,7 @@ _arch()
     printf "%s" "${_arch__arch}"
 }
 
-_animcui()
-{   #wait animation
+_animcui() { #wait animation
     [ -z "${1}" ] && { printf "%5s\n" ""; return 1; }
 
     if ! printf "%s" "$(pidof "${1}")" | grep "[0-9].*" >/dev/null; then
@@ -87,8 +85,7 @@ _animcui()
     printf "%b" "\b\b\b\b\b" && printf "%5s\n" ""
 }
 
-_basename()
-{
+_basename() {
     [ -z "${1}" ] && return 1 || _basename_var_name="${1}"
     [ -z "${2}" ] || _basename_var_suffix="${2}"
     case "${_basename_var_name}" in
@@ -105,8 +102,7 @@ _basename()
     printf "%s\\n" "${_basename_var_name}"
 }
 
-_getroot()
-{   #get sudo's password, define $sudopwd and $sudocmd
+_getroot() { #get sudo's password, define $sudopwd and $sudocmd
     if [ ! X"${LOGNAME}" = X"root" ]; then
         printf "%s\\n" "Detecting user ${LOGNAME} (non-root) ..."
         printf "%s\\n" "Checking if sudo is available ..."
@@ -177,16 +173,14 @@ _getroot()
     fi
 }
 
-_ensurecron()
-{   #adds cron job, returns 1 on error
+_ensurecron() { #adds cron job, returns 1 on error
     [ -z "${1}" ] && return 1
     _ensurecron_var_exist="$(crontab -l 2>/dev/null | awk -v p="${1}" '{ if ($0 == p) {print p}}')"
     [ -n "${_ensurecron_var_exist}" ] && return 0
     ( crontab -l 2>/dev/null; printf "%s\\n" "${1}" ) | crontab -
 }
 
-_printfl()
-{   #print lines
+_printfl() { #print lines
     _printfl_var_max_len="80"
     if [ -n "${1}" ]; then
         _printfl_var_word_len="$(expr "${#1}" + 2)"
@@ -209,20 +203,17 @@ _printfl()
     fi
 }
 
-_printfs()
-{   #print steps
+_printfs() { #print steps
     [ -z "${1}" ] && return 1
     printf "%s\\n" "[+] ${*}"
 }
 
-_printfc()
-{   #print commands
+_printfc() { #print commands
     [ -z "${1}" ] && return 1
     printf "%s\\n" "    $ ${*}"
 }
 
-_unprintf()
-{   #unprint sentence
+_unprintf() { #unprint sentence
     [ -z "${1}" ] && return 1
     _unprintf_var_word_len="$(expr ${#1})"
     _unprintf_var_i="0"
@@ -232,8 +223,7 @@ _unprintf()
     done
 }
 
-_distro()
-{   #return distro name in a lower string
+_distro() { #return distro name in a lower string
     _distro_var_DIST_INFO="/etc/lsb-release"
     if [ -r "${_distro_var_DIST_INFO}" ]; then
         . "${_distro_var_DIST_INFO}"
@@ -255,8 +245,7 @@ _distro()
     fi
 }
 
-_smv()
-{   #move files, create backups before overriding
+_smv() { #move files, create backups before overriding
     [ -z "${1}" ] && return 1 || _smv_var_origin_basename="$(_basename "${1}")"
     [ -z "${2}" ] && return 1
 
@@ -298,8 +287,7 @@ _smv()
     fi
 }
 
-_hooks()
-{
+_hooks() {
     [ -z "${1}" ] && return 1
     case "${1}" in
         A|B|C)
@@ -323,20 +311,17 @@ _hooks()
     esac
 }
 
-_getuuid()
-{   #get partition uuid, eg, _getuuid /dev/sda1
+_getuuid() { #get partition uuid, eg, _getuuid /dev/sda1
     [ -z "${1}" ] && return 1
     udevadm info -q all -n "${1}" | awk -F"/" '/^S.*uuid.*/ {print $3}'
 }
 
-_getfs()
-{   #get partition fs, eg, _getfs /dev/sda1
+_getfs() { #get partition fs, eg, _getfs /dev/sda1
     [ -z "${1}" ] && return 1
     udevadm info -q all -n "${1}" | awk -F"=" '/ID_FS_TYPE/ {print $2}'
 }
 
-_getlastversion()
-{   #get last version of a bunch of files
+_getlastversion() { #get last version of a bunch of files
     [ -z "${1}" ] && return 1
 
     _getlastversion_var_files="${1}".minos-backup.*
@@ -363,8 +348,7 @@ _getlastversion()
     fi
 }
 
-_getrelease()
-{   #print debian|ubuntu release version
+_getrelease() { #print debian|ubuntu release version
     if command -v "lsb_release" 1>/dev/null 2>&1; then
         _getrelease_var_release="$(lsb_release -s -c)"
     else
@@ -376,8 +360,7 @@ _getrelease()
     printf "%s" "${_getrelease_var_release}"
 }
 
-_fetchfile()
-{
+_fetchfile() {
     [ -z "${1}" ] && return 1 || _fetchfile_var_url="${1}"
     [ -z "${2}" ] && _fetchfile_var_output="" || _fetchfile_var_output="${2}"
     _fetchfile_var_max_retries="10"
@@ -411,8 +394,7 @@ _fetchfile()
     done
 }
 
-_fetchrepo()
-{   #git clone doesn't support retry, this function fix that
+_fetchrepo() { #git clone doesn't support retry, this function fix that
     [ -z "${1}" ] && return 1 || _fetchrepo_var_url="${1}"
     [ -z "${2}" ] || _fetchrepo_var_output="${2}"
    _fetchrepo_var_max_retries="10"
@@ -443,14 +425,12 @@ _fetchrepo()
     done
 }
 
-_existaptproxy()
-{   #look for apt proxies, return 0 on sucess, 1 otherwise
+_existaptproxy() { #look for apt proxies, return 0 on sucess, 1 otherwise
     avahi-browse -a  -t | grep apt-cacher-ng >/dev/null && return 0
     return 1
 }
 
-_die()
-{   #print a stacktrace with a msg, exits with 1
+_die() { #print a stacktrace with a msg, exits with 1
     if [ -n "${BASH}" ]; then
         _die_var_frame="0"
         while caller "${_die_var_frame}"; do
@@ -462,8 +442,7 @@ _die()
     exit
 }
 
-_cmd()
-{   #print and execute a command, exit on fail
+_cmd() { #print and execute a command, exit on fail
     [ -z "${1}" ] && return 1
 
     printf "%s \\n" "    $ ${*}"
@@ -479,8 +458,7 @@ _cmd()
     fi
 }
 
-_cmdsudo()
-{   #print && execute a command, exit on fail
+_cmdsudo() { #print && execute a command, exit on fail
     [ -z "${1}" ] && return 1
 
     printf "%s \\n" "    $ sudo ${*}"
@@ -496,8 +474,7 @@ _cmdsudo()
     fi
 }
 
-_waitfor()
-{   #print, execute and wait for a command to finish
+_waitfor() { #print, execute and wait for a command to finish
     [ -z "${1}" ] && return 1
 
     printf "%s " "    $ ${@} ..."
@@ -507,8 +484,7 @@ _waitfor()
     _animcui "${1}"
 }
 
-_waitforsudo()
-{   #print, execute and wait for a command to finish
+_waitforsudo() { #print, execute and wait for a command to finish
     [ -z "${1}" ] && return 1
 
     printf "%s " "    $ sudo ${@} ..."
@@ -522,15 +498,13 @@ _waitforsudo()
     fi
 }
 
-_homedetected()
-{   #does a partition has /home files?, 0 yes, 1 no
+_homedetected() { #does a partition has /home files?, 0 yes, 1 no
     [ -z "${1}" ] && return 1
     _homedetected_test="$(find "${1}" -maxdepth 2 -type d -iname ".local" 2>/dev/null | grep local)"
     [ -z "${_homedetected_test}" ] && return 1 || return 0
 }
 
-_sethome()
-{   #mount a partition as /home, update /etc/fstab
+_sethome() { #mount a partition as /home, update /etc/fstab
     #TODO 17-09-2013 02:54 >> only mount partitions with id=83 (linux)
     if mountpoint -q /home; then
         if [ -f /etc/mtab ]; then
@@ -606,8 +580,7 @@ _sethome()
     fi
 }
 
-_supported()
-{   #retun 0 on a supported system, 1 otherwise
+_supported() { #retun 0 on a supported system, 1 otherwise
     supported="[Debian|Ubuntu]"
     case "$(_distro)" in
         ubuntu|debian) return 0 ;;
@@ -615,8 +588,7 @@ _supported()
     return 1
 }
 
-_installaptproxy()
-{
+_installaptproxy() {
     _waitforsudo apt-get update
     _waitforsudo apt-get install --no-install-recommends -y avahi-utils
 
@@ -639,8 +611,7 @@ _installaptproxy()
     fi
 }
 
-_siteup()
-{   #check if a site us up, return 0 on sucess, 1 otherwise
+_siteup() { #check if a site us up, return 0 on sucess, 1 otherwise
     [ -z "${1}" ] && return 1 || _siteup_var_url="${1}"
     _siteup_var_max_retries="3"
 
@@ -660,8 +631,7 @@ _siteup()
     return 0
 }
 
-_header()
-{
+_header() {
     _printfl "Minos Setup"
     printf "%b\\n" "\033[1m Updates:\033[0m  ${updates}"
     printf "\\n"
@@ -673,8 +643,7 @@ _header()
     [ "$(id -u)" != "0" ] && _printfl
 }
 
-_diesendmail()
-{   #apt-get purge doesn't kill sendmail instances
+_diesendmail() { #apt-get purge doesn't kill sendmail instances
     _diesendmail_var_pid="$(ps -aef | awk '$0 ~ "sendmail" {if ($0 !~ "awk") print $2}')"
     if [ -n "${_diesendmail_var_pid}" ]; then
         _printfs 'die sendmail, die!!'
@@ -682,8 +651,7 @@ _diesendmail()
     fi
 }
 
-_cleanup()
-{
+_cleanup() {
     [ "${_cleanup_var_init}" ] && return
     _cleanup_var_init="done"
 
@@ -698,8 +666,7 @@ _cleanup()
     [ -z "${1}" ] && exit
 }
 
-_backupreps()
-{   #create a backup of /etc/apt/sources.list.d/* files
+_backupreps() { #create a backup of /etc/apt/sources.list.d/* files
     for _backupreps_var_file in /etc/apt/sources.list.d/*.list; do
         break
     done
@@ -713,8 +680,7 @@ _backupreps()
     done
 }
 
-_recoverreps()
-{   #recover files at /etc/apt/sources.list.d/*
+_recoverreps() { #recover files at /etc/apt/sources.list.d/*
     for _recoverreps_var_file in /etc/apt/sources.list.d/*.list.backup_rep; do
         break
     done
@@ -728,8 +694,7 @@ _recoverreps()
     done
 }
 
-_ensureonline()
-{   #ensure site is online
+_ensureonline() { #ensure site is online
     [ -z "${1}" ] && return 1
     _printfs "testing ${1} ... "
     if ! _siteup "${1}"; then
@@ -738,8 +703,7 @@ _ensureonline()
     return 0
 }
 
-_ensurerepo()
-{   #ensure rep is enabled
+_ensurerepo() { #ensure rep is enabled
     [ -z "${1}" ] && return 1
     [ -z "${2}" ] && _ensurerepo_var_key="" || _ensurerepo_var_key="${2}"
 
@@ -800,8 +764,7 @@ _ensurerepo()
     fi
 }
 
-_ensuresetting()
-{   #ensure setting($1) is set in a configuration file($2)
+_ensuresetting() { #ensure setting($1) is set in a configuration file($2)
     [ -z "${1}" ] && return 1 || _ensuresetting_var_line="${1}"
     [ -z "${2}" ] && return 1 || _ensuresetting_var_file="${2}"
 
@@ -825,8 +788,7 @@ _ensuresetting()
     fi
 }
 
-_whatvirt()
-{   #check for virtualization systems, returns technology used
+_whatvirt() { #check for virtualization systems, returns technology used
     if [ -d /proc/vz ] && [ ! -d /proc/bc ]; then
         printf "openvz"
     elif grep 'UML' /proc/cpuinfo >/dev/null; then
@@ -839,8 +801,7 @@ _whatvirt()
     return 1
 }
 
-_enableremotevnc()
-{
+_enableremotevnc() {
     _printfs "enabling xvnc"
     _waitforsudo apt-get install --no-install-recommends -y x11vnc xserver-xorg-video-dummy
     _printfs "forcing xorg to use dummy driver ..."
@@ -887,9 +848,8 @@ _enableremotevnc()
 # Deployment functions #########################################################
 ################################################################################
 
-_core()
-{
-    _printfl "Fixing dependencies"
+_core() {
+    _printfl "Adding repositories"
     _remotesetup_var_release="$(_getrelease)"
     if [ -n "${_remotesetup_var_release}" ]; then
         _backupreps
@@ -901,7 +861,7 @@ _core()
         _die "Impossible to find release"
     fi
 
-    #this logic was incorporated to minos-core-settings
+    #this logic was incorporated in minos-core-settings
 
     #_printfs     "fixing locales ..."
     #_waitforsudo locale-gen en_US en_US.UTF-8
@@ -913,11 +873,12 @@ _core()
         ##_cmdsudo update-locale LANG=en_US.UTF-8 LC_MESSAGES=POSIX
     #fi
 
-    _printfs    "Fixing apt-get bugs"
+    _printfs    "fixing apt-get bugs"
     printf "%s" "Dir::Ignore-Files-Silently:: \"(.save|.distUpgrade|.backup_rep)$\";" > /tmp/minos-apt-99ignoresave
     _cmdsudo    mv /tmp/minos-apt-99ignoresave /etc/apt/apt.conf.d/99ignoresave
 
-    _printfs     "installing deps ..."
+    _printfl "Installing software"
+    _printfs "Installing packages ..."
     _waitforsudo apt-get update
     _waitforsudo apt-get install --no-install-recommends -y ${minos_core}
 
@@ -927,7 +888,7 @@ _core()
 
     ############################################################################
 
-    #this logic was incorporated to minos-core-settings
+    #this logic was incorporated in minos-core-settings
 
     #_printfl   "Downloading files"
     #_printfs   "getting reps ..."
@@ -978,17 +939,16 @@ _core()
     #_printfs "configuring cd ..."
     #_waitfor update-cd
 
-    _recoverreps
-
     ############################################################################
+
+    _recoverreps
 
     _printfl "DONE"
     printf "\\n%s\\n" "Reload the configuration or relogin to start having fun, n@n/"
     printf "%s\\n"    "    $ source ~/.bashrc"
 }
 
-_desktop()
-{
+_desktop() {
     _printfl      "Verifying mirrors"
     _ensureonline "http://javier.io"
     _ensureonline "http://files.javier.io"
