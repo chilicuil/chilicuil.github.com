@@ -6,7 +6,7 @@ updates="http://minos.io/s"
 liner="$ sh <(wget -qO- minos.io/s)"
 
 #minos_core="minos-core" #same as meta-package
-minos_core="git vim-nox tmux mosh wcd htop curl bc rsync ncurses-bin genpass
+minos_core="git vim-nox tmux mosh wcd htop curl bc rsync ncurses-bin gdebi-core
 ncurses-term command-not-found bash-completion libpam-captcha exuberant-ctags
 silversearcher-ag bash-minos-settings minos-tools-extra minos-core-settings"
 
@@ -17,7 +17,7 @@ libnotify-bin irssi mutt-patched pcmanfm rlpr gnupg-agent lxappearance conky-cli
 zathura scrot ffcast unrar unzip xarchiver zram-config udisks xclip gvfs dkms
 gtk2-engines-pixbuf openssh-server wicd-curses redshift vim-gtk lame gvfs-fuse
 policykit-1 libmad0 geoclue-ubuntu-geoip libdvdread4 xdotool dbus-x11 umplayer
-gxmessage magnifier compton plymouth-theme-minos-comet xbacklight
+gxmessage magnifier compton plymouth-theme-minos-comet xbacklight genpass
 slim-theme-minos-login minos-tools minos-artwork util-linux xdg-utils
 realvncviewer507 firefox28 firefox28-minos-settings firefox-flashplugin"
 #minos-core minos-desktop-settings
@@ -636,7 +636,7 @@ _header() {
     printf "%b\\n" "\033[1m Updates:\033[0m  ${updates}"
     printf "\\n"
 
-    printf "%b\\n" "\033[1m  ${cx} Core:                  \033[0m${liner}"
+    printf "%b\\n" "\033[1m  ${cx} Core                   : \033[0m${liner}"
     printf "%b\\n" "\033[1m  ${dx} Desktop (includes Core): \033[0m${liner} d"
     #printf "%b\\n" "\033[1m  ${bx} Boot:                    \033[0m${liner} b"
 

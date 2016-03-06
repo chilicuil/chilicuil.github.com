@@ -7,7 +7,7 @@ title: "a simple mpc web interface"
 
 ###### {{ page.date | date_to_string }}
 
-Sometimes while listening music at my desk my niece (~8y/o) shows up and asks me to skip the current song, most of the times I do it instantly, however when I'm really busy I may delay some seconds, in those occasions she goes over my keyboard and press the `next` button by herself. Today morning was one of those days, so I though it shouldn't be too difficult to install a mpd client in its ipad and show her how to do it from her device.
+Sometimes while listening music at my desk my niece (~8y/o) shows up and asks me to skip the current song, most of the times I do it instantly, however when I'm really busy I may delay some seconds, in those occasions she goes over my keyboard and press the `next` button by herself. Today morning was one of those days, so I though it shouldn't be too difficult to install a mpd client in her ipad to give her full control =)
 
 It turned to be more trouble that I though, first, there are no free mpd clients on the ipad software store (or it's not available in my region, LATAM), and most [web clients](http://mpd.wikia.com/wiki/Clients) require a fair amount of dependencies and some work to get them running. I don't want yet another service to maintain, so I decided to hack a simple web interface for `mpc`, based on Gwenn Englebienne previous work on [mplayer](http://www.gwenn.dk/mplayer-remote.html) and this is the result:
 
