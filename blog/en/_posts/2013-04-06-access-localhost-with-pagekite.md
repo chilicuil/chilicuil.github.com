@@ -134,19 +134,19 @@ admin@home.javier.io's password:
 Pagekite is free software, both backend(client) and frontend(server). The same `pagekite.py` can play both roles. This is a quick summary in case you prefer going your own.
 
 <pre class="sh_sh">
-(vps) $ pagekite --clean --isfrontend --ports=8080 --domain=*:home.javier.io:passw0rd
+(vps) $ pagekite --clean --isfrontend --ports=8080 --domain=*:h.javier.io:passw0rd
 >>> Hello! This is pagekite v0.5.6a.                            [CTRL+C = Stop]
     This is a PageKite front-end server.
      - Listening on *:8080
 </pre>
 
 <pre class="sh_sh">
-(target) $ pagekite --clean --frontend=home.javier.io:8080 --service_on=http/8080:home.javier.io:localhost:8080:passw0rd
+(target) $ pagekite --clean --frontend=h.javier.io:8080 --service_on=http/8080:h.javier.io:localhost:8080:passw0rd
 Connecting to front-end 107.161.164.253:8080 ...
      - Protocols: http http2 http3 https websocket irc finger httpfinger raw
      - Protocols: minecraft
      - Ports: 8080
-~<> Flying localhost:8080 as http://home.javier.io:8080/
+~<> Flying localhost:8080 as http://h.javier.io:8080/
 </pre>
 
 And with that, your local machine will be available on Internet through your own public machine.
