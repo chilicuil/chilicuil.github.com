@@ -34,6 +34,5 @@ That's it, happy fetching &#128523;
 - [morpheus](http://morpheus.2f30.org/)
 - [sabotage, not real static recipes](https://github.com/sabotage-linux/sabotage)
 - [portablelinuxapps, not real static recipes](http://portablelinuxapps.org)
-
 - [https://github.com/minos-org/minos-static](https://github.com/minos-org/minos-static)
 - [https://www.janhouse.lv/blog/linux/building-static-binaries-on-linux/](https://www.janhouse.lv/blog/linux/building-static-binaries-on-linux/)
