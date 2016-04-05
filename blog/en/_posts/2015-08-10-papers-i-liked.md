@@ -30,6 +30,12 @@ From time to time I read papers about any subject, mostly about computer science
 
 - [Flexible Operating System Internals: The Design and Implementation of the Anykernel and Rump Kernels](http://lib.tkk.fi/Diss/2012/isbn9789526049175/isbn9789526049175.pdf) - 2012. [[pdf]](http://f.javier.io/rep/papers/anykernel-rump-kernel-isbn9789526049175.pdf) 362 Pag. Portable drivers across minimal kernels (anykernels) and system applications (rump kernels). Drivers as system libraries.
 
+<!--
+   -## Computer Networks
+   -
+   -[Maglev: A Fast and Reliable Software Network Load Balancer](http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44824.pdf) - 2016.[[pdf]](http://f.javier.io/rep/papers/Maglev%20-%20A%20fast%20and%20reliable%20software%20network%20load%20balancer.pdf) 13 Pag. Google's distributed software based network load balancer on commodity hardware.
+   -->
+
 ## Community driven papers repositories
 
 - [https://github.com/papers-we-love/papers-we-love](https://github.com/papers-we-love/papers-we-love)
