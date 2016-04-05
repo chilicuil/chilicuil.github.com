@@ -30,7 +30,7 @@ body {
   text-decoration: none;
 }
 
-#header > a { 
+#header > a {
   font-size: 160%;
   text-shadow: 1px 1px 1px rgba(140, 140, 140, 1);
 }
@@ -247,7 +247,7 @@ li {
 
 ul > li {
   /*border-left: 4px solid #777;*/
-  border-right: 1px solid #777;
+  /*border-right: 1px solid #777;*/
   /*list-style: none;*/
 }
 
@@ -406,7 +406,7 @@ h2 + img + p:first-letter {
 
 .posts li:hover, h2 + .related-posts li:hover {
   background: none repeat scroll 0% 0% black;
-  border-left: 1px solid #777777;
+  /*border-left: 1px solid #777777;*/
   padding-left: 20px;
 }
 
