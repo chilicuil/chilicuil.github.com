@@ -246,8 +246,9 @@ li {
 }
 
 ul > li {
-  border-left: 4px solid #777;
-  list-style: none;
+  /*border-left: 4px solid #777;*/
+  border-right: 1px solid #777;
+  /*list-style: none;*/
 }
 
 ul > li:before {
@@ -388,7 +389,8 @@ h2 + img + p:first-letter {
 }
 
 .posts li, h2 + .related-posts li {
-  border-left: 0px none;
+  border-left:  0px none;
+  border-right: 0px none;
   font-family: 'PT Sans',sans-serif;
   font-size: large;
   list-style: none outside none;
