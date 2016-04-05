@@ -255,7 +255,7 @@ ul > li:before {
   position: relative;
   float: left;
   padding-right: .25em;
-  content: "\0025AA";
+  /*content: "\0025AA";*/
   color: #333;
   font: 1.2em "Arial";
   font-weight: bold;
@@ -371,6 +371,7 @@ h2 + img + p:first-letter {
 
 #related li {
   border-left: 0;
+  border-right: 0;
   list-style: none;
 }
 
