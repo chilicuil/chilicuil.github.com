@@ -20,7 +20,7 @@ $ wget-finder
 Usage: wget-finder [OPTION]... FILE:CHECKSUM...
 </pre>
 
-The idea is simple, wget-finder will search for files e.g. socat-1.7.2.0.tar.gz matching an specific checksum(it supports md5, sha1, sha256 and sha512) on different search engines (currently google, filemare and ftplike, more engines are welcome!) and will download the appropiate (actually it will download some of them till the checksum matches)
+The idea is simple, wget-finder will search for files e.g. socat-1.7.2.0.tar.gz matching an specific checksum(it supports md5, sha1, sha256 and sha512) on different search engines (currently google, and ftplike, more engines are welcome!) and will download the appropiate (actually it will download some of them till the checksum matches)
 
 <pre class="sh_sh">
 $ wget-finder socat-1.7.2.0.tar.gz:0565dd58800e4c50534c61bbb453b771
