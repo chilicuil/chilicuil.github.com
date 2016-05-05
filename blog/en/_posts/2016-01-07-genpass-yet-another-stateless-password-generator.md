@@ -22,7 +22,7 @@ Genpass is by no means original, however when looking around I found than most p
 Parameter             | Value
 --------------------- | -------------
 Cache cost (Scrypt N) | 2^20
-Cost       (Scrypt N) | 2^10
+Cost       (Scrypt N) | 2^14
 Scrypt r              | 8 bits
 Scrypt p              | 16 bits
 Key length            | 32 bytes, 256 bits
