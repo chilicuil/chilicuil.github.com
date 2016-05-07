@@ -9,9 +9,9 @@ title: "backups with rsync and rdiff-backup"
 
 I don't remember the last time I lost information, that's been mostly luck since I'm not really careful with my data. However with internet providers increasing bandwidth, efficient compression algorithms all around and affordable servers in the cloud I finally decided to give up my luck and automate my backup plan.
 
-I'm fortunate to work in an homogeneous environment, Linux x32/x64 boxes, so I prefer to cling to the lowest common denominator, on this case ssh/rsync. Both are installed (or available through default repositories) in virtually all Linux distributions and are secure, mature, efficient and well supported, there is a little issue with them though, they've too many options and can be tricky to remember.
+I'm fortunate to work in an homogeneous environment, Linux x32/x64 boxes, so I can cling to the lowest common denominator, on this case ssh/rsync. Both are installed (or available through default repositories) in virtually all Linux distributions and are secure, mature, efficient and well supported, there is a little issue with them though, they've too many options and can be tricky to remember.
 
-So, with that in mind I grouped my favorite options and created a [wrapper script](https://github.com/chilicuil/learn/blob/master/sh/tools/backup-remote-rsync). That's what I use to backup machines, it works like this:
+So, with that in mind I grouped my favorite preferences and created a [wrapper script](https://github.com/chilicuil/learn/blob/master/sh/tools/backup-remote-rsync). That's what I use to backup machines, it works like this:
 
     $ backup-remote-rsync -r b.javier.io #the program will backup $HOME to b.javier.io:~/hostname using default ssh keys
     $ backup-remote-rsync -r b.javier.io -u admin -k /home/admin/.ssh/id_rsa /var/www /etc
