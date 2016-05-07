@@ -1,50 +1,33 @@
 ---
 layout: post
-title: "backups: rsync, rdiff-backup"
+title: "backups with rsync and rdiff-backup"
 ---
 
 ## {{ page.title }}
 
 ###### {{ page.date | date_to_string }}
 
-I don't remember the last time I lost information, that's been mostly because of luck instead of preparation, but with internet services providing more bandwidth, efficient/modern compression algorithms and more affordable virtual and cloud services I finally decided to give up my luck and automate my backup plan.
+I don't remember the last time I lost information, that's been mostly because of luck because I've never been really careful with my data. However with internet provider increasing bandwidth, efficient compression algorithms all around and affordable servers in the cloud I finally decided to give up my luck and automate my backup plan.
 
-I'm fortunate to work in an heterogeneous environment, linux + x32/x64 boxes, so I cling to the lowest denominator, ssh/rsync. Both programs are installed in virtually all linux distributions or are included in default repositories, so it's easy to backup new machines, besides, both are secure, efficient and well supported. A minor annoyance is that they are difficult to use, specially rsync which has plenty of options.
+I'm fortunate to work in an homogeneous environment, Linux x32/x64 boxes, so I clinged to the lowest denominator, ssh/rsync. Both are installed (or available through default repositories) in virtually all linux distributions and are secure, mature, efficient and well supported, there is a little issue with them though, they've too many options and can be tricky to remember.
 
-After playing for a while, I grouped my favorite options in a [wrapper script](https://github.com/chilicuil/learn/blob/master/sh/tools/backup-remote-rsync), and copy it to the target boxes, eg:
+So, with that in mind I grouped my favorite ones and created a [wrapper script](https://github.com/chilicuil/learn/blob/master/sh/tools/backup-remote-rsync). That's what I use to backup machines, it works like this:
 
-    $ backup-remote-rsync -r b.javier.io #backup $HOME to b.javier.io:~/hostname
+    $ backup-remote-rsync -r b.javier.io #the program will backup $HOME to b.javier.io:~/hostname using default ssh keys
     $ backup-remote-rsync -r b.javier.io -u admin -k /home/admin/.ssh/id_rsa /var/www /etc
-    #back up /var/www and /etc to b.javier.io:~/hostname, uses admin public key
+    #the program will backup /var/www and /etc to b.javier.io:~/hostname, while using admin's public ssh keys
 
-The above lines are run once per day, per box.
+The above lines can be added to a cronjob so it doesn't on a person to backup files.
 
     $ sudo cronjob -l
-    0 22 * * * backup-remote-rsync -u admin -i /home/admin/.ssh/id_rsa -r backup.javier.io /home/admin
+    #every day at 22:00
+    0 22 * * * backup-remote-rsync -r backup.javier.io -u admin -i /home/admin/.ssh/id_rsa /home/admin
 
-Since rsync only transfers deltas, once the backup is online further runs complete faster.
+Since rsync is delta based, once the initial backup is online further invocations will be considerably faster.
 
-On the server side, besides setting up ssh, I used [rdiff-backup](http://www.nongnu.org/rdiff-backup/examples.html), a program designed to create dailies/weeklies/monthlies efficiently and another script, [share-backup](https://github.com/chilicuil/learn/blob/master/sh/tools/share-backup), to get easy, fast and secure access to specific files when a ssh/rsync client is not available, or when I want to share files with friends.
+On the server side, I used [rdiff-backup](http://www.nongnu.org/rdiff-backup/examples.html) to create dailies/weeklies/monthlies and [share-backup](https://github.com/chilicuil/learn/blob/master/sh/tools/share-backup), to provide fast and secure access to specific files. Complete recoveries are available through standard rsync.
 
-`share-backup` can be run from within any client machine, eg:
-
-    $ ssh admin@b.javier.io share-backup
-    Starting server ...
-      address   : http://b.javier.io:7648
-
-      username: guest
-      password: M2U4ZDRj
-      ssl     :
-
-      serving:  /home/admin/recovery
-
-    Run: share-backup stop, to stop sharing
-    $ ssh admin@b.javier.io share-backup stop
-    Stopped
-
-Internally it runs a temporal [http server](https://github.com/chilicuil/learn/blob/master/python/simple-httpd) with basic authentication and optional ssl.
-
-I configured cronjob entries for rdiff-backup, generating dailies(7), weeklies(4) and monthlies(12).
+rdiff-backup cronjobs
 
     0 1 * * * rdiff-backup /home/admin/backup/ /home/admin/recover/daily
     0 2 * * * rdiff-backup --remove-older-than 6D /home/admin/recover/daily
@@ -55,14 +38,33 @@ I configured cronjob entries for rdiff-backup, generating dailies(7), weeklies(4
     0 1 1 * * rdiff-backup /home/admin/backup/ /home/admin/recover/monthly
     0 2 1 * * rdiff-backup --remove-older-than 12M /home/admin/recover/monthly
 
+`share-backup` usage example:
+
+    $ ssh admin@b.javier.io share-backup
+    Starting server ...
+      address   : http://b.javier.io:7648
+      username: guest
+      password: M2U4ZDRj
+      ssl     :
+      serving:  /home/admin/recovery
+
+    Run: share-backup stop, to stop sharing
+    $ ssh admin@b.javier.io share-backup stop
+    Stopped
+
 ## Decisions
 
-When dealing with backups you'll deal often with decisions, is it more important saving hard disk space or keep several copies around?, does your backup plan require detailed third party integration or will be generic?, how many resources in time and money are you willing to invest?, how fast your recovery process should be?, how private your data is?. It's important to ask yourself these questions and test as many alternatives as possible, then use the option(s) you feel comfortable with, those who make sense and you trust.
+While testing backup utilities and differente strategies I found me asking me priority questions, is it more important to save hard disk space or to keep several copies around?, does the backup plan require third party integration or can it be generic?, how many resources in time and money am I willing to invest?, for the whole setup?, for new hosts?, how fast the recovery process must be?, how private the data is?.
 
-I've shared my personal backup plan, because even when there are plenty of options, I found most of them over complicated or untrusty, this method works for me (right now) but don't take for granted it'll do it for you.
+At the end, I tried to answer these questions as honestly as possible and found than the above procesure covers me in most situations, however, your case may be different, therefore I urge you to test as many alternatives as possible and stick with those that make you feel confortable and secure. If you're out of ideas take a look at:
 
-If you're out of ideas take a look at:
+- [ddumbfs](http://www.magiksys.net/ddumbfs/)
+- [btrfs](https://btrfs.wiki.kernel.org/index.php/Main_Page)
+- [s3fs](https://github.com/s3fs-fuse/s3fs-fuse)
+- [opendedup](http://opendedup.org/)
+- [bup](https://github.com/bup/bup)
+- [obnam](http://obnam.org/)
+- [bacula](http://bacula.org/)
+- [etc](https://en.wikipedia.org/wiki/List_of_backup_software).
 
-- [ddumbfs](http://www.magiksys.net/ddumbfs/), [btrfs](https://btrfs.wiki.kernel.org/index.php/Main_Page), [s3fs](https://github.com/s3fs-fuse/s3fs-fuse), [opendedup](http://opendedup.org/), [bup](https://github.com/bup/bup), [obnam](http://obnam.org/), [bacula](http://bacula.org/), [etc](https://en.wikipedia.org/wiki/List_of_backup_software).
-
-That's it, happy and safe hacking &#128523;
+That's it, stay safe and backup your data now &#128523;!
