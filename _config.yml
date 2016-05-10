@@ -1,7 +1,12 @@
 domain:      javier.io
 title:       "javier.io"
+url:         "javier.io"
+author:      "Javier López"
 description: "Javier López personal blog"
 
+twitter:
+  username: chilicuil
+  
 source:      .
 destination: ./_site
 plugins:     ./_plugins
