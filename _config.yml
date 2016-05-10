@@ -1,9 +1,13 @@
 domain:      javier.io
 title:       "javier.io"
+description: "Javier López personal blog"
 
 source:      .
 destination: ./_site
 plugins:     ./_plugins
+
+gems:
+  - jekyll-seo-tag
 
 safe:        false
 auto:        false
