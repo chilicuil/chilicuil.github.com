@@ -11,7 +11,7 @@ I'm not sure what excuse to use to back this entry, I guess I'm just a lazy and 
 
 [Staticus](https://github.com/chilicuil/learn/blob/master/sh/tools/staticus) is the result.
 
-**![](/assets/img/staticus-1.png)**
+**[![](/assets/img/staticus-1.png)](/assets/img/staticus-1.png)**
 
 The tools itself is pretty simple, to generate the above picture I ran:
 
