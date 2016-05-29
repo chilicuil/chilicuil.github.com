@@ -42,7 +42,7 @@ alias ....="cd ../.."
 alias important.path="cd important/path"
 </pre>
 
-Now it's time for some major improvements. An important [zsh](http://www.zsh.org) feature is pattern recognition, eg **$ cd s*/*/pl** will become **super/master/plan**, that's sweet, unfortunately bash is unable to recognize such patterns by itself, however with some [help](http://wcd.sourceforge.net/) it can do even better.
+Now it's time for some major improvements. An important [zsh](http://www.zsh.org) cd related feature is called pattern recognition, e.g. **$ cd s*/*/pl** will become **super/master/plan**, that's sweet, unfortunately bash is unable to recognize such patterns by itself, however with some [help](http://wcd.sourceforge.net/) it can do it even better.
 
 <pre class="sh_sh">
 $ sudo apt-get install wcd
@@ -50,13 +50,13 @@ $ head ~/.alias.common
 alias cd='. wcd'
 </pre>
 
-**wcd** is not a binary, it's a wrapper script around wcd.exec (available on the `wcd` package):
+**wcd** is not a binary, it's a wrapper script around `wcd.exec` (available on the `wcd` package):
 
 - [https://github.com/chilicuil/learn/blob/master/sh/tools/wcd](https://github.com/chilicuil/learn/blob/master/sh/tools/wcd)
 
-Once installed and configured wcd, **$ cd s*/*/pl** will take us to **super/master/plan** no matter what the current directory looks like &#128516;, [wcd](http://wcd.sourceforge.net/) works by creating an index file with all available directories and looking at it to find the best approximation.
+Once installed and configured `wcd`, **$ cd s*/*/pl** will take us to **super/master/plan** no matter what the current directory looks like &#128516;, [wcd](http://wcd.sourceforge.net/) works by creating an index file with all available directories and looking at it to find the best approximation.
 
-WARNING: Wcd will require to regenerate the index db every now and then, a cronjob with the following content can help:
+**WARNING:** Wcd will require to regenerate the index db every now and then, a cronjob with the following content can help:
 
 <pre class="sh_sh">
 0 23 * * *  /usr/local/bin/update-cd
@@ -74,7 +74,7 @@ if [ -f "$(command -v "wcd")" ] &amp;&amp; [ -f "$(command -v "wcd.exec")" ]; th
 fi
 </pre>
 
-In addition, an update-cd alias can also be configured to update the db on request:
+In addition, an `update-cd` alias can also be configured to update the db on request:
 
 <pre class="sh_sh">
 $ alias update-cd='mkdir $HOME/.wcd; /usr/bin/wcd.exec -GN -j -xf $HOME/.ban.wcd -S $HOME"
@@ -83,22 +83,20 @@ $ update-cd
 
 Been able to move to any directory from any where is really helpful, however sometimes it's also desirable to move around parents and nearby directories efficiently, that's where [commacd](https://github.com/shyiko/commacd) get in. With `commacd` several aliases (`,`, `,,` and `,,,`) are defined which can be used on the following scenarios:
 
-<pre class="sh_sh">
-$ , /u/l/b #moving through multiple directories
-=> cd /usr/local/bin
-$ , d #moving through multiple directories with the same name
-=> 1 Desktop
-   2 Downloads
-   : <type index of the directory to cd into>
-~/code/projects/zion/src/module $ ,, #going up till a project directory is found (git/hg/svn based)
-=> cd ~/code/projects/zion
-~/code/projects/zion/src/module $ ,, pro #going into the first parent directory named pro*
-=> cd ~/code/projects
-~/code/projects/zion/src/module $ ,, zion matrix #subtituing and going into a parent directory
-=> cd ~/code/projects/matrix/src/module
-~/code/projects/zion/src/module $ ,,, matrix/tests #going into a sibling directory who has the same parent directory
-=> cd ~/code/projects/matrix/tests/
-</pre>
+    $ , /u/l/b #moving through multiple directories
+    => cd /usr/local/bin
+    $ , d #moving through multiple directories with the same name
+    => 1 Desktop
+       2 Downloads
+       : <type index of the directory to cd into>
+    ~/code/projects/zion/src/module $ ,, #going up till a project directory is found (git/hg/svn based)
+    => cd ~/code/projects/zion
+    ~/code/projects/zion/src/module $ ,, pro #going into the first parent directory named pro*
+    => cd ~/code/projects
+    ~/code/projects/zion/src/module $ ,, zion matrix #subtituing and going into a parent directory
+    => cd ~/code/projects/matrix/src/module
+    ~/code/projects/zion/src/module $ ,,, matrix/tests #going into a sibling directory who has the same parent directory
+    => cd ~/code/projects/matrix/tests/
 
 As wcd, `commacd` is a script who can be downloaded from:
 
