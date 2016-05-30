@@ -42,7 +42,7 @@ alias ....="cd ../.."
 alias important.path="cd important/path"
 </pre>
 
-Now it's time for some major improvements. An important [zsh](http://www.zsh.org) cd related feature is called pattern recognition, e.g. **$ cd s*/*/pl** will become **super/master/plan**, that's sweet, unfortunately bash is unable to recognize such patterns by itself, however with some [help](http://wcd.sourceforge.net/) it can do it even better.
+Now it's time for some major improvements. An important [zsh](http://www.zsh.org) cd related feature is called pattern recognition, e.g. **$ cd s*/m*/pl** will become **super/master/plan**, that's sweet, unfortunately bash is unable to recognize such patterns by itself, however with some [help](http://wcd.sourceforge.net/) it can do it even better.
 
 <pre class="sh_sh">
 $ sudo apt-get install wcd
@@ -54,7 +54,7 @@ alias cd='. wcd'
 
 - [https://github.com/chilicuil/learn/blob/master/sh/tools/wcd](https://github.com/chilicuil/learn/blob/master/sh/tools/wcd)
 
-Once installed and configured `wcd`, **$ cd s*/*/pl** will take us to **super/master/plan** no matter what the current directory looks like &#128516;, [wcd](http://wcd.sourceforge.net/) works by creating an index file with all available directories and looking at it to find the best approximation.
+Once installed and configured, **$ cd s*/m*/pl** will take us to **super/master/plan** no matter what the current is, [wcd](http://wcd.sourceforge.net/) works by creating an index file with all available directories and looking at it to find the best approximation.
 
 **WARNING:** Wcd will require to regenerate the index db every now and then, a cronjob with the following content can help:
 
@@ -74,14 +74,7 @@ if [ -f "$(command -v "wcd")" ] &amp;&amp; [ -f "$(command -v "wcd.exec")" ]; th
 fi
 </pre>
 
-In addition, an `update-cd` alias can also be configured to update the db on request:
-
-<pre class="sh_sh">
-$ alias update-cd='mkdir $HOME/.wcd; /usr/bin/wcd.exec -GN -j -xf $HOME/.ban.wcd -S $HOME"
-$ update-cd
-</pre>
-
-Been able to move to any directory from any where is really helpful, however sometimes it's also desirable to move around parents and nearby directories efficiently, that's where [commacd](https://github.com/shyiko/commacd) get in. With `commacd` several aliases (`,`, `,,` and `,,,`) are defined which can be used on the following scenarios:
+Been able to move to any directory from anywhere is really helpful, however sometimes it's desirable to move around parents and nearby directories efficiently, that's where [commacd](https://github.com/shyiko/commacd) get in. With `commacd` several aliases (`,`, `,,` and `,,,`) are defined which can be used on the following scenarios:
 
     $ , /u/l/b #moving through multiple directories
     => cd /usr/local/bin
@@ -93,7 +86,7 @@ Been able to move to any directory from any where is really helpful, however som
     => cd ~/code/projects/zion
     ~/code/projects/zion/src/module $ ,, pro #going into the first parent directory named pro*
     => cd ~/code/projects
-    ~/code/projects/zion/src/module $ ,, zion matrix #subtituing and going into a parent directory
+    ~/code/projects/zion/src/module $ ,, zion matrix #subtituing the current path and going into the result
     => cd ~/code/projects/matrix/src/module
     ~/code/projects/zion/src/module $ ,,, matrix/tests #going into a sibling directory who has the same parent directory
     => cd ~/code/projects/matrix/tests/
@@ -106,7 +99,7 @@ Or to get my personal version:
 
 - [https://raw.githubusercontent.com/chilicuil/learn/master/sh/tools/commacd](https://raw.githubusercontent.com/chilicuil/learn/master/sh/tools/commacd)
 
-Upon getting any of them, the script should be used as an alias (due to the nature of the `cd` built-in), eg, `~/bashrc`:
+Upon getting any of them, the script should be used as an alias (due to the nature of the `cd` built-in), eg, **~/bashrc**:
 
 <pre class="sh_sh">
 if [ -f "$(command -v "commacd")" ]; then
@@ -117,4 +110,4 @@ if [ -f "$(command -v "commacd")" ]; then
 fi
 </pre>
 
-That's it, now moving around should feel less archaic, happy cli browsing =)
+That's it, now moving around should feel less archaic, happy cli browsing &#128516;
