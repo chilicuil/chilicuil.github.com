@@ -13,12 +13,12 @@ silversearcher-ag bash-minos-settings minos-tools-extra minos-core-settings"
 #minos_desktop="minos-desktop" #same as meta-package
 minos_desktop="i3-wm i3lock alsa-utils alsa-base mpd mpc ncmpcpp mplayer2 slim
 xorg rxvt-unicode-256color autocutsel acpi dmenu feh sxiv notify-osd pm-utils
-libnotify-bin irssi mutt-patched pcmanfm rlpr gnupg-agent lxappearance conky-cli
-zathura scrot ffcast unrar unzip xarchiver zram-config udisks xclip gvfs dkms
-gtk2-engines-pixbuf openssh-server wicd-curses redshift vim-gtk lame gvfs-fuse
+libnotify-bin irssi mutt-patched pcmanfm gvfs gvfs-backends rlpr gnupg-agent
+lxappearance zathura scrot ffcast unrar unzip xarchiver zram-config udisks
+gtk2-engines-pixbuf openssh-server wicd-curses redshift vim-gtk lame xclip
 policykit-1 libmad0 geoclue-ubuntu-geoip libdvdread4 xdotool dbus-x11 umplayer
 gxmessage magnifier compton plymouth-theme-minos-comet xbacklight genpass
-slim-theme-minos-login minos-tools minos-artwork util-linux xdg-utils
+slim-theme-minos-login minos-tools minos-artwork util-linux xdg-utils conky-cli
 realvncviewer507 firefox28 firefox28-minos-settings firefox-flashplugin"
 #minos-core minos-desktop-settings
 
