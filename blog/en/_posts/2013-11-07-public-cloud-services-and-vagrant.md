@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "public cloud services (aws, digitalocean) and vagrant"
+title: "public cloud services (digitalocean, aws) and vagrant"
 ---
 
 ## {{ page.title }}
@@ -10,47 +10,36 @@ title: "public cloud services (aws, digitalocean) and vagrant"
 **[![](/assets/img/86.png)](/assets/img/86.png)**
 <!--<iframe class="showterm" src="http://showterm.io/ce9681926ec6875d743f1" width="640" height="350">&nbsp;</iframe>-->
 
-I like to keep a fast, ordered and stable computer, that's why I use virtual machines, containers, public cloud services and vps to experiment and deploy services, all my ram belongs to firefox &#128517;
+I like to keep a fast, ordered and stable computer, that's why I use virtual machines, containers, public cloud services and other means to keep it that way, all my ram belongs to firefox &#128517;
 
-The cloud is great, I can do more with less time because they usually have more resources than my laptop and plenty of bandwidth &#128525;. Some of my favorite public clouds are [Ec2](http://aws.amazon.com/ec2/) (1 year free) and [DigitalOcean](http://digitalocean.com/) ($5/month). I also use plenty of [Low End Boxes](http://lowendbox.com/) (LEB), I prefer the former when I'm gonna setup a service for a long time. They are organized by computer resources:
+The cloud is great, I can do more with less because they usually have more resources than my laptop and plenty of bandwidth &#128525;. My favorite elastic cloud is [DigitalOcean](http://digitalocean.com/) ($5/month), sometime ago also tried [Ec2](http://aws.amazon.com/ec2/) but its pricing scheme made me uncomfortable. Other than that, I also use [Low End Boxes](http://lowendbox.com/) (LEB) when running long term tasks, it's amazing how far you can go with a $20/year box.
 
-- l1.javier.io (low)
-- m1.javier.io (medium)
-- m2.javier.io (medium)
-- ...
-
-Vps are great, unfortunately they don't have advanced [apis](http://en.wikipedia.org/wiki/Application_programming_interface) and therefore its provision lacks some automatization. They also are usualy busy (I don't pay servers I don't use), for experimentation I prefer launching virtual machines per request, that's why having a way to launch instantly remote machines is a **must** in my work flow. I've tried several solutions, and currently [vagrant](http://www.vagrantup.com/) has proven to be the suckless method.
-
-At the beginning I used [juju](http://juju.ubuntu.com) for a while, it wasn't designed to act as a light client but can be missued if you reused the bootstrap node:
+So, getting back to the main topic, it turns out than through plugins, [vagrant](http://www.vagrantup.com/) is able to launch and provision to remote machines, that's what I'm using to interact with cloud instances.
 
 <pre class="sh_sh">
-$ juju boostrap
-$ juju ssh/0
-</pre>
-
-The above command will launch and login to a remote machine, the [provisioning](http://javier.io/s) can be triggered manually, the complete process won't take more than 5 min but neither less than 3. Since I started using juju I was aware I would need to replace it, it wasn't designed to do the job.., in the other hand the "right" way to use it doesn't seem to me like a good approach (I created a [couple](https://jujucharms.com/fullscreen/search/precise/wesnoth-1/?text=wesnoth) of juju [charms](https://jujucharms.com/fullscreen/search/~chilicuil/precise/assaultcube-2/?text=assaultcube) so I like to think I'm conscious about my opinion).
-
-Upon given juju up I found [http://instantserver.io/](http://instantserver.io/), during the short period it was active it was the closest solution to perfection I've ever used, it was trully instant (1/2 sec on average), auto destructible (after 40 min) and it didn't even required signup. Beautiful, unfortunately it didn't support provisioning and was shutdown after a couple of months because of abuse, if there were something commercial similar to it, I'd be happy to through them money at will.
-
-Finally, during my third lookup, I found a lot of light/heavy clients for all kind of cloud services and decided to stay with vagrant due to the ease of the installation, the provision support, the popularity and the plugin design (which allow me to connect to my favorite cloud providers), it's not perfect, it takes ages just to print a help screen, but I think I can manage to use it till I find something better.
-
-With vagrant now I can launch and provision machines in ~3 min on average.
-
-<pre class="sh_sh">
-$ vagrant up --provider=aws
 $ vagrant up --provider=digital_ocean
+$ vagrant up --provider=aws
 </pre>
+
+It's not perfect, vagrant takes ages just to print a help screen, but I think I can manage to use it till I find something better, recommendations are welcome.
 
 ## Vagrant
 
-The vagrant version available in the Ubuntu repositories is antique, fortunately the project provide deb packages which can be downloaded from:
+Vagrant installation process is a breeze, it supports OSX, Windows and Linux, in some Linux distributions it's even included in official repositories, but such versions are commonly out of date, that's the case with Ubuntu, so it's better to download Vagrant from its site.
 
 - [http://downloads.vagrantup.com/](http://downloads.vagrantup.com/)
 
-They can be installed with dpkg:
-
 <pre class="sh_sh">
 $ sudo dpkg -i vagrant_version.deb
+$ #vagrant will be installed in /opt/vagrant/
+</pre>
+
+### Vagrant-digitalocean
+
+Once vagrant is onboard, it can be used to download plugins.
+
+<pre class="sh_sh">
+$ vagrant plugin install vagrant-digitalocean
 </pre>
 
 ### Vagrant-aws
@@ -67,23 +56,11 @@ The plugin installation isn't that bad:
 $ vagrant plugin install vagrant-aws
 </pre>
 
-The problem lies in the configuration, you'll need to create a new [default security group](https://github.com/mitchellh/vagrant-aws/issues/95) to connect through the 22 port, it's stupid considering the plugin can deploy new instances but it doesn't upload a valid security group afterwards.
-
-Another common catch is the public ssh. You'll need to upload your public ssh key to aws and configure it. (it'd be much better if the plugin could create/upload a new key if no there are no public keys available).
-
-### Vagrant-digitalocean
-
-The digitialocean plugin fortunately is easier to build and configure:
-
-<pre class="sh_sh">
-$ vagrant plugin install vagrant-digitalocean
-</pre>
-
-It'll need to get a valid public ssh key configured and the api/client ids set though.
+To play well with aws, you'll need to create a new [default security group](https://github.com/mitchellh/vagrant-aws/issues/95) that allows inbound connections through port 22, it's dump considering the plugin can deploy new instances but it doesn't upload a valid security group afterwards. Don't forget to upload your public ssh key too.
 
 ### Vagrantfile
 
-Vagrant main concert is to help developers to clone different environments in different projects, that's why only one Vagrantfile can be specified per directory. It's a [powerful idea](http://mitchellh.com/the-tao-of-vagrant) but it doesn't apply to my use case. In my working flow all I want is to gain access to remote resources as fast as possible. To do it with vagrant I created a directory in **$HOME/misc/vagrant** and edited a vagrant file with the following content:
+Finally, the additional providers can be used in Vagrantfile files:
 
 <pre>
 VAGRANT_API_VERSION = "2"
@@ -97,7 +74,6 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
     override.vm.box_url = "https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box"
     override.vm.provision "shell", inline: "su - #{override.ssh.username} -c \"sh <(wget -qO- javier.io/s)\""
 
-    provider.token = 'token'
     provider.image = 'ubuntu-12-04-x64'
     provider.region = 'nyc2'
     #provider.size = '16gb'
@@ -108,15 +84,14 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
     provider.size = '512mb'
     provider.private_networking = 'false'
     provider.setup = 'true'
+    provider.token = 'ACCESS_KEY_SECRET'
     provider.ca_path = '/etc/ssl/certs/ca-certificates.crt'
   end
 
   config.vm.provider :aws do |provider, override|
     #depends on: 'build-essential libxslt-dev libxml2-dev zlib1g-dev' on ubuntu
-    #requires a custom security group for allowing input connections to port 22
+    #requires a custom security group to allow input connections to port 22
 
-    #default ubuntu 12.04 x64 server
-    #fail if the custom username doesn't exist in the ami image
     override.ssh.private_key_path = "~/.ssh/id_rsa"
     override.ssh.username = "ubuntu"
     override.vm.box = 'dummy'
@@ -134,41 +109,17 @@ end
 # vi:ft=ruby:
 </pre>
 
-With the settings in place, I can launch remote empty boxes executing:
+And used with vagrant to launch empty remote boxes:
 
 <pre class="sh_sh">
-$ cd misc/vagrant
-$ vagrant up --provider=aws #or digitalocean
+$ vagrant up --provider=digital && vagrant ssh
+$ vagrant up --provider=aws     && vagrant ssh
 </pre>
 
-And login with:
-
-<pre class="sh_sh">
-$ vagrant ssh
-</pre>
-
-Upon termination, the box can be deleted as follows:
+Don't forget to destroy the instances to avoid extra charges.
 
 <pre class="sh_sh">
 $ vagrant destroy
 </pre>
 
-I've even created some aliases.
-
-<pre>
-alias v="vagrant"
-alias vup="vagrant up"
-alias vhlt="vagrant halt"
-alias vspd="vagrant suspend"
-alias vrsm="vagrant resume"
-alias vrl="vagrant reload"
-alias vs="vagrant ssh"
-alias vstat="vagrant status"
-alias vd="vagrant destroy"
-
-alias vup.vbox="vagrant up --provider=virtualbox"
-alias vup.digitalocean="vagrant up --provider=digital_ocean"
-alias vup.aws="vagrant up --provider=aws"
-</pre>
-
-How do you launch remote environments?
+That's it, how do you launch remote environments?
