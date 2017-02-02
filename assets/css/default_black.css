@@ -23,23 +23,13 @@ body {
   font-weight: lighter;
   text-shadow: 4px 4px 4px rgba(90,90,120,1);
 }
-#header h1 a { color: #fafafa; }
+#header h1 a        { color: #fafafa; }
 #header h1 a:active { outline: 0; }
-#header h1 a:hover {
-  color: #fafafa;
-  text-decoration: none;
-}
-
-#header > a {
-  font-size: 160%;
-  text-shadow: 1px 1px 1px rgba(140, 140, 140, 1);
-}
-
+#header h1 a:hover  { color: #fafafa; text-decoration: none; }
 /*#header h1 a:hover:after { content: " [$] _"; }*/
-#header h1 a:hover {
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-}
+#header h1 a:hover  { border-bottom-style: solid; border-bottom-width: 1px; }
+
+#header > a { font-size: 160%; text-shadow: 1px 1px 1px rgba(140, 140, 140, 1); }
 
 /************************ hello world in home ***************************/
 #hello h1 {
@@ -70,8 +60,8 @@ h2.page {
 
 .page input {display:none;}
 .page label {padding-left:5%;}
-.page #vnc-windows-instructions ol a img {height: auto;width: 240px;display:inline;}
 
+.page #vnc-windows-instructions ol a img {height: auto;width: 240px;display:inline;}
 .page #vnc-windows-instructions, #vnc-linux-instructions, .page #ssh-windows-instructions, #ssh-linux-instructions {display:none;}
 
 .page input#show-vnc-windows-instructions:checked ~ #vnc-windows-instructions {display:inline;}
@@ -106,10 +96,7 @@ h2.page {
 .rss:hover {color:white;text-decoration:none}
 
 /***************************** search box *******************************/
-#header form {
-  margin: 0;
-  padding: 0;
-}
+#header form { margin: 0; padding: 0; }
 
 form input.st-search-input {
   background: url("http://javier.io/assets/img/search-icon.png") no-repeat scroll 7px 7px #FCFCFC;
@@ -128,13 +115,8 @@ form input.st-search-input {
 }
 
 /* Change color of search result text */
-.swiftype-widget .autocomplete ul li p.title {
-  color: #B03A44;
-}
-
-.swiftype-widget .autocomplete ul li p {
-  font-size: 10px;
-}
+.swiftype-widget .autocomplete ul li p.title { color: #B03A44; }
+.swiftype-widget .autocomplete ul li p { font-size: 10px; }
 
 .swiftype-widget .autocomplete ul > li {
   border-left: 3px solid rgb(0, 0, 0);
@@ -142,10 +124,7 @@ form input.st-search-input {
   list-style: none outside none;
 }
 
-.swiftype-widget .autocomplete ul li.active p.title {
-  color: #CD0D1D;
-  text-decoration: underline;
-}
+.swiftype-widget .autocomplete ul li.active p.title { color: #CD0D1D; text-decoration: underline; }
 
 .swiftype-widget .autocomplete ul li.active {
   /*background: black;*/
@@ -164,18 +143,9 @@ form input.st-search-input {
   -webkit-box-shadow: 0 1px 0 #C0242D inset;
 }
 
-.swiftype-widget .autocomplete ul li.active .sections em {
-  /*color: white;*/
-  color: #000;
-}
-
-.swiftype-widget .autocomplete li.active .sections {
-  font-size: 14px;
-}
-
-.swiftype-widget .autocomplete li p.sections {
-  font-size: 12px;
-}
+.swiftype-widget .autocomplete ul li.active .sections em { /*color: white;*/ color: #000; }
+.swiftype-widget .autocomplete li.active .sections { font-size: 14px; }
+.swiftype-widget .autocomplete li p.sections { font-size: 12px; }
 
 .st-search-summary > h2 {
   color: #FFFFFF;
@@ -211,45 +181,14 @@ h3 {
   width: 10%;
 }
 
-h4 {
-  font-size: .9em;
-  color: #999;
-}
+h4 { font-size: .9em; color: #999; }
+h5 { font-size: .9em; font: 100%/2em 'PT Sans',sans-serif; color: #999; }
+h6 { margin-top: -1.5%; margin-bottom: 1%; color: #aaa; text-align: right; }
 
-h5 {
-  font-size: .9em;
-  font: 100%/2em 'PT Sans',sans-serif;
-  color: #999;
-}
+a { text-decoration: none; color: #B03A44; }
+a:hover { text-decoration: underline; color: #CD0D1D; }
 
-h6 {
-  margin-top: -1.5%;
-  margin-bottom: 1%;
-  color: #aaa;
-  text-align: right;
-}
-
-a {
-  text-decoration: none;
-  color: #B03A44;
-}
-
-a:hover {
-  text-decoration: underline;
-  color: #CD0D1D;
-}
-
-li {
-  padding-left: 12px;
-  padding-bottom: 1em;
-  color: #aaa;
-}
-
-ul > li {
-  /*border-left: 4px solid #777;*/
-  /*border-right: 1px solid #777;*/
-  /*list-style: none;*/
-}
+li { padding-left: 12px; padding-bottom: 1em; color: #aaa; }
 
 ul > li:before {
   position: relative;
@@ -267,7 +206,7 @@ p {
   /*color: #777; http://contrastrebellion.com */
   color: #bbb;
   font: 1.2em 'Vollkorn','serif';*/
-text-align: justify;
+  text-align: justify;
 }
 
 pre {
@@ -299,10 +238,7 @@ pre.pgp {
   text-align: left;
 }
 
-iframe.showterm {
-  display: block;
-  margin:  0 auto;
-}
+iframe.showterm { display: block; margin:  0 auto; }
 
 table {
     color:#bbb;
@@ -327,15 +263,9 @@ h2 + img + p:first-letter {
   border-radius: 2em;
 }
 
-#post h2:first-letter {
-  text-transform: uppercase;
-}
+#post h2:first-letter { text-transform: uppercase; }
 
-#content {
-  position: relative;
-  min-height: 200px;
-  margin: 0px;
-}
+#content { position: relative; min-height: 200px; margin: 0px; }
 
 #content img {
   max-width: 60%;
@@ -347,10 +277,7 @@ h2 + img + p:first-letter {
   margin-right: auto;
 }
 
-#youtube {
-  text-align: center;
-  margin-bottom: 2%;
-}
+#youtube { text-align: center; margin-bottom: 2%; }
 
 #related {
   border-top: 2px groove white;
@@ -377,10 +304,7 @@ h2 + img + p:first-letter {
 
 #related li:before { content: ""; }
 
-#disqus {
-  margin: 0px;
-  background: #010101;
-}
+#disqus { margin: 0px; background: #010101; }
 
 .posts, h2 + .related-posts {
   margin-bottom: 0px;
@@ -400,9 +324,7 @@ h2 + img + p:first-letter {
   position: relative;
 }
 
-.posts li:before, h2 + .related-posts li:before {
-  content: "";
-}
+.posts li:before, h2 + .related-posts li:before { content: ""; }
 
 .posts li:hover, h2 + .related-posts li:hover {
   background: none repeat scroll 0% 0% black;
@@ -410,14 +332,8 @@ h2 + img + p:first-letter {
   padding-left: 20px;
 }
 
-.posts:hover a, h2 + .related-posts a {
-  color: #B03A44;
-  text-decoration: none;
-}
-
-.posts a:hover, h2 + .related-posts a:hover {
-  color: #CD0D1D;
-}
+.posts:hover a, h2 + .related-posts a { color: #B03A44; text-decoration: none; }
+.posts a:hover, h2 + .related-posts a:hover { color: #CD0D1D; }
 
 .posts li span, h2 + .related-posts li span {
   /*color: #888888;*/
@@ -427,9 +343,7 @@ h2 + img + p:first-letter {
   right: 1%;
 }
 
-.posts li:hover span, h2 + .related-posts li:hover span {
-  color: #444444;
-}
+.posts li:hover span, h2 + .related-posts li:hover span { color: #444444; }
 
 #no-posts {
   line-height: 25px;
@@ -442,13 +356,8 @@ h2 + img + p:first-letter {
 /****************************** footer **********************************/
 /************************************************************************/
 
-.link a i {
-  font-size:21pt; color:gray; text-decoration: none;
-}
-
-.link a i:hover {
-  color: #FFF;
-}
+.link a i { font-size:21pt; color:gray; text-decoration: none; }
+.link a i:hover { color: #FFF; }
 
 #footer {
   font-family: 'PT Sans', sans-serif;
@@ -459,25 +368,15 @@ h2 + img + p:first-letter {
   text-align: right;
 }
 
-#footer a {
-  color:gray; text-decoration:none;
-}
-
-#footer a:hover {
-  color:#FFF; text-decoration:none;
-}
+#footer a { color:gray; text-decoration:none; }
+#footer a:hover { color:#FFF; text-decoration:none; }
 
 /************************************************************************/
 /********************************* 404 **********************************/
 /************************************************************************/
 
-body.piece1, canvas.piece1 {
-  background: #000000;
-}
-
-body.piece2, canvas.piece2 {
-  background: #3D76D1;
-}
+body.piece1, canvas.piece1 { background: #000000; }
+body.piece2, canvas.piece2 { background: #3D76D1; }
 
 canvas {
   position: absolute;
@@ -485,9 +384,7 @@ canvas {
   left: 0;
 }
 
-#main-layer {
-  position: absolute;
-}
+#main-layer { position: absolute; }
 
 /* time box */
 #loader {
