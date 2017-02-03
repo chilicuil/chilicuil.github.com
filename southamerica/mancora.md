@@ -1,42 +1,42 @@
 ---
 layout: default
-title: "mancora"
+title: "Mancora"
 ---
 
-<h1 class="page" style="padding-left:0%;">mancora</h1>
+<h1 class="page" style="padding-left:0%;">Mancora</h1>
 <div class="page">
     <div class="autowide">
         <div class="autocolumn">
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00012.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00012.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00008.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00008.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00014.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00014.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00016.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00016.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00002.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00002.jpg)**
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00012.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00012.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00008.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00008.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00014.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00014.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00016.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00016.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00002.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00002.jpg"/></a></strong></p>
         </div>
 
         <div class="autocolumn">
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00019.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00019.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00015.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00015.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00013.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00013.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00020.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00020.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00017.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00017.jpg)**
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00019.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00019.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00008.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00008.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00014.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00014.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00016.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00016.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00002.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00002.jpg"/></a></strong></p>
         </div>
 
         <div class="autocolumn">
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00021.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00021.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00010.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00010.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00004.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00004.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00007.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00007.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00006.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00006.jpg)**
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00021.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00021.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00008.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00008.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00014.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00014.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00016.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00016.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00002.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00002.jpg"/></a></strong></p>
         </div>
 
         <div class="autocolumn">
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00018.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00018.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00011.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00011.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00001.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00001.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00005.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00005.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00003.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00003.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00009.jpg)](http://f.javier.io/public/img/southamerica/mancora/mancora-00009.jpg)**
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00018.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00018.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00012.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00012.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00008.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00008.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00014.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00014.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00016.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00016.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/mancora/mancora-00002.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/mancora/thumbnail-mancora-00002.jpg"/></a></strong></p>
         </div>
     </div>
 </div>

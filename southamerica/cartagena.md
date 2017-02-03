@@ -1,30 +1,33 @@
 ---
 layout: default
-title: "cartagena"
+title: "Cartagena"
 ---
 
-<h1 class="page" style="padding-left:0%;">cartagena</h1>
+<h1 class="page" style="padding-left:0%;">Cartagena</h1>
 <div class="page">
     <div class="autowide">
         <div class="autocolumn">
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00003.jpg)](http://f.javier.io/public/img/southamerica/cartagena/cartagena-00003.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00009.jpg)](http://f.javier.io/public/img/southamerica/cartagena/cartagena-00009.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00001.jpg)](http://f.javier.io/public/img/southamerica/cartagena/cartagena-00001.jpg)**
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/cartagena/cartagena-00003.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00003.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/cartagena/cartagena-00009.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00009.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/cartagena/cartagena-00001.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00001.jpg"/></a></strong></p>
         </div>
 
         <div class="autocolumn">
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00002.jpg)](http://f.javier.io/public/img/southamerica/cartagena/cartagena-00002.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00006.jpg)](http://f.javier.io/public/img/southamerica/cartagena/cartagena-00006.jpg)**
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/cartagena/cartagena-00002.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00002.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/cartagena/cartagena-00009.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00009.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/cartagena/cartagena-00001.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00001.jpg"/></a></strong></p>
         </div>
 
         <div class="autocolumn">
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00004.jpg)](http://f.javier.io/public/img/southamerica/cartagena/cartagena-00004.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00007.jpg)](http://f.javier.io/public/img/southamerica/cartagena/cartagena-00007.jpg)**
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/cartagena/cartagena-00004.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00004.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/cartagena/cartagena-00009.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00009.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/cartagena/cartagena-00001.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00001.jpg"/></a></strong></p>
         </div>
 
         <div class="autocolumn">
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00008.jpg)](http://f.javier.io/public/img/southamerica/cartagena/cartagena-00008.jpg)**
-            **[![](http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00005.jpg)](http://f.javier.io/public/img/southamerica/cartagena/cartagena-00005.jpg)**
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/cartagena/cartagena-00008.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00008.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/cartagena/cartagena-00009.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00009.jpg"/></a></strong></p>
+            <p><strong><a href="http://f.javier.io/public/img/southamerica/cartagena/cartagena-00001.jpg"><img src="http://f.javier.io/public/img/thumbnails/southamerica/cartagena/thumbnail-cartagena-00001.jpg"/></a></strong></p>
         </div>
     </div>
 </div>
