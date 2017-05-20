@@ -13,7 +13,7 @@ The recipes are no different from other linux distributions where an archive har
 
 While I was reviewing the recipes I noticed than some origins wheren't available anymore. Fortunately there are plenty of mirrors for the most common utils installed with any linux system, so it wasn't difficult to find alternative urls from where to fetch the missing bits (thanks mirrors and bifrost-build!).
 
-After completing the builds I though that it shouldn't be too difficult to automate this task, to create a program who could search and download an specific archive matching a checksum. That's how [wget-finder](https://github.com/chilicuil/learn/blob/master/sh/tools/wget-finder) was born.
+After completing the builds I though that it shouldn't be too difficult to automate this task, to create a program who could search and download an specific archive matching a checksum. That's how [wget-finder](https://github.com/javier-lopez/learn/blob/master/sh/tools/wget-finder) was born.
 
 <pre class="sh_sh">
 $ wget-finder

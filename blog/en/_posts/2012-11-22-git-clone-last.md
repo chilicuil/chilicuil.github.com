@@ -10,7 +10,7 @@ title: "git clone only the last snapshot of a project"
 Git clone by default download all the data attached to a repository, there are sometimes however when I'm only interested in getting the latest snapshot. This can be done with the **--depth=1** option:
 
 <pre class="sh_sh">
-$ git clone --depth=1 git://github.com/chilicuil/dotfiles.git
+$ git clone --depth=1 git://github.com/javier-lopez/dotfiles.git
 </pre>
 
 It's called shallow clone

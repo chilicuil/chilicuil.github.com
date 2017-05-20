@@ -13,7 +13,7 @@ Sometimes when I run:
 $ rm foo
 </pre>
 
-I realize I didn't mean it, so with this in my mind I made a little [wrapper](https://github.com/chilicuil/learn/blob/master/sh/tools/trash) around rm, now, when I remove files, they're send them to the trash bin, it's compatible with nautilus/pcmanfm.
+I realize I didn't mean it, so with this in my mind I made a little [wrapper](https://github.com/javier-lopez/learn/blob/master/sh/tools/trash) around rm, now, when I remove files, they're send them to the trash bin, it's compatible with nautilus/pcmanfm.
 
 Example: If I run from a terminal **$ rm img.png** I can then go to the Trash carpet in Nautilus and restore it. If I delete an item with Nautilus (by pressing the **Supr** button) I can open a terminal and type **$ rm -u img.png** and get back my stuff.
 

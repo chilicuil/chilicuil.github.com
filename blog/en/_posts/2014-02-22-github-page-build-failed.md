@@ -25,7 +25,7 @@ Github pages could be perfect, however they're not (although they're really clos
 Beautiful!, no signal of what went wrong =), ok, to be fair, github has recently started to [add more details](https://github.com/blog/1706-descriptive-error-messages-for-failed-github-pages-builds), however they're still not sufficient, I still require to mirror their jekyll setup in order to see what's really happening. Since I've done more than a couple of times, I thought it would be a good idea to automatize it.
 
 <pre class="sh_sh">
-$ sh &lt;(wget -qO- https://raw.githubusercontent.com/chilicuil/learn/master/sh/is/gitpages)
+$ sh &lt;(wget -qO- https://raw.githubusercontent.com/javier-lopez/learn/master/sh/is/gitpages)
 ...
 $ git clone --depth=1 https://github.com/username/site.github.com
 $ cd site.github.com

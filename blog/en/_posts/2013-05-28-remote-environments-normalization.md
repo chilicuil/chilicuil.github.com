@@ -13,7 +13,7 @@ I access a fair amount of remote environments through ssh, when I do it most of 
 $ sh &lt;(wget -qO- javier.io/s)
 </pre>
 
-<iframe class="showterm" src="http://showterm.io/3bfc94afe0f51e8d6411f" width="640" height="350">&nbsp;</iframe> 
+<iframe class="showterm" src="http://showterm.io/3bfc94afe0f51e8d6411f" width="640" height="350">&nbsp;</iframe>
 
 Some of my favorite changes are:
 
@@ -31,6 +31,6 @@ Some of my favorite changes are:
 
 By default the script will backup(.old) any file before override it. Now all my new pristine environments are equal &#128522;
 
-- [dotfiles](https://github.com/chilicuil/dotfiles/)
-- [shundle](https://github.com/chilicuil/shundle)
-- [utils](https://github.com/chilicuil/learn/)
+- [dotfiles](https://github.com/javier-lopez/dotfiles/)
+- [shundle](https://github.com/javier-lopez/shundle)
+- [utils](https://github.com/javier-lopez/learn/)

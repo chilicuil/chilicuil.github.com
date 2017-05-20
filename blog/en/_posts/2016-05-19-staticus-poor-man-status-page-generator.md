@@ -9,7 +9,7 @@ title: "staticus, a poor man status page generator"
 
 I'm not sure what excuse to use to back this entry, I guess I'm just a lazy and irresponsible person, last week I got myself in need for a basic status page generator and all the alternatives I looked at were either too complicated or non free (as in speech and beer), so I decided to go my own (that's the irresponsible part) and bundle everything in a single shell script to avoid dependencies (that's the lazy one).
 
-[Staticus](https://github.com/chilicuil/learn/blob/master/sh/tools/staticus) is the result.
+[Staticus](https://github.com/javier-lopez/learn/blob/master/sh/tools/staticus) is the result.
 
 **[![](/assets/img/staticus-1.png)](/assets/img/staticus-1.png)**
 
@@ -28,7 +28,7 @@ The script accepts several options, however to set threshold values and other _a
     module_load_threshold="4"
     module_storage_threshold="80"
 
-Other possible values are described in the [configuration section](https://github.com/chilicuil/learn/blob/master/sh/tools/staticus#L8).
+Other possible values are described in the [configuration section](https://github.com/javier-lopez/learn/blob/master/sh/tools/staticus#L8).
 
 That's it, if you ever use staticus, you didn't get it from me &#128523;
 

@@ -52,7 +52,7 @@ alias cd='. wcd'
 
 **wcd** is not a binary, it's a wrapper script around `wcd.exec` (available on the `wcd` package):
 
-- [https://github.com/chilicuil/learn/blob/master/sh/tools/wcd](https://github.com/chilicuil/learn/blob/master/sh/tools/wcd)
+- [https://github.com/javier-lopez/learn/blob/master/sh/tools/wcd](https://github.com/javier-lopez/learn/blob/master/sh/tools/wcd)
 
 Once installed and configured, **$ cd s*/m*/pl** will take us to **super/master/plan** no matter what the current is, [wcd](http://wcd.sourceforge.net/) works by creating an index file with all available directories and looking at it to find the best approximation.
 
@@ -97,7 +97,7 @@ As wcd, `commacd` is a script who can be downloaded from:
 
 Or to get my personal version:
 
-- [https://raw.githubusercontent.com/chilicuil/learn/master/sh/tools/commacd](https://raw.githubusercontent.com/chilicuil/learn/master/sh/tools/commacd)
+- [https://raw.githubusercontent.com/javier-lopez/learn/master/sh/tools/commacd](https://raw.githubusercontent.com/javier-lopez/learn/master/sh/tools/commacd)
 
 Upon getting any of them, the script should be used as an alias (due to the nature of the `cd` built-in), eg, **~/bashrc**:
 

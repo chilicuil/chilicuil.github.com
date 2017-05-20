@@ -9,7 +9,7 @@ title: "using imagemagick, awk and kmeans to find dominant colors in images"
 
 Some days ago I was reading ["Using python to generate awesome linux desktop themes"](http://charlesleifer.com/blog/using-python-to-generate-awesome-linux-desktop-themes/) and got impressed by a technique to obtain dominant colors from images, I went ahead and tried to run the examples but [PIL](http://www.pythonware.com/products/pil/) proved difficult to install, so I looked around to see if I could replace it for some other utility and it turned out that [**convert**](http://www.imagemagick.org/script/convert.php) (which is part of the imagemagick package) is powerful enough for the duty.
 
-Besides resizing, **convert** can output the rgb values of any image, so I reimplemented the kmean algorithm on awk and that's how [dcolors](https://raw.githubusercontent.com/chilicuil/learn/master/sh/tools/dcolors) was born. By default dcolor will resize (on RAM) the input image to 25x25 using a 1px deviation and 3 clusters for an average time of 1s per image, further customization are possible to increase quality, quantity or performance.
+Besides resizing, **convert** can output the rgb values of any image, so I reimplemented the kmean algorithm on awk and that's how [dcolors](https://raw.githubusercontent.com/javier-lopez/learn/master/sh/tools/dcolors) was born. By default dcolor will resize (on RAM) the input image to 25x25 using a 1px deviation and 3 clusters for an average time of 1s per image, further customization are possible to increase quality, quantity or performance.
 
 <pre class="lyric">
 $ time dcolors akira_800x800.jpg

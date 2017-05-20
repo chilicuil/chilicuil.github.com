@@ -20,6 +20,6 @@ After that:
 Will work nicely. If you are interested in this and more cool aliases, checkout aliazator, it's tons of handy ones waiting for you to discover them.
 
  - [youtube-dl](http://rg3.github.io/youtube-dl/download.html)
- - [aliazator](https://github.com/chilicuil/shundle-plugins/tree/master/aliazator)
+ - [aliazator](https://github.com/javier-lopez/shundle-plugins/tree/master/aliazator)
 
 Happy watching &#128523;

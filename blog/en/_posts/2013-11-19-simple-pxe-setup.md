@@ -12,7 +12,7 @@ There are several ways to setup a [pxe](http://es.wikipedia.org/wiki/Preboot_Exe
 <!--<iframe class="showterm" src="http://showterm.io/f2ac25e4df1e7ad5e989a" width="640" height="300">&nbsp;</iframe>-->
 <!--**[![](/assets/img/87.jpg)](/assets/img/87.jpg)**-->
 
-    $ sh <(wget -qO- https://raw.githubusercontent.com/chilicuil/learn/master/sh/tools/pxe)
+    $ sh <(wget -qO- https://raw.githubusercontent.com/javier-lopez/learn/master/sh/tools/pxe)
     [+] setting pxe environment in ./pxe_setup ...
       - creating ./pxe_setup/menu.c32 ...
       - creating ./pxe_setup/pxelinux.0 ...
@@ -77,12 +77,12 @@ Upon booting the target machines will print a menu asking for a which system to 
 
 Most popular distributions support completely automated installations through preseed, kickstart, etc. This setup is no exception, it's been configured to provide a hands-free installation for Ubuntu. The preseed file used can be retrieved at:
 
-- [http://people.ubuntu.com/~chilicuil/conf/preseed/minimal.preseed](http://people.ubuntu.com/~chilicuil/conf/preseed/minimal.preseed)
+- [http://people.ubuntu.com/~javier-lopez/conf/preseed/minimal.preseed](http://people.ubuntu.com/~javier-lopez/conf/preseed/minimal.preseed)
 
 It supports two extra boot parameters:
 
 - **proxy=http://url**, for using a proxy who doesn't break the installation process
-- **user=joe**, for setting a default user (chilicuil by default)
+- **user=joe**, for setting a default user (admin by default)
 
 ## uninstallation
 

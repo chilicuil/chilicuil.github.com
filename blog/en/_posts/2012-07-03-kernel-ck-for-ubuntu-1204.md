@@ -24,11 +24,11 @@ Fortunately some users at ubuntu-br.org have been following the -ck branch, clos
     Kernel Omnislash (Unofficial) – Aprendendo a voar sem segredos!!! (learning to fly without secrets)
     http://sourceforge.net/projects/scriptkernel/files/
 
-After check it out, I’ve edited it (to avoid some errors and to add some bells and whistles) and I’ve put the result in: https://github.com/chilicuil/learn/blob/master/sh/is/kernel-ck-ubuntu
+After check it out, I’ve edited it (to avoid some errors and to add some bells and whistles) and I’ve put the result in: https://github.com/javier-lopez/learn/blob/master/sh/is/kernel-ck-ubuntu
 The idea is that from time to time I check the script to see that it compiles the last -ck patchset version for the last Ubuntu LTS version. If you want to try it, run the following commands:
 
 <pre class="sh_sh">
-$ wget https://raw.github.com/chilicuil/learn/master/sh/is/kernel-ck-ubuntu
+$ wget https://raw.github.com/javier-lopez/learn/master/sh/is/kernel-ck-ubuntu
 $ time sh kernel-ck-ubuntu
 $ sudo dpkg -i ./linux-*.deb
 </pre>

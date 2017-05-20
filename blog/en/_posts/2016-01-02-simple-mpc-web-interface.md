@@ -12,7 +12,7 @@ Sometimes while listening music at my desk my niece (~8y/o) shows up and asks me
 It turned to be more trouble that I though, first, there are no free mpd clients on the ipad software store (or it's not available in my region, LATAM), and most [web clients](http://mpd.wikia.com/wiki/Clients) require a fair amount of dependencies and some work to get them running. I don't want yet another service to maintain, so I decided to hack a simple web interface for `mpc`, based on Gwenn Englebienne previous work on [mplayer](http://www.gwenn.dk/mplayer-remote.html) and this is the result:
 
 <pre class="sh_sh">
-$ wget https://raw.githubusercontent.com/chilicuil/learn/master/python/simple-mpc-remote
+$ wget https://raw.githubusercontent.com/javier-lopez/learn/master/python/simple-mpc-remote
 $ python simple-mpc-remote -p 8080
 Started httpserver on port 8080
 </pre>
@@ -24,4 +24,4 @@ Started httpserver on port 8080
 Happy skipping &#128523;
 
 - [mplayer-remote](http://www.gwenn.dk/mplayer-remote.html)
-- [simple-mpc-remote](https://raw.githubusercontent.com/chilicuil/learn/master/python/simple-mpc-remote)
+- [simple-mpc-remote](https://raw.githubusercontent.com/javier-lopez/learn/master/python/simple-mpc-remote)

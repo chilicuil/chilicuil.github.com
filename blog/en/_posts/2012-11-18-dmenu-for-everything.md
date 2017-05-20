@@ -32,7 +32,7 @@ bindsym $Altgr+v exec dmenu_vbox
 
 So now I can launch vbox machines by pressing **Altrg + v** and select the appropiated machine, if you liked dmenu as much as I did, I've made a handful of scripts to control music, user sessions, apps, etc. Feel free to grab them at:
 
-- [https://github.com/chilicuil/learn/tree/master/sh/tools](https://github.com/chilicuil/learn/tree/master/sh/tools)
+- [https://github.com/javier-lopez/learn/tree/master/sh/tools](https://github.com/javier-lopez/learn/tree/master/sh/tools)
 
 **[![](/assets/img/61.png)](/assets/img/61.png)**
 **[![](/assets/img/62.png)](/assets/img/62.png)**

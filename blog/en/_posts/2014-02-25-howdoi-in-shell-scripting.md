@@ -11,7 +11,7 @@ During these days I read about [howdoi](https://github.com/gleitz/howdoi), a [st
 
 Get the code at:
 
-- [https://raw.github.com/chilicuil/learn/master/sh/tools/howdoi](https://raw.github.com/chilicuil/learn/master/sh/tools/howdoi)
+- [https://raw.github.com/javier-lopez/learn/master/sh/tools/howdoi](https://raw.github.com/javier-lopez/learn/master/sh/tools/howdoi)
 
 **[![](http://imgs.xkcd.com/comics/tar.png)](http://imgs.xkcd.com/comics/tar.png)**
 <!--<iframe class="showterm" src="http://showterm.io/ab7339312c9d960f09f77" width="640" height="350">&nbsp;</iframe>-->

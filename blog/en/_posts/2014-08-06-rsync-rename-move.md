@@ -42,5 +42,5 @@ References:
 
 - [https://bugzilla.samba.org/show_bug.cgi?id=2294](https://bugzilla.samba.org/show_bug.cgi?id=2294)
 - [https://bugs.launchpad.net/ubuntu/+source/rsync/+bug/1353792](https://bugs.launchpad.net/ubuntu/+source/rsync/+bug/1353792)
-- [https://github.com/chilicuil/learn/blob/master/patches/rsync-3.1.1-trusty-detect-renamed.diff](https://github.com/chilicuil/learn/blob/master/patches/rsync-3.1.1-trusty-detect-renamed.diff)
-- [https://github.com/chilicuil/learn/blob/master/patches/rsync-3.1.1-trusty-detect-renamed-lax.diff](https://github.com/chilicuil/learn/blob/master/patches/rsync-3.1.1-trusty-detect-renamed-lax.diff)
+- [https://github.com/javier-lopez/learn/blob/master/patches/rsync-3.1.1-trusty-detect-renamed.diff](https://github.com/javier-lopez/learn/blob/master/patches/rsync-3.1.1-trusty-detect-renamed.diff)
+- [https://github.com/javier-lopez/learn/blob/master/patches/rsync-3.1.1-trusty-detect-renamed-lax.diff](https://github.com/javier-lopez/learn/blob/master/patches/rsync-3.1.1-trusty-detect-renamed-lax.diff)

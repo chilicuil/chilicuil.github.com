@@ -7,7 +7,7 @@ title: "deb package cache"
 
 ###### {{ page.date | date_to_string }}
 
-**Update:** I created a [script](https://raw.github.com/chilicuil/learn/master/sh/is/apt-proxy) who automate the process described in this post.
+**Update:** I created a [script](https://raw.github.com/javier-lopez/learn/master/sh/is/apt-proxy) who automate the process described in this post.
 
 <!--<iframe class="showterm" src="http://showterm.io/cfdfdda6da61dad9d9d5e" width="640" height="350">&nbsp;</iframe>-->
 

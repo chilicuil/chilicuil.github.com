@@ -15,7 +15,7 @@ Since some time I've realized I'm pretty bad at memorizing strong passwords, as 
         xclip -selection clipboard 2>/dev/null || \
         printf "%s\\n" "${_g}"; }; _getpass'
 
-I knew than the resulting passwords weren't really good at keeping my master password secure, after all, md5 hashing is extremely fast and with known [collision](http://www.mscs.dal.ca/~selinger/md5collision/) [problems](http://natmchugh.blogspot.mx/2015/02/create-your-own-md5-collisions.html), even worse, I didn't even iterate over it. So I keep it in secret till I had the time or willingness to use an informed solution. During the last month I've been reviewing the state of art of password generation schemes and found than some [derivation](https://en.wikipedia.org/wiki/Bcrypt) [functions](https://en.wikipedia.org/wiki/Scrypt) have been designed specifically for this task. So I converted the shell alias to a C program and [genpass](https://github.com/chilicuil/genpass) is the result.
+I knew than the resulting passwords weren't really good at keeping my master password secure, after all, md5 hashing is extremely fast and with known [collision](http://www.mscs.dal.ca/~selinger/md5collision/) [problems](http://natmchugh.blogspot.mx/2015/02/create-your-own-md5-collisions.html), even worse, I didn't even iterate over it. So I keep it in secret till I had the time or willingness to use an informed solution. During the last month I've been reviewing the state of art of password generation schemes and found than some [derivation](https://en.wikipedia.org/wiki/Bcrypt) [functions](https://en.wikipedia.org/wiki/Scrypt) have been designed specifically for this task. So I converted the shell alias to a C program and [genpass](https://github.com/javier-lopez/genpass) is the result.
 
 Genpass is by no means original, however when looking around I found than most password generators were plain broken, most of them were iterating fast checksum functions, md5, sha1, sha512, etc, or the ones using either bcrypt or scrypt used hard-coded parameters which could make them vulnerable to future computers. Using a slow key derivation function is as practical as the user is willing to wait, so often more secure default parameters aren't used because it would make the derivation painfully slow. Fortunately some smart guys have found this [problem before](https://www.cs.utexas.edu/%7Ebwaters/publications/papers/www2005.pdf) and have suggested to use a cache key to accelerate the process for legitimate users. That's what genpass uses to propose the following paranoid defaults.
 
@@ -32,7 +32,7 @@ It's still convenient to use your own parameters, as the default settings will c
 
 ### Usage
 
-<a href="https://raw.githubusercontent.com/chilicuil/genpass/master/genpass.gif"><img src="https://raw.githubusercontent.com/chilicuil/genpass/master/genpass.gif" alt="" style="border: 1px solid white;margin-bottom: 3%;"></a>
+<a href="https://raw.githubusercontent.com/javier-lopez/genpass/master/genpass.gif"><img src="https://raw.githubusercontent.com/javier-lopez/genpass/master/genpass.gif" alt="" style="border: 1px solid white;margin-bottom: 3%;"></a>
 <!--$ genpass-->
 <!--Name: Guy Mann-->
 <!--Site: github.com-->
@@ -62,7 +62,7 @@ That's it, happy password generation &#128523;
 
 References
 
-- [genpass](https://github.com/chilicuil/genpass)
+- [genpass](https://github.com/javier-lopez/genpass)
 - [bcrypt](https://en.wikipedia.org/wiki/Bcrypt), slow key derivation function
 - [scrypt](https://en.wikipedia.org/wiki/Scrypt), slow key derivation function
 - [pwdhash](https://www.pwdhash.com/), md5 based password generator, js

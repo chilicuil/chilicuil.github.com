@@ -36,7 +36,7 @@ else
 fi
 </pre>
 
-The above will allow to use [translate](https://github.com/chilicuil/learn/blob/master/sh/tools/translate) in the following ways:
+The above will allow to use [translate](https://github.com/javier-lopez/learn/blob/master/sh/tools/translate) in the following ways:
 
     $ translate hola
     $ echo hola | translate
@@ -44,7 +44,7 @@ The above will allow to use [translate](https://github.com/chilicuil/learn/blob/
 
 ## Output should be free from header or other decoration
 
-Adding options in shell scripts are easy, if you like adding extra sugar to your output, consider doing it within them, some examples are; -v, --verbose, -a, --all, etc, but by default try to output the simplest response, consider [howdoi](https://github.com/chilicuil/learn/blob/master/sh/tools/howdoi)
+Adding options in shell scripts are easy, if you like adding extra sugar to your output, consider doing it within them, some examples are; -v, --verbose, -a, --all, etc, but by default try to output the simplest response, consider [howdoi](https://github.com/javier-lopez/learn/blob/master/sh/tools/howdoi)
 
     $ howdoi extract a tar.bz2 package in unix
     tar -xjf /path/to/archive.tar.bz
@@ -178,6 +178,6 @@ Doing interactive programs in shell scripting is actually harder than parsing cl
 Happy tooling &#128523;
 
 - [http://monkey.org/~marius/unix-tools-hints.html](http://monkey.org/~marius/unix-tools-hints.html)
-- [Personal guidelines](https://github.com/chilicuil/learn/blob/master/sh/guideline.md)
+- [Personal guidelines](https://github.com/javier-lopez/learn/blob/master/sh/guideline.md)
 - [Beginning shell scripting](http://f.javier.io/rep/books/Beginning_shell_scripting.pdf)
-- [Shell scripts following exposed advices](https://github.com/chilicuil/learn/tree/master/sh)
+- [Shell scripts following exposed advices](https://github.com/javier-lopez/learn/tree/master/sh)

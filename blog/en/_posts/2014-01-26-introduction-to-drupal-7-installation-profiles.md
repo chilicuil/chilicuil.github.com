@@ -9,7 +9,7 @@ title: "introduction to drupal 7 installation profiles"
 
 **[![](/assets/img/91.gif)](/assets/img/91.gif)**
 
-Last weekend I worked on a Drupal site and it was not fun =( mostly due to incomplete and inaccurate documentation. My goal was to create a distributable bundle for [Spanish Ubuntu](https://github.com/chilicuil/ubuntu-mx-www) local teams. I already had a base theme and didn't though it could be that hard, however what started as a simple task ended as a very long weekend. On this post I'll try to document what issues I found and how they were worked out.
+Last weekend I worked on a Drupal site and it was not fun =( mostly due to incomplete and inaccurate documentation. My goal was to create a distributable bundle for [Spanish Ubuntu](https://github.com/javier-lopez/ubuntu-mx-www) local teams. I already had a base theme and didn't though it could be that hard, however what started as a simple task ended as a very long weekend. On this post I'll try to document what issues I found and how they were worked out.
 
 For the record, I must say I'm not a web developer, I find all the technologies related quite difficult to understand, I also didn't have any previous experience with drupal internals.
 

@@ -172,7 +172,7 @@ Should return **avd**, **project**, **test-project** and **lib-project**:
 $ android create avd[Tab][Tab]
 </pre>
 
-And **-a**, **-c**, **-f**, etc, should be returned when avd and create are the first parameters. The full autocompletion file for this example is located in [github](https://github.com/chilicuil/learn/blob/master/autocp/completions/android), I'll explain now the more important parts:
+And **-a**, **-c**, **-f**, etc, should be returned when avd and create are the first parameters. The full autocompletion file for this example is located in [github](https://github.com/javier-lopez/learn/blob/master/autocp/completions/android), I'll explain now the more important parts:
 
 <pre class="sh_sh">
 \_android()
@@ -312,7 +312,7 @@ $ command opc[Tab][Tab] #testing the autocompletion
 
 ### Examples
 
-There are many bash completion scripts in [Internet](http://anonscm.debian.org/gitweb/?p=bash-completion/bash-completion.git;a=tree;f=completions) and [some others](https://github.com/chilicuil/learn/tree/master/autocp/completions) in my personal repository. Looking at examples is probably the easiest way to learn the harder details.
+There are many bash completion scripts in [Internet](http://anonscm.debian.org/gitweb/?p=bash-completion/bash-completion.git;a=tree;f=completions) and [some others](https://github.com/javier-lopez/learn/tree/master/autocp/completions) in my personal repository. Looking at examples is probably the easiest way to learn the harder details.
 
 ### Final thoughts
 

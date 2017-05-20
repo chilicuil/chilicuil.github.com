@@ -30,7 +30,7 @@ $ sendemail -f from@foo.org \
 Now, since gmail blocks hosts per ip, it sometimes doesn't work when it used from new locations, it can be very annoying. Fortunately, there are other ways to send emails within a system, my favorite method is to use [http://mailgun.com](http://mailgun.com). When using mailgun you only need an account in such service and **curl** installed in your system. I've created a script who wraps the required logic and just send emails.
 
 <pre class="sh_sh">
-$ wget https://raw.github.com/chilicuil/learn/master/sh/tools/mailgun
+$ wget https://raw.github.com/javier-lopez/learn/master/sh/tools/mailgun
 $ sh mailgun --api xxx "address@to.com" "message"
 </pre>
 

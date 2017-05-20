@@ -52,7 +52,7 @@ $ tar zxvf data.tar.gz
   ./usr/lib/firefox-addons/searchplugins/launchpad-specs.xml
   ./usr/lib/firefox-addons/searchplugins/launchpad-support.xml
 $ find ~/.mozilla/ -type d  -iname searchplugins
-  /home/chilicuil/.mozilla/firefox/h5xyzl6e.default/searchplugins
+  /home/javier/.mozilla/firefox/h5xyzl6e.default/searchplugins
 $ mv ./usr/lib/firefox-addons/searchplugins/* ~/.mozilla/firefox/h5xyzl6e.default/searchplugins/
 </pre>
 

@@ -18,7 +18,7 @@ title: "logstash + redis + elasticsearch + kibana3"
 [Composition](http://en.wikipedia.org/wiki/Unix_philosophy) applied to logging has been a great sucess lately, this week I've verified how easy is to use logstash and friends with 48 servers distributed in two datacenters, I've created a script to deploy all programs in a single node.
 
 <pre class="sh_sh">
-$ bash &lt;(wget -qO- https://raw.github.com/chilicuil/learn/master/sh/is/log-stack)
+$ bash &lt;(wget -qO- https://raw.github.com/javier-lopez/learn/master/sh/is/log-stack)
 </pre>
 
 **[![](/assets/img/77.jpg)](/assets/img/77.jpg)**
@@ -59,7 +59,7 @@ output {
 
 So, after rebooting the service logstash will add an "Alert_flood" tag to all messages where the pattern is found and will copy these messages (besides sending them to redis) to **/tmp/logstash_alert**.
 
-Finally I wrote a [script](https://gist.github.com/chilicuil/6066888) to send warning messages by email to the admins:
+Finally I wrote a [script](https://gist.github.com/javier-lopez/6066888) to send warning messages by email to the admins:
 
 <pre class="sh_sh">
 $ sudo crontab -l

@@ -5,8 +5,8 @@ author:      "Javier López"
 description: "Javier López personal blog"
 
 twitter:
-  username: chilicuil
-  
+  username: javier_flpz
+
 source:      .
 destination: ./_site
 plugins:     ./_plugins
