@@ -19,7 +19,6 @@ _usage() {
     printf "%s\\n" "Examples:"
     printf "\\n"
     printf "%s\\n" "  $ sh <(wget -qO- javier.io/deploy) f.javier.io"
-    printf "%s\\n" "  $ sh <(wget -qO- javier.io/deploy) minos [core|desktop]"
 }
 
 _die() {
