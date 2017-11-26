@@ -1,19 +1,19 @@
 ---
 layout: post
-title: "block youtube in openwrt routers"
+title: "block youtube by IP in openwrt routers"
 ---
 
 ## {{ page.title }}
 
 ###### {{ page.date | date_to_string }}
 
-In previous post I wrote about how to install [openwrt as an access point](http://javier.io/blog/en/2014/07/21/installing-openwrt-as-access-point.html) or as a [wireless repeater](http://javier.io/blog/en/2014/06/10/installing-openwrt-as-wireless-repeater.html), this time I'll show how to block youtube and other third party sites by ip. The procedure works in desktop / and mobile devices.
+In previous posts I wrote about how to install [openwrt as an access point](http://javier.io/blog/en/2014/07/21/installing-openwrt-as-access-point.html) or as a [wireless repeater](http://javier.io/blog/en/2014/06/10/installing-openwrt-as-wireless-repeater.html), this time I'll show how to block youtube and other third party sites by ip. The procedure works in desktop / and mobile devices.
 
 The target router is a [TP-Link N750](http://www.amazon.com/TP-LINK-TL-WDR4300-Wireless-Gigabit-300Mbps/dp/B0088CJT4U), and I'm using the latest [trunk build](http://downloads.openwrt.org/snapshots/trunk/ar71xx/).
 
 **[![](/assets/img/98.jpg)](/assets/img/98.jpg)**
 
-Openwrt uses [UCI](https://wiki.openwrt.org/doc/uci) to centralize the configuration of OpenWrt, firewall rules are located at:
+OpenWRT uses [UCI](https://wiki.openwrt.org/doc/uci) to centralize configuration, firewall rules are located at:
 
 - **/etc/config/firewall**
 
