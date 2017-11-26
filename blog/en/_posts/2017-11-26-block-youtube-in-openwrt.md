@@ -144,7 +144,7 @@ Ensure to reboot the firewall service to apply the changes:
 # /etc/init.d/firewall restart
 </pre>
 
-That's it, happy browsing &#9996;
+That's it, happy blocking &#128523;
 
 - [Tl-wdr4300 in OpenWRT](http://wiki.openwrt.org/toh/tp-link/tl-wdr4300)
 - [OpenWRT Firewall Documentation](https://wiki.openwrt.org/doc/uci/firewall)
