@@ -55,7 +55,7 @@ $ telnet 192.168.1.1 #type "passwd" to set the root passwd
 # be aware than in current openwrt releases telnet is no longer provided
 # in those cases just skip this step
 $ ssh root@192.168.1.1 #from other terminal window
-openwrt # passwd #set the root passwd in case telnet service isn't available
+openwrt # passwd #set the root passwd in case telnet service wasn't available
 openwrt # ifconfig br-lan 10.9.8.7
 $ while true; do sudo ifconfig eth0 10.9.8.10; sleep 1; done #bypass networkmanager
 $ ssh root@10.9.8.7

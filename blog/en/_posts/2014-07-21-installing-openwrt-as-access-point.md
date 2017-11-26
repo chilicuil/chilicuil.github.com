@@ -79,6 +79,6 @@ Create the Access Point (linked to the **lan** interface)
 
 **[![](/assets/img/openwrt-ap.png)](/assets/img/openwrt-ap.png)**
 
-Connect a ethernel cable to the WAN interface (on this device it's behind and it's blue), that's it, profit!, happy browsing &#9996;
+Connect a ethernel cable to the WAN interface (on this device it's a blue port behind), that's it, profit!, happy browsing &#9996;
 
 - [http://wiki.openwrt.org/toh/tp-link/tl-wdr4300](http://wiki.openwrt.org/toh/tp-link/tl-wdr4300)
