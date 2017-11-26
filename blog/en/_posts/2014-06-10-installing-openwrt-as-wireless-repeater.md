@@ -34,10 +34,27 @@ The trunk build is quite raw, it doesn't install the [classic web interface](luc
 To install the additional software I connected to the device and changed temporally the network (so the router could have access to internet).
 
 <pre class="sh_sh">
+# flush previous iptables rules
+$ sudo iptables -F
+$ sudo iptables -X
+$ sudo iptables -t nat -F
+$ sudo iptables -t nat -X
+$ sudo iptables -t mangle -F
+$ sudo iptables -t mangle -X
+$ sudo iptables -P INPUT ACCEPT
+$ sudo iptables -P FORWARD ACCEPT
+$ sudo iptables -P OUTPUT ACCEPT
+</pre>
+
+<pre class="sh_sh">
 $ sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE #share temporally my laptop wireless connection
 $ echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
+$ while true; do sudo ifconfig eth0 192.168.1.2; sleep 1; done #bypass networkmanager
 $ telnet 192.168.1.1   #type "passwd" to set the root passwd
+# be aware than in current openwrt releases telnet is no longer provided
+# in those cases just skip this step
 $ ssh root@192.168.1.1 #from other terminal window
+openwrt # passwd #set the root passwd in case telnet service is not available
 openwrt # ifconfig br-lan 10.9.8.7
 $ while true; do sudo ifconfig eth0 10.9.8.10; sleep 1; done #bypass networkmanager
 $ ssh root@10.9.8.7
