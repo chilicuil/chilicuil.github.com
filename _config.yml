@@ -11,12 +11,11 @@ source:      .
 destination: ./_site
 plugins_dir: ./_plugins
 
-gems:
+plugins:
   - jekyll-seo-tag
 
 safe:        false
-auto:        false
 future:      true
 lsi:         true
-pygments:    false
+highlighter: rouge
 markdown:    kramdown
