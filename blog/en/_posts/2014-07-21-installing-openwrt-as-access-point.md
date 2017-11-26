@@ -60,11 +60,9 @@ $ ssh root@10.9.8.7
 openwrt # route add default gw 10.9.8.10
 openwrt # echo "nameserver 8.8.8.8" &gt; /etc/resolv.conf
 openwrt # opkg update
-openwrt # opkg install luci relayd
+openwrt # opkg install luci
 openwrt # /etc/init.d/uhttpd enable
 openwrt # /etc/init.d/uhttpd start
-openwrt # /etc/init.d/relayd enable
-openwrt # /etc/init.d/relayd start
 </pre>
 
 Upon completing the installation, go to the web interface, [http://10.9.8.7](http://10.9.8.7), and reconfigure the LAN interface to make permanent the IP address:
