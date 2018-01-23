@@ -14,6 +14,15 @@ title: "share connection between personal computers"
 
 <pre class="sh_sh">
 $ sudo ifconfig eth0 10.0.0.1
+$ sudo iptables -F
+$ sudo iptables -X
+$ sudo iptables -t nat -F
+$ sudo iptables -t nat -X
+$ sudo iptables -t mangle -F
+$ sudo iptables -t mangle -X
+$ sudo iptables -P INPUT ACCEPT
+$ sudo iptables -P FORWARD ACCEPT
+$ sudo iptables -P OUTPUT ACCEPT
 $ sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
 $ echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
 </pre>
@@ -27,6 +36,15 @@ $ echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
 $ sudo iwconfig wlan0 mode ad-hoc
 $ sudo iwconfig wlan0 essid proxywlan
 $ sudo ifconfig wlan0 10.0.0.1 up
+$ sudo iptables -F
+$ sudo iptables -X
+$ sudo iptables -t nat -F
+$ sudo iptables -t nat -X
+$ sudo iptables -t mangle -F
+$ sudo iptables -t mangle -X
+$ sudo iptables -P INPUT ACCEPT
+$ sudo iptables -P FORWARD ACCEPT
+$ sudo iptables -P OUTPUT ACCEPT
 $ sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 $ echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
 </pre>
