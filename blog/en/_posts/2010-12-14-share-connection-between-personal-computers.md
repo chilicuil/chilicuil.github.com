@@ -52,5 +52,11 @@ $ echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
 After completing any of the previous steps (and if no dhcp daemon has been set up) the client machine will require to be configured manually, eg:
 
 - **ip:** 10.0.0.2
-- **gatewat:** 10.0.0.1
+- **gateway:** 10.0.0.1
 - **dns:** 8.8.8.8
+
+Otherwise you can run a [simple dhcpd](https://raw.githubusercontent.com/javier-lopez/learn/master/python/tools/simple-dhcpd) daemon:
+
+<pre class="sh_sh">
+$ sudo simple-dhcpd -i eth0 -a 10.0.0.1
+</pre>
