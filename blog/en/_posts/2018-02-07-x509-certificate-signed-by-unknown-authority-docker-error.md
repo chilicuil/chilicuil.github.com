@@ -9,8 +9,9 @@ title: "x509: certificate signed by unknown authority docker error"
 
 At work we use internal docker registers and from to time I encounter this error when trying to pull/push to https registers, so I'm leaving the procedure to add autosigned certificates for the future me and others.
 
-### Distro: Ubuntu 16.04
-### Docker: 17.12.0-ce, build c97c6d
+Distro: Ubuntu 16.04
+
+Docker: 17.12.0-ce, build c97c6d
 
 <pre>
 $ # export registry certificate
