@@ -198,7 +198,7 @@ h6 { margin-top: -1.5%; margin-bottom: 1%; color: #aaa; text-align: right; }
 a { text-decoration: none; color: #B03A44; }
 a:hover { text-decoration: underline; color: #CD0D1D; }
 
-li { padding-left: 12px; padding-bottom: 1em; color: #aaa; }
+li { padding-bottom: 1em; color: #aaa; }
 
 ul > li:before {
   position: relative;

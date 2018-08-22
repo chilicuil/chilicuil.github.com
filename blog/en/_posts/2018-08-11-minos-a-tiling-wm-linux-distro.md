@@ -44,8 +44,8 @@ In order to achieve its goal, minos design is lead by:
 
 There exist two versions of the system:
 
-* Core: X less environment, ideal for servers.
-* Desktop: Graphic tiling wm environment for laptops/workstations.
+* **Core: X less environment, ideal for servers.**
+* **Desktop: Graphic tiling wm environment for laptops/workstations.**
 
 ### Installation
 
