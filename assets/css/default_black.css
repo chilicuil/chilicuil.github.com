@@ -171,17 +171,27 @@ h2 {
 h3 {
   /*color: #777;*/
   color: #ccc;
-  font: 100%/2em 'PT Sans',sans-serif;
+  font: 1.6em/2em 'PT Sans',sans-serif;
 
   /*square around*/
-  border: 1px solid;
+  /*border: 1px solid;*/
+  border: 4px double;
   margin-bottom: 2%;
   margin-top: 2%;
   text-align: center;
-  width: 10%;
+  /*width: 10%;*/
 }
 
-h4 { font-size: .9em; color: #999; }
+h4 {
+    color: #ccc;
+    font: 100%/2em 'PT Sans',sans-serif;
+    border: 1px solid;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    text-align: center;
+    width: 10%;
+}
+
 h5 { font-size: .9em; font: 100%/2em 'PT Sans',sans-serif; color: #999; }
 h6 { margin-top: -1.5%; margin-bottom: 1%; color: #aaa; text-align: right; }
 

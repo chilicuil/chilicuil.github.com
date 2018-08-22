@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "minos, a tiling wm based linux distribution"
+title: "minos, a tiling wm linux distribution"
 ---
 
 ## {{ page.title }}
@@ -42,12 +42,12 @@ In order to achieve its goal, minos design is lead by:
     Pluggable  → plugin based components
     Beauty     → subjective, but right now mostly black =P
 
-### Installation
-
 There exist two versions of the system:
 
     - Core: X less environment, ideal for servers.
     - Desktop: Graphic tiling wm environment for laptops/workstations.
+
+### Installation
 
 #### Ubuntu LTS based distro
 
@@ -68,7 +68,7 @@ Or run the http://minos.io/s installer:
 
 #### Live Ubuntu LTS based distro
 
-From any [L|X|K]Ubuntu live usb run the http://minos.io/s installer:
+From any [L/X/K]Ubuntu live usb run the http://minos.io/s installer:
 
     $ sh <(wget -q -O- minos.io/s) live core    /dev/sdX username passwd [/dev/sdaY]
     $ sh <(wget -q -O- minos.io/s) live desktop /dev/sdX username passwd [/dev/sdaY]
@@ -115,10 +115,10 @@ Core:
 
 Desktop:
 
-    ▸ Deb packages are cached[1] and shared over avahi (zeroconf)
+    ▸ Deb packages are cached and shared over avahi (zeroconf)
 
-- [0] https://www.debian.org/doc/manuals/debian-faq/ch-pkg_basics.en.html#s-depends
-- [1] https://www.unix-ag.uni-kl.de/~bloch/acng/
+* https://www.debian.org/doc/manuals/debian-faq/ch-pkg_basics.en.html#s-depends
+* https://www.unix-ag.uni-kl.de/~bloch/acng/
 
 #### static-get
 
@@ -374,22 +374,22 @@ described at: https://github.com/minos-org/minos-sync
 
 #### Choosing default applications
 
-- Default applications are selected with good documentation, flexibility,
+* Default applications are selected with good documentation, flexibility,
   configurability and as few dependencies as possible in mind.
-- Systems supporting composition/specialization are preferred over
+* Systems supporting composition/specialization are preferred over
   generalization
-- Keyboard oriented applications are preferred over pointing
+* Keyboard oriented applications are preferred over pointing
   interfaces
-- GUI programs are nice but rejected if they use ancient graphical
+* GUI programs are nice but rejected if they use ancient graphical
   interfaces or use considerable resources.
-- When in doubt http://suckless.org/rocks provide additional hints
+* When in doubt http://suckless.org/rocks provide additional hints
   about how software is selected into the project
 
 #### Choosing default behavior
 
-- Toggle solutions are preferred over multichoice.
-- Use/Set vi like applications/settings are preferred
-- Defaults are configured with a focus in the out-of-the-box experience
+* Toggle solutions are preferred over multichoice.
+* Use/Set vi like applications/settings are preferred
+* Defaults are configured with a focus in the out-of-the-box experience
 
 #### Roadmap
 
