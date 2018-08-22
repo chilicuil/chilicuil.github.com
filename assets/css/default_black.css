@@ -192,7 +192,7 @@ h4 {
     /*width: 10%;*/
 }
 
-h5 { font-size: .9em; font: 100%/2em 'PT Sans',sans-serif; color: #999; }
+h5 { font-size: .9em; font: 100%/0em 'PT Sans',sans-serif; color: #dcdcdc; }
 h6 { margin-top: -1.5%; margin-bottom: 1%; color: #aaa; text-align: right; }
 
 a { text-decoration: none; color: #B03A44; }

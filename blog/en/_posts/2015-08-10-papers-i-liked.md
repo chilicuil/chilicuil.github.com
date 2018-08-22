@@ -9,7 +9,7 @@ title: "papers I liked"
 
 From time to time I read papers about any subject, mostly about computer science, and then forgot which or where it's available for future reference. So I'm creating this list as a kind of personal wiki to do not forget anymore.
 
-## Computer Security
+### Computer Security
 
 - [PrivExec: Private Execution as an Operating System Service](http://www.iseclab.org/papers/sp2013privexec) - 2013. [[pdf]](http://f.javier.io/rep/papers/sp2013privexec.pdf) 16 Pag. Kernel side private / temporal / irrecoverable execution environments.
 
@@ -22,11 +22,11 @@ From time to time I read papers about any subject, mostly about computer science
 
 - [Password Multiplier: A convenient method for securely managing passwords](http://www.cs.utexas.edu/~bwaters/publications/papers/www2005.pdf) - 2005. [[pdf]](http://f.javier.io/rep/papers/Password%20Multiplier:%20A%20convenient%20method%20for%20securely%20managing%20passwords.pdf) 9 Pag. Hash based passwords.
 
-## Computer Virtualization
+### Computer Virtualization
 
 - [Performance Evaluation of Container-based Virtualization for High Performance Computing Environments](http://marceloneves.org/papers/pdp2013-containers.pdf) - 2014. [[pdf]](http://f.javier.io/rep/papers/pdp2013-containers.pdf) 8 Pag. Xen, Openvz, Linux Vserver, LXC performance evaluation.
 
-## Computer Operation Systems
+### Computer Operation Systems
 
 - [Flexible Operating System Internals: The Design and Implementation of the Anykernel and Rump Kernels](http://lib.tkk.fi/Diss/2012/isbn9789526049175/isbn9789526049175.pdf) - 2012. [[pdf]](http://f.javier.io/rep/papers/anykernel-rump-kernel-isbn9789526049175.pdf) 362 Pag. Portable drivers across minimal kernels (anykernels) and system applications (rump kernels). Drivers as system libraries.
 
@@ -36,7 +36,7 @@ From time to time I read papers about any subject, mostly about computer science
    -[Maglev: A Fast and Reliable Software Network Load Balancer](http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44824.pdf) - 2016.[[pdf]](http://f.javier.io/rep/papers/Maglev%20-%20A%20fast%20and%20reliable%20software%20network%20load%20balancer.pdf) 13 Pag. Google's distributed software based network load balancer on commodity hardware.
    -->
 
-## Community driven papers repositories
+### Community driven papers repositories
 
 - [https://github.com/papers-we-love/papers-we-love](https://github.com/papers-we-love/papers-we-love)
 - [http://www.reddit.com/r/paperswelove](http://www.reddit.com/r/paperswelove)
