@@ -278,7 +278,7 @@ h2 + img + p:first-letter {
 #content { position: relative; min-height: 200px; margin: 0px; }
 
 #content img {
-  max-width: 60%;
+  max-width: 80%;
   border-radius: 3px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;

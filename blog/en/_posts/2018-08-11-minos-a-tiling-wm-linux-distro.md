@@ -16,7 +16,7 @@ friends have a better time getting started.
 [Minos](https://github.com/minos-org/) is a personal effort to get a stable,
 performant and productive Linux system for power user/dev roles.
 
-    ▸ Based on Ubuntu LTS releases and with BedRock Linux support on its way
+    ▸ Based on Ubuntu LTS releases with BedRock Linux support on its way
         ▸ 14.04 / 16.04 / 18.04
     ▸ Tiling window manager, i3wm + patches
     ▸ Full battery cli workflow, urxvt, tmux, vim, wicd, shundle, ...
@@ -29,7 +29,7 @@ performant and productive Linux system for power user/dev roles.
         ▸ network manager  -  wicd-curses | email client - mutt
         ▸ ...
 
-[![](/assets/img/minos-movie.png)](/assets/img/minos-movie.png)
+**[![](/assets/img/minos-movie.png)](/assets/img/minos-movie.png)**
 
 ### Principles
 
