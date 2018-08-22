@@ -190,7 +190,7 @@ directories:
     ▸ backward pwd search for normal and versioned projects, see `command -v ,,,`
       → $ ,, long #go to ~/a/long
 
-Desktop:
+**Desktop**
 
     ▸ <Alt-Esc> is mapped to `dmenu-launcher` which supports the above
       attributes plus clipboard integration
