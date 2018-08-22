@@ -171,7 +171,7 @@ h2 {
 h3 {
   /*color: #777;*/
   color: #ccc;
-  font: 1.6em/2em 'PT Sans',sans-serif;
+  font: 1.6em/1.5em 'PT Sans',sans-serif;
 
   /*square around*/
   /*border: 1px solid;*/
@@ -189,7 +189,7 @@ h4 {
     margin-bottom: 2%;
     margin-top: 2%;
     text-align: center;
-    width: 10%;
+    /*width: 10%;*/
 }
 
 h5 { font-size: .9em; font: 100%/2em 'PT Sans',sans-serif; color: #999; }
@@ -198,7 +198,7 @@ h6 { margin-top: -1.5%; margin-bottom: 1%; color: #aaa; text-align: right; }
 a { text-decoration: none; color: #B03A44; }
 a:hover { text-decoration: underline; color: #CD0D1D; }
 
-li { padding-left: 12px; padding-bottom: 1em; color: #aaa; }
+li { color: #aaa; }
 
 ul > li:before {
   position: relative;

@@ -44,8 +44,8 @@ In order to achieve its goal, minos design is lead by:
 
 There exist two versions of the system:
 
-    - Core: X less environment, ideal for servers.
-    - Desktop: Graphic tiling wm environment for laptops/workstations.
+* Core: X less environment, ideal for servers.
+* Desktop: Graphic tiling wm environment for laptops/workstations.
 
 ### Installation
 
@@ -61,14 +61,15 @@ And install the core or/and desktop metapackages:
     $ sudo apt-get install -y minos-core
     $ sudo apt-get install -y minos-desktop #includes minos-core
 
-Or run the http://minos.io/s installer:
+Or run the [http://minos.io/s](http://minos.io/s) installer:
 
     $ sh <(wget -q -O- minos.io/s) core
     $ sh <(wget -q -O- minos.io/s) desktop
 
 #### Live Ubuntu LTS based distro
 
-From any [L/X/K]Ubuntu live usb run the http://minos.io/s installer:
+From any [L/X/K]Ubuntu live usb run the [http://minos.io/s](http://minos.io/s)
+installer:
 
     $ sh <(wget -q -O- minos.io/s) live core    /dev/sdX username passwd [/dev/sdaY]
     $ sh <(wget -q -O- minos.io/s) live desktop /dev/sdX username passwd [/dev/sdaY]
@@ -89,7 +90,8 @@ Minos is also available as portable VirtualBox images:
     $ vagrant init minos/core-18.04    && vagrant up
     $ vagrant init minos/desktop-18.04 && vagrant up
 
-Additional boxes are located at https://app.vagrantup.com/minos
+Additional boxes are located at
+[https://app.vagrantup.com/minos](https://app.vagrantup.com/minos)
 
 ### Getting started
 
@@ -98,7 +100,7 @@ Additional boxes are located at https://app.vagrantup.com/minos
 Minos is based on Debian/Ubuntu, as such, it uses `apt/dpkg` tools to
 manage/install software, some of the configuration changes include:
 
-Core:
+**Core**
 
     ▸ Recommend and suggested packages[0] are disabled by default. Use
       → $ sudo dpkg-reconfigure minos-core-settings #to change it
@@ -113,12 +115,12 @@ Core:
     ▸ eix is provided as an alternative apt-get/apt/aptitude interface
       → $ eix -h
 
-Desktop:
+**Desktop**
 
     ▸ Deb packages are cached and shared over avahi (zeroconf)
 
-* https://www.debian.org/doc/manuals/debian-faq/ch-pkg_basics.en.html#s-depends
-* https://www.unix-ag.uni-kl.de/~bloch/acng/
+* [https://www.debian.org/doc/manuals/debian-faq/ch-pkg_basics.en.html#s-depends](https://www.debian.org/doc/manuals/debian-faq/ch-pkg_basics.en.html#s-depends)
+* [https://www.unix-ag.uni-kl.de/~bloch/acng/](https://www.unix-ag.uni-kl.de/~bloch/acng/)
 
 #### static-get
 
@@ -237,7 +239,7 @@ additional plugins, Minos includes
 [tundle](https://github.com/javier-lopez/tundle) as the default tmux plugin
 manager.
 
-By default the following plugins are enabled (~/.tmux.conf):
+By default the following plugins are enabled (**~/.tmux.conf**):
 
     ▸ tmux-sensible: improve tmux defaults, including <Ctrl-a> as default
       prefix.
@@ -254,7 +256,7 @@ By default the following plugins are enabled (~/.tmux.conf):
 Tundle integration is provided by the `minos-core-settings` package, and can
 enabled/disabled by running:
 
-$ sudo dpkg-reconfigure minos-core-settings #tundle option
+    $ sudo dpkg-reconfigure minos-core-settings #tundle option
 
 #### vim / vundle
 
@@ -266,9 +268,7 @@ has been adopted as the default vim plugin manager.
 
 A fair amount of vim plugins are included (~50), most of them are loaded on
 demand or upon specific events in order to do not affect the editor startup
-time.
-
-Some examples include:
+time. Some examples include:
 
     Bundle 'bogado/file-line'      "jump to line on startup, eg: $ vim file:23
     Bundle 'mhinz/vim-signify'     "git|svn modification viewer
@@ -286,7 +286,7 @@ the following command to disable/enable it:
 Additional wrappers and power user scripts (>100) are available through the
 `minos-core-tools` and `minos-desktop-tools` packages.
 
-Core:
+**Core**
 
     ▸ rm wrapper with nautilus/pcmanfm trash management integration
       → $ mkdir ~/a/long/path/including/a/directory
@@ -305,14 +305,12 @@ Core:
       → $ uimg image.png
         > http://i.imgur.com/KyoFMH9.png
 
-Desktop:
+**Desktop**
 
     ▸ dmenu-*       #dmenu based launchers, i3 window jumper,
                     #process/session management, vbox/xrandr/mpd/ wrappers
-
     ▸ watch-battery #battery notifier, suspend/hibernate the system if
                     #no manual action is taken
-
     ▸ player-ctrl   #control multimedia players, mpd/mplayer/spotify
 
 To get a full list of the included scripts run:
@@ -337,7 +335,8 @@ To look-up a value, use `minos-config key`, e.g:
     $ minos-config wallpaper
      /usr/share/minos/wallpapers/minos.png
 
-See `minos-config -h` and http://minos.io/doc/config for further details.
+See `minos-config -h` and
+[http://minos.io/doc/config](http://minos.io/doc/config) for further details.
 
 ### Development
 
@@ -356,7 +355,9 @@ with the same deb code in order to be accepted, other Debian based distros
 create different packaging code for every release, that's unacceptable in Minos
 due to the limited human resources and general waste it would be.
 
-Deb **source files** are located at https://github.com/minos-org/
+Deb **source files** are located at
+[https://github.com/minos-org/](https://github.com/minos-org/)
+
     foo-program     (custom/freeze program)
     foo-program-deb (deb packaging)
         debian
@@ -365,31 +366,30 @@ Deb **source files** are located at https://github.com/minos-org/
         debian/README.source (step by step instructions to build package)
 
 Deb **binary packages** are located at
-https://launchpad.net/~minos-archive/+archive/main, and are created using
-daily recipes asociated to every source mirror.
+[https://launchpad.net/~minos-archive/+archive/main](https://launchpad.net/~minos-archive/+archive/main),
+and are created using daily recipes asociated to every source mirror.
 
-In certain ocasions, base repositories are modified to introduce
-changes or delete problematic files, those changes are automatic and
-described at: https://github.com/minos-org/minos-sync
+In certain ocasions, base repositories are modified to introduce changes or
+delete problematic files, those changes are automatic and described at:
+[https://github.com/minos-org/minos-sync](https://github.com/minos-org/minos-sync)
 
 #### Choosing default applications
 
-* Default applications are selected with good documentation, flexibility,
-  configurability and as few dependencies as possible in mind.
-* Systems supporting composition/specialization are preferred over
-  generalization
-* Keyboard oriented applications are preferred over pointing
-  interfaces
-* GUI programs are nice but rejected if they use ancient graphical
-  interfaces or use considerable resources.
-* When in doubt http://suckless.org/rocks provide additional hints
-  about how software is selected into the project
+    ▸ Default applications are selected with good documentation, flexibility,
+    configurability and as few dependencies as possible in mind.
+    ▸ Systems supporting composition/specialization are preferred over
+    generalization
+    ▸ Keyboard oriented applications are preferred over pointing interfaces
+    ▸ GUI programs are nice but rejected if they use ancient graphical
+    interfaces or use considerable resources.
+    ▸ When in doubt http://suckless.org/rocks provide additional hints about
+    how software is selected into the project
 
 #### Choosing default behavior
 
-* Toggle solutions are preferred over multichoice.
-* Use/Set vi like applications/settings are preferred
-* Defaults are configured with a focus in the out-of-the-box experience
+     ▸ Toggle solutions are preferred over multichoice.
+     ▸ Use/Set vi like applications/settings are preferred
+     ▸ Defaults are configured with a focus in the out-of-the-box experience
 
 #### Roadmap
 
