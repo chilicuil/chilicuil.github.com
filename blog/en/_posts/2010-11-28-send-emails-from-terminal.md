@@ -7,7 +7,17 @@ title: "send emails from terminal"
 
 ###### {{ page.date | date_to_string }}
 
-In some systems the command **mail** is installed by default and as its name suggests it's used to send/read emails (usually between users of the same system), for this to work a mail server needs to be installed locally, I'm not sure about others but it sounds like a lot of work for me. I just want a light client from where I could send some emails. After searching on Internet I came to [Sendemail](http://caspian.dotconf.net/menu/Software/SendEmail/), a perl script who connects to external smtp servers and use them to deliver messages:
+In some systems the command **mail** is installed by default and as its name
+suggests it's used to send/read emails (usually between users of the same
+system), for this to work a mail server needs to be installed locally, I'm not
+sure about others but it sounds like a lot of work for me. I just want a light
+client from where I could send some emails. After searching on Internet I came
+to [Sendemail](http://caspian.dotconf.net/menu/Software/SendEmail/), a perl
+script who connects to external smtp servers and use them to deliver messages:
+
+<pre class="sh_sh">
+$ sudo apt-get install -y sendemail libio-socket-ssl-perl libnet-ssleay-perl
+</pre>
 
 <pre class="sh_sh">
 $ sendemail -f from@foo.org \
@@ -17,7 +27,7 @@ $ sendemail -f from@foo.org \
   -xu user -xp password
 </pre>
 
-It requires the following libraries to work with gmail, **libio-socket-ssl-perl**, **libnet-ssleay-perl**:
+Or with gmail:
 
 <pre class="sh_sh">
 $ sendemail -f from@foo.org \
@@ -27,7 +37,12 @@ $ sendemail -f from@foo.org \
   -o tls=yes -xu user -xp password
 </pre>
 
-Now, since gmail blocks hosts per ip, it sometimes doesn't work when it used from new locations, it can be very annoying. Fortunately, there are other ways to send emails within a system, my favorite method is to use [http://mailgun.com](http://mailgun.com). When using mailgun you only need an account in such service and **curl** installed in your system. I've created a script who wraps the required logic and just send emails.
+Now, since gmail blocks hosts per ip, it sometimes doesn't work when it used
+from new locations, it can be very annoying. Fortunately, there are other ways
+to send emails within a system, my favorite method is to use
+[http://mailgun.com](http://mailgun.com). When using mailgun you only need an
+account in such service and **curl** installed in your system. I've created a
+script who wraps the required logic and just send emails.
 
 <pre class="sh_sh">
 $ wget https://raw.github.com/javier-lopez/learn/master/sh/tools/mailgun
