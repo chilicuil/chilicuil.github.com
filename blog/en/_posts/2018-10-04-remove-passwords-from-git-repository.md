@@ -17,6 +17,12 @@ Another handy one, deleting all the lines containing **word**:
     $ git filter-branch --tree-filter \
         "find . -type f -exec sed -i -e '/word/d' {} \;"
 
+Finally, the classic remove file with sensitive data:
+
+    $ git filter-branch --force --index-filter \
+        'git rm --cached --ignore-unmatch PATH-TO-YOUR-FILE-WITH-SENSITIVE-DATA' \
+        --prune-empty --tag-name-filter cat -- --all
+
 Now, to force push your changes to a remote repository:
 
     $ git push -f
