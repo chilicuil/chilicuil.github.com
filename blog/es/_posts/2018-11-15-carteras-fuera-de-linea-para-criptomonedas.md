@@ -238,16 +238,16 @@ Listo!, ahora también se tiene una nueva cuenta NEO.
 Si ya se cuenta con una llave privada de NEO anterior se selecciona la opción
 **Login using a private key** en el menú principal.
 
-**[![](/assets/img/wallet-btc-1.png)](/assets/img/wallet-btc-1.png)**
+**[![](/assets/img/wallet-neo-1.png)](/assets/img/wallet-neo-1.png)**
 
 Se introduce la clave y se hace clic en **Login**
 
-**[![](/assets/img/wallet-btc-10.png)](/assets/img/wallet-btc-10.png)**
+**[![](/assets/img/wallet-neo-10.png)](/assets/img/wallet-neo-10.png)**
 
 Listo, ahora se pueden enviar y recibir Neo's y criptomonedas compatibles, como
 GAS.
 
-**[![](/assets/img/wallet-btc-11.png)](/assets/img/wallet-btc-11.png)**
+**[![](/assets/img/wallet-neo-11.png)](/assets/img/wallet-neo-11.png)**
 
 -------------------------------------------------------------------------------
 
