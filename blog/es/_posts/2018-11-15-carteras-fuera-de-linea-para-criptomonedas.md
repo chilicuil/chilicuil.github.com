@@ -179,23 +179,23 @@ Listo!, ahora se tiene una nueva cuenta BTC.
 ## Gestionar cuenta existente
 
 Si ya se cuenta con una llave privada anterior (la frase de 12 palabras) se
-continua desde el 4to paso anterior y esta vez se selecciona **I already have a
-seed**.
+continua desde el 4to paso y esta vez se selecciona **I already have a seed**.
 
 **[![](/assets/img/wallet-btc-10.png)](/assets/img/wallet-btc-10.png)**
 
 Se introduce la llave privada y se da **siguiente**
 
 **[![](/assets/img/wallet-btc-11.png)](/assets/img/wallet-btc-11.png)**
-**[![](/assets/img/wallet-btc-12.png)](/assets/img/wallet-btc-12.png)**
 
-Preguntará por una contraseña para cifrar los datos temporales, no es
+Se preguntará por una contraseña para cifrar los datos temporales, no es
 necesario, puesto que el script eliminará esos datos al cerrar la cartera. Se
 da **siguiente**
 
-**[![](/assets/img/wallet-btc-13.png)](/assets/img/wallet-btc-13.png)**
+**[![](/assets/img/wallet-btc-12.png)](/assets/img/wallet-btc-12.png)**
 
 Ya se puede interactuar con la cuenta para enviar o recibir BTC.
+
+**[![](/assets/img/wallet-btc-13.png)](/assets/img/wallet-btc-13.png)**
 
 ### Neo
 
