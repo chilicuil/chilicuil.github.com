@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="UTF-8">
+    <title>¿Qué hay de comer?</title>
+    <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+
+    <style>
+      html, body {
+        overflow-x: hidden;
+        overflow-y: hidden;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background-color: black;
+        background-image: url('http://lh5.ggpht.com/_at8HbBABDrw/S7A7NervBaI/AAAAAAABU9o/3CmSP8xqJ3k/s1600/IMG_3635.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top;
+        z-index: -2;
+      }
+
+      #display {
+        color: white;
+        font-size: 2.9em;
+        top: 10px;
+        border-bottom: thin solid;
+        padding-bottom: 20px;
+        opacity: 0.80;
+        filter: alpha(opacity=80); /* For IE8 and earlier */
+      }
+
+      #title {
+        max-width: 30em;
+        color: white;
+        font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+        letter-spacing: 0.1em;
+        text-align: center;
+        margin: auto;
+        text-transform: lowercase;
+        line-height: 145%;
+        font-size: 2em;
+        font-variant: small-caps;
+      }
+
+      #date {
+        color: white;
+        font-size: 1.3em;
+        font-family: Georgia, "Times New Roman", Times, serif;
+        font-weight: normal;
+        letter-spacing: 0.2em;
+        opacity: 0.6;
+        filter: alpha(opacity=60); /* For IE8 and earlier */
+      }
+
+      #footer {
+        width: 100%;
+        height: 40px;
+        position: fixed;
+        bottom: -1px;
+        background-color: white;
+        text-align: center;
+        opacity: 0.5;
+        filter: alpha(opacity=50); /* For IE8 and earlier */
+      }
+
+      #line {
+        width: 100%;
+        bottom: 4em;
+        position: fixed;
+        border-bottom: solid white;
+        padding: 15px;
+        opacity: 0.5;
+        filter: alpha(opacity=50); /* For IE8 and earlier */
+      }
+
+      .navbar {
+        position: fixed;
+        width: 100%;
+        opacity: 0.6;
+        filter: alpha(opacity=60); /* For IE8 and earlier */
+      }
+
+      .wrapper {
+        background-color: red;
+      }
+
+      span {
+        border-radius: 100px;
+        opacity: 0.75;
+        filter: alpha(opacity=75); /* For IE8 and earlier */
+      }
+
+      #content {
+        height: 45em;
+      } p {
+        max-width: 30em;
+        color: white;
+        font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+        letter-spacing:0.1em;
+        text-align:center;
+        margin: 40px auto;
+        text-transform: lowercase;
+        line-height: 145%;
+        font-size: 2em;
+        font-variant: small-caps;
+      }
+
+      p :hover {
+        text-decoration: none;
+      }
+
+      .container {
+        padding-top: 6em;
+        text-align: center;
+      }
+
+      #b-nav {
+        padding-bottom: 5em;
+        position: fixed;
+        width: 100%;
+        bottom: 2em;
+      }
+
+      #b-nav ul {
+        margin: 0;
+        padding: 0.5em;
+        list-style-type: none;
+        text-align: center;
+      }
+
+      #b-nav ul li {
+        display: inline;
+      }
+
+      #b-nav ul li a {
+        text-decoration: none;
+        padding: .2em 1em;
+        background-color: black;
+        opacity: 0.4;
+        filter: alpha(opacity=40); /* For IE8 and earlier */
+      }
+
+      .hold {
+        width: 100%;
+        text-align: left;
+      }
+
+      #gen {
+        outline: none;
+        padding-top: 5px;
+        text-decoration: none;
+        opacity: 0.6;
+        background-color: black;
+        color: white;
+        border: thin solid white;
+        height: 40px;
+        width: 100px;
+        border-radius: 2px;
+        transition: 0.5s;
+        padding-bottom: 5px;
+      }
+
+      #gen:hover {
+        background-color: white;
+        color: black;
+        border: thin solid black;
+        opacity: 0.8;
+      }
+
+      #gen a {
+        text-decoration: none;
+      }
+
+      #date {
+        color: white;
+      }
+
+      @media screen
+       and (max-device-width: 800px)
+        and (max-device-height: 640px)
+        and (-webkit-device-pixel-ratio: 2)
+        and (orientation: portrait) {
+          p {
+            font-size: 1em;
+          }
+      }
+
+      .fa-twitter {
+        font-size: 30px !important;
+        margin-left: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <body onload="startTime(); startDate(); genLunch();">
+      <div class="container">
+        <div id="title">¿Qué comemos?</div>
+        <div id="date"></div>
+        <div id="display"></div>
+        <div id="content">
+          <p id="lunch">- Frijoles con arroz</p>
+          <p id="date">¡Buen provecho!</p>
+        </div>
+      </div>
+
+      <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+      <script src='http://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.4/seedrandom.min.js'></script>
+      <script>
+        function startTime() {
+            var today=new Date();
+            var h=today.getHours();
+            var m=today.getMinutes();
+            var s=today.getSeconds();
+            var ampm = "";
+            m = checkTime(m);
+
+            if (h > 12) {
+              h = h - 12;
+              ampm = " PM";
+            } else if (h == 12){
+                h = 12;
+              ampm = " AM";
+            } else if (h < 12){
+                ampm = " AM";
+            } else {
+                ampm = "PM";
+            };
+
+          if(h==0) {
+            h=12;
+          }
+
+            document.getElementById('display').innerHTML = h+":"+m+ampm;
+            var t = setTimeout(function(){startTime()},500);
+        }
+
+        function checkTime(i) {
+            if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+            return i;
+        }
+
+        function genLunch() {
+          var today  = new Date();
+          Math.seedrandom(today.toLocaleDateString("es-MX"));
+
+          var randNum = Math.floor(Math.random() * lunches.length - 1) + 1;
+          document.getElementById('lunch').innerHTML = lunches[randNum];
+        }
+
+        //lunch array
+        var lunches = [
+          "- Chicharron en salsa verde",
+          "- Caldo de pollo con verduras",
+          "- Tacos de suadero",
+          "- Albondigas con frijoles",
+          "- Lentejas",
+          "- Espaguetti",
+          "- Salchichas a la mexicana",
+          "- Caldo de pescado",
+          "- Mojarra al mojo de ajo",
+          "- Bisteces en chile pasilla",
+          "- Sopa de elote",
+          "- Tacos dorados de papa",
+        ];
+
+        //date
+        function startDate() {
+          var d = new Date();
+          var days = ["Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"];
+          document.getElementById("date").innerHTML = days[d.getDay()]+" | "+[d.getMonth()+1]+"/"+d.getDate()+"/"+d.getFullYear();
+        }
+      </script>
+    </body>
+</html>
