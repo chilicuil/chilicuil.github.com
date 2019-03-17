@@ -7,7 +7,7 @@ title: "lvm cheatsheet"
 
 ###### {{ page.date | date_to_string }}
 
-There are certain technical things I keep forgetting not matter how many times
+There are certain technical things I keep forgetting no matter how many times
 I try them, `ln` usage, `git` parameters and the reason for this post, `LVM`.
 So, here goes a quick how-to for my future me.
 
@@ -35,15 +35,15 @@ A LV is a portion (partition) of a VG.
 
 ### How to set up multiple hard drives as one volume?
 
-## Define /dev/sda, /dev/sdb2 and /dev/sdc3 as PVs
+**Define /dev/sda, /dev/sdb2 and /dev/sdc3 as PVs**
 
     $ sudo pvcreate /dev/sda /dev/sdb2 /dev/sdc3
 
-## Create a Volume Group (VG) out of three just defined PVs
+**Create a Volume Group (VG) out of three just defined PVs**
 
     $ sudo vgcreate vg_name /dev/sda /dev/sdb2 /dev/sdc3
 
-## Create a Logical Volume (LV) out of the just defined VG
+**Create a Logical Volume (LV) out of the just defined VG**
 
     $ sudo lvcreate -l 100%FREE -n lv_name vg_name
 
