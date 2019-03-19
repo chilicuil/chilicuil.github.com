@@ -53,6 +53,18 @@ Done!, now it can be formated and mounted as a normal HD, eg:
     $ echo '/dev/vg_name/lv_name /mount_point ext4 defaults 0 0' | sudo tee -a /etc/fstab
     $ sudo mount -a
 
+### How to mount a previously defined LVM volume
+
+**Recreate /dev/ LVM partitions**
+
+    $ sudo vgchange -ay
+
+Done!, now it can be formated and mounted as a normal HD, eg:
+
+    $ sudo mkfs.ext4 /dev/vg_name/lv_name
+    $ echo '/dev/vg_name/lv_name /mount_point ext4 defaults 0 0' | sudo tee -a /etc/fstab
+    $ sudo mount -a
+
 That's it!, I'll keep adding **LVM** recipes as I find fit, happy storing,
 &#128522;
 
