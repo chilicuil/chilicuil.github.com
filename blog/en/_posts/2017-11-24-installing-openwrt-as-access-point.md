@@ -23,7 +23,7 @@ Or, when there is a previous openwrt version installed:
 $ wget downloads.openwrt.org/snapshots/trunk/ar71xx/generic/openwrt-ar71xx-generic-tl-wdr4300-v1-squashfs-sysupgrade.bin
 </pre>
 
-Go to the **Firmware Upgrade** menu of the original firmware interface and select the download binary.
+After completing the download, install it by going to the **Firmware Upgrade** menu and selecting the openwrt firmware.
 
 **[![](/assets/img/99.png)](/assets/img/99.png)**
 

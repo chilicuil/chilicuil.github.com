@@ -7,9 +7,9 @@ title: "installing openwrt as a dumb access point"
 
 ###### {{ page.date | date_to_string }}
 
-In a previous post I wrote about how to use [openwrt as an independent access point](http://javier.io/blog/en/2017/11/23/installing-openwrt-as-wireless-repeater.html), this time however I'll mention how to configure it to extend a network that already has a router with dhcp in place or where a subnet is not required / desired.
+In a previous post I wrote about how to use [openwrt as an independent access point](http://javier.io/blog/en/2017/11/23/installing-openwrt-as-access-point.html), this time however I'll mention how to configure it to extend a network that already has a router with dhcp in place or where a subnet is not required / desired.
 
-The target device is a [TP-Link N750](http://www.amazon.com/TP-LINK-TL-WDR4300-Wireless-Gigabit-300Mbps/dp/B0088CJT4U), and I'm using the latest [stable build](http://downloads.openwrt.org/releases/18.06.2/targets/ar71xx/generic/openwrt-18.06.2-ar71xx-generic-tl-wdr4300-v1-squashfs-factory.bin). The installation process is pretty straight forward.
+The target device is a [TP-Link N750](http://www.amazon.com/TP-LINK-TL-WDR4300-Wireless-Gigabit-300Mbps/dp/B0088CJT4U), and I'm using the latest [stable build](http://downloads.openwrt.org/releases/18.06.2/targets/ar71xx/generic/openwrt-18.06.2-ar71xx-generic-tl-wdr4300-v1-squashfs-factory.bin), the installation process is pretty straight forward.
 
 **[![](/assets/img/98.jpg)](/assets/img/98.jpg)**
 
@@ -23,7 +23,7 @@ Or, when there is a previous openwrt version already installed:
 $ wget downloads.openwrt.org/releases/18.06.2/targets/ar71xx/generic/openwrt-18.06.2-ar71xx-generic-tl-wdr4300-v1-squashfs-sysupgrade.bin
 </pre>
 
-After completing the download, it can be installed by going to the **Firmware Upgrade** menu and selecting the openwrt firmware.
+After completing the download, install it by going to the **Firmware Upgrade** menu and selecting the openwrt firmware.
 
 **[![](/assets/img/99.png)](/assets/img/99.png)**
 
@@ -31,7 +31,7 @@ The stable version already includes the [luci web interface](https://github.com/
 
 ### Configuration via Web Interface LUCI
 
-Unplug all but your own computer to the device and wait for a valid ip, by default in the range 192.168.1.X, connect to the router through the http://192.168.1.1 address and select the **LAN INTERFACE**
+Unplug all but your own computer to the device and wait for a valid ip, by default in the range 192.168.1.X, connect to the router through the [http://192.168.1.1](http://192.168.1.1) address and select the **LAN INTERFACE**
 
 Edit with a valid static IP within the range of your main router, eg, (if your router has IP 192.168.1.1, enter 192.168.1.2). Set DNS and gateway to point into your main router to enable internet access for the dumb AP itself.
 
@@ -47,12 +47,12 @@ Access the dumb AP (on this example) through the [http://10.9.8.7](http://10.9.8
 
 **[![](/assets/img/openwrt-dumb-ap-disable-wan-interfaces.png)](/assets/img/openwrt-dumb-ap-disable-wan-interfaces.png)**
 
-We're almost done, as a final step, setup the wireless APs, go to **Network &#x25B7; Wireless** section and configure as desired your Access Pointsmaking sure the **Network** parameter is set to **LAN**
+We're almost done, as a final step, setup the wireless APs, go to **Network &#x25B7; Wireless** section and configure as many as desired Access Points and link them to the **LAN** **Network**
 
 **[![](/assets/img/openwrt-dumb-ap-wireless-details.png)](/assets/img/openwrt-dumb-ap-wireless-details.png)**
 
 **[![](/assets/img/openwrt-dumb-ap-wireless-general.png)](/assets/img/openwrt-dumb-ap-wireless-general.png)**
 
-That's it!, enjoy your extended network, &#9996;
+That's it!, enjoy your extended network &#9996;
 
 - [https://openwrt.org/docs/guide-user/network/wifi/dumbap](https://openwrt.org/docs/guide-user/network/wifi/dumbap)
