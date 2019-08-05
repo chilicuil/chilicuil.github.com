@@ -18,7 +18,7 @@ sólo las personas con la llave secreta pueden acceder a ellos.
 Un archivo **IMAGEN.PNG.gpg** es generado, este es el que debemos pasar al
 contacto junto con la contraseña
 
-**OJO: En el ejemplo anterior se ha usado una IMAGEN.PNG pero usarse con
+**OJO: En el ejemplo anterior se ha usado una IMAGEN.PNG pero puede usarse con
 cualquier tipo de archivo**
 
 ### Descifrar
@@ -45,7 +45,7 @@ por ejemplo almacenar archivos cifrados dentro de canciones mp3.
     $ hideme.dockerized ARCHIVO.MP3 IMAGEN.PNG.gpg
 
 Un archivo **output.mp3** es generado, este es el archivo que debemos pasar al
-contacto junto con la contraseña del arcihvo **IMAGEN.PNG.gpg**
+contacto junto con la contraseña del archivo **IMAGEN.PNG.gpg**
 
 ### Descubrir datos en archivos de música
 
@@ -60,4 +60,4 @@ Y descifrarse en caso de ser necesario:
     $ gpg -v --decrypt IMAGEN.PNG.gpg > IMAGEN.PNG
     # pregunta contraseña 2 veces
 
-Listo, feliz transmisión de secretos &#128523;.
+Listo, feliz transmisión de secretos &#128523;
