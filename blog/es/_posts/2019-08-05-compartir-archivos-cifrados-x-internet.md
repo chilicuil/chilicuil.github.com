@@ -61,5 +61,3 @@ Y descifrarse en caso de ser necesario:
     # pregunta contraseña 2 veces
 
 Listo, feliz transmisión de secretos &#128523;.
-
-- [https://github.com/javier-lopez/learn/blob/master/sh/tools/wallet](https://github.com/javier-lopez/learn/blob/master/sh/tools/wallet)
