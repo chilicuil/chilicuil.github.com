@@ -34,7 +34,7 @@ por ejemplo almacenar archivos cifrados dentro de canciones mp3.
 ### Instalación
 
     $ wget https://raw.githubusercontent.com/javier-lopez/learn/master/sh/dockerized/hideme.dockerized
-    $ chmox +x hideme.dockerized
+    $ chmod +x hideme.dockerized
     $ sudo mv hideme.dockerized /usr/bin/hideme.dockerized
 
 ### Esconder datos en archivos de música
@@ -45,8 +45,8 @@ por ejemplo almacenar archivos cifrados dentro de canciones mp3.
 ### Descubrir datos en archivos de música
 
     $ hideme.dockerized output.mp3 -f
-    #se creará un archivo 'output.' que deberá ser renombrado al archivo original
-    $ mv output. IMAGEN.PNG.gpg
+    #se creará un archivo 'output.*' que deberá ser renombrado al archivo original
+    $ mv output.U IMAGEN.PNG.gpg
 
 Listo, feliz transmisión de secretos &#128523;.
 
