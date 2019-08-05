@@ -17,6 +17,8 @@ sólo las personas con la llave secreta pueden acceder a ellos.
 
 Un archivo `IMAGEN.PNG.gpg` es generado.
 
+**OJO: En el ejemplo anterior se ha usado una IMAGEN.PNG pero puede el comando anterior puede usarse con cualquier tipo de archivo**
+
 ### Descifrar
 
     $ gpg -v --decrypt IMAGEN.PNG.gpg > IMAGEN.PNG
@@ -46,6 +48,6 @@ por ejemplo almacenar archivos cifrados dentro de canciones mp3.
     #se creará un archivo 'output.' que deberá ser renombrado al archivo original
     $ mv output. IMAGEN.PNG.gpg
 
-Listo, feliz transmisión de sus secretos &#128523;.
+Listo, feliz transmisión de secretos &#128523;.
 
 - [https://github.com/javier-lopez/learn/blob/master/sh/tools/wallet](https://github.com/javier-lopez/learn/blob/master/sh/tools/wallet)
