@@ -99,7 +99,7 @@ h2.page {
 #header form { margin: 0; padding: 0; }
 
 form input.st-search-input {
-  background: url("http://javier.io/assets/img/search-icon.png") no-repeat scroll 7px 7px #FCFCFC;
+  background: url("//javier.io/assets/img/search-icon.png") no-repeat scroll 7px 7px #FCFCFC;
   border: 1px solid #CCCCCC;
   border-radius: 15px 15px 15px 15px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.17) inset;
@@ -214,7 +214,7 @@ ul > li:before {
 ul > li > p { margin: 0; }
 
 p {
-  /*color: #777; http://contrastrebellion.com */
+  /*color: #777; https://contrastrebellion.com */
   color: #bbb;
   font: 1.2em 'Vollkorn','serif';*/
   text-align: justify;
