@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "El amor, las mujeres y la vida"
+title: "el amor, las mujeres y la vida"
 ---
 
 ## {{ page.title }}
@@ -135,7 +135,7 @@ y ver cómo las nubes se disputan las copas
 y ver cómo los nidos se disputan los pájaros.
 
 No sé si alguna vez les ha pasado a ustedes
-pero puedo ocurrir que de pronto uno advierta
+pero puede ocurrir que de pronto uno advierta
 uno de esos amores de tántalo y azar
 que Dios no admite porque tiene celos.
 
@@ -195,3 +195,5 @@ otra vez estas vos
 aunque sea preguntándote a solas
 que vendrá después de la soledad.
 </pre>
+
+<br />
