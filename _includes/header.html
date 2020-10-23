@@ -1,3 +1,8 @@
+{% if include.case == "index.html" %}
+<div id="header" class="indexHeader">
+  <h1><a class="indexLogo" href="/">Javier L&oacute;pez</a></h1>
+{% else %}
 <div id="header">
   <h1><a href="/">Javier L&oacute;pez</a></h1>
+{% endif %}
 </div>
