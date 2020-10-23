@@ -1,0 +1,56 @@
+/* code for mobile device */
+
+@media only screen and (max-width:1025px) {
+  #content div .related-posts li a {
+    width: 60% !important;
+    font-size: 1.7vmax;
+    display: inline-flex;
+  }
+  #content div .related-posts li span {
+    font-size: 1.7vmax;
+  }
+}
+
+#footer {
+  margin-bottom: 20px;
+}
+
+#footer a i {
+  margin: 15px !important;
+}
+
+@media only screen and (max-width:991px) {
+  #content * {
+    overflow: auto;
+  }
+  pre {
+    overflow: auto;
+  }
+  pre.lyric {
+    max-width: 100% !important;
+    font-size: 1.5vmax !important;
+  }
+  #footer {
+    text-align: center !important;
+    align-items: center !important;
+  }
+  #footer a i {
+    margin: 15px !important;
+    font-size: 2.5vmax !important;
+  }
+  #content {
+    font-size: 1.7vmax !important;
+  }
+  .sh_sh.sh_sourceCode {
+    width: 100%;
+    height: fit-content;
+    overflow: auto;
+  }
+  .sh_sh.sh_sourceCode * {
+    font-size: 1.5vmax !important;
+    display: inline !important;
+  }
+  #content ul {
+    overflow: auto;
+  }
+}
