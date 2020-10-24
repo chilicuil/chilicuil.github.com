@@ -458,3 +458,23 @@ canvas {
     .autowide .autocolumn:nth-child(3n+0) { margin-right: 2.564102564102564%; }
     .autowide .autocolumn:nth-child(4n+0) { margin-right: 0; }
 }
+
+.container {
+  display: table;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px; /*whatever width you want*/
+}
