@@ -6,13 +6,13 @@
   </head>
 
   <body onload="sh_highlightDocument('/assets/js/lang/', '.js');">
-    {% include header.html case=index.html %}
+    {% include header.html case="index.html" %}
 
     <div id="content">
       {{ content }}
     </div>
 
-    {% include footer.html case=index.html %}
+    {% include footer.html case="index.html" %}
     {% include js.html %}
   </body>
 </html>
