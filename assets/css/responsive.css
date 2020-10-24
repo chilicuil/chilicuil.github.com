@@ -19,7 +19,28 @@
   margin: 15px !important;
 }
 
+.indexFooter {
+  margin-bottom: 20px;
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+}
+
 @media only screen and (max-width:991px) {
+  .indexHeader {
+    margin-top: 15vmax !important;
+  }
+  .indexLogo {
+    font-size: 5.5vmax !important;
+    display: block;
+    height: 6vmax;
+  }
+  .indexHello {
+    font-size: 5vmax !important;
+  }
+  .helloText {
+    font-size: 2vmax !important;
+  }
   #content * {
     overflow: auto;
   }
