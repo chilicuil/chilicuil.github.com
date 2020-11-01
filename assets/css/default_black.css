@@ -29,7 +29,7 @@ body {
 /*#header h1 a:hover:after { content: " [$] _"; }*/
 #header h1 a:hover  { border-bottom-style: solid; border-bottom-width: 1px; }
 
-#header > a { font-size: 160%; text-shadow: 1px 1px 1px rgba(140, 140, 140, 1); }
+#header > a { font-size: 200%; text-shadow: 1px 1px 1px rgba(140, 140, 140, 1); }
 
 /************************ hello world in home ***************************/
 #hello h1 {
@@ -165,7 +165,7 @@ h2 {
   font: 180%/2em 'PT Sans',sans-serif;
   margin-bottom: 0px;
   padding-left: 0.3%;
-  padding-bottom: 0.5em;
+  /*padding-bottom: 0.5em;*/
   text-shadow: 1px 0px 2px #966E6E;
 }
 
@@ -329,7 +329,7 @@ h2 + img + p:first-letter {
   border-left:  0px none;
   border-right: 0px none;
   font-family: 'PT Sans',sans-serif;
-  font-size: large;
+  font-size: x-large;
   list-style: none outside none;
   margin: 0px;
   padding-left: 1px;
@@ -350,7 +350,7 @@ h2 + img + p:first-letter {
 .posts li span, h2 + .related-posts li span {
   /*color: #888888;*/
   color: #bbb;
-  font-size: 1.2em;
+  font-size: 1.1em;
   position: absolute;
   right: 1%;
 }
