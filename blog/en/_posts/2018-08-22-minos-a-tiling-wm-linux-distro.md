@@ -53,7 +53,7 @@ There exist two versions of the system:
 
 On any Ubuntu LTS release add the Minos repository:
 
-    $ sudo add-apt-repository ppa:minos-archive
+    $ sudo add-apt-repository ppa:minos-archive/main
     $ sudo apt-get update
 
 And install the core or/and desktop metapackages:
