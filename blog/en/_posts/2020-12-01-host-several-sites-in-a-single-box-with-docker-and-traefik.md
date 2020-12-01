@@ -7,16 +7,16 @@ title: "host several sites in a single box with docker and traefik v2"
 
 ###### {{ page.date | date_to_string }}
 
-[Docker](https://www.docker.com/) is great and everything however one
+[Docker](https://www.docker.com/) is great and everything, however one
 of the few things that I think could improve is how it's deployed to
-production. There are many alternatives nevertheless many of them
+production. There are many alternatives, nevertheless many of them
 seems over complicated or expensive. I don't want to spend my free
 time or money on them, for small/personal projects I'd prefer to host
 everything in a single node.
 
 So today I started reviewing the state of the art and found several
 alternatives, one of them caught my eye because of its simplicity and
-elegance, I'm describing it here for my future me.
+elegance, I'll describe it here for my future me.
 
 **[![](/assets/img/traefik-docker-compose.png)](/assets/img/traefik-docker-compose.png)**
 
@@ -36,7 +36,6 @@ elegance, I'm describing it here for my future me.
 
 **multisite/docker-compose.yml** contains the core of the setup:
 
-    #multisite/docker-compose.yml
     version: '3.4'
 
     services:
@@ -48,7 +47,7 @@ elegance, I'm describing it here for my future me.
           - "--providers.docker.exposedbydefault=false"
           - "--providers.docker.network=traefik_global"
         ports:
-          - "80:80"     #all traffic will arrive to this point
+          - "80:80"     #all traffic will arrive through this point
           - "8080:8080" #traefik dashboard/api
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
@@ -62,36 +61,42 @@ elegance, I'm describing it here for my future me.
 Based on [traefik](https://traefik.io/), the above recipe define
 several things.
 
-    --api.insecure=true
+<pre class="lyric">
+--api.insecure=true
+</pre>
 
-Gives access to a pretty traefik dashboard/api from where to review
-the exposed services:
-http://localhost:8080 and http://localhost:8080/api/rawdata
+Gives access to a pretty traefik dashboard/api from where to review the exposed
+services: [http://localhost:8080](http://localhost:8080) and
+[http://localhost:8080/api/rawdata](http://localhost:8080/api/rawdata)
 
 **[![](/assets/img/traefik-dashboard.png)](/assets/img/traefik-dashboard.png)**
-
-    --providers.docker
-    --providers.docker.exposedbydefault=false
-        volumes:
-          - /var/run/docker.sock:/var/run/docker.sock
 
 Allows Traefik to autoconfigure its routing depending on Docker
 events/data but only to explicitly defined containers. More about this
 in the next section.
 
-    --providers.docker.network=traefik_global
+<pre class="lyric">
+--providers.docker
+--providers.docker.exposedbydefault=false
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+</pre>
 
-    networks:
-      traefik:
-        name: traefik_global
-
-By default, `docker-compose` creates volumes/networks based in the
-parent folder name, the `name:` parameter allows to override this and
-create a stable shared network name `traefik_global`, the
-`providers.docker.network` option gives to Traefik the instruction to
+By default, **docker-compose** creates volumes/networks based in the
+parent folder name, the **name:** parameter allows to override this and
+create a stable shared network name **traefik_global**, the
+**providers.docker.network** option gives to Traefik the instruction to
 route by default all the traffic through this interface, if not
 defined here every service would need to do it in its own
-`docker-compose.yml` file.
+**docker-compose.yml** file.
+
+<pre class="lyric">
+--providers.docker.network=traefik_global
+
+networks:
+  traefik:
+    name: traefik_global
+</pre>
 
 ## site1.com
 
@@ -110,12 +115,12 @@ in different subnets we would arrive at the following diagram:
 
 **[![](/assets/img/traefik-tier-3-dockerized-app.png)](/assets/img/traefik-tier-3-dockerized-app.png)**
 
-This is close to our final setup, there is only the `traefik_global`
+This is close to our final setup, there is only the **traefik_global**
 network missing, it will be connected to every front-end web container to
 send/receive requests while the rest of the service stack is hidden in
 its own namespace, that will improve security and maintenance.
 
-I'll create a copy of `docker-compose-cherry.yml` and apply a patch to
+I'll create a copy of **docker-compose-cherry.yml** and apply a patch to
 connect it with traefik.
 
     $ cp docker-compose-cherry.yml docker-compose.site1.yml
@@ -157,29 +162,35 @@ There is no need to export/bind additional ports, all our traffic will
 arrive to port 80 in localhost/traefik, therefore the ports section
 can be removed or commented:
 
-    ports:
-    - "5000:80"
+<pre class="lyric">
+ports:
+- "5000:80"
+</pre>
 
-The front-end web container, `nginx` on this case, is connected to the
+The front-end web container, **nginx** on this case, is connected to the
 global traefik network.
 
-    networks:
-      - traefik
+<pre class="lyric">
+networks:
+  - traefik
 
-    traefik:
-      external:
-        name: traefik_global
+traefik:
+  external:
+    name: traefik_global
+</pre>
 
-Only the `nginx` container is announced to traefik, `enable=true`, it
-will respond to the `site1.com` domain and will be available in the
-local port `80` (`grep "listen" nginx/default/default.conf`), an
+Only the **nginx** container is announced to traefik, **enable=true**, it
+will respond to the **site1.com** domain and will be available in the
+local port **80** (**grep "listen" nginx/default/default.conf**), an
 important step is to verify that the routers/services id is unique, on
-this case `site1_com`:
+this case **site1_com**:
 
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.site1_com.rule=Host(`site1.com`)"
-      - "traefik.http.services.site1_com.loadbalancer.server.port=80"
+<pre class="lyric">
+labels:
+  - "traefik.enable=true"
+  - "traefik.http.routers.site1_com.rule=Host(`site1.com`)"
+  - "traefik.http.services.site1_com.loadbalancer.server.port=80"
+</pre>
 
 Lets apply the changes:
  
@@ -196,7 +207,7 @@ database and nginx containers.
     $ cd site2.com/
     $ git checkout 9489597
 
-I'll also create a copy of `docker-compose-cherry.yml` and apply a patch similar
+I'll also create a copy of **docker-compose-cherry.yml** and apply a patch similar
 to the last one:
 
     $ cp docker-compose-cherry.yml docker-compose.site2.yml
@@ -235,17 +246,19 @@ to the last one:
 
 As you already notice, all changes are the same except for:
 
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.site2_com.rule=Host(`site2.com`)"
-      - "traefik.http.services.site2_com.loadbalancer.server.port=80"
+<pre class="lyric">
+labels:
+  - "traefik.enable=true"
+  - "traefik.http.routers.site2_com.rule=Host(`site2.com`)"
+  - "traefik.http.services.site2_com.loadbalancer.server.port=80"
+</pre>
 
-This time, the routers/services id is `site2_com`, look how the server
+This time, the routers/services id is **site2_com**, look how the server
 port can be the same for all sites.
 
 ## docker-compose up
 
-Before launching everything up, I'm going to edit `/etc/hosts` so I
+Before launching everything up, I'm going to edit **/etc/hosts** so I
 can access the sites directly:
 
 **/etc/hosts**:
