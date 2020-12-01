@@ -49,7 +49,7 @@ my own tutorial for future me and other in pain souls.
           - "--providers.docker.exposedbydefault=false"
           - "--providers.docker.network=traefik_global"
         ports:
-          - "80:80"     #all traffic will arrive through this point
+          - "80:80"     #all traffic will arrive through this port
           - "8080:8080" #traefik dashboard/api
         volumes: #this is how traefik reads docker events
           - /var/run/docker.sock:/var/run/docker.sock
@@ -105,7 +105,7 @@ although simple contain enough complexity to mirror real world cases:
 
 **[![](/assets/img/traefik-tier-3-app.png)](/assets/img/traefik-tier-3-app.png)**
 
-The above image don't consider docker, yet helps to describe how a common web
+The above image doesn't consider docker, yet helps to describe how a common web
 application works, once we take in account containers / subnets we would arrive
 to the following diagram:
 
@@ -124,55 +124,61 @@ showcase how traefik connection works:
 
 **site1.com/docker-compose.site1.yml.patch**:
 
-    --- docker-compose.site1.yml	2020-12-30 10:02:48.186590271 -0600
-    +++ docker-compose.site1.yml.patch	2020-12-30 10:03:30.940486004 -0600
-    @@ -18,15 +18,18 @@
+<pre class="sh_diff">
+--- docker-compose.site1.yml         2020-12-30 10:02:48.186590271 -0600
++++ docker-compose.site1.yml.patch   2020-12-30 10:03:30.940486004 -0600
+@@ -18,15 +18,18 @@
 
-       nginx:
-         image: nginx:1.13.10-alpine
-    -    ports:
-    -      - "5000:80"
-         volumes:
-           - ./nginx/default/:/etc/nginx/conf.d
-           - /etc/localtime:/etc/localtime:ro
-         depends_on:
-           - app
-         networks:
-    +      - traefik #add 1st so traefik performs better
-           - frontend
-    +    labels:
-    +      - "traefik.enable=true"
-    +      - "traefik.http.routers.site1_com.rule=Host(`site1.com`)"
-    +      - "traefik.http.services.site1_com.loadbalancer.server.port=80"
+   nginx:
+     image: nginx:1.13.10-alpine
+-    ports:
+-      - "5000:80"
+     volumes:
+       - ./nginx/default/:/etc/nginx/conf.d
+       - /etc/localtime:/etc/localtime:ro
+     depends_on:
+       - app
+     networks:
++      - traefik #add 1st so traefik performs better
+       - frontend
++    labels:
++      - "traefik.enable=true"
++      - "traefik.http.routers.site1_com.rule=Host(`site1.com`)"
++      - "traefik.http.services.site1_com.loadbalancer.server.port=80"
 
-       app:
-         build: .
-    @@ -52,3 +55,6 @@
-         driver: bridge #or overlay in swarm mode
-       backend:
-         driver: bridge #or overlay in swarm mode
-    +  traefik:
-    +    external:
-    +      name: traefik_global
+   app:
+     build: .
+@@ -52,3 +55,6 @@
+     driver: bridge #or overlay in swarm mode
+   backend:
+     driver: bridge #or overlay in swarm mode
++  traefik:
++    external:
++      name: traefik_global
+</pre>
 
 Since all our traffic would pass through localhost:80/traefik there is no need
 to expose/bind additional ports:
 
-       nginx:
-         image: nginx:1.13.10-alpine
-    -    ports:
-    -      - "5000:80"
+<pre class="sh_diff">
+   nginx:
+     image: nginx:1.13.10-alpine
+-    ports:
+-      - "5000:80"
+</pre>
 
 The front-end container, **nginx** on this case, is connected to the global
 traefik network.
 
-         networks:
-    +      - traefik #add 1st so traefik performs better
-           - frontend
+<pre class="sh_diff">
+     networks:
++      - traefik #add 1st so traefik performs better
+       - frontend
 
-    +  traefik:
-    +    external:
-    +      name: traefik_global
++  traefik:
++    external:
++      name: traefik_global
+</pre>
 
 Only the **nginx** container is announced to traefik, **enable=true**, it
 will respond to the **site1.com** domain and will be available in the
@@ -180,14 +186,16 @@ local port **80** (**grep "listen" nginx/default/default.conf**), an
 important step is to verify that the **routers/services id** is unique, on
 this case **site1_com**:
 
-    +    labels:
-    +      - "traefik.enable=true"
-    +      - "traefik.http.routers.site1_com.rule=Host(`site1.com`)"
-    +      - "traefik.http.services.site1_com.loadbalancer.server.port=80"
+<pre class="sh_diff">
++    labels:
++      - "traefik.enable=true"
++      - "traefik.http.routers.site1_com.rule=Host(`site1.com`)"
++      - "traefik.http.services.site1_com.loadbalancer.server.port=80"
+</pre>
 
 That's all for a basic setup, I'll add https/automatic SSL renovation in a
 future article, let's apply the patch:
- 
+
     $ patch -p0 < docker-compose.site1.yml.patch
     patching file docker-compose.site1.yml
 
@@ -208,42 +216,46 @@ to the previous one:
 
 **site2.com/docker-compose.site2.yml.patch**:
 
-    --- docker-compose.site2.yml	2020-12-30 10:02:48.186590271 -0600
-    +++ docker-compose.site2.yml.patch	2020-12-30 10:03:30.940486004 -0600
-    @@ -17,14 +17,17 @@
-     
-       nginx:
-         image: nginx:1.13.10-alpine
-    -    ports:
-    -      - "5000:80"
-         volumes:
-           - ./nginx:/etc/nginx/conf.d
-         depends_on:
-           - app
-         networks:
-    +      - traefik #add 1st so traefik performs better
-           - frontend
-    +    labels:
-    +      - "traefik.enable=true"
-    +      - "traefik.http.routers.site2_com.rule=Host(`site2.com`)"
-    +      - "traefik.http.services.site2_com.loadbalancer.server.port=80"
-     
-       app:
-         build: .
-    @@ -46,3 +49,6 @@
-         driver: bridge #or overlay in swarm mode
-       backend:
-         driver: bridge #or overlay in swarm mode
-    +  traefik:
-    +    external:
-    +      name: traefik_global
+<pre class="sh_diff">
+--- docker-compose.site2.yml         2020-12-30 10:02:48.186590271 -0600
++++ docker-compose.site2.yml.patch   2020-12-30 10:03:30.940486004 -0600
+@@ -17,14 +17,17 @@
+
+   nginx:
+     image: nginx:1.13.10-alpine
+-    ports:
+-      - "5000:80"
+     volumes:
+       - ./nginx:/etc/nginx/conf.d
+     depends_on:
+       - app
+     networks:
++      - traefik #add 1st so traefik performs better
+       - frontend
++    labels:
++      - "traefik.enable=true"
++      - "traefik.http.routers.site2_com.rule=Host(`site2.com`)"
++      - "traefik.http.services.site2_com.loadbalancer.server.port=80"
+
+   app:
+     build: .
+@@ -46,3 +49,6 @@
+     driver: bridge #or overlay in swarm mode
+   backend:
+     driver: bridge #or overlay in swarm mode
++  traefik:
++    external:
++      name: traefik_global
+</pre>
 
 As you notice, all changes are the same except for:
 
-    +    labels:
-    +      - "traefik.enable=true"
-    +      - "traefik.http.routers.site2_com.rule=Host(`site2.com`)"
-    +      - "traefik.http.services.site2_com.loadbalancer.server.port=80"
+<pre class="sh_diff">
++    labels:
++      - "traefik.enable=true"
++      - "traefik.http.routers.site2_com.rule=Host(`site2.com`)"
++      - "traefik.http.services.site2_com.loadbalancer.server.port=80"
+</pre>
 
 This time, the routers/services id is **site2_com**
 
@@ -273,3 +285,5 @@ That's it!, a simple setup that is only limited by the amount of
     {"Greetings": "Hello World!"}
 
 Happy hacking!
+
+- [https://traefik.io/blog/traefik-2-0-docker-101-fc2893944b9d/](https://traefik.io/blog/traefik-2-0-docker-101-fc2893944b9d/)
