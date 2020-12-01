@@ -272,4 +272,4 @@ That's it!, a simple setup that is only limited by the amount of
     $ curl site2.com; echo
     {"Greetings": "Hello World!"}
 
-Happy hacking &#128522;
+Happy hacking!
