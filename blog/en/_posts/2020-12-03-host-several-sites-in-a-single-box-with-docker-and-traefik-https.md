@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "host several sites in a single box with docker and traefik v2, https chapter"
+title: "host several sites in a single box with docker and traefik v2, https"
 ---
 
 ## {{ page.title }}
@@ -13,9 +13,7 @@ on this article I'll complement such information with https and automatic ssl
 certification renewal.
 
 If you pretend to read this howto you **need** to get familiar with the
-previous one since I'll build upon it.
-
-So, just to remember.
+previous one since I'll build upon it. Ok, ready?, let's recapitulate:
 
 ## Diagram and Folder Structure
 

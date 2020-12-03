@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "host several sites in a single box with docker and traefik v2, http chapter"
+title: "host several sites in a single box with docker and traefik v2, http"
 ---
 
 ## {{ page.title }}
