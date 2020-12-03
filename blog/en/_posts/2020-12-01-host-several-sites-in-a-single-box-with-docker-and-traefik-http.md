@@ -125,8 +125,8 @@ showcase how traefik connection works:
 **site1.com/docker-compose.site1.yml.patch**:
 
 <pre class="sh_diff">
---- docker-compose.site1.yml         2020-12-30 10:02:48.186590271 -0600
-+++ docker-compose.site1.yml.patch   2020-12-30 10:03:30.940486004 -0600
+--- docker-compose.site1.yml           2020-12-01 10:02:48.186590271 -0600
++++ docker-compose.site1.changes.yml   2020-12-01 10:03:30.940486004 -0600
 @@ -18,15 +18,18 @@
 
    nginx:
@@ -217,8 +217,8 @@ to the previous one:
 **site2.com/docker-compose.site2.yml.patch**:
 
 <pre class="sh_diff">
---- docker-compose.site2.yml         2020-12-30 10:02:48.186590271 -0600
-+++ docker-compose.site2.yml.patch   2020-12-30 10:03:30.940486004 -0600
+--- docker-compose.site2.yml           2020-12-01 10:02:48.186590271 -0600
++++ docker-compose.site2.changes.yml   2020-12-01 10:03:30.940486004 -0600
 @@ -17,14 +17,17 @@
 
    nginx:
@@ -258,6 +258,9 @@ As you notice, all changes are the same except for:
 </pre>
 
 This time, the routers/services id is **site2_com**
+
+    $ patch -p0 < docker-compose.site2.yml.patch
+    patching file docker-compose.site2.yml
 
 ## docker-compose up
 
