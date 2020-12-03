@@ -176,11 +176,11 @@ changing only some words. Also, the ssl endpoint is transparent, our
 application don't to be aware of it, that's great and IMO overrides the verbose
 configuration.
 
-As you noticed, the **site1_com** was split in two, **http_site1_com** and
-**https_site1_com**, this is because each route needs to define a Host and an
-entrypoint (port), repetitive right?, in the **https** route we enable **tls**
-and point to our custom resolver **myresolver** which if we recall uses let's
-encrypt. There is also one more detail:
+As you noticed, the **site1_com** rules were split in two, **http_site1_com**
+and **https_site1_com**, this is because each route needs to define a Host and
+an entrypoint (port), repetitive right?, in the **https** route we enable
+**tls** and point to our custom resolver **myresolver** which if we recall uses
+let's encrypt. There is also one more detail:
 
 <pre class="sh_diff">
        - "traefik.http.services.site1_com.loadbalancer.server.port=80"
@@ -188,13 +188,12 @@ encrypt. There is also one more detail:
 
 The service element redirects traefik routes to our app's 80 port, as each
 route defines a domain and entrypoint, that means it affects the domain as a
-whole and therefore it's kept as **site1_com**, @_@!
+whole and therefore it's kept as **site1_com** , @.@!
 
 This configuration leaves an important use case that each year is more common,
-force users to use **https** over **http** by redirecting them when the visit
-the site in http mode. since I personally do not agree with such IMO abusive
-behavior, I skipt it on purpose, however if you're interested in adding it to
-your site, it can be done by configuring a
+forcing users to use **https** over **http**. Since I personally do not agree
+with such IMO abusive behavior, I skipt it on purpose, however if you're
+interested configuring it you can use a
 [middleware](https://doc.traefik.io/traefik/middlewares/redirectscheme/) in
 traefik terminology.
 
@@ -229,7 +228,8 @@ The second site should be easier to review:
        - "traefik.http.services.site2_com.loadbalancer.server.port=80"
 </pre>
 
-Everything is the same but **site1** was replaced with **site2**
+Everything is the same, the only difference is that **site1** was replaced with
+**site2**
 
     $ patch -p0 < docker-compose.site2.yml.patch
     patching file docker-compose.site2.yml
@@ -245,7 +245,7 @@ lifes:
     $ cd site1.com/ && docker-compose -f docker-compose.site1.ssl.yml up -d
     $ cd site2.com/ && docker-compose -f docker-compose.site2.ssl.yml up -d
 
-That's it!, a kind of simple setup with ssl integrated that is only limited by
+That's it!, a kind of simple setup with ssl certs that is only limited by
 the amount of **RAM/CPU** in your machine:
 
     $ curl https://site1.com
