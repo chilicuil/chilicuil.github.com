@@ -67,7 +67,7 @@ Encrypt can communicate with our domains.
 
 Remember that starting here all changes are located in a remote public machine.
 I'll start by creating a copy of **docker-compose-cherry.yml**, that would make
-easier to track only the ssl changes:
+easier for us to track the ssl changes:
 
     $ cp docker-compose.yml  docker-compose.ssl.yml 
 
@@ -98,10 +98,11 @@ easier to track only the ssl changes:
        - traefik
 </pre>
 
-Now it's more verbose, but every option is there for a reason.
+Now our original file it's more verbose, however every option is there for a
+reason.
 
-By default traefik only opens the **http port (80)** if we want to allow both,
-**http/https**, we need to be more specific:
+By default traefik only opens the **http port (80)**, so if we want to allow
+both, **http/https**, we need to be more specific:
 
 <pre class="sh_diff">
 +      - "--entrypoints.http.address=:80"
@@ -110,6 +111,7 @@ By default traefik only opens the **http port (80)** if we want to allow both,
 
 We also need to select which *certification resolver*  we're going to use, on
 this case, Let's encrypt, we specify that by filling the acme fields.
+
 **acme.email** can be any personal/bussiness email. **acme.storage** is where
 our ssl certificates will be saved, it does **need to exists but can be
 empty**, if that is the case, traefik will override it with valid certs.
