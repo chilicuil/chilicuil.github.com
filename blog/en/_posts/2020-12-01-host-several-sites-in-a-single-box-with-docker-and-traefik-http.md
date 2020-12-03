@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "host several sites in a single box with docker and traefik v2"
+title: "host several sites in a single box with docker and traefik v2, http chapter"
 ---
 
 ## {{ page.title }}
@@ -73,7 +73,7 @@ mismatches.
 **[![](/assets/img/traefik-dashboard.png)](/assets/img/traefik-dashboard.png)**
 
 Traefik is able to autoconfigure its routing from Docker events/data, that is
-nice but if you don't want to end with dozens of routes because of auxiliary
+great but if you don't want to end with dozens of routes because of auxiliary
 services it's better to only allow specific ones, maybe only service's
 front-ends?
 
