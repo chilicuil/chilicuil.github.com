@@ -180,8 +180,8 @@ Let's copy and analize what makes a new site https compatible:
 I don't know about you, but for me the syntax is confussing, happily this only
 needs to be setup once and then can be reused in other domains/subdomains by
 changing only some words. Also, the ssl endpoint is transparent, our
-application don't to be aware of it, that's great and IMO overrides the verbose
-configuration.
+application doesn't need to be aware of it, that's great and IMO overrides the
+verbose configuration.
 
 As you noticed, the **site1_com** rules were split in two, **http_site1_com**
 and **https_site1_com**, this is because each route needs to define a Host and
