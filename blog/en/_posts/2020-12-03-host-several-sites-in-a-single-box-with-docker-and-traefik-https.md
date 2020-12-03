@@ -12,12 +12,17 @@ traefik on a single node](http://javier.io/blog/en/2020/12/01/host-several-sites
 on this article I'll complement such information with https and automatic ssl
 certification renewal.
 
-If you pretend to read this howto you **need** to get familiar with the
-previous one since I'll build upon it. Ok, ready?, let's recapitulate:
+If you'll continue reading this you **need** to get familiar with the previous
+one since I'll build upon it. OK, ready?, let's recapitulate:
 
 ## Diagram and Folder Structure
 
 **[![](/assets/img/traefik-docker-compose.png)](/assets/img/traefik-docker-compose.png)**
+
+Traefik will recieve all requests and will send them to different containers
+depending the domain/subdomains, in the process it'll provide ssl termination
+for our users and dockerized applications, those certifications will be
+autorenewed every 2/3 months and won't require any manual step, cool!
 
     ┬
     ├── multisite (traefik)
