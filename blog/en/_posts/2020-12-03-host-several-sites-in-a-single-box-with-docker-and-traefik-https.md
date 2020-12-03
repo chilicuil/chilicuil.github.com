@@ -12,17 +12,17 @@ traefik on a single node](http://javier.io/blog/en/2020/12/01/host-several-sites
 on this article I'll complement such information with https and automatic ssl
 certification renewal.
 
-If you'll continue reading this you **need** to get familiar with the previous
-one since I'll build upon it. OK, ready?, let's recapitulate:
+If you continue reading this you'll **need** to get familiar with the previous
+post, since I'm building upon it. OK, ready?, let's recapitulate:
 
 ## Diagram and Folder Structure
 
 **[![](/assets/img/traefik-docker-compose.png)](/assets/img/traefik-docker-compose.png)**
 
-Traefik will recieve all requests and will send them to different containers
+Traefik will receive all requests and will send them to different containers
 depending the domain/subdomains, in the process it'll provide ssl termination
 for our users and dockerized applications, those certifications will be
-autorenewed every 2/3 months and won't require any manual step, cool!
+auto-renewed every 2/3 months and won't require any manual step, cool!
 
     ┬
     ├── multisite (traefik)
@@ -42,7 +42,7 @@ autorenewed every 2/3 months and won't require any manual step, cool!
 As you noticed, new files were added, the idea is that we maintain the
 flexibility to either provision a **http only** or a **http + https** site.
 
-## pre requisite, dns configuration
+## pre-requisite, dns configuration
 
 When working with **http only** there is no need to mv our code from our local
 environment, it's easy to add some entries in **/etc/hosts** and call it a day,
@@ -59,15 +59,15 @@ reference I'm using [RackNerd](https://www.racknerd.com/) and
 Why do we need to prepare our setup like this before starting?, it has to do
 with [Let's Encrypt](https://letsencrypt.org/), the Certification Authority
 we're going to depend on, this CA generates challenges to verify that we are
-the **owners of the referenced domain/subdomain**, fortunatelly that happens
+the **owners of the referenced domain/subdomain**, fortunately that happens
 automatically so we don't need to do anything besides making sure that Let's
 Encrypt can communicate with our domains.
 
 ## multisite
 
 Remember that starting here all changes are located in a remote public machine.
-I'll start by creating a copy of **docker-compose-cherry.yml**, that would make
-easier for us to track the ssl changes:
+I'll start by creating a copy of **docker-compose.yml**, that would make easier
+for us to track the ssl changes:
 
     $ cp docker-compose.yml  docker-compose.ssl.yml 
 
@@ -98,7 +98,7 @@ easier for us to track the ssl changes:
        - traefik
 </pre>
 
-Now our original file it's more verbose, however every option is there for a
+Now our original file is more verbose, nevertheless every option is there for a
 reason.
 
 By default traefik only opens the **http port (80)**, so if we want to allow
@@ -112,7 +112,7 @@ both, **http/https**, we need to be more specific:
 We also need to select which *certification resolver*  we're going to use, on
 this case, Let's encrypt, we specify that by filling the acme fields.
 
-**acme.email** can be any personal/bussiness email. **acme.storage** is where
+**acme.email** can be any personal/business email. **acme.storage** is where
 our ssl certificates will be saved, it does **need to exists but can be
 empty**, if that is the case, traefik will override it with valid certs.
 **acme.tlschallenge** is the challenge type, there are [other
@@ -149,7 +149,7 @@ Ok, that's all on traefik side, let's apply the patch:
 
 ## site1.com
 
-Let's copy and analize what makes a new site https compatible:
+Let's copy and analyze what makes a new site https compatible:
 
     $ cp docker-compose.site1.yml docker-compose.site1.ssl.yml
 
@@ -177,7 +177,7 @@ Let's copy and analize what makes a new site https compatible:
    app:
 </pre>
 
-I don't know about you, but for me the syntax is confussing, happily this only
+I don't know about you, but for me the syntax is confusing, happily this only
 needs to be setup once and then can be reused in other domains/subdomains by
 changing only some words. Also, the ssl endpoint is transparent, our
 application doesn't need to be aware of it, that's great and IMO overrides the
@@ -199,7 +199,7 @@ whole and therefore it's kept as **site1_com** , @.@!
 
 This configuration leaves an important use case that each year is more common,
 forcing users to use **https** over **http**. Since I personally do not agree
-with such IMO abusive behavior, I skipt it on purpose, however if you're
+with such IMO abusive behavior, I skipped it on purpose, however if you're
 interested you can use a
 [middleware](https://doc.traefik.io/traefik/middlewares/redirectscheme/) to
 configure that.
@@ -246,7 +246,7 @@ Everything is the same, the only difference is that **site1** was replaced with
 If you've followed everything up until this point, **congratulations!**,
 technology is great but also tends to be harder to grasp as more elements are
 incorporated, let's end this tutorial once for all so we can continue with our
-lifes:
+lives:
 
     $ cd multisite/ && docker-compose -f docker-compose.ssl.yml       up -d
     $ cd site1.com/ && docker-compose -f docker-compose.site1.ssl.yml up -d
