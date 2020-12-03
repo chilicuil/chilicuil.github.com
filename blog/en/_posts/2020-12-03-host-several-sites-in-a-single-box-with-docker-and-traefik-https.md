@@ -200,9 +200,9 @@ whole and therefore it's kept as **site1_com** , @.@!
 This configuration leaves an important use case that each year is more common,
 forcing users to use **https** over **http**. Since I personally do not agree
 with such IMO abusive behavior, I skipt it on purpose, however if you're
-interested configuring it you can use a
-[middleware](https://doc.traefik.io/traefik/middlewares/redirectscheme/) in
-traefik terminology.
+interested you can use a
+[middleware](https://doc.traefik.io/traefik/middlewares/redirectscheme/) to
+configure that.
 
     $ patch -p0 < docker-compose.site1.yml.patch
     patching file docker-compose.site1.yml
