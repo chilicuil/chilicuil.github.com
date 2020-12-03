@@ -31,23 +31,23 @@ previous one since I'll build upon it. Ok, ready?, let's recapitulate:
     ├── site2.com
         ├── ...
         ├── docker-compose.site2.yml
-    │   ├── docker-compose.site1.ssl.yml  => NEW FILE
+        ├── docker-compose.site1.ssl.yml  => NEW FILE
 
 
-As you noticed, new files have been added, the idea is that we have the
-flexibility to either provision a **http only** or a **http + https** site.
+As you noticed, new files were added, the idea is that we have the flexibility
+to either provision a **http only** or a **http + https** site.
 
 ## pre requisite, dns configuration
 
 When working with **http only** there is no need to mv our code from our local
 environment, it's easy to add some entries in **/etc/hosts** and call it a day,
-this time however it's different, we need to **upload our files into a box with
+this time however is different, we need to **upload our files into a box with
 a public ip address** and verify that the dns routing is working as expected,
 that is, if we are going to hosts these sites at:
-185.199.109.153 **we need to make sure site1.com / site2.com resolve to
+185.199.109.153, **we need to make sure site1.com / site2.com resolve to
 185.199.109.153**
 
-I won't cover that part because it depends on your DNS Registrar, for
+I won't cover how to do that because it depends on your DNS Registrar, for
 reference I'm using [RackNerd](https://www.racknerd.com/) and
 [DNSPod](https://www.dnspod.com/) as my Linux / DNS servers.
 
@@ -60,8 +60,9 @@ our domains, all the rest is automated.
 
 ## multisite
 
-I'll create a copy of **docker-compose-cherry.yml** to show only the ssl
-changes:
+Remember that starting here all changes are located in a remote public machine.
+I'll start by creating a copy of **docker-compose-cherry.yml**, that would make
+easier to track only the ssl changes:
 
     $ cp docker-compose.yml  docker-compose.ssl.yml 
 
@@ -85,9 +86,8 @@ changes:
        - "8080:8080" #traefik dashboard/api
      volumes:
        - /var/run/docker.sock:/var/run/docker.sock
-+      # Run these commands in the host machine before launching traefik:
-+      #   $ touch     acme.json"
-+      #   $ chmod 600 acme.json"
++      # Run this command in the host machine before launching traefik:
++      #   $ touch acme.json && chmod 600 acme.json
 +      - ${PWD}/acme.json:/acme.json
      networks:
        - traefik
@@ -95,16 +95,16 @@ changes:
 
 Now it's more verbose, but every option is there for a reason.
 
-By default traefik only opens its **http port (80)** if we want to allow both,
-**http/https** we need to be more specific:
+By default traefik only opens the **http port (80)** if we want to allow both,
+**http/https**, we need to be more specific:
 
 <pre class="sh_diff">
 +      - "--entrypoints.http.address=:80"
 +      - "--entrypoints.https.address=:443"
 </pre>
 
-Then we need to select which *certification resolver* we're going to use, on
-this case, Let's encrypt, we tell that to traefik by filling the acme fields.
+We also need to select which *certification resolver*  we're going to use, on
+this case, Let's encrypt, we specify that by filling the acme fields.
 **acme.email** can be any personal/bussiness email. **acme.storage** is where
 our ssl certificates will be saved, it does **need to exists but can be
 empty**, if that is the case, traefik will override it with valid certs.
@@ -125,18 +125,17 @@ Finally we'll share the **acme.json** file between our host/container to avoid
 requesting new certificates each time we launch our traefik container.
 
 <pre class="sh_diff">
-+      # Run these commands in the host machine before launching traefik:
-+      #   $ touch     acme.json"
-+      #   $ chmod 600 acme.json"
++      # Run this command in the host machine before launching traefik:
++      #   $ touch acme.json && chmod 600 acme.json
 +      - ${PWD}/acme.json:/acme.json
 </pre>
 
 As the comments suggest, this file needs to be created with specific
-permissions before hand:
+permissions before running traefik.
 
     $ touch acme.json && chmod 600 acme.json
 
-Let's apply the patch:
+Ok, that's all on traefik side, let's apply the patch:
 
     $ patch -p0 < docker-compose.ssl.yml.patch
     patching file docker-compose.ssl.yml
