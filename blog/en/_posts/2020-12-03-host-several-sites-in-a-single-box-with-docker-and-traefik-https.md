@@ -39,8 +39,8 @@ autorenewed every 2/3 months and won't require any manual step, cool!
         ├── docker-compose.site1.ssl.yml  => NEW FILE
 
 
-As you noticed, new files were added, the idea is that we have the flexibility
-to either provision a **http only** or a **http + https** site.
+As you noticed, new files were added, the idea is that we maintain the
+flexibility to either provision a **http only** or a **http + https** site.
 
 ## pre requisite, dns configuration
 
@@ -59,9 +59,9 @@ reference I'm using [RackNerd](https://www.racknerd.com/) and
 Why do we need to prepare our setup like this before starting?, it has to do
 with [Let's Encrypt](https://letsencrypt.org/), the Certification Authority
 we're going to depend on, this CA generates challenges to verify that we are
-the **owners of the referenced domain/subdomain**, fortunatelly we don't need
-to do anything else besides making sure that Let's Encrypt can communicate with
-our domains, all the rest is automated.
+the **owners of the referenced domain/subdomain**, fortunatelly that happens
+automatically so we don't need to do anything besides making sure that Let's
+Encrypt can communicate with our domains.
 
 ## multisite
 
