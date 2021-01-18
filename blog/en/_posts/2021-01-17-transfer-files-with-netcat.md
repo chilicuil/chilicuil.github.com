@@ -7,8 +7,8 @@ title: "transfer files with netcat"
 
 ###### {{ page.date | date_to_string }}
 
-Here goes a quick note about how to transfer files in a LAN between computers,
-**netcat** is available in a wide range of different platforms because of its
+Here goes a quick note about how to transfer files in a LAN between computers
+using **netcat** which is available in a wide range of platforms because of its
 simplicity.
 
 ### Receiving node (192.168.1.74)
