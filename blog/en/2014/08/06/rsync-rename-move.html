@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="Javier López personal blog">
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>detect file moves and renames with rsync | javier.io</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="detect file moves and renames with rsync" />
+<meta name="author" content="Javier López" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="detect file moves and renames with rsync" />
+<meta property="og:description" content="detect file moves and renames with rsync" />
+<link rel="canonical" href="javier.io/blog/en/2014/08/06/rsync-rename-move.html" />
+<meta property="og:url" content="javier.io/blog/en/2014/08/06/rsync-rename-move.html" />
+<meta property="og:site_name" content="javier.io" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-08-06T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="detect file moves and renames with rsync" />
+<meta name="twitter:site" content="@javier_flpz" />
+<meta name="twitter:creator" content="@Javier López" />
+<script type="application/ld+json">
+{"description":"detect file moves and renames with rsync","url":"javier.io/blog/en/2014/08/06/rsync-rename-move.html","@type":"BlogPosting","headline":"detect file moves and renames with rsync","dateModified":"2014-08-06T00:00:00+00:00","datePublished":"2014-08-06T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"javier.io/blog/en/2014/08/06/rsync-rename-move.html"},"author":{"@type":"Person","name":"Javier López"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="shortcut icon" href="//javier.io/favicon.ico">
+    <link href='//fonts.googleapis.com/css?family=Exo+2:200|PT+Sans|Strait|Vollkorn|' rel='stylesheet' type='text/css'>
+    <!--<link href='//fonts.googleapis.com/css?family=Megrim|Ruluko|Exo+2:200|PT+Sans|Strait|Vollkorn|' rel='stylesheet' type='text/css'>-->
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml">
+    <link rel="stylesheet" type="text/css" href="/assets/css/default_black.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.min.css">
+
+    <!-- syntax http://shjs.sourceforge.net/-->
+    <link type="text/css" rel="stylesheet" href="/assets/css/shjs/sh_darkness.css">
+
+    <title>detect file moves and renames with rsync</title>
+  </head>
+
+  <body onload="sh_highlightDocument('/assets/js/lang/', '.js');">
+    <div id="header">
+  <h1><a href="/blog/">Javier L&oacute;pez</a>
+    <form>
+      <input type="text" id="st-search-input" class="st-search-input"/>
+    </form>
+  </h1>
+
+  <a href="/blog/en.html" class="red">[EN]</a> |
+  <a href="/blog/pt.html" class="green">[PT]</a> |
+  <a href="/blog/es.html" class="yellow">[ES]</a> |
+  <a href="/atom.xml" class="rss">RSS</a> |
+
+  
+
+  <!-- Begin Swifttype -->
+  <script type="text/javascript">
+    var Swiftype = window.Swiftype || {};
+    (function() {
+      Swiftype.key = 'k64dV6Rm9QK4z8WnkrcN';
+      Swiftype.inputElement = '#st-search-input';
+      Swiftype.resultContainingElement = '#st-results-container';
+      Swiftype.attachElement = '#st-search-input';
+      Swiftype.renderStyle = "new_page";
+      Swiftype.resultPageURL = "/blog/results/";
+
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = "//swiftype.com/embed.js";
+      var entry = document.getElementsByTagName('script')[0];
+      entry.parentNode.insertBefore(script, entry);
+    }());
+  </script>
+  <!-- End Swifttype -->
+
+
+</div>
+
+
+    <div id="content">
+      <div id="post">
+  <h2 id="detect-file-moves-and-renames-with-rsync">detect file moves and renames with rsync</h2>
+
+<h6 id="06-aug-2014">06 Aug 2014</h6>
+
+<p>I use rsync to backup my <em>$HOME</em> directory everyday with something like this:</p>
+
+<pre class="sh_sh">
+$ sudo rsync -az --one-file-system --delete $HOME/ admin@backup.javier.io:~/backup/$(hostname)
+</pre>
+
+<p>Most of the times it takes me less than <strong>10</strong> minutes at 2MB/s to re-sync everything, however last weekend it took almost <strong>20 hours!</strong> so while I was waiting I decided to take a look to see what was happening. It turned out rsync was re-uploading some pretty heavy files because I had renamed them locally. I couldn’t believe rsync was so dumb, I was shocked O_O</p>
+
+<p>So I went to Internet and looked for solutions, fortunatelly some other guys had found this problem before and created a couple of patches:</p>
+
+<ul>
+  <li><a href="https://attachments.samba.org/attachment.cgi?id=7435">detect-renamed</a></li>
+  <li><a href="https://git.samba.org/?p=rsync-patches.git;a=blob;f=detect-renamed-lax.diff;h=4cd23bd4524662f1d0db0bcc90336a77d0bb61c9;hb=HEAD">detect-renamed-lax</a></li>
+</ul>
+
+<p>These patches add the following options:</p>
+
+<ul>
+  <li>–detect-renamed, –detect-renamed-lax</li>
+  <li>–detect-moved</li>
+</ul>
+
+<p>Since I’m not the kind of person who enjoys spending their time compiling software I packaged a modified rsync version for supported Ubuntu LTS versions and upload it somewhere, while doing it I updated the patches to make them compile with the latest rsync version (at the moment of writing this version 3.1.1).</p>
+
+<pre class="sh_sh">
+$ sudo apt-add-repository ppa:minos-archive/main
+$ sudo apt-get update &amp;&amp; sudo apt-get install rsync
+</pre>
+
+<p>In my personal tests the modified rsync shows an amazing speed up for uploads who involve renamed/moved files, so I’m installing this in all my computers.</p>
+
+<p><strong>Note: For this to work, both, server and client must have installed the modified rsync version</strong></p>
+
+<p>Happy uploading 😋</p>
+
+<p>References:</p>
+
+<ul>
+  <li><a href="https://bugzilla.samba.org/show_bug.cgi?id=2294">https://bugzilla.samba.org/show_bug.cgi?id=2294</a></li>
+  <li><a href="https://bugs.launchpad.net/ubuntu/+source/rsync/+bug/1353792">https://bugs.launchpad.net/ubuntu/+source/rsync/+bug/1353792</a></li>
+  <li><a href="https://github.com/javier-lopez/learn/blob/master/patches/rsync-3.1.1-trusty-detect-renamed.diff">https://github.com/javier-lopez/learn/blob/master/patches/rsync-3.1.1-trusty-detect-renamed.diff</a></li>
+  <li><a href="https://github.com/javier-lopez/learn/blob/master/patches/rsync-3.1.1-trusty-detect-renamed-lax.diff">https://github.com/javier-lopez/learn/blob/master/patches/rsync-3.1.1-trusty-detect-renamed-lax.diff</a></li>
+</ul>
+
+</div>
+
+<div id="related">
+  <h5>Related Entries:</h5>
+  <ul class="related-posts">
+    
+    <li><span>01 Jan 2012</span> &raquo; <a href="/blog/en/2012/01/01/bash-autocompletion.html">bash autocompletion</a></li>
+    
+    <li><span>26 Jan 2014</span> &raquo; <a href="/blog/en/2014/01/26/introduction-to-drupal-7-installation-profiles.html">introduction to drupal 7 installation profiles</a></li>
+    
+    <li><span>22 Aug 2018</span> &raquo; <a href="/blog/en/2018/08/22/minos-a-tiling-wm-linux-distro.html">minos, a tiling wm linux distribution</a></li>
+    
+  </ul>
+</div>
+
+    <div id="disqus">
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'javierlopez'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+       })();
+     </script>
+     <noscript>Enable JavaScript to see/create comments</noscript>
+    </div>
+
+
+    </div>
+
+    
+<div id="footer">
+
+  <div class="link" align="right">
+    <a href="//javier.io/blog"><i class="icon-pencil"></i></a>
+    <a href="//javier.io/pgp"><i class="icon-key"></i></a>
+    <a href="//javier.io/twitter"><i class="icon-twitter"></i></a>
+    <a href="//javier.io/github"><i class="icon-github-alt"></i></a>
+  </div>
+</div>
+
+    
+
+    <!-- syntax http://shjs.sourceforge.net/-->
+    <script type="text/javascript" src="/assets/js/shjs/shjs_main.js"></script>
+
+    <!-- lightbox http://gettopup.com, the other part of the lib is called in the post.html file-->
+    <script type="text/javascript" src="/assets/js/top-up/top_up-min.js"></script>
+    <script type="text/javascript">TopUp.host = "//javier.io/";</script>
+    <script type="text/javascript">TopUp.images_path = "assets/js/top-up/images/";</script>
+    <script type="text/javascript">
+      TopUp.addPresets({
+          "#content strong a": {
+            readAltText: 1,
+            effect: "clip",
+            overlayClose: 0,
+            shaded: 1,
+            group: "img"
+          }
+    });
+    </script>
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-47664650-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+    </script>
+
+  </body>
+</html>

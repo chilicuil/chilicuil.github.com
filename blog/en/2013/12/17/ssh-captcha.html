@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="Javier López personal blog">
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>ssh captcha | javier.io</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="ssh captcha" />
+<meta name="author" content="Javier López" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="ssh captcha" />
+<meta property="og:description" content="ssh captcha" />
+<link rel="canonical" href="javier.io/blog/en/2013/12/17/ssh-captcha.html" />
+<meta property="og:url" content="javier.io/blog/en/2013/12/17/ssh-captcha.html" />
+<meta property="og:site_name" content="javier.io" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2013-12-17T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="ssh captcha" />
+<meta name="twitter:site" content="@javier_flpz" />
+<meta name="twitter:creator" content="@Javier López" />
+<script type="application/ld+json">
+{"description":"ssh captcha","url":"javier.io/blog/en/2013/12/17/ssh-captcha.html","@type":"BlogPosting","headline":"ssh captcha","dateModified":"2013-12-17T00:00:00+00:00","datePublished":"2013-12-17T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"javier.io/blog/en/2013/12/17/ssh-captcha.html"},"author":{"@type":"Person","name":"Javier López"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="shortcut icon" href="//javier.io/favicon.ico">
+    <link href='//fonts.googleapis.com/css?family=Exo+2:200|PT+Sans|Strait|Vollkorn|' rel='stylesheet' type='text/css'>
+    <!--<link href='//fonts.googleapis.com/css?family=Megrim|Ruluko|Exo+2:200|PT+Sans|Strait|Vollkorn|' rel='stylesheet' type='text/css'>-->
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml">
+    <link rel="stylesheet" type="text/css" href="/assets/css/default_black.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.min.css">
+
+    <!-- syntax http://shjs.sourceforge.net/-->
+    <link type="text/css" rel="stylesheet" href="/assets/css/shjs/sh_darkness.css">
+
+    <title>ssh captcha</title>
+  </head>
+
+  <body onload="sh_highlightDocument('/assets/js/lang/', '.js');">
+    <div id="header">
+  <h1><a href="/blog/">Javier L&oacute;pez</a>
+    <form>
+      <input type="text" id="st-search-input" class="st-search-input"/>
+    </form>
+  </h1>
+
+  <a href="/blog/en.html" class="red">[EN]</a> |
+  <a href="/blog/pt.html" class="green">[PT]</a> |
+  <a href="/blog/es.html" class="yellow">[ES]</a> |
+  <a href="/atom.xml" class="rss">RSS</a> |
+
+  
+
+  <!-- Begin Swifttype -->
+  <script type="text/javascript">
+    var Swiftype = window.Swiftype || {};
+    (function() {
+      Swiftype.key = 'k64dV6Rm9QK4z8WnkrcN';
+      Swiftype.inputElement = '#st-search-input';
+      Swiftype.resultContainingElement = '#st-results-container';
+      Swiftype.attachElement = '#st-search-input';
+      Swiftype.renderStyle = "new_page";
+      Swiftype.resultPageURL = "/blog/results/";
+
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = "//swiftype.com/embed.js";
+      var entry = document.getElementsByTagName('script')[0];
+      entry.parentNode.insertBefore(script, entry);
+    }());
+  </script>
+  <!-- End Swifttype -->
+
+
+</div>
+
+
+    <div id="content">
+      <div id="post">
+  <h2 id="ssh-captcha">ssh captcha</h2>
+
+<h6 id="17-dec-2013">17 Dec 2013</h6>
+
+<p><strong><a href="https://github.com/javier-lopez/pam_captcha"><img src="/assets/img/pam_captcha.png" alt="" /></a></strong>
+<!--<iframe class="showterm" src="http://showterm.io/53a85bc1b41c096c83130" width="640" height="350">&nbsp;</iframe>--></p>
+
+<p>Some days ago while I was reviewing some data I noticed a spammer in one of my remote machines. Since I was mostly using the box for running experiments I decided to rebuild it. Upon completion, I decided to improve my default ssh settings. I just liked too much to use a single password for all my ssh needs 😞</p>
+
+<p>I know some ways to improve security, I could change the password to a really difficult one, change the default port, filter by ip, by tries (fail2ban), disable completely password login and allow only key based logins, etc.</p>
+
+<p>At the end however I decided to just add a captcha protection, why?, most of the ssh attacks are automatized, people run scripts who tests thousand of passwords and run certain commands on success, these scritps won’t be able to recognized the slighly modification in the login process (they’re really dumb). In the other hand, I don’t need over complicated solutions, or more systems to administer. Ssh key based login is great but sometimes I just need access from third party machines.</p>
+
+<p>Lastly some other popular solutions have come up but for one or other reason I couldn’t feel comfortable with them:</p>
+
+<ul>
+  <li><a href="https://code.google.com/p/google-authenticator/">google authenticator</a> (my cellphone is most of the time lost, turn off or without battery, do I live under a rock?, not at all!, but I don’t get the always online hype.)</li>
+  <li><a href="http://barada.sourceforge.net/">barada</a> (see above reason)</li>
+  <li><a href="https://www.cl.cam.ac.uk/~mgk25/otpw.html">otpw</a> (printing and carrying passwords with me?, you must be kidding)</li>
+  <li><a href="http://ubuntuforums.org/showthread.php?t=1891356">otp</a> (I may try this one)</li>
+  <li><a href="https://github.com/chrishunt/github-auth">github auth</a> (unrelated but it’s a nice way to do pair programming fast)</li>
+  <li><a href="http://blog.authy.com/two-factor-ssh-in-thirty-seconds">authy</a> (people seems to really like cellphones)</li>
+  <li>any other method who involves <a href="https://www.duosecurity.com/">ForceCommand</a></li>
+</ul>
+
+<h3 id="installation">Installation</h3>
+
+<pre>
+$ sudo add-apt-repository ppa:minos-archive/main
+$ sudo apt-get update &amp;&amp; sudo apt-get install libpam-captcha
+</pre>
+
+<p>Be aware than the previous steps will only work in supported Ubuntu LTS versions.</p>
+
+<h3 id="extra">Extra</h3>
+
+<h2 id="sentry">Sentry</h2>
+
+<p>If additional security is desired consider using <a href="https://www.tnpi.net/wiki/Sentry">sentry</a> over fail2ban, denyhosts, sshblacklist, etc, really.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ wget http://www.tnpi.net/internet/sentry.pl
+$ sudo perl sentry.pl
+$ echo "sshd : /var/db/sentry/hosts.deny : deny" &gt; hosts
+$ echo "sshd : ALL : spawn /var/db/sentry/sentry.pl -c --ip=%a : allowsendmail: all" &gt;&gt; hosts
+$ cat hosts /etc/hosts.allow &gt; hosts.allow
+$ sudo mv hosts.allow /etc/ &amp;&amp; rm hosts
+</code></pre></div></div>
+
+<h2 id="fail2ban">Fail2ban</h2>
+
+<p>The next fail2ban regex will match the ssh captcha generated messages</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#/etc/fail2ban/filter.d/sshd.conf
+^%(__prefix_line)s(?:error: PAM: )?Permission denied for .* from &lt;HOST&gt;$
+</code></pre></div></div>
+
+<p>Thanks Jordan! 😊</p>
+
+<ul>
+  <li><a href="http://www.semicomplete.com/projects/pam_captcha/">http://www.semicomplete.com/projects/pam_captcha/</a></li>
+  <li><a href="https://github.com/minos-org/libpam-captcha">https://github.com/minos-org/libpam-captcha</a></li>
+  <li><a href="https://github.com/minos-org/libpam-captcha-deb">https://github.com/minos-org/libpam-captcha-deb</a></li>
+</ul>
+
+</div>
+
+<div id="related">
+  <h5>Related Entries:</h5>
+  <ul class="related-posts">
+    
+    <li><span>22 Aug 2018</span> &raquo; <a href="/blog/en/2018/08/22/minos-a-tiling-wm-linux-distro.html">minos, a tiling wm linux distribution</a></li>
+    
+    <li><span>01 Jan 2012</span> &raquo; <a href="/blog/en/2012/01/01/bash-autocompletion.html">bash autocompletion</a></li>
+    
+    <li><span>22 Feb 2014</span> &raquo; <a href="/blog/en/2014/02/22/awk.html">the most portable language in the world, awk</a></li>
+    
+  </ul>
+</div>
+
+    <div id="disqus">
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'javierlopez'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+       })();
+     </script>
+     <noscript>Enable JavaScript to see/create comments</noscript>
+    </div>
+
+
+    </div>
+
+    
+<div id="footer">
+
+  <div class="link" align="right">
+    <a href="//javier.io/blog"><i class="icon-pencil"></i></a>
+    <a href="//javier.io/pgp"><i class="icon-key"></i></a>
+    <a href="//javier.io/twitter"><i class="icon-twitter"></i></a>
+    <a href="//javier.io/github"><i class="icon-github-alt"></i></a>
+  </div>
+</div>
+
+    
+
+    <!-- syntax http://shjs.sourceforge.net/-->
+    <script type="text/javascript" src="/assets/js/shjs/shjs_main.js"></script>
+
+    <!-- lightbox http://gettopup.com, the other part of the lib is called in the post.html file-->
+    <script type="text/javascript" src="/assets/js/top-up/top_up-min.js"></script>
+    <script type="text/javascript">TopUp.host = "//javier.io/";</script>
+    <script type="text/javascript">TopUp.images_path = "assets/js/top-up/images/";</script>
+    <script type="text/javascript">
+      TopUp.addPresets({
+          "#content strong a": {
+            readAltText: 1,
+            effect: "clip",
+            overlayClose: 0,
+            shaded: 1,
+            group: "img"
+          }
+    });
+    </script>
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-47664650-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+    </script>
+
+  </body>
+</html>

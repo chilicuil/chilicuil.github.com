@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="Javier López personal blog">
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>dmenu with xft support | javier.io</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="dmenu with xft support" />
+<meta name="author" content="Javier López" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="dmenu with xft support" />
+<meta property="og:description" content="dmenu with xft support" />
+<link rel="canonical" href="javier.io/blog/en/2012/12/26/dmenu-xft.html" />
+<meta property="og:url" content="javier.io/blog/en/2012/12/26/dmenu-xft.html" />
+<meta property="og:site_name" content="javier.io" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2012-12-26T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="dmenu with xft support" />
+<meta name="twitter:site" content="@javier_flpz" />
+<meta name="twitter:creator" content="@Javier López" />
+<script type="application/ld+json">
+{"description":"dmenu with xft support","url":"javier.io/blog/en/2012/12/26/dmenu-xft.html","@type":"BlogPosting","headline":"dmenu with xft support","dateModified":"2012-12-26T00:00:00+00:00","datePublished":"2012-12-26T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"javier.io/blog/en/2012/12/26/dmenu-xft.html"},"author":{"@type":"Person","name":"Javier López"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="shortcut icon" href="//javier.io/favicon.ico">
+    <link href='//fonts.googleapis.com/css?family=Exo+2:200|PT+Sans|Strait|Vollkorn|' rel='stylesheet' type='text/css'>
+    <!--<link href='//fonts.googleapis.com/css?family=Megrim|Ruluko|Exo+2:200|PT+Sans|Strait|Vollkorn|' rel='stylesheet' type='text/css'>-->
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml">
+    <link rel="stylesheet" type="text/css" href="/assets/css/default_black.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.min.css">
+
+    <!-- syntax http://shjs.sourceforge.net/-->
+    <link type="text/css" rel="stylesheet" href="/assets/css/shjs/sh_darkness.css">
+
+    <title>dmenu with xft support</title>
+  </head>
+
+  <body onload="sh_highlightDocument('/assets/js/lang/', '.js');">
+    <div id="header">
+  <h1><a href="/blog/">Javier L&oacute;pez</a>
+    <form>
+      <input type="text" id="st-search-input" class="st-search-input"/>
+    </form>
+  </h1>
+
+  <a href="/blog/en.html" class="red">[EN]</a> |
+  <a href="/blog/pt.html" class="green">[PT]</a> |
+  <a href="/blog/es.html" class="yellow">[ES]</a> |
+  <a href="/atom.xml" class="rss">RSS</a> |
+
+  
+
+  <!-- Begin Swifttype -->
+  <script type="text/javascript">
+    var Swiftype = window.Swiftype || {};
+    (function() {
+      Swiftype.key = 'k64dV6Rm9QK4z8WnkrcN';
+      Swiftype.inputElement = '#st-search-input';
+      Swiftype.resultContainingElement = '#st-results-container';
+      Swiftype.attachElement = '#st-search-input';
+      Swiftype.renderStyle = "new_page";
+      Swiftype.resultPageURL = "/blog/results/";
+
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = "//swiftype.com/embed.js";
+      var entry = document.getElementsByTagName('script')[0];
+      entry.parentNode.insertBefore(script, entry);
+    }());
+  </script>
+  <!-- End Swifttype -->
+
+
+</div>
+
+
+    <div id="content">
+      <div id="post">
+  <h2 id="dmenu-with-xft-support">dmenu with xft support</h2>
+
+<h6 id="26-dec-2012">26 Dec 2012</h6>
+
+<p>I love minimalist programs not ugly ones, dmenu is one of my favorite apps and I’ve just discovered a patch for making it use pretty xft fonts. So I recompiled a personal version and put it somewhere.</p>
+
+<p><strong><a href="/assets/img/65.jpg"><img src="/assets/img/65.jpg" alt="" /></a></strong></p>
+
+<p>If you’re interested in using this version, feel free to grab a copy (only Ubuntu LTS versions are supported):</p>
+
+<pre class="sh_sh">
+$ sudo apt-add-repository ppa:minos-archive/main
+$ sudo apt-get update &amp;&amp; sudo apt-get install dmenu
+</pre>
+
+<p>Upon installation, dmenu can be used with any xft font:</p>
+
+<pre class="sh_sh">
+$ dmenu_run -fn "Liberation Mono-8"
+</pre>
+
+<ul>
+  <li><a href="https://bugs.launchpad.net/ubuntu/+source/suckless-tools/+bug/1093745">LP #1093745</a></li>
+</ul>
+
+</div>
+
+<div id="related">
+  <h5>Related Entries:</h5>
+  <ul class="related-posts">
+    
+    <li><span>21 Mar 2014</span> &raquo; <a href="/blog/en/2014/03/21/ffcast.html">ffcast</a></li>
+    
+    <li><span>01 Jan 2012</span> &raquo; <a href="/blog/en/2012/01/01/bash-autocompletion.html">bash autocompletion</a></li>
+    
+    <li><span>22 Aug 2018</span> &raquo; <a href="/blog/en/2018/08/22/minos-a-tiling-wm-linux-distro.html">minos, a tiling wm linux distribution</a></li>
+    
+  </ul>
+</div>
+
+    <div id="disqus">
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'javierlopez'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+       })();
+     </script>
+     <noscript>Enable JavaScript to see/create comments</noscript>
+    </div>
+
+
+    </div>
+
+    
+<div id="footer">
+
+  <div class="link" align="right">
+    <a href="//javier.io/blog"><i class="icon-pencil"></i></a>
+    <a href="//javier.io/pgp"><i class="icon-key"></i></a>
+    <a href="//javier.io/twitter"><i class="icon-twitter"></i></a>
+    <a href="//javier.io/github"><i class="icon-github-alt"></i></a>
+  </div>
+</div>
+
+    
+
+    <!-- syntax http://shjs.sourceforge.net/-->
+    <script type="text/javascript" src="/assets/js/shjs/shjs_main.js"></script>
+
+    <!-- lightbox http://gettopup.com, the other part of the lib is called in the post.html file-->
+    <script type="text/javascript" src="/assets/js/top-up/top_up-min.js"></script>
+    <script type="text/javascript">TopUp.host = "//javier.io/";</script>
+    <script type="text/javascript">TopUp.images_path = "assets/js/top-up/images/";</script>
+    <script type="text/javascript">
+      TopUp.addPresets({
+          "#content strong a": {
+            readAltText: 1,
+            effect: "clip",
+            overlayClose: 0,
+            shaded: 1,
+            group: "img"
+          }
+    });
+    </script>
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-47664650-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+    </script>
+
+  </body>
+</html>

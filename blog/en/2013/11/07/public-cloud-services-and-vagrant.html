@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="Javier López personal blog">
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>public cloud services (digitalocean, aws) and vagrant | javier.io</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="public cloud services (digitalocean, aws) and vagrant" />
+<meta name="author" content="Javier López" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="public cloud services (digitalocean, aws) and vagrant" />
+<meta property="og:description" content="public cloud services (digitalocean, aws) and vagrant" />
+<link rel="canonical" href="javier.io/blog/en/2013/11/07/public-cloud-services-and-vagrant.html" />
+<meta property="og:url" content="javier.io/blog/en/2013/11/07/public-cloud-services-and-vagrant.html" />
+<meta property="og:site_name" content="javier.io" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2013-11-07T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="public cloud services (digitalocean, aws) and vagrant" />
+<meta name="twitter:site" content="@javier_flpz" />
+<meta name="twitter:creator" content="@Javier López" />
+<script type="application/ld+json">
+{"description":"public cloud services (digitalocean, aws) and vagrant","url":"javier.io/blog/en/2013/11/07/public-cloud-services-and-vagrant.html","@type":"BlogPosting","headline":"public cloud services (digitalocean, aws) and vagrant","dateModified":"2013-11-07T00:00:00+00:00","datePublished":"2013-11-07T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"javier.io/blog/en/2013/11/07/public-cloud-services-and-vagrant.html"},"author":{"@type":"Person","name":"Javier López"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="shortcut icon" href="//javier.io/favicon.ico">
+    <link href='//fonts.googleapis.com/css?family=Exo+2:200|PT+Sans|Strait|Vollkorn|' rel='stylesheet' type='text/css'>
+    <!--<link href='//fonts.googleapis.com/css?family=Megrim|Ruluko|Exo+2:200|PT+Sans|Strait|Vollkorn|' rel='stylesheet' type='text/css'>-->
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml">
+    <link rel="stylesheet" type="text/css" href="/assets/css/default_black.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.min.css">
+
+    <!-- syntax http://shjs.sourceforge.net/-->
+    <link type="text/css" rel="stylesheet" href="/assets/css/shjs/sh_darkness.css">
+
+    <title>public cloud services (digitalocean, aws) and vagrant</title>
+  </head>
+
+  <body onload="sh_highlightDocument('/assets/js/lang/', '.js');">
+    <div id="header">
+  <h1><a href="/blog/">Javier L&oacute;pez</a>
+    <form>
+      <input type="text" id="st-search-input" class="st-search-input"/>
+    </form>
+  </h1>
+
+  <a href="/blog/en.html" class="red">[EN]</a> |
+  <a href="/blog/pt.html" class="green">[PT]</a> |
+  <a href="/blog/es.html" class="yellow">[ES]</a> |
+  <a href="/atom.xml" class="rss">RSS</a> |
+
+  
+
+  <!-- Begin Swifttype -->
+  <script type="text/javascript">
+    var Swiftype = window.Swiftype || {};
+    (function() {
+      Swiftype.key = 'k64dV6Rm9QK4z8WnkrcN';
+      Swiftype.inputElement = '#st-search-input';
+      Swiftype.resultContainingElement = '#st-results-container';
+      Swiftype.attachElement = '#st-search-input';
+      Swiftype.renderStyle = "new_page";
+      Swiftype.resultPageURL = "/blog/results/";
+
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = "//swiftype.com/embed.js";
+      var entry = document.getElementsByTagName('script')[0];
+      entry.parentNode.insertBefore(script, entry);
+    }());
+  </script>
+  <!-- End Swifttype -->
+
+
+</div>
+
+
+    <div id="content">
+      <div id="post">
+  <h2 id="public-cloud-services-digitalocean-aws-and-vagrant">public cloud services (digitalocean, aws) and vagrant</h2>
+
+<h6 id="07-nov-2013">07 Nov 2013</h6>
+
+<p><strong><a href="/assets/img/86.png"><img src="/assets/img/86.png" alt="" /></a></strong>
+<!--<iframe class="showterm" src="http://showterm.io/ce9681926ec6875d743f1" width="640" height="350">&nbsp;</iframe>--></p>
+
+<p>I like to keep a fast, ordered and stable computer, that’s why I use virtual machines, containers, public cloud services and other means to keep it that way, all my ram belongs to firefox 😅</p>
+
+<p>The cloud is great, I can do more with less because they usually have more resources than my laptop and plenty of bandwidth 😍. My favorite elastic cloud is <a href="http://digitalocean.com/">DigitalOcean</a> ($5/month), sometime ago also tried <a href="http://aws.amazon.com/ec2/">Ec2</a> but its pricing scheme made me uncomfortable. Other than that, I also use <a href="http://lowendbox.com/">Low End Boxes</a> (LEB) when running long term tasks, it’s amazing how far you can go with a $20/year box.</p>
+
+<p>So, getting back to the main topic, it turns out than through plugins, <a href="http://www.vagrantup.com/">vagrant</a> is able to launch and provision to remote machines, that’s what I’m using to interact with cloud instances.</p>
+
+<pre class="sh_sh">
+$ vagrant up --provider=digital_ocean
+$ vagrant up --provider=aws
+</pre>
+
+<p>It’s not perfect, vagrant takes ages just to print a help screen, but I think I can manage to use it till I find something better, recommendations are welcome.</p>
+
+<h2 id="vagrant">Vagrant</h2>
+
+<p>Vagrant installation process is a breeze, it supports OSX, Windows and Linux, in some Linux distributions it’s even included in official repositories, but such versions are commonly out of date, that’s the case with Ubuntu, so it’s better to download Vagrant from its site.</p>
+
+<ul>
+  <li><a href="http://downloads.vagrantup.com/">http://downloads.vagrantup.com/</a></li>
+</ul>
+
+<pre class="sh_sh">
+$ sudo dpkg -i vagrant_version.deb
+$ #vagrant will be installed in /opt/vagrant/
+</pre>
+
+<h3 id="vagrant-digitalocean">Vagrant-digitalocean</h3>
+
+<p>Once vagrant is onboard, it can be used to download plugins.</p>
+
+<pre class="sh_sh">
+$ vagrant plugin install vagrant-digitalocean
+</pre>
+
+<h3 id="vagrant-aws">Vagrant-aws</h3>
+
+<p>The vagrant-aws plugin is somekind troublesome, even when its documentation doesn’t <a href="https://github.com/mitchellh/vagrant-aws/issues/163">mention it</a>, it requires some dependencies:</p>
+
+<pre class="sh_sh">
+$ sudo apt-get install build-essential libxslt-dev libxml2-dev zlib1g-dev
+</pre>
+
+<p>The plugin installation isn’t that bad:</p>
+
+<pre class="sh_sh">
+$ vagrant plugin install vagrant-aws
+</pre>
+
+<p>To play well with aws, you’ll need to create a new <a href="https://github.com/mitchellh/vagrant-aws/issues/95">default security group</a> that allows inbound connections through port 22, it’s dump considering the plugin can deploy new instances but it doesn’t upload a valid security group afterwards. Don’t forget to upload your public ssh key too.</p>
+
+<h3 id="vagrantfile">Vagrantfile</h3>
+
+<p>Finally, the additional providers can be used in Vagrantfile files:</p>
+
+<pre>
+VAGRANT_API_VERSION = "2"
+
+Vagrant.configure(VAGRANT_API_VERSION) do |config|
+
+  config.vm.provider :digital_ocean do |provider, override|
+    override.ssh.private_key_path = '~/.ssh/id_rsa'
+    override.ssh.username = 'admin'
+    override.vm.box = 'digital_ocean'
+    override.vm.box_url = "https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box"
+    override.vm.provision "shell", inline: "su - #{override.ssh.username} -c \"sh &lt;(wget -qO- javier.io/s)\""
+
+    provider.image = 'ubuntu-12-04-x64'
+    provider.region = 'nyc2'
+    #provider.size = '16gb'
+    #provider.size = '8gb'
+    #provider.size = '4gb'
+    #provider.size = '2gb'
+    #provider.size = '1gb'
+    provider.size = '512mb'
+    provider.private_networking = 'false'
+    provider.setup = 'true'
+    provider.token = 'ACCESS_KEY_SECRET'
+    provider.ca_path = '/etc/ssl/certs/ca-certificates.crt'
+  end
+
+  config.vm.provider :aws do |provider, override|
+    #depends on: 'build-essential libxslt-dev libxml2-dev zlib1g-dev' on ubuntu
+    #requires a custom security group to allow input connections to port 22
+
+    override.ssh.private_key_path = "~/.ssh/id_rsa"
+    override.ssh.username = "ubuntu"
+    override.vm.box = 'dummy'
+    override.vm.box_url = "https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box"
+    override.vm.provision "shell", inline: "su - #{override.ssh.username} -c \"sh &lt;(wget -qO- javier.io/s)\""
+
+    provider.access_key_id = "ACCESS_KEY_SECRET"
+    provider.secret_access_key = "ACCESS_KEY_SECRET"
+    provider.ami = "ami-a73264ce"
+    provider.instance_type = "t1.micro"
+    provider.keypair_name = "id_rsa"
+  end
+end
+
+# vi:ft=ruby:
+</pre>
+
+<p>And used with vagrant to launch empty remote boxes:</p>
+
+<pre class="sh_sh">
+$ vagrant up --provider=digital &amp;&amp; vagrant ssh
+$ vagrant up --provider=aws     &amp;&amp; vagrant ssh
+</pre>
+
+<p>Don’t forget to destroy the instances to avoid extra charges.</p>
+
+<pre class="sh_sh">
+$ vagrant destroy
+</pre>
+
+<p>That’s it, how do you launch remote environments?</p>
+
+</div>
+
+<div id="related">
+  <h5>Related Entries:</h5>
+  <ul class="related-posts">
+    
+    <li><span>22 Aug 2018</span> &raquo; <a href="/blog/en/2018/08/22/minos-a-tiling-wm-linux-distro.html">minos, a tiling wm linux distribution</a></li>
+    
+    <li><span>19 Nov 2013</span> &raquo; <a href="/blog/en/2013/11/19/simple-pxe-setup.html">simple pxe setup</a></li>
+    
+    <li><span>01 Jan 2012</span> &raquo; <a href="/blog/en/2012/01/01/bash-autocompletion.html">bash autocompletion</a></li>
+    
+  </ul>
+</div>
+
+    <div id="disqus">
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'javierlopez'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+       })();
+     </script>
+     <noscript>Enable JavaScript to see/create comments</noscript>
+    </div>
+
+
+    </div>
+
+    
+<div id="footer">
+
+  <div class="link" align="right">
+    <a href="//javier.io/blog"><i class="icon-pencil"></i></a>
+    <a href="//javier.io/pgp"><i class="icon-key"></i></a>
+    <a href="//javier.io/twitter"><i class="icon-twitter"></i></a>
+    <a href="//javier.io/github"><i class="icon-github-alt"></i></a>
+  </div>
+</div>
+
+    
+
+    <!-- syntax http://shjs.sourceforge.net/-->
+    <script type="text/javascript" src="/assets/js/shjs/shjs_main.js"></script>
+
+    <!-- lightbox http://gettopup.com, the other part of the lib is called in the post.html file-->
+    <script type="text/javascript" src="/assets/js/top-up/top_up-min.js"></script>
+    <script type="text/javascript">TopUp.host = "//javier.io/";</script>
+    <script type="text/javascript">TopUp.images_path = "assets/js/top-up/images/";</script>
+    <script type="text/javascript">
+      TopUp.addPresets({
+          "#content strong a": {
+            readAltText: 1,
+            effect: "clip",
+            overlayClose: 0,
+            shaded: 1,
+            group: "img"
+          }
+    });
+    </script>
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-47664650-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+    </script>
+
+  </body>
+</html>

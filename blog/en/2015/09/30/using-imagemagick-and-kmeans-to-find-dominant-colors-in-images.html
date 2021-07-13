@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="Javier López personal blog">
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>using imagemagick, awk and kmeans to find dominant colors in images | javier.io</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="using imagemagick, awk and kmeans to find dominant colors in images" />
+<meta name="author" content="Javier López" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="using imagemagick, awk and kmeans to find dominant colors in images" />
+<meta property="og:description" content="using imagemagick, awk and kmeans to find dominant colors in images" />
+<link rel="canonical" href="javier.io/blog/en/2015/09/30/using-imagemagick-and-kmeans-to-find-dominant-colors-in-images.html" />
+<meta property="og:url" content="javier.io/blog/en/2015/09/30/using-imagemagick-and-kmeans-to-find-dominant-colors-in-images.html" />
+<meta property="og:site_name" content="javier.io" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-09-30T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="using imagemagick, awk and kmeans to find dominant colors in images" />
+<meta name="twitter:site" content="@javier_flpz" />
+<meta name="twitter:creator" content="@Javier López" />
+<script type="application/ld+json">
+{"description":"using imagemagick, awk and kmeans to find dominant colors in images","url":"javier.io/blog/en/2015/09/30/using-imagemagick-and-kmeans-to-find-dominant-colors-in-images.html","@type":"BlogPosting","headline":"using imagemagick, awk and kmeans to find dominant colors in images","dateModified":"2015-09-30T00:00:00+00:00","datePublished":"2015-09-30T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"javier.io/blog/en/2015/09/30/using-imagemagick-and-kmeans-to-find-dominant-colors-in-images.html"},"author":{"@type":"Person","name":"Javier López"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="shortcut icon" href="//javier.io/favicon.ico">
+    <link href='//fonts.googleapis.com/css?family=Exo+2:200|PT+Sans|Strait|Vollkorn|' rel='stylesheet' type='text/css'>
+    <!--<link href='//fonts.googleapis.com/css?family=Megrim|Ruluko|Exo+2:200|PT+Sans|Strait|Vollkorn|' rel='stylesheet' type='text/css'>-->
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml">
+    <link rel="stylesheet" type="text/css" href="/assets/css/default_black.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.min.css">
+
+    <!-- syntax http://shjs.sourceforge.net/-->
+    <link type="text/css" rel="stylesheet" href="/assets/css/shjs/sh_darkness.css">
+
+    <title>using imagemagick, awk and kmeans to find dominant colors in images</title>
+  </head>
+
+  <body onload="sh_highlightDocument('/assets/js/lang/', '.js');">
+    <div id="header">
+  <h1><a href="/blog/">Javier L&oacute;pez</a>
+    <form>
+      <input type="text" id="st-search-input" class="st-search-input"/>
+    </form>
+  </h1>
+
+  <a href="/blog/en.html" class="red">[EN]</a> |
+  <a href="/blog/pt.html" class="green">[PT]</a> |
+  <a href="/blog/es.html" class="yellow">[ES]</a> |
+  <a href="/atom.xml" class="rss">RSS</a> |
+
+  
+
+  <!-- Begin Swifttype -->
+  <script type="text/javascript">
+    var Swiftype = window.Swiftype || {};
+    (function() {
+      Swiftype.key = 'k64dV6Rm9QK4z8WnkrcN';
+      Swiftype.inputElement = '#st-search-input';
+      Swiftype.resultContainingElement = '#st-results-container';
+      Swiftype.attachElement = '#st-search-input';
+      Swiftype.renderStyle = "new_page";
+      Swiftype.resultPageURL = "/blog/results/";
+
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = "//swiftype.com/embed.js";
+      var entry = document.getElementsByTagName('script')[0];
+      entry.parentNode.insertBefore(script, entry);
+    }());
+  </script>
+  <!-- End Swifttype -->
+
+
+</div>
+
+
+    <div id="content">
+      <div id="post">
+  <h2 id="using-imagemagick-awk-and-kmeans-to-find-dominant-colors-in-images">using imagemagick, awk and kmeans to find dominant colors in images</h2>
+
+<h6 id="30-sep-2015">30 Sep 2015</h6>
+
+<p>Some days ago I was reading <a href="http://charlesleifer.com/blog/using-python-to-generate-awesome-linux-desktop-themes/">“Using python to generate awesome linux desktop themes”</a> and got impressed by a technique to obtain dominant colors from images, I went ahead and tried to run the examples but <a href="http://www.pythonware.com/products/pil/">PIL</a> proved difficult to install, so I looked around to see if I could replace it for some other utility and it turned out that <a href="http://www.imagemagick.org/script/convert.php"><strong>convert</strong></a> (which is part of the imagemagick package) is powerful enough for the duty.</p>
+
+<p>Besides resizing, <strong>convert</strong> can output the rgb values of any image, so I reimplemented the kmean algorithm on awk and that’s how <a href="https://raw.githubusercontent.com/javier-lopez/learn/master/sh/tools/dcolors">dcolors</a> was born. By default dcolor will resize (on RAM) the input image to 25x25 using a 1px deviation and 3 clusters for an average time of 1s per image, further customization are possible to increase quality, quantity or performance.</p>
+
+<pre class="lyric">
+$ time dcolors akira_800x800.jpg
+163,80,50
+65,77,93
+40,26,34
+
+real    0m1.176s
+</pre>
+<p><strong><a href="/assets/img/akira_800x800.jpg"><img src="/assets/img/akira_800x800.jpg" alt="" /></a></strong></p>
+<center>
+<span style="background-color: #a35032">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span style="background-color: #414d5d">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span style="background-color: #281a22">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+</center>
+<p></p>
+
+<pre class="lyric">
+$ time ./dcolors --resize 100x100 -d 10 akira-cycle-2.png
+49,85,118
+19,42,69
+125,173,165
+
+real    0m3.188s
+</pre>
+<p><strong><a href="/assets/img/akira-cycle-2_800x800.png"><img src="/assets/img/akira-cycle-2_800x800.png" alt="" /></a></strong></p>
+<center>
+<span style="background-color: #315576">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span style="background-color: #132a45">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span style="background-color: #7dada5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+</center>
+<p></p>
+
+<pre class="lyric">
+$ time ./dcolors -f hex -k 8 akira-neo-tokyo-7_800x800.png
+#495D66
+#223634
+#1C293A
+#68706E
+#3C4F4A
+#38495D
+#293C48
+#0B1016
+
+real    0m1.005s
+</pre>
+<p><strong><a href="/assets/img/akira-neo-tokyo-7_800x800.png"><img src="/assets/img/akira-neo-tokyo-7_800x800.png" alt="" /></a></strong></p>
+<center>
+<span style="background-color: #495D66">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span style="background-color: #223634">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span style="background-color: #1C293A">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span style="background-color: #68706E">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span style="background-color: #3C4F4A">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span style="background-color: #38495D">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span style="background-color: #293C48">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span style="background-color: #0B1016">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+</center>
+
+<p>That’s it, happy hacking 😋</p>
+
+<ul>
+  <li><a href="http://charlesleifer.com/blog/using-python-and-k-means-to-find-the-dominant-colors-in-images/">http://charlesleifer.com/blog/using-python-and-k-means-to-find-the-dominant-colors-in-images/</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/K-means_clustering">https://en.wikipedia.org/wiki/K-means_clustering</a></li>
+</ul>
+
+</div>
+
+<div id="related">
+  <h5>Related Entries:</h5>
+  <ul class="related-posts">
+    
+    <li><span>22 Feb 2014</span> &raquo; <a href="/blog/en/2014/02/22/awk.html">the most portable language in the world, awk</a></li>
+    
+    <li><span>26 Jan 2014</span> &raquo; <a href="/blog/en/2014/01/26/introduction-to-drupal-7-installation-profiles.html">introduction to drupal 7 installation profiles</a></li>
+    
+    <li><span>22 Aug 2018</span> &raquo; <a href="/blog/en/2018/08/22/minos-a-tiling-wm-linux-distro.html">minos, a tiling wm linux distribution</a></li>
+    
+  </ul>
+</div>
+
+    <div id="disqus">
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'javierlopez'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+       })();
+     </script>
+     <noscript>Enable JavaScript to see/create comments</noscript>
+    </div>
+
+
+    </div>
+
+    
+<div id="footer">
+
+  <div class="link" align="right">
+    <a href="//javier.io/blog"><i class="icon-pencil"></i></a>
+    <a href="//javier.io/pgp"><i class="icon-key"></i></a>
+    <a href="//javier.io/twitter"><i class="icon-twitter"></i></a>
+    <a href="//javier.io/github"><i class="icon-github-alt"></i></a>
+  </div>
+</div>
+
+    
+
+    <!-- syntax http://shjs.sourceforge.net/-->
+    <script type="text/javascript" src="/assets/js/shjs/shjs_main.js"></script>
+
+    <!-- lightbox http://gettopup.com, the other part of the lib is called in the post.html file-->
+    <script type="text/javascript" src="/assets/js/top-up/top_up-min.js"></script>
+    <script type="text/javascript">TopUp.host = "//javier.io/";</script>
+    <script type="text/javascript">TopUp.images_path = "assets/js/top-up/images/";</script>
+    <script type="text/javascript">
+      TopUp.addPresets({
+          "#content strong a": {
+            readAltText: 1,
+            effect: "clip",
+            overlayClose: 0,
+            shaded: 1,
+            group: "img"
+          }
+    });
+    </script>
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-47664650-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+    </script>
+
+  </body>
+</html>

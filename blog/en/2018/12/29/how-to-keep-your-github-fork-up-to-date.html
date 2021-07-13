@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="Javier López personal blog">
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>how to keep your Git-Fork up to date | javier.io</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="how to keep your Git-Fork up to date" />
+<meta name="author" content="Javier López" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="how to keep your Git-Fork up to date" />
+<meta property="og:description" content="how to keep your Git-Fork up to date" />
+<link rel="canonical" href="javier.io/blog/en/2018/12/29/how-to-keep-your-github-fork-up-to-date.html" />
+<meta property="og:url" content="javier.io/blog/en/2018/12/29/how-to-keep-your-github-fork-up-to-date.html" />
+<meta property="og:site_name" content="javier.io" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-12-29T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="how to keep your Git-Fork up to date" />
+<meta name="twitter:site" content="@javier_flpz" />
+<meta name="twitter:creator" content="@Javier López" />
+<script type="application/ld+json">
+{"description":"how to keep your Git-Fork up to date","url":"javier.io/blog/en/2018/12/29/how-to-keep-your-github-fork-up-to-date.html","@type":"BlogPosting","headline":"how to keep your Git-Fork up to date","dateModified":"2018-12-29T00:00:00+00:00","datePublished":"2018-12-29T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"javier.io/blog/en/2018/12/29/how-to-keep-your-github-fork-up-to-date.html"},"author":{"@type":"Person","name":"Javier López"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="shortcut icon" href="//javier.io/favicon.ico">
+    <link href='//fonts.googleapis.com/css?family=Exo+2:200|PT+Sans|Strait|Vollkorn|' rel='stylesheet' type='text/css'>
+    <!--<link href='//fonts.googleapis.com/css?family=Megrim|Ruluko|Exo+2:200|PT+Sans|Strait|Vollkorn|' rel='stylesheet' type='text/css'>-->
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml">
+    <link rel="stylesheet" type="text/css" href="/assets/css/default_black.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.min.css">
+
+    <!-- syntax http://shjs.sourceforge.net/-->
+    <link type="text/css" rel="stylesheet" href="/assets/css/shjs/sh_darkness.css">
+
+    <title>how to keep your Git-Fork up to date</title>
+  </head>
+
+  <body onload="sh_highlightDocument('/assets/js/lang/', '.js');">
+    <div id="header">
+  <h1><a href="/blog/">Javier L&oacute;pez</a>
+    <form>
+      <input type="text" id="st-search-input" class="st-search-input"/>
+    </form>
+  </h1>
+
+  <a href="/blog/en.html" class="red">[EN]</a> |
+  <a href="/blog/pt.html" class="green">[PT]</a> |
+  <a href="/blog/es.html" class="yellow">[ES]</a> |
+  <a href="/atom.xml" class="rss">RSS</a> |
+
+  
+
+  <!-- Begin Swifttype -->
+  <script type="text/javascript">
+    var Swiftype = window.Swiftype || {};
+    (function() {
+      Swiftype.key = 'k64dV6Rm9QK4z8WnkrcN';
+      Swiftype.inputElement = '#st-search-input';
+      Swiftype.resultContainingElement = '#st-results-container';
+      Swiftype.attachElement = '#st-search-input';
+      Swiftype.renderStyle = "new_page";
+      Swiftype.resultPageURL = "/blog/results/";
+
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = "//swiftype.com/embed.js";
+      var entry = document.getElementsByTagName('script')[0];
+      entry.parentNode.insertBefore(script, entry);
+    }());
+  </script>
+  <!-- End Swifttype -->
+
+
+</div>
+
+
+    <div id="content">
+      <div id="post">
+  <h2 id="how-to-keep-your-git-fork-up-to-date">how to keep your Git-Fork up to date</h2>
+
+<h6 id="29-dec-2018">29 Dec 2018</h6>
+
+<p>When it comes to the situation that you fork a repository and you contribute to
+it, then it could happen that your fork and the upstream are not in sync
+anymore. So the goal is, that you get a current version of the upstream
+repository and then you can merge the new changes into your fork, right? Okay!
+Let’s get started.</p>
+
+<h3 id="1-create-a-fork">1. Create a Fork</h3>
+
+<p>A fork <a href="https://help.github.com/articles/fork-a-repo/">is a copy of someone others repository in your
+account</a>, which can be an
+independent development project, This tutorial is for GitHub but works for any
+other git hosted platform, like Bitbucket or GitLab.</p>
+
+<p><strong><a href="/assets/img/fork_button.jpg"><img src="/assets/img/fork_button.jpg" alt="" /></a></strong></p>
+
+<h3 id="2-clone-the-fork">2. Clone the fork</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone git@github.com:your-user/your-fork.git
+</code></pre></div></div>
+
+<h3 id="3-add-the-upstream">3. Add the upstream</h3>
+
+<p>Now we should add the “upstream” branch. You can call it however you want.
+Upstream is just best practice.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git remote add upstream git://github.com/original-author/original-project.git
+</code></pre></div></div>
+
+<p>If you now have a look at your remote urls, you should see the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git remote -v
+origin https://github.com/your-user/your-fork (fetch)
+origin https://github.com/your-user/your-fork (push)
+upstream https://github.com/original-author/original-project (fetch)
+upstream https://github.com/original-author/original-project (push)
+</code></pre></div></div>
+
+<h3 id="4-keep-the-upstream-updated">4. Keep the upstream updated</h3>
+
+<p>Now as we have both urls tracked, we can update the two sources independently. With</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git fetch upstream
+</code></pre></div></div>
+
+<h3 id="5-mergerebase-your-work-with-the-upstream-repository">5. Merge/Rebase your work with the upstream repository</h3>
+
+<p>Then you can just merge the changes.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git merge upstream/master master
+</code></pre></div></div>
+
+<p>With that, you merge the latest changes from the master branch of the upstream
+into your local master branch. If you like, you can also use git pull, which is
+nothing else than fetching and merging in one step.</p>
+
+<p><strong>Pro Tip:</strong> The best way in my eyes is, to rebase because that fetches the
+latest changes of the upstream branch and replay your work on top of that. Here
+is, how it works:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git rebase upstream/master
+</code></pre></div></div>
+
+<h3 id="6-push-your-changes-online">6. Push your changes online</h3>
+
+<p>Finally, you can push your changes so others can benefit</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git push
+</code></pre></div></div>
+
+<p>That’s it, happy coding, 😊</p>
+
+</div>
+
+<div id="related">
+  <h5>Related Entries:</h5>
+  <ul class="related-posts">
+    
+    <li><span>22 Aug 2018</span> &raquo; <a href="/blog/en/2018/08/22/minos-a-tiling-wm-linux-distro.html">minos, a tiling wm linux distribution</a></li>
+    
+    <li><span>03 Dec 2020</span> &raquo; <a href="/blog/en/2020/12/03/host-several-sites-in-a-single-box-with-docker-and-traefik-https.html">host several sites in a single box with docker and traefik v2, https</a></li>
+    
+    <li><span>01 Dec 2020</span> &raquo; <a href="/blog/en/2020/12/01/host-several-sites-in-a-single-box-with-docker-and-traefik-http.html">host several sites in a single box with docker and traefik v2, http</a></li>
+    
+  </ul>
+</div>
+
+    <div id="disqus">
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'javierlopez'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+       })();
+     </script>
+     <noscript>Enable JavaScript to see/create comments</noscript>
+    </div>
+
+
+    </div>
+
+    
+<div id="footer">
+
+  <div class="link" align="right">
+    <a href="//javier.io/blog"><i class="icon-pencil"></i></a>
+    <a href="//javier.io/pgp"><i class="icon-key"></i></a>
+    <a href="//javier.io/twitter"><i class="icon-twitter"></i></a>
+    <a href="//javier.io/github"><i class="icon-github-alt"></i></a>
+  </div>
+</div>
+
+    
+
+    <!-- syntax http://shjs.sourceforge.net/-->
+    <script type="text/javascript" src="/assets/js/shjs/shjs_main.js"></script>
+
+    <!-- lightbox http://gettopup.com, the other part of the lib is called in the post.html file-->
+    <script type="text/javascript" src="/assets/js/top-up/top_up-min.js"></script>
+    <script type="text/javascript">TopUp.host = "//javier.io/";</script>
+    <script type="text/javascript">TopUp.images_path = "assets/js/top-up/images/";</script>
+    <script type="text/javascript">
+      TopUp.addPresets({
+          "#content strong a": {
+            readAltText: 1,
+            effect: "clip",
+            overlayClose: 0,
+            shaded: 1,
+            group: "img"
+          }
+    });
+    </script>
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-47664650-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+    </script>
+
+  </body>
+</html>

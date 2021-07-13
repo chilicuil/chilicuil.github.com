@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="Javier López personal blog">
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>improve boot performance in Ubuntu Precise and above | javier.io</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="improve boot performance in Ubuntu Precise and above" />
+<meta name="author" content="Javier López" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="improve boot performance in Ubuntu Precise and above" />
+<meta property="og:description" content="improve boot performance in Ubuntu Precise and above" />
+<link rel="canonical" href="javier.io/blog/en/2013/03/18/improve-boot-performance-in-ubuntu-1204.html" />
+<meta property="og:url" content="javier.io/blog/en/2013/03/18/improve-boot-performance-in-ubuntu-1204.html" />
+<meta property="og:site_name" content="javier.io" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2013-03-18T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="improve boot performance in Ubuntu Precise and above" />
+<meta name="twitter:site" content="@javier_flpz" />
+<meta name="twitter:creator" content="@Javier López" />
+<script type="application/ld+json">
+{"description":"improve boot performance in Ubuntu Precise and above","url":"javier.io/blog/en/2013/03/18/improve-boot-performance-in-ubuntu-1204.html","@type":"BlogPosting","headline":"improve boot performance in Ubuntu Precise and above","dateModified":"2013-03-18T00:00:00+00:00","datePublished":"2013-03-18T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"javier.io/blog/en/2013/03/18/improve-boot-performance-in-ubuntu-1204.html"},"author":{"@type":"Person","name":"Javier López"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="shortcut icon" href="//javier.io/favicon.ico">
+    <link href='//fonts.googleapis.com/css?family=Exo+2:200|PT+Sans|Strait|Vollkorn|' rel='stylesheet' type='text/css'>
+    <!--<link href='//fonts.googleapis.com/css?family=Megrim|Ruluko|Exo+2:200|PT+Sans|Strait|Vollkorn|' rel='stylesheet' type='text/css'>-->
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml">
+    <link rel="stylesheet" type="text/css" href="/assets/css/default_black.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.min.css">
+
+    <!-- syntax http://shjs.sourceforge.net/-->
+    <link type="text/css" rel="stylesheet" href="/assets/css/shjs/sh_darkness.css">
+
+    <title>improve boot performance in Ubuntu Precise and above</title>
+  </head>
+
+  <body onload="sh_highlightDocument('/assets/js/lang/', '.js');">
+    <div id="header">
+  <h1><a href="/blog/">Javier L&oacute;pez</a>
+    <form>
+      <input type="text" id="st-search-input" class="st-search-input"/>
+    </form>
+  </h1>
+
+  <a href="/blog/en.html" class="red">[EN]</a> |
+  <a href="/blog/pt.html" class="green">[PT]</a> |
+  <a href="/blog/es.html" class="yellow">[ES]</a> |
+  <a href="/atom.xml" class="rss">RSS</a> |
+
+  
+
+  <!-- Begin Swifttype -->
+  <script type="text/javascript">
+    var Swiftype = window.Swiftype || {};
+    (function() {
+      Swiftype.key = 'k64dV6Rm9QK4z8WnkrcN';
+      Swiftype.inputElement = '#st-search-input';
+      Swiftype.resultContainingElement = '#st-results-container';
+      Swiftype.attachElement = '#st-search-input';
+      Swiftype.renderStyle = "new_page";
+      Swiftype.resultPageURL = "/blog/results/";
+
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = "//swiftype.com/embed.js";
+      var entry = document.getElementsByTagName('script')[0];
+      entry.parentNode.insertBefore(script, entry);
+    }());
+  </script>
+  <!-- End Swifttype -->
+
+
+</div>
+
+
+    <div id="content">
+      <div id="post">
+  <h2 id="improve-boot-performance-in-ubuntu-precise-and-above">improve boot performance in Ubuntu Precise and above</h2>
+
+<h6 id="18-mar-2013">18 Mar 2013</h6>
+
+<p>The project <a href="http://e4rat.sourceforge.net/">e4rat</a> develops tools who improve the boot process in Linux, to do so, it takes advantage of the reassignment of files in <a href="http://es.wikipedia.org/wiki/Ext4">ext4</a> if you’re not using ext4 it won’t work. It won’t work neither if you are using <a href="http://en.wikipedia.org/wiki/Solid-state_drive">solid state drives</a>, for those disks <a href="https://launchpad.net/ureadahead">ureadahead</a> (installed by default) already do a great job.</p>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>A lot of the time who is allocated at the boot process is wasted booting and initializing hard drives (it doesn’t happen in ssds) you can see it by yourself with <a href="http://www.bootchart.org/">bootchart</a>.</p>
+
+<p><strong><a href="/assets/img/66.png"><img src="/assets/img/66.png" alt="" /></a></strong></p>
+
+<p>The red graph represent the time waiting for the hard drive and the blue one the time is cpu is being used.</p>
+
+<p><strong>e4rat</strong> technique move critical files (for the booting process) alongside so these files can be loaded with minimal machinery to the hard drives. After loading them in ram, the time required to read them will drop significantly.</p>
+
+<p><strong><a href="/assets/img/67.png"><img src="/assets/img/67.png" alt="" /></a></strong></p>
+
+<p>This a graph of the same system after using <em>e4rat</em>.</p>
+
+<p>The process should be repeated every time a kernel upgrade is done or when non simple updates have been applied.</p>
+
+<h3 id="installation">Installation</h3>
+
+<p><strong>e4rat</strong> requires at least a 2.6.31 linux kernel, in Ubuntu such kernels are distributed since Ubuntu 11.04. Fortunately the project provides .deb packages so the installation process is quite simple, grab the appropriate version for your cpu architecture from:</p>
+
+<ul>
+  <li><a href="http://sourceforge.net/projects/e4rat/files">http://sourceforge.net/projects/e4rat/files</a></li>
+</ul>
+
+<p>Before installing <strong>e4rat</strong> you will need ensure <strong>ureadahead</strong> has been completely removed, to do so in Debian/Ubuntu run:</p>
+
+<pre class="sh_sh">
+$ sudo apt-get purge ureadahead
+</pre>
+
+<p>The system will ask to uninstall <strong>ubuntu-minimal</strong> too. Let it continue, ubuntu-minimal is a meta-package who doesn’t contain anything by itself, it’s useful however during the OS installation process to bring with it a bunch of packages.</p>
+
+<p>After removing completely ureadahead, <strong>e4rat</strong> can be installed with dpkg:</p>
+
+<pre class="sh_sh">
+$ sudo dpkg -i e4rat_0.2.3_amd64.deb
+</pre>
+
+<h3 id="configuration">Configuration</h3>
+
+<p>For <strong>e4rat</strong> to work it needs to recognize which files are been used at the boot process, to do so add the <strong>init=/sbin/e4rat-collect</strong> string to the <strong>kernel</strong> line in <strong>/boot/grub/menu.lst</strong> or the equivalent file for grub2, etc:</p>
+
+<pre class="config">
+title   Ubuntu 12.04.2 LTS, kernel 3.8.2-ck1
+uuid    793e9a6d-d545-46f0-ac9c-49071c450b62
+kernel  ... ro init=/sbin/e4rat-collect
+initrd  /boot/initrd.img-3.8.2-ck1
+quiet
+</pre>
+
+<blockquote>
+  <p>Upon rebooting launch as fast as possible your most common applications (web/file browsers?, terminal emulator?, etc), e4rat will add to its index the files loaded in memory in the first 2 minutes after booting.</p>
+</blockquote>
+
+<blockquote>
+  <p>Review <strong>/var/lib/e4rat/startup.log</strong> to confirm it’s such information.</p>
+</blockquote>
+
+<pre class="sh_sh">
+$ file /var/lib/e4rat/startup.log
+/var/lib/e4rat/startup.log: ASCII text
+</pre>
+
+<h3 id="file-reallocation">File reallocation</h3>
+
+<p>To this moment <strong>e4rat</strong> already know what files should be loaded at boot time, to relocate them reboot the system in recovery (or safe) mode.</p>
+
+<blockquote>
+  <p>In my system the grub entry looks like this:</p>
+</blockquote>
+
+<pre class="config">
+Ubuntu 12.04.2 LTS, kernel 3.8.2-ck1 (recovery mode)
+</pre>
+
+<blockquote>
+  <p>Once loaded execute <strong>e4rat-realloc</strong> several times till the software indicates there are no more improvements possible</p>
+</blockquote>
+
+<pre class="sh_sh">
+# e4rat-realloc /var/lib/e4rat/startup.log
+...
+...
+No further improvements...
+</pre>
+
+<blockquote>
+  <p>Replace <strong>init=/sbin/e4rat-collect</strong> with <strong>init=/sbin/e4rat-preload</strong>:</p>
+</blockquote>
+
+<pre class="config">
+title   Ubuntu 12.04.2 LTS, kernel 3.8.2-ck1
+uuid    793e9a6d-d545-46f0-ac9c-49071c450b62
+kernel  ... ro plymouth:force-splash init=/sbin/e4rat-preload
+initrd  /boot/initrd.img-3.8.2-ck1
+quiet
+</pre>
+
+<blockquote>
+  <p>Reboot</p>
+</blockquote>
+
+<p>Done, now the boot process time should be faster and smoother 😎</p>
+
+<h3 id="uninstallation">Uninstallation</h3>
+
+<p>If you find <strong>4rat</strong> too difficult to use or buggy, you can uninstall it by following the next steps:</p>
+
+<pre class="sh_sh">
+$ sudo apt-get purge e4rat
+$ sudo apt-get install ubuntu-minimal ureadahead
+$ sudo vim /boot/grub/menu.lst #and remove init=/sbin/e4rat-preload
+</pre>
+
+<ul>
+  <li><a href="http://rafalcieslak.wordpress.com/2013/03/17/e4rat-decreasing-bootup-time-on-hdd-drives">http://rafalcieslak.wordpress.com/2013/03/17/e4rat-decreasing-bootup-time-on-hdd-drives</a></li>
+</ul>
+
+</div>
+
+<div id="related">
+  <h5>Related Entries:</h5>
+  <ul class="related-posts">
+    
+    <li><span>22 Aug 2018</span> &raquo; <a href="/blog/en/2018/08/22/minos-a-tiling-wm-linux-distro.html">minos, a tiling wm linux distribution</a></li>
+    
+    <li><span>01 Jan 2012</span> &raquo; <a href="/blog/en/2012/01/01/bash-autocompletion.html">bash autocompletion</a></li>
+    
+    <li><span>22 Feb 2014</span> &raquo; <a href="/blog/en/2014/02/22/awk.html">the most portable language in the world, awk</a></li>
+    
+  </ul>
+</div>
+
+    <div id="disqus">
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'javierlopez'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+       })();
+     </script>
+     <noscript>Enable JavaScript to see/create comments</noscript>
+    </div>
+
+
+    </div>
+
+    
+<div id="footer">
+
+  <div class="link" align="right">
+    <a href="//javier.io/blog"><i class="icon-pencil"></i></a>
+    <a href="//javier.io/pgp"><i class="icon-key"></i></a>
+    <a href="//javier.io/twitter"><i class="icon-twitter"></i></a>
+    <a href="//javier.io/github"><i class="icon-github-alt"></i></a>
+  </div>
+</div>
+
+    
+
+    <!-- syntax http://shjs.sourceforge.net/-->
+    <script type="text/javascript" src="/assets/js/shjs/shjs_main.js"></script>
+
+    <!-- lightbox http://gettopup.com, the other part of the lib is called in the post.html file-->
+    <script type="text/javascript" src="/assets/js/top-up/top_up-min.js"></script>
+    <script type="text/javascript">TopUp.host = "//javier.io/";</script>
+    <script type="text/javascript">TopUp.images_path = "assets/js/top-up/images/";</script>
+    <script type="text/javascript">
+      TopUp.addPresets({
+          "#content strong a": {
+            readAltText: 1,
+            effect: "clip",
+            overlayClose: 0,
+            shaded: 1,
+            group: "img"
+          }
+    });
+    </script>
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-47664650-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+    </script>
+
+  </body>
+</html>

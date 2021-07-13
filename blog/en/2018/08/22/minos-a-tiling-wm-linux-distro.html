@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="Javier López personal blog">
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>minos, a tiling wm linux distribution | javier.io</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="minos, a tiling wm linux distribution" />
+<meta name="author" content="Javier López" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="minos, a tiling wm linux distribution" />
+<meta property="og:description" content="minos, a tiling wm linux distribution" />
+<link rel="canonical" href="javier.io/blog/en/2018/08/22/minos-a-tiling-wm-linux-distro.html" />
+<meta property="og:url" content="javier.io/blog/en/2018/08/22/minos-a-tiling-wm-linux-distro.html" />
+<meta property="og:site_name" content="javier.io" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-08-22T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="minos, a tiling wm linux distribution" />
+<meta name="twitter:site" content="@javier_flpz" />
+<meta name="twitter:creator" content="@Javier López" />
+<script type="application/ld+json">
+{"description":"minos, a tiling wm linux distribution","url":"javier.io/blog/en/2018/08/22/minos-a-tiling-wm-linux-distro.html","@type":"BlogPosting","headline":"minos, a tiling wm linux distribution","dateModified":"2018-08-22T00:00:00+00:00","datePublished":"2018-08-22T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"javier.io/blog/en/2018/08/22/minos-a-tiling-wm-linux-distro.html"},"author":{"@type":"Person","name":"Javier López"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="shortcut icon" href="//javier.io/favicon.ico">
+    <link href='//fonts.googleapis.com/css?family=Exo+2:200|PT+Sans|Strait|Vollkorn|' rel='stylesheet' type='text/css'>
+    <!--<link href='//fonts.googleapis.com/css?family=Megrim|Ruluko|Exo+2:200|PT+Sans|Strait|Vollkorn|' rel='stylesheet' type='text/css'>-->
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml">
+    <link rel="stylesheet" type="text/css" href="/assets/css/default_black.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.min.css">
+
+    <!-- syntax http://shjs.sourceforge.net/-->
+    <link type="text/css" rel="stylesheet" href="/assets/css/shjs/sh_darkness.css">
+
+    <title>minos, a tiling wm linux distribution</title>
+  </head>
+
+  <body onload="sh_highlightDocument('/assets/js/lang/', '.js');">
+    <div id="header">
+  <h1><a href="/blog/">Javier L&oacute;pez</a>
+    <form>
+      <input type="text" id="st-search-input" class="st-search-input"/>
+    </form>
+  </h1>
+
+  <a href="/blog/en.html" class="red">[EN]</a> |
+  <a href="/blog/pt.html" class="green">[PT]</a> |
+  <a href="/blog/es.html" class="yellow">[ES]</a> |
+  <a href="/atom.xml" class="rss">RSS</a> |
+
+  
+
+  <!-- Begin Swifttype -->
+  <script type="text/javascript">
+    var Swiftype = window.Swiftype || {};
+    (function() {
+      Swiftype.key = 'k64dV6Rm9QK4z8WnkrcN';
+      Swiftype.inputElement = '#st-search-input';
+      Swiftype.resultContainingElement = '#st-results-container';
+      Swiftype.attachElement = '#st-search-input';
+      Swiftype.renderStyle = "new_page";
+      Swiftype.resultPageURL = "/blog/results/";
+
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = "//swiftype.com/embed.js";
+      var entry = document.getElementsByTagName('script')[0];
+      entry.parentNode.insertBefore(script, entry);
+    }());
+  </script>
+  <!-- End Swifttype -->
+
+
+</div>
+
+
+    <div id="content">
+      <div id="post">
+  <h2 id="minos-a-tiling-wm-linux-distribution">minos, a tiling wm linux distribution</h2>
+
+<h6 id="22-aug-2018">22 Aug 2018</h6>
+
+<p>I’ve been working in my spare time in a yet another Linux respin for the last
+7-8 years and I thought I better write something about it so my co-workers and
+friends have a better time getting started.</p>
+
+<h3 id="about">About</h3>
+
+<p><a href="https://github.com/minos-org/">Minos</a> is a personal effort to get a stable,
+performant and productive Linux system for power user/dev roles.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>▸ Based on Ubuntu LTS releases with BedRock Linux support on its way
+    ▸ 14.04 / 16.04 / 18.04 / 20.04
+▸ Tiling window manager, i3wm + patches
+▸ Full battery cli workflow, urxvt, tmux, vim, wicd, shundle, ...
+▸ Non-intrusive and fast dmenu based launchers for sessions, process
+  management, virtualization, etc.
+▸ Handpicked minimal yet powerful apps for common tasks:
+    ▸ file manager     -  pcmanfm     | login screen -  slim
+    ▸ image viewing    -  feh, sxiv   | pdf reader   - zathura
+    ▸ music indexing   -  mpd         | video player - mplayer2, umplayer
+    ▸ network manager  -  wicd-curses | email client - mutt
+    ▸ ...
+</code></pre></div></div>
+
+<p><strong><a href="/assets/img/minos-movie.png"><img src="/assets/img/minos-movie.png" alt="" /></a></strong></p>
+
+<h3 id="principles">Principles</h3>
+
+<p>In order to achieve its goal, minos design is lead by:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Minimalism → use as few elements as possible but not less
+Coherence  → based on modularity and composition, elements relate to each other
+Stability  → incremental over revolutionary
+Control    → extensive configuration options
+Pluggable  → plugin based components
+Beauty     → subjective, but right now mostly black =P
+</code></pre></div></div>
+
+<p>There exist two versions of the system:</p>
+
+<ul>
+  <li><strong>Core: X less environment, ideal for servers.</strong></li>
+  <li><strong>Desktop: Graphic tiling wm environment for laptops/workstations.</strong></li>
+</ul>
+
+<h3 id="installation">Installation</h3>
+
+<h4 id="ubuntu-lts-based-distro">Ubuntu LTS based distro</h4>
+
+<p>On any Ubuntu LTS release add the Minos repository:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo add-apt-repository ppa:minos-archive/main
+$ sudo apt-get update
+</code></pre></div></div>
+
+<p>And install the core or/and desktop metapackages:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install -y minos-core
+$ sudo apt-get install -y minos-desktop #includes minos-core
+</code></pre></div></div>
+
+<p>Or run the <a href="http://minos.io/s">http://minos.io/s</a> installer:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sh &lt;(wget -q -O- minos.io/s) core
+$ sh &lt;(wget -q -O- minos.io/s) desktop
+</code></pre></div></div>
+
+<h4 id="live-ubuntu-lts-based-distro">Live Ubuntu LTS based distro</h4>
+
+<p>From any [L/X/K]Ubuntu live usb run the <a href="http://minos.io/s">http://minos.io/s</a>
+installer:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sh &lt;(wget -q -O- minos.io/s) live core    /dev/sdX username passwd [/dev/sdaY]
+$ sh &lt;(wget -q -O- minos.io/s) live desktop /dev/sdX username passwd [/dev/sdaY]
+</code></pre></div></div>
+
+<p>Where:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/dev/sdX → / mount point
+username → admin minos user
+passwd   → admin minos user password
+
+/dev/sdY → /home mount point   (optional)
+--release  [14.04|16.04|18.04] (optional)
+</code></pre></div></div>
+
+<h4 id="vagrant">Vagrant</h4>
+
+<p>Minos is also available as portable VirtualBox images:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vagrant init minos/core-18.04    &amp;&amp; vagrant up
+$ vagrant init minos/desktop-18.04 &amp;&amp; vagrant up
+</code></pre></div></div>
+
+<p>Additional boxes are located at
+<a href="https://app.vagrantup.com/minos">https://app.vagrantup.com/minos</a></p>
+
+<h3 id="getting-started">Getting started</h3>
+
+<h4 id="aptdpkg">apt/dpkg</h4>
+
+<p>Minos is based on Debian/Ubuntu, as such, it uses <code class="language-plaintext highlighter-rouge">apt/dpkg</code> tools to
+manage/install software, some of the configuration changes include:</p>
+
+<p><strong>Core</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>▸ Recommend and suggested packages[0] are disabled by default. Use
+  → $ sudo dpkg-reconfigure minos-core-settings #to change it
+
+▸ shundle/aliazator add install, purge, remove, update, upgrade, aliases:
+  → $ type install
+  &gt; install is aliased to `sudo apt-get install --no-install-recommends'
+
+  * Use:
+  → $ aliazator [enable|disable] apt-get #to modify this behavior
+
+▸ eix is provided as an alternative apt-get/apt/aptitude interface
+  → $ eix -h
+</code></pre></div></div>
+
+<p><strong>Desktop</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>▸ Deb packages are cached and shared over avahi (zeroconf)
+</code></pre></div></div>
+
+<ul>
+  <li><a href="https://www.debian.org/doc/manuals/debian-faq/ch-pkg_basics.en.html#s-depends">https://www.debian.org/doc/manuals/debian-faq/ch-pkg_basics.en.html#s-depends</a></li>
+  <li><a href="https://www.unix-ag.uni-kl.de/~bloch/acng/">https://www.unix-ag.uni-kl.de/~bloch/acng/</a></li>
+</ul>
+
+<h4 id="static-get">static-get</h4>
+
+<p><a href="https://github.com/minos-org/minos-static">static-get</a> is included as an
+alternative installation medium allowing to fetch statically linked Linux
+binaries.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>▸ Search tmux available versions
+  → $ static-get -s tmux
+    &gt; tmux-1.9a-1.tar.xz:8ec9d37183d48d3e171e89b1dae6e212a5918262d10
+    &gt; tmux-2.1-1.tar.xz:8172e0f2b39818ee747fa5b445a0a69342c11d1afa72
+    &gt; tmux-2.2-1.tar.xz:f499f6e9368a5022f45b726759b588e52b16442ae2f3
+
+▸ Download and extract the specified package
+  → $ static-get -x tmux-2.2
+    &gt; tmux-2.2-1.tar.xz
+    &gt; tmux-2.2-1/
+</code></pre></div></div>
+
+<h4 id="shell--shundle">shell / shundle</h4>
+
+<p>The default bash editing mode is set to <code class="language-plaintext highlighter-rouge">vi</code> with some <code class="language-plaintext highlighter-rouge">emacs</code> exceptions
+meaning than common shortcuts like <code class="language-plaintext highlighter-rouge">&lt;Ctrl-l&gt; (clear screen)</code>, <code class="language-plaintext highlighter-rouge">&lt;Ctrl-r&gt;
+(reverse cmd search)</code>, <code class="language-plaintext highlighter-rouge">&lt;Ctrl-a&gt;/&lt;Ctrl-e&gt; (star/beginning sentence)</code> work
+the same while vi keybindings are used for all other actions. One of the
+most powerful characteristics of this mode are text objects.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>▸ text objects:
+  → $ echo "text object" #pressing ci" while in the 'text' word results in
+  → $ echo "" #removing the inner " characters
+</code></pre></div></div>
+
+<p>Math operations are recognized:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>▸ examples include: +, -, *, /, %
+  → $ 5 + 5
+    &gt; 10
+  → $ 7 \* 2.3
+    &gt; 16.1
+</code></pre></div></div>
+
+<p>Search and other common actions are integrated within the shell:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>▸ open the default web browser
+    → $ 1999, binary finary :google
+
+▸ or get back results from cli utils who output to console directly
+  → $ howdoi format date bash
+    &gt; today=`date +%Y-%m-%d.%H:%M:%S`
+  → $ translate -en-pt 'deleted code is debugged code'
+    &gt; Código eliminado é código depurado
+
+▸ open resources by its name/suffix or by using the `open` launcher
+  → $ /path/to/image.png
+  → $ open https://wikipedia.org
+</code></pre></div></div>
+
+<p>Autocd, auto ls, and directory indexing are enabled for faster jumping between
+directories:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>▸ create and jump in one cmd
+  → $ mkcd ~/a/long/path/including/a/directory/
+
+▸ change directories without requiring cd
+  → $ ~/a/long/path/including/a/
+
+▸ index directory paths, see `man wcd`
+  → $ update-cd
+  → $ cd including #go to ~/a/long/path/including/
+
+▸ backward pwd search for normal and versioned projects, see `command -v ,,,`
+  → $ ,, long #go to ~/a/long
+</code></pre></div></div>
+
+<p><strong>Desktop</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>▸ &lt;Alt-Esc&gt; is mapped to `dmenu-launcher` which supports the above
+  attributes plus clipboard integration
+</code></pre></div></div>
+
+<p>In order to provide additional yet optional characteristics, plugins based
+components are offered, <a href="https://github.com/javier-lopez/shundle">shundle</a> is
+the mechanism for which they’re managed, alternatives include
+<a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a> /
+<a href="https://github.com/sorin-ionescu/prezto">prezto</a> /
+<a href="https://github.com/Bash-it/bash-it">bash-it</a>, etc. Shundle allows installing
+scripts/modules which enrich the shell environment with sane defaults, aliases,
+functions and prompt themes.</p>
+
+<p>By default the following plugins are enabled (<strong>~/.profile.d/shundle.sh</strong>):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>▸ aliazator: An aliases manager, providing hundred of aliases for common
+             commands, eg: apt-get, git, ssh, sudo, wget, vim, etc.
+
+▸ autocd: Current directory autosaving (pwd), allows external applications
+          start "from here", used for new urxvt/tmux instances.
+
+▸ colorize: Provides prompt, X resources and less/grep/ls themes.
+
+▸ eternalize: Store an eternal history file across sessions
+</code></pre></div></div>
+
+<p>Shundle integration is provided by the <code class="language-plaintext highlighter-rouge">minos-core-settings</code> package, can be
+disabled/enabled by running:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo dpkg-reconfigure minos-core-settings #shundle option
+</code></pre></div></div>
+
+<h4 id="tmux--tundle">tmux / tundle</h4>
+
+<p>Simply speaking, <a href="https://tmux.github.io/">tmux</a> acts as a window manager for
+terminals, on Minos, it’s configured and installed by default in pair with
+<a href="https://mosh.org">mosh</a> to provide robust, secure and efficient access to
+local and remote shell sessions.</p>
+
+<p>tmux is launched on every incoming ssh connection and within the scratchpad
+window <code class="language-plaintext highlighter-rouge">&lt;Windows&gt;&lt;Space&gt;</code> (desktop edition). Of course, it can also be
+initialized manually.</p>
+
+<p>The default prefix sequence has been changed from <code class="language-plaintext highlighter-rouge">&lt;Ctrl-b&gt;</code> → <code class="language-plaintext highlighter-rouge">&lt;Ctrl-a&gt;</code></p>
+
+<p>As with the bash interpreter, tmux can be customized/extended through
+additional plugins, Minos includes
+<a href="https://github.com/javier-lopez/tundle">tundle</a> as the default tmux plugin
+manager.</p>
+
+<p>By default the following plugins are enabled (<strong>~/.tmux.conf</strong>):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>▸ tmux-sensible: improve tmux defaults, including &lt;Ctrl-a&gt; as default
+  prefix.
+
+▸ tmux-pain-control: rebinds default keybindings for pane management.
+
+▸ tmux-yank: tmux/system clipboard integration
+
+▸ tmux-resurrect: persists tmux environments across system restarts
+
+▸ tmux-copycat: enhances tmux search to find easily files, git hashes,
+                urls, etc
+</code></pre></div></div>
+
+<p>Tundle integration is provided by the <code class="language-plaintext highlighter-rouge">minos-core-settings</code> package, and can
+enabled/disabled by running:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo dpkg-reconfigure minos-core-settings #tundle option
+</code></pre></div></div>
+
+<h4 id="vim--vundle">vim / vundle</h4>
+
+<p><a href="https://www.vim.org/">Vim</a> is a highly configurable text editor mostly used by
+power users and developers to create content at the speed of thought. On Minos,
+it’s included by default with the <code class="language-plaintext highlighter-rouge">vim-nox</code> and <code class="language-plaintext highlighter-rouge">vim-gtk</code> packages (the latter
+only in the desktop version). <a href="https://github.com/javier-lopez/vundle">Vundle</a>
+has been adopted as the default vim plugin manager.</p>
+
+<p>A fair amount of vim plugins are included (~50), most of them are loaded on
+demand or upon specific events in order to do not affect the editor startup
+time. Some examples include:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bundle 'bogado/file-line'      "jump to line on startup, eg: $ vim file:23
+Bundle 'mhinz/vim-signify'     "git|svn modification viewer
+Bundle 'tpope/vim-surround'    "text :h objects on steroids
+Bundle 'msanders/snipmate.vim' "snippet support
+Bundle 'Shougo/neocomplcache'  "autocompletion
+</code></pre></div></div>
+
+<p>Vundle integration is provided by the <code class="language-plaintext highlighter-rouge">minos-core-settings</code> package, run
+the following command to disable/enable it:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo dpkg-reconfigure minos-core-settings #vundle option
+</code></pre></div></div>
+
+<h4 id="minos-tools">minos-tools</h4>
+
+<p>Additional wrappers and power user scripts (&gt;100) are available through the
+<code class="language-plaintext highlighter-rouge">minos-core-tools</code> and <code class="language-plaintext highlighter-rouge">minos-desktop-tools</code> packages.</p>
+
+<p><strong>Core</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>▸ rm wrapper with nautilus/pcmanfm trash management integration
+  → $ mkdir ~/a/long/path/including/a/directory
+  → $ rm -r ~/a/long/path/including/a/directory
+  → $ rm -l a #outputs recoverable files matching the 'a' pattern
+  → $ rm -u a #recovers the files matching the 'a' pattern
+  → $ ls    ~/a/long/path/including/a/directory/
+
+▸ compress / extract wrappers to ease archive creation/decompression.
+  → $ touch a b c &amp;&amp; compress a b c abc.tar.gz
+  → $ rm -f a b c &amp;&amp; extract  abc.tar.gz
+
+▸ text / image pastebins
+  → $ cat ~/.bashrc | sprunge
+    &gt; http://sprunge.us/AYZC
+  → $ uimg image.png
+    &gt; http://i.imgur.com/KyoFMH9.png
+</code></pre></div></div>
+
+<p><strong>Desktop</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>▸ dmenu-*       #dmenu based launchers, i3 window jumper,
+                #process/session management, vbox/xrandr/mpd/ wrappers
+▸ watch-battery #battery notifier, suspend/hibernate the system if
+                #no manual action is taken
+▸ player-ctrl   #control multimedia players, mpd/mplayer/spotify
+</code></pre></div></div>
+
+<p>To get a full list of the included scripts run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ dpkg -L minos-core-tools minos-desktop-tools
+</code></pre></div></div>
+
+<h3 id="minos-config">minos-config</h3>
+
+<p>Minos is commanded by configuration files, those determinate global settings
+(eg, wallpaper, autostart, etc), post-installation hooks, etc:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- $HOME/.minos/config
+- /etc/minos/config
+</code></pre></div></div>
+
+<p>A simple ini like syntax is used, e.g.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/etc/minos/config
+    wallpaper /usr/share/minos/wallpapers/minos.png
+</code></pre></div></div>
+
+<p>To look-up a value, use <code class="language-plaintext highlighter-rouge">minos-config key</code>, e.g:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ minos-config wallpaper
+ /usr/share/minos/wallpapers/minos.png
+</code></pre></div></div>
+
+<p>See <code class="language-plaintext highlighter-rouge">minos-config -h</code> and
+<a href="http://minos.io/doc/config">http://minos.io/doc/config</a> for further details.</p>
+
+<h3 id="development">Development</h3>
+
+<p>Minos uses a Rolling Release over LTS cycle, meaning it pushes frequent and
+small updates to LTS releases and doesn’t provide named releases by itself.</p>
+
+<p>There is a parity:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>▸ 1 deb package =&gt; 2 git repositories
+               \
+                \__  program src
+                 \__ deb packaging
+</code></pre></div></div>
+
+<p>Which requires a package to compile correctly in all LTS supported releases
+with the same deb code in order to be accepted, other Debian based distros
+create different packaging code for every release, that’s unacceptable in Minos
+due to the limited human resources and general waste it would be.</p>
+
+<p>Deb <strong>source files</strong> are located at
+<a href="https://github.com/minos-org/">https://github.com/minos-org/</a></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>foo-program     (custom/freeze program)
+foo-program-deb (deb packaging)
+    debian
+        rules
+            get-orig-source target (must retrieve content)
+    debian/README.source (step by step instructions to build package)
+</code></pre></div></div>
+
+<p>Deb <strong>binary packages</strong> are located at
+<a href="https://launchpad.net/~minos-archive/+archive/main">https://launchpad.net/~minos-archive/+archive/main</a>,
+and are created using daily recipes asociated to every source mirror.</p>
+
+<p>In certain ocasions, base repositories are modified to introduce changes or
+delete problematic files, those changes are automatic and described at:
+<a href="https://github.com/minos-org/minos-sync">https://github.com/minos-org/minos-sync</a></p>
+
+<h4 id="choosing-default-applications">Choosing default applications</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>▸ Default applications are selected with good documentation, flexibility,
+configurability and as few dependencies as possible in mind.
+▸ Systems supporting composition/specialization are preferred over
+generalization
+▸ Keyboard oriented applications are preferred over pointing interfaces
+▸ GUI programs are nice but rejected if they use ancient graphical
+interfaces or use considerable resources.
+▸ When in doubt http://suckless.org/rocks provide additional hints about
+how software is selected into the project
+</code></pre></div></div>
+
+<h4 id="choosing-default-behavior">Choosing default behavior</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ▸ Toggle solutions are preferred over multichoice.
+ ▸ Use/Set vi like applications/settings are preferred
+ ▸ Defaults are configured with a focus in the out-of-the-box experience
+</code></pre></div></div>
+
+<h4 id="roadmap">Roadmap</h4>
+
+<p>Minos is built on top of the most popular Linux distribution system to get a
+lot of free software and an easy integration with third-party providers. At the
+time of writing this, that’s Ubuntu, however future development should be
+towards a multi-channel system such as <a href="http://subuser.org/">SubUser</a> or
+<a href="https://bedrocklinux.org/">BedRock Linux</a>.</p>
+
+<p>That’s it, happy tiling 😊</p>
+
+</div>
+
+<div id="related">
+  <h5>Related Entries:</h5>
+  <ul class="related-posts">
+    
+    <li><span>01 Jan 2012</span> &raquo; <a href="/blog/en/2012/01/01/bash-autocompletion.html">bash autocompletion</a></li>
+    
+    <li><span>26 Jan 2014</span> &raquo; <a href="/blog/en/2014/01/26/introduction-to-drupal-7-installation-profiles.html">introduction to drupal 7 installation profiles</a></li>
+    
+    <li><span>29 Jun 2015</span> &raquo; <a href="/blog/en/2015/06/29/tundle-tmux-plugin-manager.html">tundle, a tmux plugin manager</a></li>
+    
+  </ul>
+</div>
+
+    <div id="disqus">
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'javierlopez'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+       })();
+     </script>
+     <noscript>Enable JavaScript to see/create comments</noscript>
+    </div>
+
+
+    </div>
+
+    
+<div id="footer">
+
+  <div class="link" align="right">
+    <a href="//javier.io/blog"><i class="icon-pencil"></i></a>
+    <a href="//javier.io/pgp"><i class="icon-key"></i></a>
+    <a href="//javier.io/twitter"><i class="icon-twitter"></i></a>
+    <a href="//javier.io/github"><i class="icon-github-alt"></i></a>
+  </div>
+</div>
+
+    
+
+    <!-- syntax http://shjs.sourceforge.net/-->
+    <script type="text/javascript" src="/assets/js/shjs/shjs_main.js"></script>
+
+    <!-- lightbox http://gettopup.com, the other part of the lib is called in the post.html file-->
+    <script type="text/javascript" src="/assets/js/top-up/top_up-min.js"></script>
+    <script type="text/javascript">TopUp.host = "//javier.io/";</script>
+    <script type="text/javascript">TopUp.images_path = "assets/js/top-up/images/";</script>
+    <script type="text/javascript">
+      TopUp.addPresets({
+          "#content strong a": {
+            readAltText: 1,
+            effect: "clip",
+            overlayClose: 0,
+            shaded: 1,
+            group: "img"
+          }
+    });
+    </script>
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-47664650-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+    </script>
+
+  </body>
+</html>

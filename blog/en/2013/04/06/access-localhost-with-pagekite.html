@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="Javier López personal blog">
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>access localhost with pagekite | javier.io</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="access localhost with pagekite" />
+<meta name="author" content="Javier López" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="access localhost with pagekite" />
+<meta property="og:description" content="access localhost with pagekite" />
+<link rel="canonical" href="javier.io/blog/en/2013/04/06/access-localhost-with-pagekite.html" />
+<meta property="og:url" content="javier.io/blog/en/2013/04/06/access-localhost-with-pagekite.html" />
+<meta property="og:site_name" content="javier.io" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2013-04-06T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="access localhost with pagekite" />
+<meta name="twitter:site" content="@javier_flpz" />
+<meta name="twitter:creator" content="@Javier López" />
+<script type="application/ld+json">
+{"description":"access localhost with pagekite","url":"javier.io/blog/en/2013/04/06/access-localhost-with-pagekite.html","@type":"BlogPosting","headline":"access localhost with pagekite","dateModified":"2013-04-06T00:00:00+00:00","datePublished":"2013-04-06T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"javier.io/blog/en/2013/04/06/access-localhost-with-pagekite.html"},"author":{"@type":"Person","name":"Javier López"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="shortcut icon" href="//javier.io/favicon.ico">
+    <link href='//fonts.googleapis.com/css?family=Exo+2:200|PT+Sans|Strait|Vollkorn|' rel='stylesheet' type='text/css'>
+    <!--<link href='//fonts.googleapis.com/css?family=Megrim|Ruluko|Exo+2:200|PT+Sans|Strait|Vollkorn|' rel='stylesheet' type='text/css'>-->
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml">
+    <link rel="stylesheet" type="text/css" href="/assets/css/default_black.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.min.css">
+
+    <!-- syntax http://shjs.sourceforge.net/-->
+    <link type="text/css" rel="stylesheet" href="/assets/css/shjs/sh_darkness.css">
+
+    <title>access localhost with pagekite</title>
+  </head>
+
+  <body onload="sh_highlightDocument('/assets/js/lang/', '.js');">
+    <div id="header">
+  <h1><a href="/blog/">Javier L&oacute;pez</a>
+    <form>
+      <input type="text" id="st-search-input" class="st-search-input"/>
+    </form>
+  </h1>
+
+  <a href="/blog/en.html" class="red">[EN]</a> |
+  <a href="/blog/pt.html" class="green">[PT]</a> |
+  <a href="/blog/es.html" class="yellow">[ES]</a> |
+  <a href="/atom.xml" class="rss">RSS</a> |
+
+  
+
+  <!-- Begin Swifttype -->
+  <script type="text/javascript">
+    var Swiftype = window.Swiftype || {};
+    (function() {
+      Swiftype.key = 'k64dV6Rm9QK4z8WnkrcN';
+      Swiftype.inputElement = '#st-search-input';
+      Swiftype.resultContainingElement = '#st-results-container';
+      Swiftype.attachElement = '#st-search-input';
+      Swiftype.renderStyle = "new_page";
+      Swiftype.resultPageURL = "/blog/results/";
+
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = "//swiftype.com/embed.js";
+      var entry = document.getElementsByTagName('script')[0];
+      entry.parentNode.insertBefore(script, entry);
+    }());
+  </script>
+  <!-- End Swifttype -->
+
+
+</div>
+
+
+    <div id="content">
+      <div id="post">
+  <h2 id="access-localhost-with-pagekite">access localhost with pagekite</h2>
+
+<h6 id="06-apr-2013">06 Apr 2013</h6>
+
+<p>I ♡ pagekite, it allows me to connect to my laptop from anywhere, literally, it doesn’t matter if my computer is behind a nat router or if my input traffic is blocked, as long as my computer can start connections to internet I’m covered. And I don’t need to redefine anything, it will work even if I’m changing constantly networks.</p>
+
+<p><strong><a href="/assets/img/68.jpg"><img src="/assets/img/68.jpg" alt="" /></a></strong></p>
+
+<p>Why do I need to access my computer under every possible scenario?, personal portability, I prefer to travel lightly, just give me a book and some headphones and I’m ready to go to the end of the world. And even though I’ve most of my stuff in servers some things somehow end in my personal laptop.</p>
+
+<p>So, right now I connect to home by typing:</p>
+
+<pre class="sh_sh">
+$ ssh home.javier.io
+</pre>
+
+<p>It doesn’t matter where I’m, neither where my laptop is, it will just work 😂</p>
+
+<p>If you’re interested in setting something similar up, go and create an account in <a href="http://pagekite.net">http://pagekite.net</a>, personal startup of <a href="http://bre.klaki.net/">Bjarni Einarsson</a>, icelandic hacker.</p>
+
+<p>Once done, you’ll be able to run:</p>
+
+<pre class="sh_sh">
+$ curl -s https://pagekite.net/pk/ |sudo bash #for installing pagekite in 1 line
+$ pagekite.py 80 yourname.pagekite.me
+</pre>
+
+<p>And now you’ll be running your own web server available to the world, isn’t great? Now let’s talk about more interesting stuff such us using your own domain and connecting to ssh or any other protocol.</p>
+
+<p>This is what happens when someone uses pagekite:</p>
+
+<pre class="sh_sh">
+$ ssh home.javier.io
+</pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       192.168.1.x       home.javier.io  home.javier.pagekite.me   192.168.1.x
+       :::::::::::        :::::::::::          ::::::::::::        :::::::::::::::
+       | client  |   =&gt;   |   dns   |    =&gt;    | pagekite |     =&gt; |   laptop    |
+       :::::::::::        :::::::::::          ::::::::::::        :::::::::::::::
+</code></pre></div></div>
+
+<p>The computer where the client is launched will connect to a dns, which in return will send it to a pagekite subdomain and from there to a reverse connection between pagekite and your server. Alloying to exchange data between client and server(laptop behind nat) through pagekite servers.</p>
+
+<h3 id="dns">Dns</h3>
+
+<ul>
+  <li>Cname</li>
+</ul>
+
+<p>For this to work, home.javier.io must point to pagekite. This can be done with a CNAME entry, and it depends of your dns provider. In my case it looks like this (<a href="http://iwantmyname.com">http://iwantmyname.com</a>):</p>
+
+<p><strong><a href="/assets/img/69.png"><img src="/assets/img/69.png" alt="" /></a></strong></p>
+
+<ul>
+  <li><a href="http://pagekite.net">pagekite.me</a></li>
+</ul>
+
+<p>Upon registration, pagekite will give you a <strong>nick.pagekite.me</strong> subdomain for free where you can add <a href="https://pagekite.net/signup/?more=free">other subdomains</a> to get <strong>subdomain.nick.pagekite.me</strong></p>
+
+<p><strong><a href="/assets/img/70.png"><img src="/assets/img/70.png" alt="" /></a></strong></p>
+
+<ul>
+  <li>home.javier.io kite</li>
+</ul>
+
+<p>You need to <a href="https://pagekite.net/signup/?more=cname#cnameForm">register</a> the CNAME entry in pagekite as well:</p>
+
+<p><strong><a href="/assets/img/71.png"><img src="/assets/img/71.png" alt="" /></a></strong></p>
+
+<p>Now your <a href="https://pagekite.net/home/">home page</a> should look like this:</p>
+
+<p><strong><a href="/assets/img/72.png"><img src="/assets/img/72.png" alt="" /></a></strong></p>
+
+<h3 id="server">Server</h3>
+
+<p>Now it’s time to configure pagekite in the target machine:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>###[ Current settings for pagekite.py v0.5.6a. ]#########
+# ~/.pagekite.rc
+## NOTE: This file may be rewritten/reordered by pagekite.py.
+#
+
+##[ Default kite and account details ]##
+kitename = home.javier.io
+kitesecret = KITESECRET_KEY
+
+##[ Front-end settings: use pagekite.net defaults ]##
+defaults
+
+##[ Back-ends and local services ]##
+service_on = http:@kitename : localhost:80 : @kitesecret
+service_on = raw-22:@kitename : localhost:22 : @kitesecret
+
+##[ Miscellaneous settings ]##
+savefile = ~/.pagekite.rc
+
+###[ End of pagekite.py configuration ]#########
+END
+</code></pre></div></div>
+
+<p>And launch the service:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./pagekite.py
+&gt;&gt;&gt; Hello! This is pagekite v0.5.6a.                            [CTRL+C = Stop]
+    Connecting to front-end 69.164.211.158:443 ...
+     - Protocols: http http2 http3 https websocket irc finger httpfinger raw
+     - Protocols: minecraft
+     - Ports: 79 80 443 843 2222 3000 4545 5222 5223 5269 5670 6667 8000 8080
+     - Ports: 8081 9292 25565
+     - Raw ports: 22 virtual
+    Quota: You have 2559.74 MB, 29 days and 4 connections left.
+    Connecting to front-end 173.230.155.164:443 ...
+~&lt;&gt; Flying localhost:22 as ssh://home.javier.io:22/ (HTTP proxied)
+~&lt;&gt; Flying localhost:80 as https://home.javier.io/
+ &lt;&lt; pagekite.py [flying]   Kites are flying and all is well.
+</code></pre></div></div>
+
+<h3 id="client">Client</h3>
+
+<p>To connect to your laptop you can use any web browser or complete an extra step to be able to use ssh. The <strong>$HOME/.ssh/config</strong> file should be edited as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host home.javier.io
+    CheckHostIP no
+    ProxyCommand /bin/nc -X connect -x %h:443 %h %p
+</code></pre></div></div>
+
+<p><strong>WARNING:</strong> the nc command must be the openbsd version, in Ubuntu it’s called <strong>netcat-openbsd</strong></p>
+
+<p>If everything is correct, you should now be able to login:</p>
+
+<pre class="sh_sh">
+$ ssh home.javier.io
+admin@home.javier.io's password:
+</pre>
+
+<h3 id="own-server">Own Server</h3>
+
+<p>Pagekite is free software, both backend(client) and frontend(server). The same <code class="language-plaintext highlighter-rouge">pagekite.py</code> can play both roles. This is a quick summary in case you prefer going your own.</p>
+
+<pre class="sh_sh">
+(vps) $ pagekite --clean --isfrontend --ports=8080 --domain=*:h.javier.io:passw0rd
+&gt;&gt;&gt; Hello! This is pagekite v0.5.6a.                            [CTRL+C = Stop]
+    This is a PageKite front-end server.
+     - Listening on *:8080
+</pre>
+
+<pre class="sh_sh">
+(target) $ pagekite --clean --frontend=h.javier.io:8080 --service_on=http/8080:h.javier.io:localhost:8080:passw0rd
+Connecting to front-end 107.161.164.253:8080 ...
+     - Protocols: http http2 http3 https websocket irc finger httpfinger raw
+     - Protocols: minecraft
+     - Ports: 8080
+~&lt;&gt; Flying localhost:8080 as http://h.javier.io:8080/
+</pre>
+
+<p>And with that, your local machine will be available on Internet through your own public machine.</p>
+
+<p>That’s it, happy flying 😋</p>
+
+<ul>
+  <li><a href="https://github.com/pagekite/PyPagekite">https://github.com/pagekite/PyPagekite</a></li>
+</ul>
+
+</div>
+
+<div id="related">
+  <h5>Related Entries:</h5>
+  <ul class="related-posts">
+    
+    <li><span>03 Dec 2020</span> &raquo; <a href="/blog/en/2020/12/03/host-several-sites-in-a-single-box-with-docker-and-traefik-https.html">host several sites in a single box with docker and traefik v2, https</a></li>
+    
+    <li><span>01 Jan 2012</span> &raquo; <a href="/blog/en/2012/01/01/bash-autocompletion.html">bash autocompletion</a></li>
+    
+    <li><span>01 Dec 2020</span> &raquo; <a href="/blog/en/2020/12/01/host-several-sites-in-a-single-box-with-docker-and-traefik-http.html">host several sites in a single box with docker and traefik v2, http</a></li>
+    
+  </ul>
+</div>
+
+    <div id="disqus">
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'javierlopez'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+       })();
+     </script>
+     <noscript>Enable JavaScript to see/create comments</noscript>
+    </div>
+
+
+    </div>
+
+    
+<div id="footer">
+
+  <div class="link" align="right">
+    <a href="//javier.io/blog"><i class="icon-pencil"></i></a>
+    <a href="//javier.io/pgp"><i class="icon-key"></i></a>
+    <a href="//javier.io/twitter"><i class="icon-twitter"></i></a>
+    <a href="//javier.io/github"><i class="icon-github-alt"></i></a>
+  </div>
+</div>
+
+    
+
+    <!-- syntax http://shjs.sourceforge.net/-->
+    <script type="text/javascript" src="/assets/js/shjs/shjs_main.js"></script>
+
+    <!-- lightbox http://gettopup.com, the other part of the lib is called in the post.html file-->
+    <script type="text/javascript" src="/assets/js/top-up/top_up-min.js"></script>
+    <script type="text/javascript">TopUp.host = "//javier.io/";</script>
+    <script type="text/javascript">TopUp.images_path = "assets/js/top-up/images/";</script>
+    <script type="text/javascript">
+      TopUp.addPresets({
+          "#content strong a": {
+            readAltText: 1,
+            effect: "clip",
+            overlayClose: 0,
+            shaded: 1,
+            group: "img"
+          }
+    });
+    </script>
+
+    <!-- google analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-47664650-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+    </script>
+
+  </body>
+</html>
